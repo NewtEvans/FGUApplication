@@ -5,6 +5,8 @@ import cz.newtworks.FGUApplication.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/people")
@@ -14,8 +16,8 @@ public class PersonController {
     private PersonService personService;
 
     @GetMapping
-    public String renderIndex() {
-        return "index.html";
+    public List<PersonDTO> getAllPeople() {
+        return personService.getAllPeople();
     }
 
     @PostMapping("/create")

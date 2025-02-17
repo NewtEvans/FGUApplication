@@ -7,6 +7,9 @@ import cz.newtworks.FGUApplication.entity.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class PersonServiceImpl implements PersonService{
 
@@ -22,5 +25,13 @@ public class PersonServiceImpl implements PersonService{
         personRepository.save(newPersonEntity);
 
         return personMapper.toDTO(newPersonEntity);
+    }
+
+    @Override
+    public List<PersonDTO> getAllPeople() {
+        return personRepository.findAll()
+                .stream()
+                .map(i -> personMapper.toDTO(i))
+                .collect(Collectors.toList());
     }
 }
