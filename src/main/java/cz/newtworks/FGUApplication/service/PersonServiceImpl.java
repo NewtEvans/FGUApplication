@@ -4,7 +4,9 @@ import cz.newtworks.FGUApplication.dto.PersonDTO;
 import cz.newtworks.FGUApplication.dto.mapper.PersonMapper;
 import cz.newtworks.FGUApplication.entity.PersonEntity;
 import cz.newtworks.FGUApplication.entity.repository.PersonRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,5 +35,30 @@ public class PersonServiceImpl implements PersonService{
                 .stream()
                 .map(i -> personMapper.toDTO(i))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public PersonDTO personDetail(long id) {
+        return personMapper.toDTO(fetchPersonById(id));
+    }
+
+    @Override
+    public PersonDTO editPerson(PersonDTO personDTO, long personId) {
+       PersonEntity editedPerson = personMapper.toEntity(personDTO);
+       editedPerson.setId(personId);
+       personRepository.save(editedPerson);
+
+       return personMapper.toDTO(fetchPersonById(personId));
+    }
+
+    @Override
+    public void deletePerson(long personId) {
+        personRepository.delete(fetchPersonById(personId));
+    }
+
+    //Private methods
+    private PersonEntity fetchPersonById(long id){
+        return personRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Person with id" + id + "wasn't found in the database."));
     }
 }

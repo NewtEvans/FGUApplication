@@ -20,8 +20,23 @@ public class PersonController {
         return personService.getAllPeople();
     }
 
+    @GetMapping("/{personId}")
+    public PersonDTO personDetail(@PathVariable long personId){
+        return personService.personDetail(personId);
+    }
+
     @PostMapping("/create")
     public PersonDTO addPerson(@RequestBody PersonDTO personDTO) {
         return personService.addPerson(personDTO);
+    }
+
+    @PutMapping("/{personId}")
+    public PersonDTO editPerson(@RequestBody PersonDTO personDTO, @PathVariable long personId){
+        return personService.editPerson(personDTO, personId);
+    }
+
+    @DeleteMapping("/{personId}")
+    public void deletePerson(@PathVariable long personId){
+        personService.deletePerson(personId);
     }
 }
