@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
-
 @RestController
 @RequestMapping("/people")
 public class PersonController {
@@ -15,12 +14,12 @@ public class PersonController {
     private PersonService personService;
 
     @GetMapping
-    public String renderIndex(){
+    public String renderIndex() {
         return "index.html";
     }
 
     @PostMapping("/create")
-    public PersonDTO addPerson(@RequestBody PersonDTO personDTO){
+    public PersonDTO addPerson(@RequestBody PersonDTO personDTO) {
         return personService.addPerson(personDTO);
     }
 }

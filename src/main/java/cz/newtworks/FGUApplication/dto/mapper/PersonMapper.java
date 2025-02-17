@@ -1,6 +1,5 @@
 package cz.newtworks.FGUApplication.dto.mapper;
 
-
 import cz.newtworks.FGUApplication.dto.PersonDTO;
 import cz.newtworks.FGUApplication.entity.PersonEntity;
 import org.mapstruct.Mapper;
@@ -8,7 +7,7 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface PersonMapper {
 
-    PersonDTO toDTO(PersonEntity source);
-
     PersonEntity toEntity(PersonDTO source);
+
+    PersonDTO toDTO(PersonEntity source);
 }

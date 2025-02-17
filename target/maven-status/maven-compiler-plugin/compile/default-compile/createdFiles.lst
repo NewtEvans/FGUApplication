@@ -1,0 +1,9 @@
+cz\newtworks\FGUApplication\controller\PersonController.class
+cz\newtworks\FGUApplication\entity\PersonEntity.class
+cz\newtworks\FGUApplication\ApplicationMain.class
+cz\newtworks\FGUApplication\constant\Department.class
+cz\newtworks\FGUApplication\service\PersonServiceImpl.class
+cz\newtworks\FGUApplication\entity\repository\PersonRepository.class
+cz\newtworks\FGUApplication\service\PersonService.class
+cz\newtworks\FGUApplication\dto\mapper\PersonMapper.class
+cz\newtworks\FGUApplication\dto\PersonDTO.class

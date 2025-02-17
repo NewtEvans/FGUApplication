@@ -18,9 +18,9 @@ public class PersonServiceImpl implements PersonService{
 
     @Override
     public PersonDTO addPerson(PersonDTO personDTO){
-        PersonEntity personEntity = personMapper.toEntity(personDTO);
-        personRepository.save(personEntity);
+        PersonEntity newPersonEntity = personMapper.toEntity(personDTO);
+        personRepository.save(newPersonEntity);
 
-        return personMapper.toDTO(personEntity);
+        return personMapper.toDTO(newPersonEntity);
     }
 }

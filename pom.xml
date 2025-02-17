@@ -61,8 +61,15 @@
 		<dependency>
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct</artifactId>
-			<version>1.6.0.RC1</version>
+			<version>1.6.3</version>
 		</dependency>
+
+<!--		<dependency>-->
+<!--			<groupId>org.hibernate.orm</groupId>-->
+<!--			<artifactId>hibernate-core</artifactId>-->
+<!--			<version>6.6.8.Final</version>-->
+<!--		</dependency>-->
+
 	</dependencies>
 
 	<build>
@@ -75,6 +82,11 @@
 						<path>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
+						</path>
+						<path>
+							<groupId>org.mapstruct</groupId>
+							<artifactId>mapstruct-processor</artifactId>
+							<version>1.6.3</version>
 						</path>
 					</annotationProcessorPaths>
 				</configuration>
