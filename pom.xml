@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>cz.newtworks</groupId>
-	<artifactId>FGUApplication</artifactId>
+	<artifactId>FGUApplication_backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>FGUApplication</name>
 	<description>Aplikace pro FGU</description>
