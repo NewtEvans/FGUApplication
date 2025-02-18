@@ -1,6 +1,6 @@
 package cz.newtworks.FGUApplication.entity;
 
-import cz.newtworks.FGUApplication.constant.Department;
+import cz.newtworks.FGUApplication.constant.Role;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,9 +26,9 @@ public class PersonEntity {
 
     private String titleAfterName;
 
-    private boolean student;
-
-    //@Column(nullable = false)
+//  @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private Department department;
+    private Role student;
+
+    //vazba mezi tabulkami - department
 }
