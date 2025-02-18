@@ -1,19 +1,19 @@
 package cz.newtworks.FGUApplication.entity;
 
-import jakarta.annotation.Nullable;
+import jakarta.persistence.Entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
-@Entity(name = "faculty")
+@Entity(name = "department")
 @Data
-public class FacultyEntity {
+public class DepartmentEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false)
-    private String facultyName;
+    @Column
+    private byte departmentNumber;
 
     @Column
-    private String facultyAbbreviation;
+    private String departmentName;
 }
