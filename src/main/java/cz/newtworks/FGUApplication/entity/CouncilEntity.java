@@ -1,4 +1,4 @@
-package cz.newtworks.FGUApplication.entity.repository;
+package cz.newtworks.FGUApplication.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;

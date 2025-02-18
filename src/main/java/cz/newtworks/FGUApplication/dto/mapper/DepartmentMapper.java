@@ -1,0 +1,11 @@
+package cz.newtworks.FGUApplication.dto.mapper;
+
+import cz.newtworks.FGUApplication.dto.DepartmentDTO;
+import cz.newtworks.FGUApplication.entity.DepartmentEntity;
+import org.mapstruct.Mapper;
+
+@Mapper(componentModel = "spring")
+public interface DepartmentMapper {
+    DepartmentEntity toEntity(DepartmentDTO source);
+    DepartmentDTO toDTO(DepartmentEntity source);
+}

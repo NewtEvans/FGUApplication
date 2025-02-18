@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PersonDTO {
-
     private Long id;
     private String titleBeforeName;
     private String name;
