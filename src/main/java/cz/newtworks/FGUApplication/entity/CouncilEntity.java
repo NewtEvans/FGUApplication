@@ -3,7 +3,7 @@ package cz.newtworks.FGUApplication.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
-@Entity
+@Entity(name = "council")
 @Data
 public class CouncilEntity {
     @Id
