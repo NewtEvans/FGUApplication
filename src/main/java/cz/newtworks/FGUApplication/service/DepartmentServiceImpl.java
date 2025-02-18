@@ -25,7 +25,7 @@ public class DepartmentServiceImpl implements DepartmentService{
 
         departmentRepository.save(newDepartment);
 
-        return departmentDTO;
+        return departmentMapper.toDTO(newDepartment);
     }
 
     @Override
