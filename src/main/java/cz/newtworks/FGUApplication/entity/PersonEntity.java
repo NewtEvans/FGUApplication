@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 
 @Entity
 @Table(name = "people")
@@ -14,7 +16,7 @@ public class PersonEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long personId;
 
     private String titleBeforeName;
 
@@ -31,4 +33,11 @@ public class PersonEntity {
     private Role student;
 
     //vazba mezi tabulkami - department
+    @ManyToMany
+    @JoinTable(
+            name = "people_departments",
+            joinColumns = @JoinColumn(name = "personId"),
+            inverseJoinColumns = @JoinColumn(name = "departmentId")
+    )
+    private List<DepartmentEntity> departments;
 }

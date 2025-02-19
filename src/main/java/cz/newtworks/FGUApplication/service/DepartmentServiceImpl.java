@@ -41,7 +41,7 @@ public class DepartmentServiceImpl implements DepartmentService{
     public DepartmentDTO editDepartment(DepartmentDTO departmentDTO, long departmentId) {
         DepartmentEntity newDepartment = departmentMapper.toEntity(departmentDTO);
 
-        newDepartment.setId(departmentId);
+        newDepartment.setDepartmentId(departmentId);
 
         departmentRepository.save(newDepartment);
 

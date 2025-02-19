@@ -6,7 +6,6 @@ import cz.newtworks.FGUApplication.entity.PersonEntity;
 import cz.newtworks.FGUApplication.entity.repository.PersonRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -45,7 +44,7 @@ public class PersonServiceImpl implements PersonService{
     @Override
     public PersonDTO editPerson(PersonDTO personDTO, long personId) {
        PersonEntity editedPerson = personMapper.toEntity(personDTO);
-       editedPerson.setId(personId);
+       editedPerson.setPersonId(personId);
        personRepository.save(editedPerson);
 
        return personMapper.toDTO(fetchPersonById(personId));

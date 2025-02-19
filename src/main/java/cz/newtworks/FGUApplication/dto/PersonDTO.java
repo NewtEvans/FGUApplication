@@ -1,6 +1,5 @@
 package cz.newtworks.FGUApplication.dto;
 
-import cz.newtworks.FGUApplication.constant.Department;
 import cz.newtworks.FGUApplication.constant.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PersonDTO {
-    private Long id;
+    private Long personId;
     private String titleBeforeName;
     private String name;
     private String surname;
