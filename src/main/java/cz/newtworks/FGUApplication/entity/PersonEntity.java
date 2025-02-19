@@ -34,5 +34,10 @@ public class PersonEntity {
 
     //vazba mezi tabulkami - department
     @ManyToMany
-    private List<DepartmentEntity> department;
+    @JoinTable(
+            name = "person_department",
+            joinColumns = @JoinColumn(name = "id"),
+            inverseJoinColumns = @JoinColumn(name = "id")
+    )
+    private List<DepartmentEntity> departments;
 }

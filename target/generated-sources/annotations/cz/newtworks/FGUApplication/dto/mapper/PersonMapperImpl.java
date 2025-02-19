@@ -22,7 +22,7 @@ public class PersonMapperImpl implements PersonMapper {
         PersonEntity personEntity = new PersonEntity();
 
         if ( source.getId() != null ) {
-            personEntity.setId( source.getId() );
+            personEntity.setPersonId( source.getId() );
         }
         personEntity.setTitleBeforeName( source.getTitleBeforeName() );
         personEntity.setName( source.getName() );
@@ -41,7 +41,7 @@ public class PersonMapperImpl implements PersonMapper {
 
         PersonDTO personDTO = new PersonDTO();
 
-        personDTO.setId( source.getId() );
+        personDTO.setId( source.getPersonId() );
         personDTO.setTitleBeforeName( source.getTitleBeforeName() );
         personDTO.setName( source.getName() );
         personDTO.setSurname( source.getSurname() );

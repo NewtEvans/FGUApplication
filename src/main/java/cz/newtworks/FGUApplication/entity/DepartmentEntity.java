@@ -19,6 +19,6 @@ public class DepartmentEntity {
     @Column
     private String departmentName;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "departments")
     private List<PersonEntity> people;
 }
