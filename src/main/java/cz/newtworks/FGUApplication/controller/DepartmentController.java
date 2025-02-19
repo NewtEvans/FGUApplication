@@ -23,4 +23,14 @@ public class DepartmentController {
     public List<DepartmentDTO> getAllDepartment(){
         return departmentService.getAllDepartments();
     }
+
+    @PutMapping("/{departmentId}")
+    public DepartmentDTO editDepartment(@RequestBody DepartmentDTO departmentDTO, @PathVariable long departmentId){
+        return departmentService.editDepartment(departmentDTO, departmentId);
+    }
+
+    @DeleteMapping("/{departmentId}")
+    public void deleteDepartment(@PathVariable long departmentId){
+        departmentService.deleteDepartment(departmentId);
+    }
 }
