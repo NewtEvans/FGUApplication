@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,5 +17,5 @@ public class PersonDTO {
     private String surname;
     private String titleAfterName;
     private Role student;
-    //vazba mezi tabulkami - department
+    private List<Long>departmentsId;
 }
