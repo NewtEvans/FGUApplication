@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Entity(name = "department")
 @Data
 public class DepartmentEntity {
@@ -16,4 +18,7 @@ public class DepartmentEntity {
 
     @Column
     private String departmentName;
+
+    @ManyToMany
+    private List<PersonEntity> people;
 }
