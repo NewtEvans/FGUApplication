@@ -20,7 +20,7 @@ public class PersonEntity {
 
     private String titleBeforeName;
 
-//    @Column(nullable = false)
+    @Column
     private String name;
 
 //    @Column(nullable = false)
@@ -33,7 +33,7 @@ public class PersonEntity {
     private Role student;
 
     //vazba mezi tabulkami - department
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "people_departments",
             joinColumns = @JoinColumn(name = "personId"),

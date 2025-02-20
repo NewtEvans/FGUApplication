@@ -28,8 +28,6 @@ public class PersonServiceImpl implements PersonService{
     public PersonDTO addPerson(PersonDTO personDTO){
         PersonEntity newPersonEntity = personMapper.toEntity(personDTO);
 
-        newPersonEntity.setDepartments(departmentRepository.findAllById(personDTO.getDepartmentsId()));
-
         personRepository.save(newPersonEntity);
 
         return personMapper.toDTO(newPersonEntity);
@@ -45,6 +43,9 @@ public class PersonServiceImpl implements PersonService{
 
     @Override
     public PersonDTO personDetail(long id) {
+
+        PersonDTO person = personMapper.toDTO(fetchPersonById(id));
+
         return personMapper.toDTO(fetchPersonById(id));
     }
 

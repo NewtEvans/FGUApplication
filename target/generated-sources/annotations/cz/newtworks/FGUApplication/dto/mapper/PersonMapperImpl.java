@@ -1,13 +1,16 @@
 package cz.newtworks.FGUApplication.dto.mapper;
 
 import cz.newtworks.FGUApplication.dto.PersonDTO;
+import cz.newtworks.FGUApplication.entity.DepartmentEntity;
 import cz.newtworks.FGUApplication.entity.PersonEntity;
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-02-19T18:57:16+0100",
+    date = "2025-02-20T13:09:01+0100",
     comments = "version: 1.6.3, compiler: javac, environment: Java 23.0.2 (Oracle Corporation)"
 )
 @Component
@@ -29,6 +32,10 @@ public class PersonMapperImpl implements PersonMapper {
         personEntity.setSurname( source.getSurname() );
         personEntity.setTitleAfterName( source.getTitleAfterName() );
         personEntity.setStudent( source.getStudent() );
+        List<DepartmentEntity> list = source.getDepartments();
+        if ( list != null ) {
+            personEntity.setDepartments( new ArrayList<DepartmentEntity>( list ) );
+        }
 
         return personEntity;
     }
@@ -47,6 +54,10 @@ public class PersonMapperImpl implements PersonMapper {
         personDTO.setSurname( source.getSurname() );
         personDTO.setTitleAfterName( source.getTitleAfterName() );
         personDTO.setStudent( source.getStudent() );
+        List<DepartmentEntity> list = source.getDepartments();
+        if ( list != null ) {
+            personDTO.setDepartments( new ArrayList<DepartmentEntity>( list ) );
+        }
 
         return personDTO;
     }
