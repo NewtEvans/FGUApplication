@@ -2,10 +2,12 @@ package cz.newtworks.FGUApplication.service;
 
 import cz.newtworks.FGUApplication.dto.PersonDTO;
 import cz.newtworks.FGUApplication.dto.mapper.PersonMapper;
+import cz.newtworks.FGUApplication.entity.DepartmentEntity;
 import cz.newtworks.FGUApplication.entity.PersonEntity;
 import cz.newtworks.FGUApplication.entity.repository.DepartmentRepository;
 import cz.newtworks.FGUApplication.entity.repository.PersonRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,11 +44,17 @@ public class PersonServiceImpl implements PersonService{
     }
 
     @Override
+    @Transactional
     public PersonDTO personDetail(long id) {
 
-        PersonDTO person = personMapper.toDTO(fetchPersonById(id));
+        PersonEntity person = fetchPersonById(id);
+        for (DepartmentEntity entity : person.getDepartments()){
+            DepartmentEntity newEntity = departmentRepository.getReferenceById(entity.getDepartmentId());
+            System.out.println(newEntity);
+        }
 
-        return personMapper.toDTO(fetchPersonById(id));
+        return personMapper.toDTO(person);
+
     }
 
     @Override

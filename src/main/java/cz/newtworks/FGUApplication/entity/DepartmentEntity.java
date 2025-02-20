@@ -1,5 +1,6 @@
 package cz.newtworks.FGUApplication.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -20,5 +21,6 @@ public class DepartmentEntity {
     private String departmentName;
 
     @ManyToMany(mappedBy = "departments")
+    @JsonIgnore
     private List<PersonEntity> people;
 }

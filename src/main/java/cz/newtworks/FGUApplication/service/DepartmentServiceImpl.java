@@ -5,6 +5,7 @@ import cz.newtworks.FGUApplication.dto.mapper.DepartmentMapper;
 import cz.newtworks.FGUApplication.entity.DepartmentEntity;
 import cz.newtworks.FGUApplication.entity.repository.DepartmentRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +31,7 @@ public class DepartmentServiceImpl implements DepartmentService{
     }
 
     @Override
+    @Transactional
     public List<DepartmentDTO> getAllDepartments() {
         return departmentRepository.findAll()
                 .stream()
