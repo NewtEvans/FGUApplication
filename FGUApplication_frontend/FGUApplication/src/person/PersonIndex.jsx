@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react";
 import PersonTable from "./PersonTable";
+import { apiGet } from "../utils/api";
 
 const PersonIndex = () => {
+  const [url, setUrl] = useState("/people");
   const [people, setPeople] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8081/people").then((data) => setPeople(data));
+    apiGet(url).then((data) => setPeople(data));
   }, []);
 
   return (
     <div>
       <h1>Seznam všeh osob</h1>
-      <PersonTable />
+      <PersonTable people={people} />
     </div>
   );
 };

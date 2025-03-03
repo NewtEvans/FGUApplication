@@ -13,7 +13,17 @@ const PersonTable = ({ people }) => {
             <td>Akce</td>
           </tr>
         </thead>
-        <tbody></tbody>
+        <tbody>
+          {people.map((person, index) => (
+            <tr key={person.id}>
+              <td>{index + 1}</td>
+              <td>{person.titleBeforeName}</td>
+              <td>{person.name}</td>
+              <td>{person.surname}</td>
+              <td>{person.titleAfterName}</td>
+            </tr>
+          ))}
+        </tbody>
       </table>
     </div>
   );
