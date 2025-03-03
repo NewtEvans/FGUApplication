@@ -28,7 +28,7 @@ public class PersonEntity {
 
 //  @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private Role student;
+    private Role role;
 
     //vazba mezi tabulkami - department
 }
