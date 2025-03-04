@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 
 @Entity
 @Table(name = "people")
@@ -31,4 +33,11 @@ public class PersonEntity {
     private Role role;
 
     //vazba mezi tabulkami - department
+    @ManyToMany
+    @JoinTable(
+            name = "person_department",
+            joinColumns = @JoinColumn(name = "person_id"),
+            inverseJoinColumns = @JoinColumn(name = "department_id")
+    )
+    List<DepartmentEntity> departments;
 }
