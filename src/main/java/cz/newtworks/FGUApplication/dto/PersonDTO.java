@@ -1,6 +1,5 @@
 package cz.newtworks.FGUApplication.dto;
 
-import cz.newtworks.FGUApplication.constant.Department;
 import cz.newtworks.FGUApplication.constant.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
