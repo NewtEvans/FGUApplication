@@ -33,7 +33,7 @@ public class PersonEntity {
     private Role role;
 
     //vazba mezi tabulkami - department
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "person_department",
             joinColumns = @JoinColumn(name = "person_id"),

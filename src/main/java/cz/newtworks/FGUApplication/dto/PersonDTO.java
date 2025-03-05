@@ -1,9 +1,12 @@
 package cz.newtworks.FGUApplication.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import cz.newtworks.FGUApplication.constant.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -16,4 +19,5 @@ public class PersonDTO {
     private String titleAfterName;
     private Role role;
     //vazba mezi tabulkami - department
+    private List<DepartmentDTO> departments;
 }
