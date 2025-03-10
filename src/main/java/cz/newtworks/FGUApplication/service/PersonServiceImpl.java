@@ -45,22 +45,7 @@ public class PersonServiceImpl implements PersonService{
 
     @Override
     public PersonDTO personDetail(long id) {
-        List<DepartmentEntity> departments = null;
-
-        PersonEntity person = fetchPersonById(id);
-
-        departments = person.getDepartments();
-
-        PersonDTO personDTO = personMapper.toDTO(person);
-
-        List<DepartmentDTO> departmentDTOList = departments
-                .stream()
-                .map( i -> departmentMapper.toDTO(i))
-                .collect(Collectors.toList());
-
-        personDTO.setDepartments(departmentDTOList);
-
-        return personDTO;
+        return personMapper.toDTO(fetchPersonById(id));
     }
 
     @Override

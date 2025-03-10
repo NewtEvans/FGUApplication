@@ -18,6 +18,5 @@ public class PersonDTO {
     private String surname;
     private String titleAfterName;
     private Role role;
-    //vazba mezi tabulkami - department
     private List<DepartmentDTO> departments;
 }
