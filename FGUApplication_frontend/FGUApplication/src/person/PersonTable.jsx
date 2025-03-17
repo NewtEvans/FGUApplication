@@ -6,12 +6,12 @@ const PersonTable = ({ people }) => {
     <div>
       <div className="d-flex justify-content-between">
         <p>Počet osob v databázi: {people.length}</p>
-        <button type="button" className="btn btn-md btn-success">
+        <Link to="create" className="btn btn-md btn-success">
           Nová osoba
-        </button>
+        </Link>
       </div>
       <br />
-      <table className="table table-bordered table-hover">
+      <table className="table table-bordered table-hover ">
         <thead>
           <tr className="table-primary text-center">
             <th>#</th>
@@ -26,7 +26,7 @@ const PersonTable = ({ people }) => {
             <tr key={person.id}>
               <td>
                 <Link
-                  to="#"
+                  to={`edit/${person.id}`}
                   className="d-block text-decoration-none text-dark p-3"
                 >
                   {index + 1}
@@ -34,7 +34,7 @@ const PersonTable = ({ people }) => {
               </td>
               <td>
                 <Link
-                  to="#"
+                  to={`edit/${person.id}`}
                   className="d-block text-decoration-none text-dark p-3"
                 >
                   {person.titleBeforeName}
@@ -42,7 +42,7 @@ const PersonTable = ({ people }) => {
               </td>
               <td>
                 <Link
-                  to="#"
+                  to={`edit/${person.id}`}
                   className="d-block text-decoration-none text-dark p-3"
                 >
                   {person.name}
@@ -51,7 +51,7 @@ const PersonTable = ({ people }) => {
 
               <td>
                 <Link
-                  to="#"
+                  to={`edit/${person.id}`}
                   className="d-block text-decoration-none text-dark p-3"
                 >
                   {person.surname}
@@ -59,7 +59,7 @@ const PersonTable = ({ people }) => {
               </td>
               <td>
                 <Link
-                  to="#"
+                  to={`edit/${person.id}`}
                   className="d-block text-decoration-none text-dark p-3"
                 >
                   {person.titleAfterName}

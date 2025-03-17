@@ -2,6 +2,8 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.js";
 import PersonIndex from "./person/PersonIndex";
+import PersonDetail from "./person/PersonDetail";
+import PersonForm from "./person/PersonForm";
 
 import {
   BrowserRouter as Router,
@@ -32,9 +34,9 @@ function App() {
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav">
                 <li className="nav-item">
-                  <a className="nav-link active" aria-current="page" href="#">
+                  <Link to={"/people"} className="nav-link active">
                     Přehled
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
                   <a className="nav-link" href="#">
@@ -55,7 +57,16 @@ function App() {
             </div>
           </div>
         </nav>
-        <PersonIndex />
+
+        <Routes>
+          <Route index element={<Navigate to={"/people"} />} />
+          <Route path="/people">
+            <Route index element={<PersonIndex />} />
+            <Route path="show/:id" element={<PersonDetail />} />
+            <Route path="edit/:id" element={<PersonForm />} />
+            <Route path="create" element={<PersonForm />} />
+          </Route>
+        </Routes>
       </div>
     </Router>
   );
