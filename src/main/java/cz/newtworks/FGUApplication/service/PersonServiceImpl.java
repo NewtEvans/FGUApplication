@@ -1,8 +1,9 @@
 package cz.newtworks.FGUApplication.service;
 
-import cz.newtworks.FGUApplication.dto.PersonDTO;
+import cz.newtworks.FGUApplication.dto.person.PersonDTO;
 import cz.newtworks.FGUApplication.dto.mapper.DepartmentMapper;
 import cz.newtworks.FGUApplication.dto.mapper.PersonMapper;
+import cz.newtworks.FGUApplication.dto.person.PersonReturnDTO;
 import cz.newtworks.FGUApplication.entity.PersonEntity;
 import cz.newtworks.FGUApplication.entity.repository.PersonRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -33,10 +34,10 @@ public class PersonServiceImpl implements PersonService{
     }
 
     @Override
-    public List<PersonDTO> getAllPeople() {
+    public List<PersonReturnDTO> getAllPeople() {
         return personRepository.findAll()
                 .stream()
-                .map(i -> personMapper.toDTO(i))
+                .map(i -> personMapper.toReturnDTO(i))
                 .collect(Collectors.toList());
     }
 

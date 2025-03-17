@@ -1,7 +1,7 @@
 package cz.newtworks.FGUApplication.dto.department;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import cz.newtworks.FGUApplication.dto.PersonDTO;
+import cz.newtworks.FGUApplication.dto.person.PersonDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

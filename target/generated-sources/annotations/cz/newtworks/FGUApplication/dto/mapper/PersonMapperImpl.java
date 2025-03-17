@@ -1,7 +1,8 @@
 package cz.newtworks.FGUApplication.dto.mapper;
 
-import cz.newtworks.FGUApplication.dto.PersonDTO;
 import cz.newtworks.FGUApplication.dto.department.DepartmentDTO;
+import cz.newtworks.FGUApplication.dto.person.PersonDTO;
+import cz.newtworks.FGUApplication.dto.person.PersonReturnDTO;
 import cz.newtworks.FGUApplication.entity.DepartmentEntity;
 import cz.newtworks.FGUApplication.entity.PersonEntity;
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-03-17T10:43:12+0100",
+    date = "2025-03-17T10:50:03+0100",
     comments = "version: 1.6.3, compiler: javac, environment: Java 23.0.2 (Oracle Corporation)"
 )
 @Component
@@ -55,6 +56,24 @@ public class PersonMapperImpl implements PersonMapper {
         personDTO.setDepartments( departmentEntityListToDepartmentDTOList( source.getDepartments() ) );
 
         return personDTO;
+    }
+
+    @Override
+    public PersonReturnDTO toReturnDTO(PersonEntity source) {
+        if ( source == null ) {
+            return null;
+        }
+
+        PersonReturnDTO personReturnDTO = new PersonReturnDTO();
+
+        personReturnDTO.setId( source.getId() );
+        personReturnDTO.setTitleBeforeName( source.getTitleBeforeName() );
+        personReturnDTO.setName( source.getName() );
+        personReturnDTO.setSurname( source.getSurname() );
+        personReturnDTO.setTitleAfterName( source.getTitleAfterName() );
+        personReturnDTO.setRole( source.getRole() );
+
+        return personReturnDTO;
     }
 
     protected List<PersonEntity> personDTOListToPersonEntityList(List<PersonDTO> list) {

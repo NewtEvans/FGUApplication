@@ -1,4 +1,4 @@
-package cz.newtworks.FGUApplication.dto;
+package cz.newtworks.FGUApplication.dto.person;
 
 import cz.newtworks.FGUApplication.constant.Role;
 import cz.newtworks.FGUApplication.dto.department.DepartmentDTO;
