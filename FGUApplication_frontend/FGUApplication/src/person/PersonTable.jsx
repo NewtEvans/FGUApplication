@@ -1,4 +1,3 @@
-import ActionTable from "../utils/actionTable";
 import { Link } from "react-router";
 
 const PersonTable = ({ people }) => {

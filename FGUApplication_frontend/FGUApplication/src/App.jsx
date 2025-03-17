@@ -19,7 +19,14 @@ function App() {
       <div className="container">
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
           <div className="container-fluid">
-            <a className="navbar-brand" href="#"></a>
+            <a className="navbar-brand" href="#">
+              <img
+                src="public\fgu_text_1r_Black_CZ.webp"
+                alt="Fyziologický ústav"
+                width={200}
+                height={30}
+              />
+            </a>
             <button
               className="navbar-toggler"
               type="button"

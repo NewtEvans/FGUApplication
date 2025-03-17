@@ -20,7 +20,7 @@ public interface PersonService {
      */
     List<PersonReturnDTO> getAllPeople();
 
-    PersonDTO personDetail(long id);
+    PersonReturnDTO personDetail(long id);
 
     /**
      * Method edits already created person.

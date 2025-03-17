@@ -22,7 +22,7 @@ public class PersonController {
     }
 
     @GetMapping("/{personId}")
-    public PersonDTO personDetail(@PathVariable long personId){
+    public PersonReturnDTO personDetail(@PathVariable long personId){
         return personService.personDetail(personId);
     }
 

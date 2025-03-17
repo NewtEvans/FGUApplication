@@ -42,8 +42,8 @@ public class PersonServiceImpl implements PersonService{
     }
 
     @Override
-    public PersonDTO personDetail(long id) {
-        return personMapper.toDTO(fetchPersonById(id));
+    public PersonReturnDTO personDetail(long id) {
+        return personMapper.toReturnDTO(fetchPersonById(id));
     }
 
     @Override
