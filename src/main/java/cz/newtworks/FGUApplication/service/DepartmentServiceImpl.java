@@ -1,6 +1,7 @@
 package cz.newtworks.FGUApplication.service;
 
-import cz.newtworks.FGUApplication.dto.DepartmentDTO;
+import cz.newtworks.FGUApplication.dto.department.DepartmentDTO;
+import cz.newtworks.FGUApplication.dto.department.DepartmentReturnDTO;
 import cz.newtworks.FGUApplication.dto.mapper.DepartmentMapper;
 import cz.newtworks.FGUApplication.entity.DepartmentEntity;
 import cz.newtworks.FGUApplication.entity.repository.DepartmentRepository;
@@ -30,10 +31,10 @@ public class DepartmentServiceImpl implements DepartmentService{
     }
 
     @Override
-    public List<DepartmentDTO> getAllDepartments() {
+    public List<DepartmentReturnDTO> getAllDepartments() {
         return departmentRepository.findAll()
                 .stream()
-                .map(i -> departmentMapper.toDTO(i))
+                .map(i -> departmentMapper.toReturnDTO(i))
                 .collect(Collectors.toList());
     }
 
