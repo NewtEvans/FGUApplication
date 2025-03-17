@@ -1,26 +1,70 @@
+import ActionTable from "../utils/actionTable";
+import { Link } from "react-router";
+
 const PersonTable = ({ people }) => {
   return (
     <div>
-      <table className="table table-boarded">
+      <div className="d-flex justify-content-between">
+        <p>Počet osob v databázi: {people.length}</p>
+        <button type="button" className="btn btn-md btn-success">
+          Nová osoba
+        </button>
+      </div>
+      <br />
+      <table className="table table-bordered table-hover">
         <thead>
-          <tr>
-            <td>#</td>
-            <td>Titul</td>
-            <td>Jméno</td>
-            <td>Přijmení</td>
-            <td>Titul</td>
-            <td>Oddělení</td>
-            <td>Akce</td>
+          <tr className="table-primary text-center">
+            <th>#</th>
+            <th>Titul</th>
+            <th>Jméno</th>
+            <th>Přijmení</th>
+            <th>Titul</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="text-center">
           {people.map((person, index) => (
             <tr key={person.id}>
-              <td>{index + 1}</td>
-              <td>{person.titleBeforeName}</td>
-              <td>{person.name}</td>
-              <td>{person.surname}</td>
-              <td>{person.titleAfterName}</td>
+              <td>
+                <Link
+                  to="#"
+                  className="d-block text-decoration-none text-dark p-3"
+                >
+                  {index + 1}
+                </Link>
+              </td>
+              <td>
+                <Link
+                  to="#"
+                  className="d-block text-decoration-none text-dark p-3"
+                >
+                  {person.titleBeforeName}
+                </Link>
+              </td>
+              <td>
+                <Link
+                  to="#"
+                  className="d-block text-decoration-none text-dark p-3"
+                >
+                  {person.name}
+                </Link>
+              </td>
+
+              <td>
+                <Link
+                  to="#"
+                  className="d-block text-decoration-none text-dark p-3"
+                >
+                  {person.surname}
+                </Link>
+              </td>
+              <td>
+                <Link
+                  to="#"
+                  className="d-block text-decoration-none text-dark p-3"
+                >
+                  {person.titleAfterName}
+                </Link>
+              </td>
             </tr>
           ))}
         </tbody>
