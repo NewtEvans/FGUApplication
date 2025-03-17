@@ -21,7 +21,7 @@ const PersonForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    (id ? apiPut("#") : apiPost("/people/create"))
+    (id ? apiPut("#") : apiPost("/people/create", person))
       .then((data) => {
         navigate("/people");
       })
