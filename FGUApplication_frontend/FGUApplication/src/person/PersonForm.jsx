@@ -80,11 +80,7 @@ const PersonForm = () => {
           }}
         />
         <br />
-        <input
-          type="submit"
-          className="btn btn-success"
-          value="Vytvořit osobu"
-        />
+        <input type="submit" className="btn btn-success" value="Uložit" />
       </form>
     </div>
   );
