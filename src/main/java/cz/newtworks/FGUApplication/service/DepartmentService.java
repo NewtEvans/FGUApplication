@@ -28,5 +28,9 @@ public interface DepartmentService {
      */
     DepartmentDTO editDepartment(DepartmentDTO departmentDTO, long departmentId);
 
+    /**
+     * Method deletes department with specific ID.
+     * @param departmentId deleted department id
+     */
     void deleteDepartment(long departmentId);
 }

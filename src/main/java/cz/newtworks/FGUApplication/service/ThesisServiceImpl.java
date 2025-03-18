@@ -7,6 +7,8 @@ import cz.newtworks.FGUApplication.entity.repository.ThesisRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ThesisServiceImpl implements ThesisService{
 
@@ -24,5 +26,15 @@ public class ThesisServiceImpl implements ThesisService{
         thesisRepository.save(entity);
 
         return thesisMapper.toDTO(entity);
+    }
+
+    @Override
+    public ThesisDTO detailThesis(long thesisId) {
+        return null;
+    }
+
+    @Override
+    public List<ThesisDTO> getAllThesis() {
+        return List.of();
     }
 }

@@ -55,6 +55,13 @@ public class DepartmentServiceImpl implements DepartmentService{
     }
 
     //private methods
+
+    /**
+     * Private method that returns entity of department with specific ID.
+     * If asked ID doesn't exist method returns error exception.
+     * @param departmentId
+     * @return Department entity with asked id
+     */
     private DepartmentEntity fetchDepartmentById(long departmentId) {
        return  departmentRepository.findById(departmentId).orElseThrow(() -> new EntityNotFoundException("Department with id" + departmentId + "wasn't found in the database."));
     }
