@@ -21,7 +21,7 @@ public class DepartmentController {
     }
 
     @GetMapping("")
-    public List<DepartmentReturnDTO> getAllDepartment(){
+    public List<DepartmentDTO> getAllDepartment(){
         return departmentService.getAllDepartments();
     }
 

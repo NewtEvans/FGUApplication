@@ -15,5 +15,5 @@ public class FacultyDTO {
     private long id;
     private String facultyName;
     private String facultyAbbreviation;
-    private Set<ThesisEntity> theses;
+    private Set<ThesisDTO> theses;
 }

@@ -31,10 +31,10 @@ public class DepartmentServiceImpl implements DepartmentService{
     }
 
     @Override
-    public List<DepartmentReturnDTO> getAllDepartments() {
+    public List<DepartmentDTO> getAllDepartments() {
         return departmentRepository.findAll()
                 .stream()
-                .map(i -> departmentMapper.toReturnDTO(i))
+                .map(i -> departmentMapper.toDTO(i))
                 .collect(Collectors.toList());
     }
 

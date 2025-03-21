@@ -1,7 +1,6 @@
 package cz.newtworks.FGUApplication.controller;
 
 import cz.newtworks.FGUApplication.dto.person.PersonDTO;
-import cz.newtworks.FGUApplication.dto.person.PersonReturnDTO;
 import cz.newtworks.FGUApplication.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,12 +16,12 @@ public class PersonController {
     private PersonService personService;
 
     @GetMapping
-    public List<PersonReturnDTO> getAllPeople() {
+    public List<PersonDTO> getAllPeople() {
         return personService.getAllPeople();
     }
 
     @GetMapping("/{personId}")
-    public PersonReturnDTO personDetail(@PathVariable long personId){
+    public PersonDTO personDetail(@PathVariable long personId){
         return personService.personDetail(personId);
     }
 

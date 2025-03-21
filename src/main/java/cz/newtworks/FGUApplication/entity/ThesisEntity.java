@@ -29,8 +29,8 @@ public class ThesisEntity {
 
 //    private PersonEntity consultant;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    private Set<FacultyEntity> faculty;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private FacultyEntity faculty;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private CouncilEntity council;

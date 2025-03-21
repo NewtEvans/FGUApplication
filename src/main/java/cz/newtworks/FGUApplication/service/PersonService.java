@@ -1,7 +1,6 @@
 package cz.newtworks.FGUApplication.service;
 
 import cz.newtworks.FGUApplication.dto.person.PersonDTO;
-import cz.newtworks.FGUApplication.dto.person.PersonReturnDTO;
 
 import java.util.List;
 
@@ -18,9 +17,9 @@ public interface PersonService {
      * Method returns all people in the database.
      * @return List of all people in the database
      */
-    List<PersonReturnDTO> getAllPeople();
+    List<PersonDTO> getAllPeople();
 
-    PersonReturnDTO personDetail(long id);
+    PersonDTO personDetail(long id);
 
     /**
      * Method edits already created person.

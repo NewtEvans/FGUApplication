@@ -18,7 +18,7 @@ public interface DepartmentService {
      * Method returns all departments in the database.
      * @return List with DTO of all department from the database
      */
-    List<DepartmentReturnDTO> getAllDepartments();
+    List<DepartmentDTO> getAllDepartments();
 
     /**
      * Method edits already created department.

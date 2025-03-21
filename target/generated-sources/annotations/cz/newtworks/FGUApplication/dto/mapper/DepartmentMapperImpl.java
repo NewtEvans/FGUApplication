@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-03-21T11:33:08+0100",
+    date = "2025-03-21T13:04:13+0100",
     comments = "version: 1.6.3, compiler: javac, environment: Java 23.0.2 (Oracle Corporation)"
 )
 @Component
@@ -65,19 +65,6 @@ public class DepartmentMapperImpl implements DepartmentMapper {
         return departmentReturnDTO;
     }
 
-    protected List<DepartmentEntity> departmentDTOListToDepartmentEntityList(List<DepartmentDTO> list) {
-        if ( list == null ) {
-            return null;
-        }
-
-        List<DepartmentEntity> list1 = new ArrayList<DepartmentEntity>( list.size() );
-        for ( DepartmentDTO departmentDTO : list ) {
-            list1.add( toEntity( departmentDTO ) );
-        }
-
-        return list1;
-    }
-
     protected PersonEntity personDTOToPersonEntity(PersonDTO personDTO) {
         if ( personDTO == null ) {
             return null;
@@ -93,7 +80,6 @@ public class DepartmentMapperImpl implements DepartmentMapper {
         personEntity.setSurname( personDTO.getSurname() );
         personEntity.setTitleAfterName( personDTO.getTitleAfterName() );
         personEntity.setRole( personDTO.getRole() );
-        personEntity.setDepartments( departmentDTOListToDepartmentEntityList( personDTO.getDepartments() ) );
 
         return personEntity;
     }
@@ -106,19 +92,6 @@ public class DepartmentMapperImpl implements DepartmentMapper {
         List<PersonEntity> list1 = new ArrayList<PersonEntity>( list.size() );
         for ( PersonDTO personDTO : list ) {
             list1.add( personDTOToPersonEntity( personDTO ) );
-        }
-
-        return list1;
-    }
-
-    protected List<DepartmentDTO> departmentEntityListToDepartmentDTOList(List<DepartmentEntity> list) {
-        if ( list == null ) {
-            return null;
-        }
-
-        List<DepartmentDTO> list1 = new ArrayList<DepartmentDTO>( list.size() );
-        for ( DepartmentEntity departmentEntity : list ) {
-            list1.add( toDTO( departmentEntity ) );
         }
 
         return list1;
@@ -137,7 +110,6 @@ public class DepartmentMapperImpl implements DepartmentMapper {
         personDTO.setSurname( personEntity.getSurname() );
         personDTO.setTitleAfterName( personEntity.getTitleAfterName() );
         personDTO.setRole( personEntity.getRole() );
-        personDTO.setDepartments( departmentEntityListToDepartmentDTOList( personEntity.getDepartments() ) );
 
         return personDTO;
     }

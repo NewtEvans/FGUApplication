@@ -18,10 +18,10 @@ public class ThesisDTO {
     private LocalDate startDate;
     private String nameCz;
     private String nameEn;
-//    private PersonEntity trainer;
-//    private PersonEntity consultant;
-    private FacultyEntity faculty;
-    private CouncilEntity council;
+//    private PersonDTO trainer;
+//    private PersonDTO consultant;
+    private FacultyDTO faculty;
+    private CouncilDTO council;
     private LocalDate endDate;
     private String note;
 }

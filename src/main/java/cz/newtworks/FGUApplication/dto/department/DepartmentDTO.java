@@ -15,6 +15,5 @@ public class DepartmentDTO {
     private long id;
     private byte departmentNumber;
     private String departmentName;
-    @JsonIgnore
     private List<PersonDTO> people;
 }
