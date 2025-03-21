@@ -16,4 +16,6 @@ public interface ThesisService {
     ThesisDTO detailThesis(long thesisId);
 
     List<ThesisDTO> getAllThesis();
+
+    ThesisDTO editThesis(long thesisId, ThesisDTO thesisDTO);
 }

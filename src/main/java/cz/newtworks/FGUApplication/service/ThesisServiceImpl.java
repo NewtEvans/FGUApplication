@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ThesisServiceImpl implements ThesisService{
@@ -30,11 +31,19 @@ public class ThesisServiceImpl implements ThesisService{
 
     @Override
     public ThesisDTO detailThesis(long thesisId) {
-        return null;
+        return thesisMapper.toDTO(thesisRepository.findById(thesisId).get());
     }
 
     @Override
     public List<ThesisDTO> getAllThesis() {
-        return List.of();
+       return thesisRepository.findAll()
+                .stream()
+                .map(i -> thesisMapper.toDTO(i))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public ThesisDTO editThesis(long thesisId, ThesisDTO thesisDTO) {
+        return null;
     }
 }
