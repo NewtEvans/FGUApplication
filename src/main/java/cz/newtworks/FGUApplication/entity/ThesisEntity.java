@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 
 @Entity(name = "theses")
@@ -28,8 +29,8 @@ public class ThesisEntity {
 
 //    private PersonEntity consultant;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private FacultyEntity faculty;
+    @OneToMany(fetch = FetchType.LAZY)
+    private Set<FacultyEntity> faculty;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private CouncilEntity council;
