@@ -4,6 +4,7 @@ import cz.newtworks.FGUApplication.dto.FacultyDTO;
 import cz.newtworks.FGUApplication.dto.mapper.FacultyMapper;
 import cz.newtworks.FGUApplication.entity.FacultyEntity;
 import cz.newtworks.FGUApplication.entity.repository.FacultyRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,11 +39,33 @@ public class FacultyServiceImpl implements FacultyService{
 
     @Override
     public FacultyDTO facultyDetail(long facultyId) {
-        return null;
+        return facultyMapper.toDTO(fetchFacultyById(facultyId));
     }
 
     @Override
     public void deleteFaculty(long facultyId) {
+        facultyRepository.delete(fetchFacultyById(facultyId));
+    }
 
+    @Override
+    public FacultyDTO editFaculty(long facultyId, FacultyDTO facultyDTO) {
+        FacultyEntity faculty = facultyMapper.toEntity(facultyDTO);
+        faculty.setId(facultyId);
+        facultyRepository.save(faculty);
+
+        return facultyMapper.toDTO(fetchFacultyById(facultyId));
+    }
+
+    //Private methods
+
+    /**
+     * Private method that returns faculty entity with specific ID.
+     * If asked ID doesn't exist method returns error exception.
+     * @param facultyId
+     * @return Faculty entity with asked id
+     */
+    private FacultyEntity fetchFacultyById(long facultyId){
+        return facultyRepository.findById(facultyId)
+                .orElseThrow(() -> new EntityNotFoundException("Faculty with id " + facultyId + " was not found in the database."));
     }
 }

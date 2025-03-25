@@ -1,7 +1,6 @@
 package cz.newtworks.FGUApplication.service;
 
 import cz.newtworks.FGUApplication.dto.department.DepartmentDTO;
-import cz.newtworks.FGUApplication.dto.department.DepartmentReturnDTO;
 import cz.newtworks.FGUApplication.dto.mapper.DepartmentMapper;
 import cz.newtworks.FGUApplication.entity.DepartmentEntity;
 import cz.newtworks.FGUApplication.entity.repository.DepartmentRepository;
@@ -39,6 +38,11 @@ public class DepartmentServiceImpl implements DepartmentService{
     }
 
     @Override
+    public DepartmentDTO departmentDetail(long departmentId) {
+        return departmentMapper.toDTO(fetchDepartmentById(departmentId));
+    }
+
+    @Override
     public DepartmentDTO editDepartment(DepartmentDTO departmentDTO, long departmentId) {
         DepartmentEntity newDepartment = departmentMapper.toEntity(departmentDTO);
 
@@ -46,7 +50,7 @@ public class DepartmentServiceImpl implements DepartmentService{
 
         departmentRepository.save(newDepartment);
 
-        return departmentMapper.toDTO(newDepartment);
+        return departmentMapper.toDTO(fetchDepartmentById(departmentId));
     }
 
     @Override

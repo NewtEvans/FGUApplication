@@ -60,6 +60,13 @@ public class PersonServiceImpl implements PersonService{
     }
 
     //Private methods
+
+    /**
+     * Private method that returns person entity with specific ID.
+     * If asked ID doesn't exist method returns error exception.
+     * @param id
+     * @return Person entity with asked id
+     */
     private PersonEntity fetchPersonById(long id){
         return personRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Person with id" + id + "wasn't found in the database."));

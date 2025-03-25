@@ -3,10 +3,10 @@ package cz.newtworks.FGUApplication.controller;
 import cz.newtworks.FGUApplication.dto.FacultyDTO;
 import cz.newtworks.FGUApplication.service.FacultyService;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Set;
 
 @RestController
 @RequestMapping("/faculty")
@@ -25,8 +25,18 @@ public class FacultyController {
         return facultyService.getAllFaculty();
     }
 
-    @GetMapping("{facultyId}")
+    @GetMapping("/{facultyId}")
     public FacultyDTO facultyDetail(@PathVariable long facultyId) {
         return facultyService.facultyDetail(facultyId);
+    }
+
+    @PutMapping("/{facultyId}")
+    public FacultyDTO editFaculty(@PathVariable long facultyId, @RequestBody FacultyDTO facultyDTO){
+        return facultyService.editFaculty(facultyId, facultyDTO);
+    }
+
+    @DeleteMapping("/{facultyId}")
+    public void deleteFaculty(@PathVariable long facultyId){
+        facultyService.deleteFaculty(facultyId);
     }
 }

@@ -19,6 +19,6 @@ public class DepartmentEntity {
     @Column
     private String departmentName;
 
-    @ManyToMany(mappedBy = "departments")
+    @ManyToMany(mappedBy = "departments", fetch = FetchType.EAGER)
     List<PersonEntity> people;
 }

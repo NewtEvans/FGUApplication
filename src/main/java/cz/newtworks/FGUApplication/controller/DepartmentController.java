@@ -1,7 +1,5 @@
 package cz.newtworks.FGUApplication.controller;
-
 import cz.newtworks.FGUApplication.dto.department.DepartmentDTO;
-import cz.newtworks.FGUApplication.dto.department.DepartmentReturnDTO;
 import cz.newtworks.FGUApplication.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +21,11 @@ public class DepartmentController {
     @GetMapping("")
     public List<DepartmentDTO> getAllDepartment(){
         return departmentService.getAllDepartments();
+    }
+
+    @GetMapping("/{departmentId}")
+    public DepartmentDTO departmentDetail(@PathVariable long departmentId){
+        return departmentService.departmentDetail(departmentId);
     }
 
     @PutMapping("/{departmentId}")

@@ -19,6 +19,11 @@ public interface PersonService {
      */
     List<PersonDTO> getAllPeople();
 
+    /**
+     * Method returns details of person with requested id.
+     * @param id Requested id
+     * @return DTO with detail of person with requested id
+     */
     PersonDTO personDetail(long id);
 
     /**

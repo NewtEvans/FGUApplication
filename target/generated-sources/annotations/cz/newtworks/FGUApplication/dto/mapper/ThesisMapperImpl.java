@@ -6,14 +6,12 @@ import cz.newtworks.FGUApplication.dto.ThesisDTO;
 import cz.newtworks.FGUApplication.entity.CouncilEntity;
 import cz.newtworks.FGUApplication.entity.FacultyEntity;
 import cz.newtworks.FGUApplication.entity.ThesisEntity;
-import java.util.LinkedHashSet;
-import java.util.Set;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-03-21T13:04:13+0100",
+    date = "2025-03-25T11:21:11+0100",
     comments = "version: 1.6.3, compiler: javac, environment: Java 23.0.2 (Oracle Corporation)"
 )
 @Component
@@ -59,19 +57,6 @@ public class ThesisMapperImpl implements ThesisMapper {
         return thesisEntity;
     }
 
-    protected Set<ThesisDTO> thesisEntitySetToThesisDTOSet(Set<ThesisEntity> set) {
-        if ( set == null ) {
-            return null;
-        }
-
-        Set<ThesisDTO> set1 = LinkedHashSet.newLinkedHashSet( set.size() );
-        for ( ThesisEntity thesisEntity : set ) {
-            set1.add( toDTO( thesisEntity ) );
-        }
-
-        return set1;
-    }
-
     protected FacultyDTO facultyEntityToFacultyDTO(FacultyEntity facultyEntity) {
         if ( facultyEntity == null ) {
             return null;
@@ -82,7 +67,6 @@ public class ThesisMapperImpl implements ThesisMapper {
         facultyDTO.setId( facultyEntity.getId() );
         facultyDTO.setFacultyName( facultyEntity.getFacultyName() );
         facultyDTO.setFacultyAbbreviation( facultyEntity.getFacultyAbbreviation() );
-        facultyDTO.setTheses( thesisEntitySetToThesisDTOSet( facultyEntity.getTheses() ) );
 
         return facultyDTO;
     }
@@ -102,19 +86,6 @@ public class ThesisMapperImpl implements ThesisMapper {
         return councilDTO;
     }
 
-    protected Set<ThesisEntity> thesisDTOSetToThesisEntitySet(Set<ThesisDTO> set) {
-        if ( set == null ) {
-            return null;
-        }
-
-        Set<ThesisEntity> set1 = LinkedHashSet.newLinkedHashSet( set.size() );
-        for ( ThesisDTO thesisDTO : set ) {
-            set1.add( toEntity( thesisDTO ) );
-        }
-
-        return set1;
-    }
-
     protected FacultyEntity facultyDTOToFacultyEntity(FacultyDTO facultyDTO) {
         if ( facultyDTO == null ) {
             return null;
@@ -125,7 +96,6 @@ public class ThesisMapperImpl implements ThesisMapper {
         facultyEntity.setId( facultyDTO.getId() );
         facultyEntity.setFacultyName( facultyDTO.getFacultyName() );
         facultyEntity.setFacultyAbbreviation( facultyDTO.getFacultyAbbreviation() );
-        facultyEntity.setTheses( thesisDTOSetToThesisEntitySet( facultyDTO.getTheses() ) );
 
         return facultyEntity;
     }

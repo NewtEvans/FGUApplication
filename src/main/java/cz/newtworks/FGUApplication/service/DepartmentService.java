@@ -21,6 +21,13 @@ public interface DepartmentService {
     List<DepartmentDTO> getAllDepartments();
 
     /**
+     * Method returns details of department with requested id.
+     * @param departmentId Requested id
+     * @return DTO with detail of department with requested id
+     */
+    DepartmentDTO departmentDetail(long departmentId);
+
+    /**
      * Method edits already created department.
      * @param departmentDTO new department data
      * @param departmentId id of edited department
