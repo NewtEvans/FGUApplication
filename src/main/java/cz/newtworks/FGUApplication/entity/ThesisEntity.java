@@ -1,5 +1,6 @@
 package cz.newtworks.FGUApplication.entity;
 
+import cz.newtworks.FGUApplication.constant.ThesisType;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,7 +18,8 @@ public class ThesisEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    //private ThesisType thesisType;
+    @Enumerated(EnumType.STRING)
+    private ThesisType thesisType;
 
     private LocalDate startDate;
 
@@ -25,9 +27,14 @@ public class ThesisEntity {
 
     private String nameEn;
 
-//    private PersonEntity trainer;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private PersonEntity student;
 
-//    private PersonEntity consultant;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private PersonEntity trainer;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private PersonEntity consultant;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private FacultyEntity faculty;

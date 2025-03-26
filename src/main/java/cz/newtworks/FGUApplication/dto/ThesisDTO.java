@@ -1,7 +1,7 @@
 package cz.newtworks.FGUApplication.dto;
 
-import cz.newtworks.FGUApplication.entity.CouncilEntity;
-import cz.newtworks.FGUApplication.entity.FacultyEntity;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import cz.newtworks.FGUApplication.dto.person.PersonDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,11 +15,13 @@ public class ThesisDTO {
 
     private long id;
     //private ThesisType thesisType;
+    @JsonFormat(pattern = "dd-mm-yyyy")
     private LocalDate startDate;
     private String nameCz;
     private String nameEn;
-//    private PersonDTO trainer;
-//    private PersonDTO consultant;
+    private PersonDTO student;
+    private PersonDTO trainer;
+    private PersonDTO consultant;
     private FacultyDTO faculty;
     private CouncilDTO council;
     private LocalDate endDate;

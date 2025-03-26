@@ -36,7 +36,7 @@ public class CouncilController {
 
     @DeleteMapping("{councilId}")
     public void deleteCouncil(@PathVariable long councilId){
-        councilService.delteCouncil(councilId);
+        councilService.deleteCouncil(councilId);
     }
 
 }

@@ -40,4 +40,13 @@ public class PersonEntity {
             inverseJoinColumns = @JoinColumn(name = "department_id")
     )
     List<DepartmentEntity> departments;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "student")
+    private List<ThesisEntity> studied;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "trainer")
+    private List<ThesisEntity> trained;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "consultant")
+    private List<ThesisEntity> consulted;
 }
