@@ -4,7 +4,6 @@ import cz.newtworks.FGUApplication.dto.ThesisDTO;
 import cz.newtworks.FGUApplication.dto.mapper.PersonMapper;
 import cz.newtworks.FGUApplication.dto.mapper.ThesisMapper;
 import cz.newtworks.FGUApplication.entity.ThesisEntity;
-import cz.newtworks.FGUApplication.entity.repository.PersonRepository;
 import cz.newtworks.FGUApplication.entity.repository.ThesisRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,13 +40,14 @@ public class ThesisServiceImpl implements ThesisService{
         thesisRepository.save(entity);
 
         return fillThesisWithDTOs(thesisMapper.toDTO(entity), entity);
-
-
     }
 
     @Override
     public ThesisDTO detailThesis(long thesisId) {
-        return thesisMapper.toDTO(fetchThesisById(thesisId));
+        ThesisEntity thesis = fetchThesisById(thesisId);
+        System.out.println(thesisId);
+
+        return thesisMapper.toDTO(thesis);
     }
 
     @Override
