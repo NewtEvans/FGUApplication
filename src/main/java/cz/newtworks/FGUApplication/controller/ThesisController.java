@@ -28,4 +28,14 @@ public class ThesisController {
     public ThesisDTO detailThesis(@PathVariable long thesisId){
         return thesisService.detailThesis(thesisId);
     }
+
+    @PutMapping("{thesisId}")
+    public ThesisDTO editThesis(@PathVariable long thesisId, @RequestBody ThesisDTO thesisDTO){
+        return thesisService.editThesis(thesisId, thesisDTO);
+    }
+
+    @DeleteMapping("{thesisId}")
+    public void deleteThesis(@PathVariable long thesisId){
+        thesisService.deteleThesis(thesisId);
+    }
 }
