@@ -29,7 +29,7 @@ const ThesisTable = ({ theses }) => {
               <td>{`${thesis.student?.name} ${thesis.student?.surname}`}</td>
               <td>{thesis.thesisType}</td>
               <td>{thesis.nameCz}</td>
-              <td>{thesis.endDate}</td>
+              <td>{thesis.endDate ? thesis.endDate : "Studuje"}</td>
               <td>Oddělení</td>
               <td>{`${thesis.trainer?.name} ${thesis.trainer?.surname}`}</td>
               <td>{`${thesis.consultant?.name} ${thesis.consultant?.surname}`}</td>

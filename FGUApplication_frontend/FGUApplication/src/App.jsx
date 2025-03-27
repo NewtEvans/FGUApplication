@@ -5,6 +5,8 @@ import PersonIndex from "./person/PersonIndex";
 import PersonDetail from "./person/PersonDetail";
 import PersonForm from "./person/PersonForm";
 import ThesisIndex from "./thesis/ThesisIndex";
+import ThesisDetail from "./thesis/ThesisDetail";
+import ThesisForm from "./thesis/ThesisForm";
 
 import {
   BrowserRouter as Router,
@@ -42,7 +44,7 @@ function App() {
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav">
                 <li className="nav-item">
-                  <Link to={"/thesis"} className="nav-link active">
+                  <Link to={"/theses"} className="nav-link active">
                     Přehled
                   </Link>
                 </li>
@@ -74,12 +76,12 @@ function App() {
             <Route path="edit/:id" element={<PersonForm />} />
             <Route path="create" element={<PersonForm />} />
           </Route>
-          <Route index element={<Navigate to={"/thesis"} />} />
-          <Route path="/thesis">
+          <Route index element={<Navigate to={"/theses"} />} />
+          <Route path="/theses">
             <Route index element={<ThesisIndex />} />
-            <Route path="show/:id" element={"#"} />
-            <Route path="edit/:id" element={"#"} />
-            <Route path="create" element={"#"} />
+            <Route path="show/:id" element={<ThesisDetail />} />
+            <Route path="edit/:id" element={<ThesisForm />} />
+            <Route path="create" element={<ThesisForm />} />
           </Route>
         </Routes>
       </div>
