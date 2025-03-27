@@ -4,6 +4,7 @@ import "bootstrap/dist/js/bootstrap.bundle.js";
 import PersonIndex from "./person/PersonIndex";
 import PersonDetail from "./person/PersonDetail";
 import PersonForm from "./person/PersonForm";
+import ThesisIndex from "./thesis/ThesisIndex";
 
 import {
   BrowserRouter as Router,
@@ -19,7 +20,7 @@ function App() {
       <div className="container">
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
           <div className="container-fluid">
-            <a className="navbar-brand" href="#">
+            <a className="navbar-brand" href="/people">
               <img
                 src="public\fgu_text_1r_Black_CZ.webp"
                 alt="Fyziologický ústav"
@@ -41,7 +42,7 @@ function App() {
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav">
                 <li className="nav-item">
-                  <Link to={"/people"} className="nav-link active">
+                  <Link to={"/thesis"} className="nav-link active">
                     Přehled
                   </Link>
                 </li>
@@ -56,7 +57,7 @@ function App() {
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link disabled" aria-disabled="true">
+                  <a className="nav-link" href="#">
                     Nastavení
                   </a>
                 </li>
@@ -72,6 +73,13 @@ function App() {
             <Route path="show/:id" element={<PersonDetail />} />
             <Route path="edit/:id" element={<PersonForm />} />
             <Route path="create" element={<PersonForm />} />
+          </Route>
+          <Route index element={<Navigate to={"/thesis"} />} />
+          <Route path="/thesis">
+            <Route index element={<ThesisIndex />} />
+            <Route path="show/:id" element={"#"} />
+            <Route path="edit/:id" element={"#"} />
+            <Route path="create" element={"#"} />
           </Route>
         </Routes>
       </div>
