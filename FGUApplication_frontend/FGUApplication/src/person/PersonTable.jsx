@@ -25,7 +25,7 @@ const PersonTable = ({ people }) => {
             <tr key={person.id}>
               <td>
                 <Link
-                  to={`edit/${person.id}`}
+                  to={`detail/${person.id}`}
                   className="d-block text-decoration-none text-dark p-3"
                 >
                   {index + 1}
@@ -33,7 +33,7 @@ const PersonTable = ({ people }) => {
               </td>
               <td>
                 <Link
-                  to={`edit/${person.id}`}
+                  to={`detail/${person.id}`}
                   className="d-block text-decoration-none text-dark p-3"
                 >
                   {person.titleBeforeName}
@@ -41,7 +41,7 @@ const PersonTable = ({ people }) => {
               </td>
               <td>
                 <Link
-                  to={`edit/${person.id}`}
+                  to={`detail/${person.id}`}
                   className="d-block text-decoration-none text-dark p-3"
                 >
                   {person.name}
@@ -50,7 +50,7 @@ const PersonTable = ({ people }) => {
 
               <td>
                 <Link
-                  to={`edit/${person.id}`}
+                  to={`detail/${person.id}`}
                   className="d-block text-decoration-none text-dark p-3"
                 >
                   {person.surname}
@@ -58,7 +58,7 @@ const PersonTable = ({ people }) => {
               </td>
               <td>
                 <Link
-                  to={`edit/${person.id}`}
+                  to={`detail/${person.id}`}
                   className="d-block text-decoration-none text-dark p-3"
                 >
                   {person.titleAfterName}

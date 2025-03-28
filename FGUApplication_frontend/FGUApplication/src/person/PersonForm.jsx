@@ -15,15 +15,18 @@ const PersonForm = () => {
 
   useEffect(() => {
     if (id) {
-      apiGet("/people/" + id).then((data) => setPerson(data));
+      apiGet("/person/detail/" + id).then((data) => setPerson(data));
     }
   }, [id]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    (id ? apiPut("/people/" + id, person) : apiPost("/people", person))
+    (id
+      ? apiPut("/person/edit/" + id, person)
+      : apiPost("/person/create", person)
+    )
       .then((data) => {
-        navigate("/people");
+        navigate("/person");
       })
       .catch((error) => {
         console.log(error.message);

@@ -3,17 +3,23 @@ package cz.newtworks.FGUApplication.dto.mapper;
 import cz.newtworks.FGUApplication.dto.CouncilDTO;
 import cz.newtworks.FGUApplication.dto.FacultyDTO;
 import cz.newtworks.FGUApplication.dto.ThesisDTO;
+import cz.newtworks.FGUApplication.dto.department.DepartmentDTO;
 import cz.newtworks.FGUApplication.dto.person.PersonDTO;
 import cz.newtworks.FGUApplication.entity.CouncilEntity;
+import cz.newtworks.FGUApplication.entity.DepartmentEntity;
 import cz.newtworks.FGUApplication.entity.FacultyEntity;
 import cz.newtworks.FGUApplication.entity.PersonEntity;
 import cz.newtworks.FGUApplication.entity.ThesisEntity;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-03-25T13:59:35+0100",
+    date = "2025-03-28T09:21:08+0100",
     comments = "version: 1.6.3, compiler: javac, environment: Java 23.0.2 (Oracle Corporation)"
 )
 @Component
@@ -65,6 +71,33 @@ public class ThesisMapperImpl implements ThesisMapper {
         return thesisEntity;
     }
 
+    protected DepartmentDTO departmentEntityToDepartmentDTO(DepartmentEntity departmentEntity) {
+        if ( departmentEntity == null ) {
+            return null;
+        }
+
+        DepartmentDTO departmentDTO = new DepartmentDTO();
+
+        departmentDTO.setId( departmentEntity.getId() );
+        departmentDTO.setDepartmentNumber( departmentEntity.getDepartmentNumber() );
+        departmentDTO.setDepartmentName( departmentEntity.getDepartmentName() );
+
+        return departmentDTO;
+    }
+
+    protected Set<DepartmentDTO> departmentEntityListToDepartmentDTOSet(List<DepartmentEntity> list) {
+        if ( list == null ) {
+            return null;
+        }
+
+        Set<DepartmentDTO> set = LinkedHashSet.newLinkedHashSet( list.size() );
+        for ( DepartmentEntity departmentEntity : list ) {
+            set.add( departmentEntityToDepartmentDTO( departmentEntity ) );
+        }
+
+        return set;
+    }
+
     protected PersonDTO personEntityToPersonDTO(PersonEntity personEntity) {
         if ( personEntity == null ) {
             return null;
@@ -77,7 +110,7 @@ public class ThesisMapperImpl implements ThesisMapper {
         personDTO.setName( personEntity.getName() );
         personDTO.setSurname( personEntity.getSurname() );
         personDTO.setTitleAfterName( personEntity.getTitleAfterName() );
-        personDTO.setRole( personEntity.getRole() );
+        personDTO.setDepartments( departmentEntityListToDepartmentDTOSet( personEntity.getDepartments() ) );
 
         return personDTO;
     }
@@ -111,6 +144,33 @@ public class ThesisMapperImpl implements ThesisMapper {
         return councilDTO;
     }
 
+    protected DepartmentEntity departmentDTOToDepartmentEntity(DepartmentDTO departmentDTO) {
+        if ( departmentDTO == null ) {
+            return null;
+        }
+
+        DepartmentEntity departmentEntity = new DepartmentEntity();
+
+        departmentEntity.setId( departmentDTO.getId() );
+        departmentEntity.setDepartmentNumber( departmentDTO.getDepartmentNumber() );
+        departmentEntity.setDepartmentName( departmentDTO.getDepartmentName() );
+
+        return departmentEntity;
+    }
+
+    protected List<DepartmentEntity> departmentDTOSetToDepartmentEntityList(Set<DepartmentDTO> set) {
+        if ( set == null ) {
+            return null;
+        }
+
+        List<DepartmentEntity> list = new ArrayList<DepartmentEntity>( set.size() );
+        for ( DepartmentDTO departmentDTO : set ) {
+            list.add( departmentDTOToDepartmentEntity( departmentDTO ) );
+        }
+
+        return list;
+    }
+
     protected PersonEntity personDTOToPersonEntity(PersonDTO personDTO) {
         if ( personDTO == null ) {
             return null;
@@ -125,7 +185,7 @@ public class ThesisMapperImpl implements ThesisMapper {
         personEntity.setName( personDTO.getName() );
         personEntity.setSurname( personDTO.getSurname() );
         personEntity.setTitleAfterName( personDTO.getTitleAfterName() );
-        personEntity.setRole( personDTO.getRole() );
+        personEntity.setDepartments( departmentDTOSetToDepartmentEntityList( personDTO.getDepartments() ) );
 
         return personEntity;
     }

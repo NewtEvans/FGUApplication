@@ -9,33 +9,33 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/people")
+@RequestMapping("/person")
 public class PersonController {
 
     @Autowired
     private PersonService personService;
 
-    @GetMapping
+    @GetMapping("/all")
     public List<PersonDTO> getAllPeople() {
         return personService.getAllPeople();
     }
 
-    @GetMapping("/{personId}")
+    @GetMapping("/detail/{personId}")
     public PersonDTO personDetail(@PathVariable long personId){
         return personService.personDetail(personId);
     }
 
-    @PostMapping("")
+    @PostMapping("/create")
     public PersonDTO addPerson(@RequestBody PersonDTO personDTO) {
         return personService.addPerson(personDTO);
     }
 
-    @PutMapping("/{personId}")
+    @PutMapping("/edit/{personId}")
     public PersonDTO editPerson(@RequestBody PersonDTO personDTO, @PathVariable long personId){
         return personService.editPerson(personDTO, personId);
     }
 
-    @DeleteMapping("/{personId}")
+    @DeleteMapping("/delete/{personId}")
     public void deletePerson(@PathVariable long personId){
         personService.deletePerson(personId);
     }

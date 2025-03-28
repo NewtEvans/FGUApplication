@@ -1,6 +1,5 @@
 package cz.newtworks.FGUApplication.entity;
 
-import cz.newtworks.FGUApplication.constant.Role;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,10 +26,6 @@ public class PersonEntity {
     private String surname;
 
     private String titleAfterName;
-
-//  @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private Role role;
 
     //vazba mezi tabulkami - department
     @ManyToMany(fetch = FetchType.EAGER)

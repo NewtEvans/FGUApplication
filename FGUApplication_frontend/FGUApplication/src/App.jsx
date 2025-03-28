@@ -15,6 +15,11 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
+import DepartmentIndex from "./department/DepartmentIndex";
+import FacultyIndex from "./faculty/FacultyIndex";
+import CouncilIndex from "./coucil/CouncilIndex";
+import DepartmentForm from "./department/DepartmentForm";
+import DepartmentDetail from "./department/DepartmentDetail";
 
 function App() {
   return (
@@ -43,10 +48,43 @@ function App() {
             </button>
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav">
-                <li className="nav-item">
-                  <Link to={"/theses"} className="nav-link active">
-                    Přehled
+                <li className="nav-item dropdown">
+                  <Link
+                    to={"/theses"}
+                    className="nav-link dropdown-toggle"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Přehledy
                   </Link>
+                  <ul className="dropdown-menu">
+                    <li>
+                      <Link to={"person"} className="dropdown-item">
+                        Osoby
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to={"departments"} className="dropdown-item">
+                        Oddělení
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to={"faculties"} className="dropdown-item">
+                        Fakulty
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to={"counciles"} className="dropdown-item">
+                        Odborové rady
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to={"theses"} className="dropdown-item">
+                        Práce
+                      </Link>
+                    </li>
+                  </ul>
                 </li>
                 <li className="nav-item">
                   <a className="nav-link" href="#">
@@ -69,19 +107,40 @@ function App() {
         </nav>
 
         <Routes>
-          <Route index element={<Navigate to={"/people"} />} />
-          <Route path="/people">
+          <Route index element={<Navigate to={"/person"} />} />
+          <Route path="/person">
             <Route index element={<PersonIndex />} />
-            <Route path="show/:id" element={<PersonDetail />} />
+            <Route path="detail/:id" element={<PersonDetail />} />
             <Route path="edit/:id" element={<PersonForm />} />
             <Route path="create" element={<PersonForm />} />
           </Route>
           <Route index element={<Navigate to={"/theses"} />} />
           <Route path="/theses">
             <Route index element={<ThesisIndex />} />
-            <Route path="show/:id" element={<ThesisDetail />} />
+            <Route path="detail/:id" element={<ThesisDetail />} />
             <Route path="edit/:id" element={<ThesisForm />} />
             <Route path="create" element={<ThesisForm />} />
+          </Route>
+          <Route index element={<Navigate to={"/departments"} />} />
+          <Route path="/departments">
+            <Route index element={<DepartmentIndex />} />
+            <Route path="detail/:id" element={<DepartmentDetail />} />
+            <Route path="edit/:id" element={<DepartmentForm />} />
+            <Route path="create" element={<DepartmentForm />} />
+          </Route>
+          <Route index element={<Navigate to={"/faculties"} />} />
+          <Route path="/faculties">
+            <Route index element={<FacultyIndex />} />
+            <Route path="detail/:id" element={"#"} />
+            <Route path="edit/:id" element={"#"} />
+            <Route path="create" element={"#"} />
+          </Route>
+          <Route index element={<Navigate to={"/counciles"} />} />
+          <Route path="/counciles">
+            <Route index element={<CouncilIndex />} />
+            <Route path="detail/:id" element={"#"} />
+            <Route path="edit/:id" element={"#"} />
+            <Route path="create" element={"#"} />
           </Route>
         </Routes>
       </div>

@@ -15,27 +15,27 @@ public class FacultyController {
     @Autowired
     private FacultyService facultyService;
 
-    @PostMapping
+    @PostMapping("/create")
     public FacultyDTO addFaculty(@RequestBody FacultyDTO facultyDTO) {
         return facultyService.addFaculty(facultyDTO);
     }
 
-    @GetMapping("")
+    @GetMapping("/all")
     public List<FacultyDTO> getAllFaculty() {
         return facultyService.getAllFaculty();
     }
 
-    @GetMapping("/{facultyId}")
+    @GetMapping("/detail/{facultyId}")
     public FacultyDTO facultyDetail(@PathVariable long facultyId) {
         return facultyService.facultyDetail(facultyId);
     }
 
-    @PutMapping("/{facultyId}")
+    @PutMapping("/edit/{facultyId}")
     public FacultyDTO editFaculty(@PathVariable long facultyId, @RequestBody FacultyDTO facultyDTO){
         return facultyService.editFaculty(facultyId, facultyDTO);
     }
 
-    @DeleteMapping("/{facultyId}")
+    @DeleteMapping("/delete/{facultyId}")
     public void deleteFaculty(@PathVariable long facultyId){
         facultyService.deleteFaculty(facultyId);
     }

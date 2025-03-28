@@ -3,7 +3,7 @@ import PersonTable from "./PersonTable";
 import { apiGet } from "../utils/api";
 
 const PersonIndex = () => {
-  const [url, setUrl] = useState("/people");
+  const [url, setUrl] = useState("/person/all");
   const [people, setPeople] = useState([]);
 
   useEffect(() => {

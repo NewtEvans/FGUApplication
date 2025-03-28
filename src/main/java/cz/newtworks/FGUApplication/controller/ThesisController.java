@@ -19,22 +19,22 @@ public class ThesisController {
         return thesisService.addThesis(thesisDTO);
     }
 
-    @GetMapping("")
+    @GetMapping("/all")
     public List<ThesisDTO> getAllThesis(){
         return thesisService.getAllThesis();
     }
 
-    @GetMapping("{thesisId}")
+    @GetMapping("/detail/{thesisId}")
     public ThesisDTO detailThesis(@PathVariable long thesisId){
         return thesisService.detailThesis(thesisId);
     }
 
-    @PutMapping("{thesisId}")
+    @PutMapping("/edit/{thesisId}")
     public ThesisDTO editThesis(@PathVariable long thesisId, @RequestBody ThesisDTO thesisDTO){
         return thesisService.editThesis(thesisId, thesisDTO);
     }
 
-    @DeleteMapping("{thesisId}")
+    @DeleteMapping("/delete/{thesisId}")
     public void deleteThesis(@PathVariable long thesisId){
         thesisService.deteleThesis(thesisId);
     }

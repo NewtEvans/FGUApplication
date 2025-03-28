@@ -14,27 +14,27 @@ public class CouncilController {
     @Autowired
     private CouncilService councilService;
 
-    @PostMapping("")
+    @PostMapping("/create")
     public CouncilDTO addCouncil(@RequestBody CouncilDTO councilDTO){
         return councilService.addCouncil(councilDTO);
     }
 
-    @GetMapping("")
+    @GetMapping("/all")
     public List<CouncilDTO> getAllCouncils(){
         return councilService.getAllCouncils();
     }
 
-    @GetMapping("{councilId}")
+    @GetMapping("/detail/{councilId}")
     public CouncilDTO councilDetail(@PathVariable long councilId){
         return councilService.councilDetail(councilId);
     }
 
-    @PutMapping("{councilId}")
+    @PutMapping("/edit/{councilId}")
     public CouncilDTO editCouncil(@PathVariable long councilId, @RequestBody CouncilDTO councilDTO){
         return councilService.editCouncil(councilId, councilDTO);
     }
 
-    @DeleteMapping("{councilId}")
+    @DeleteMapping("/delete/{councilId}")
     public void deleteCouncil(@PathVariable long councilId){
         councilService.deleteCouncil(councilId);
     }

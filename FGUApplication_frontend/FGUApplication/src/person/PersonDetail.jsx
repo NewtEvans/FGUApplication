@@ -2,12 +2,16 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { apiGet } from "../utils/api";
 
+import { Link } from "react-router";
+
+import DepartmentTable from "../department/DepartmentTable";
+
 const PersonDetail = () => {
   const { id } = useParams();
   const [person, setPerson] = useState({});
 
   useEffect(() => {
-    apiGet("/people/" + id)
+    apiGet("/person/detail/" + id)
       .then((data) => {
         setPerson(data);
       })
@@ -32,6 +36,15 @@ const PersonDetail = () => {
       <p>
         <strong>Příjmenkový titul:</strong> {person.titleAfterName}
       </p>
+      <p>
+        <strong>Oddělení:</strong>
+      </p>
+      <hr />
+      {/* <DepartmentTable departments={person.departments} /> */}
+
+      <Link to={`/person/edit/${id}`} className="btn btn-md btn-warning">
+        Upravit osobu
+      </Link>
     </div>
   );
 };
