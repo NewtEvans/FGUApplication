@@ -7,6 +7,12 @@ import PersonForm from "./person/PersonForm";
 import ThesisIndex from "./thesis/ThesisIndex";
 import ThesisDetail from "./thesis/ThesisDetail";
 import ThesisForm from "./thesis/ThesisForm";
+import DepartmentIndex from "./department/DepartmentIndex";
+import DepartmentForm from "./department/DepartmentForm";
+import DepartmentDetail from "./department/DepartmentDetail";
+import FacultyIndex from "./faculty/FacultyIndex";
+import FacultyDetail from "./faculty/FacultyDetail";
+import CouncilIndex from "./coucil/CouncilIndex";
 
 import {
   BrowserRouter as Router,
@@ -15,11 +21,7 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
-import DepartmentIndex from "./department/DepartmentIndex";
-import FacultyIndex from "./faculty/FacultyIndex";
-import CouncilIndex from "./coucil/CouncilIndex";
-import DepartmentForm from "./department/DepartmentForm";
-import DepartmentDetail from "./department/DepartmentDetail";
+import FacultyForm from "./faculty/FacultyForm";
 
 function App() {
   return (
@@ -131,9 +133,9 @@ function App() {
           <Route index element={<Navigate to={"/faculties"} />} />
           <Route path="/faculties">
             <Route index element={<FacultyIndex />} />
-            <Route path="detail/:id" element={"#"} />
-            <Route path="edit/:id" element={"#"} />
-            <Route path="create" element={"#"} />
+            <Route path="detail/:id" element={<FacultyDetail />} />
+            <Route path="edit/:id" element={<FacultyForm />} />
+            <Route path="create" element={<FacultyForm />} />
           </Route>
           <Route index element={<Navigate to={"/counciles"} />} />
           <Route path="/counciles">

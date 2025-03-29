@@ -4,7 +4,7 @@ import { apiGet } from "../utils/api";
 import { data } from "react-router";
 
 const ThesisIndex = () => {
-  const [url, setUrl] = useState("/thesis");
+  const [url, setUrl] = useState("/thesis/all");
   const [theses, setTheses] = useState([]);
 
   useEffect(() => {

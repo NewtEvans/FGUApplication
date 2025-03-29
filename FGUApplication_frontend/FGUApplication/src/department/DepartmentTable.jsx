@@ -6,8 +6,8 @@ const DepartmentTable = ({ departments }) => {
       <table className="table table-bordered table-hover ">
         <thead>
           <tr className="table-primary text-center">
-            <th className="col-10">Název oddělení</th>
             <th>Číslo oddělení</th>
+            <th className="col-10">Název oddělení</th>
           </tr>
         </thead>
         <tbody className="text-center">
@@ -18,7 +18,7 @@ const DepartmentTable = ({ departments }) => {
                   to={`detail/${department.id}`}
                   className="d-block text-decoration-none text-dark p-3"
                 >
-                  {department.departmentName}
+                  {department.departmentNumber}
                 </Link>
               </td>
               <td>
@@ -26,7 +26,7 @@ const DepartmentTable = ({ departments }) => {
                   to={`detail/${department.id}`}
                   className="d-block text-decoration-none text-dark p-3"
                 >
-                  {department.departmentNumber}
+                  {department.departmentName}
                 </Link>
               </td>
             </tr>
