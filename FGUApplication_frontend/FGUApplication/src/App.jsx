@@ -22,6 +22,8 @@ import {
   Navigate,
 } from "react-router-dom";
 import FacultyForm from "./faculty/FacultyForm";
+import CouncilDetail from "./coucil/CouncilDetail";
+import CouncilForm from "./coucil/CouncilForm";
 
 function App() {
   return (
@@ -140,9 +142,9 @@ function App() {
           <Route index element={<Navigate to={"/counciles"} />} />
           <Route path="/counciles">
             <Route index element={<CouncilIndex />} />
-            <Route path="detail/:id" element={"#"} />
-            <Route path="edit/:id" element={"#"} />
-            <Route path="create" element={"#"} />
+            <Route path="detail/:id" element={<CouncilDetail />} />
+            <Route path="edit/:id" element={<CouncilForm />} />
+            <Route path="create" element={<CouncilForm />} />
           </Route>
         </Routes>
       </div>
