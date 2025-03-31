@@ -28,9 +28,9 @@ const ThesisForm = () => {
     if (id) {
       apiGet("/thesis/" + id).then((data) => setThesis(data));
     }
-    apiGet("/people").then((data) => setPeople(data));
-    apiGet("/faculty").then((data) => setFaculty(data));
-    apiGet("/council").then((data) => setCouncil(data));
+    apiGet("/person/all").then((data) => setPeople(data));
+    apiGet("/faculty/all").then((data) => setFaculty(data));
+    apiGet("/council/all").then((data) => setCouncil(data));
   }, [id]);
 
   const handleSubmit = (e) => {

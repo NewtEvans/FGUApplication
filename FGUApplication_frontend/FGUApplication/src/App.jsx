@@ -12,7 +12,10 @@ import DepartmentForm from "./department/DepartmentForm";
 import DepartmentDetail from "./department/DepartmentDetail";
 import FacultyIndex from "./faculty/FacultyIndex";
 import FacultyDetail from "./faculty/FacultyDetail";
+import FacultyForm from "./faculty/FacultyForm";
 import CouncilIndex from "./coucil/CouncilIndex";
+import CouncilDetail from "./coucil/CouncilDetail";
+import CouncilForm from "./coucil/CouncilForm";
 
 import {
   BrowserRouter as Router,
@@ -21,9 +24,6 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
-import FacultyForm from "./faculty/FacultyForm";
-import CouncilDetail from "./coucil/CouncilDetail";
-import CouncilForm from "./coucil/CouncilForm";
 
 function App() {
   return (
@@ -31,7 +31,7 @@ function App() {
       <div className="container">
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
           <div className="container-fluid">
-            <a className="navbar-brand" href="/people">
+            <a className="navbar-brand" href="/theses">
               <img
                 src="public\fgu_text_1r_Black_CZ.webp"
                 alt="Fyziologický ústav"

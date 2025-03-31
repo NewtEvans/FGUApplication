@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { apiGet, apiPost, apiPut } from "../utils/api";
 import InputField from "../components/InputField";
+import InputSelect from "../components/InputSelect";
 
 const PersonForm = () => {
   const navigate = useNavigate();
@@ -11,12 +12,15 @@ const PersonForm = () => {
     name: "",
     surname: "",
     titleAfterName: "",
+    departments: [{}],
   });
+  const [departments, setDepartments] = useState([]);
 
   useEffect(() => {
     if (id) {
       apiGet("/person/detail/" + id).then((data) => setPerson(data));
     }
+    apiGet("/department/all").then((data) => setDepartments(data));
   }, [id]);
 
   const handleSubmit = (e) => {
@@ -80,6 +84,19 @@ const PersonForm = () => {
           value={person.titleAfterName}
           handleChange={(e) => {
             setPerson({ ...person, titleAfterName: e.target.value });
+          }}
+        />
+        <InputSelect
+          name="departments"
+          items={departments}
+          multiple={true}
+          label="Oddělení"
+          prompt="Vyber oddělení"
+          showLabel="departmentNumber"
+          showLabel2="departmentName"
+          value={person.departments}
+          handleChange={(e) => {
+            setPerson({ ...person, departments: { id: e.target.value } });
           }}
         />
         <br />
