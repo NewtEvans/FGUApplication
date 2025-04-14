@@ -26,14 +26,66 @@ const ThesisTable = ({ theses }) => {
         <tbody className="text-center">
           {theses.map((thesis) => (
             <tr key={thesis.id}>
-              <td>{`${thesis.student?.name} ${thesis.student?.surname}`}</td>
-              <td>{thesis.thesisType}</td>
-              <td>{thesis.nameCz}</td>
-              <td>{thesis.endDate ? thesis.endDate : "Studuje"}</td>
-              <td>Oddělení</td>
-              <td>{`${thesis.trainer?.name} ${thesis.trainer?.surname}`}</td>
-              <td>{`${thesis.consultant?.name} ${thesis.consultant?.surname}`}</td>
-              <td>{thesis.note}</td>
+              <td>
+                <Link
+                  to={`detail/${thesis.id}`}
+                  className="d-block text-decoration-none text-dark p-3"
+                >
+                  {`${thesis.student?.name} ${thesis.student?.surname}`}
+                </Link>
+              </td>
+              <td>
+                <Link
+                  to={`detail/${thesis.id}`}
+                  className="d-block text-decoration-none text-dark p-3"
+                >
+                  {thesis.thesisType}
+                </Link>
+              </td>
+              <td>
+                <Link
+                  to={`detail/${thesis.id}`}
+                  className="d-block text-decoration-none text-dark p-3"
+                >
+                  {thesis.nameCz}
+                </Link>
+              </td>
+              <td>
+                <Link
+                  to={`detail/${thesis.id}`}
+                  className="d-block text-decoration-none text-dark p-3"
+                >
+                  {thesis.endDate ? thesis.endDate : "Studuje"}
+                </Link>
+              </td>
+              <td>
+                <Link
+                  to={`detail/${thesis.id}`}
+                  className="d-block text-decoration-none text-dark p-3"
+                >
+                  Oddělení
+                </Link>
+              </td>
+              <td>
+                <Link
+                  to={`detail/${thesis.id}`}
+                  className="d-block text-decoration-none text-dark p-3"
+                >{`${thesis.trainer?.name} ${thesis.trainer?.surname}`}</Link>
+              </td>
+              <td>
+                <Link
+                  to={`detail/${thesis.id}`}
+                  className="d-block text-decoration-none text-dark p-3"
+                >{`${thesis.consultant?.name} ${thesis.consultant?.surname}`}</Link>
+              </td>
+              <td>
+                <Link
+                  to={`detail/${thesis.id}`}
+                  className="d-block text-decoration-none text-dark p-3"
+                >
+                  {thesis.note}
+                </Link>
+              </td>
             </tr>
           ))}
         </tbody>

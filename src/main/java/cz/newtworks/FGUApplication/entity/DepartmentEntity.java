@@ -1,5 +1,6 @@
 package cz.newtworks.FGUApplication.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Entity;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -15,7 +16,7 @@ DepartmentEntity {
     private long id;
 
     @Column
-    private byte departmentNumber;
+    private String departmentNumber;
 
     @Column
     private String departmentName;

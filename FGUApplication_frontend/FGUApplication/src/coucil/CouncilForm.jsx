@@ -21,7 +21,7 @@ const CouncilForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     (id
-      ? apiPut("/councile/edit" + id, council)
+      ? apiPut("/council/edit/" + id, council)
       : apiPost("/council/create", council)
     )
       .then((data) => {

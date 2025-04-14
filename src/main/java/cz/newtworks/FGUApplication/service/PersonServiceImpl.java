@@ -1,15 +1,20 @@
 package cz.newtworks.FGUApplication.service;
 
+import cz.newtworks.FGUApplication.dto.department.DepartmentDTO;
 import cz.newtworks.FGUApplication.dto.person.PersonDTO;
 import cz.newtworks.FGUApplication.dto.mapper.DepartmentMapper;
 import cz.newtworks.FGUApplication.dto.mapper.PersonMapper;
+import cz.newtworks.FGUApplication.entity.DepartmentEntity;
 import cz.newtworks.FGUApplication.entity.PersonEntity;
 import cz.newtworks.FGUApplication.entity.repository.PersonRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -41,6 +46,14 @@ public class PersonServiceImpl implements PersonService{
     }
 
     @Override
+    public List<PersonDTO> getAllPeopleInDepartment(long departmentId) {
+        return personRepository.findAllPeopleInDepartment(departmentId)
+                .stream()
+                .map(person -> personMapper.toDTO(person))
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public PersonDTO personDetail(long id) {
         return personMapper.toDTO(fetchPersonById(id));
     }
@@ -58,6 +71,16 @@ public class PersonServiceImpl implements PersonService{
     public void deletePerson(long personId) {
         personRepository.delete(fetchPersonById(personId));
     }
+
+//    @Override
+//    public List<DepartmentDTO> test() {
+//        PersonEntity person = fetchPersonById(1);
+//
+//        return person.getDepartments()
+//                .stream()
+//                .map(departmentEntity -> departmentMapper.toDTO(departmentEntity))
+//                .collect(Collectors.toList());
+//    }
 
     //Private methods
 

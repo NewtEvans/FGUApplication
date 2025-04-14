@@ -11,6 +11,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class DepartmentDTO {
     private long id;
-    private byte departmentNumber;
+    private String departmentNumber;
     private String departmentName;
 }

@@ -22,7 +22,7 @@ const DepartmentForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     (id
-      ? apiPut("/department/edit" + id, department)
+      ? apiPut("/department/edit/" + id, department)
       : apiPost("/department/create", department)
     )
       .then((data) => {

@@ -2,8 +2,10 @@ package cz.newtworks.FGUApplication.service;
 
 import cz.newtworks.FGUApplication.dto.department.DepartmentDTO;
 import cz.newtworks.FGUApplication.dto.mapper.DepartmentMapper;
+import cz.newtworks.FGUApplication.dto.person.PersonDTO;
 import cz.newtworks.FGUApplication.entity.DepartmentEntity;
 import cz.newtworks.FGUApplication.entity.repository.DepartmentRepository;
+import cz.newtworks.FGUApplication.entity.repository.PersonRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

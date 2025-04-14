@@ -15,7 +15,8 @@ const FacultyTable = ({ faculties }) => {
           <tr className="table-primary text-center">
             <th className="col-1">#</th>
             <th className="col-2">Zkratka fakulty</th>
-            <th className="col-9">Název fakulty</th>
+            <th className="col-7">Název fakulty</th>
+            <th>škola</th>
           </tr>
         </thead>
         <tbody className="text-center">

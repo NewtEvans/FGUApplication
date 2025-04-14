@@ -1,6 +1,7 @@
 package cz.newtworks.FGUApplication.service;
 
 import cz.newtworks.FGUApplication.dto.department.DepartmentDTO;
+import cz.newtworks.FGUApplication.dto.person.PersonDTO;
 
 import java.util.List;
 

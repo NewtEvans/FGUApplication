@@ -12,15 +12,16 @@ const PersonForm = () => {
     name: "",
     surname: "",
     titleAfterName: "",
-    departments: [{}],
+    departments: { id: 0 },
   });
-  const [departments, setDepartments] = useState([]);
+
+  const [departmentList, setDepartmentList] = useState([]);
 
   useEffect(() => {
     if (id) {
       apiGet("/person/detail/" + id).then((data) => setPerson(data));
     }
-    apiGet("/department/all").then((data) => setDepartments(data));
+    apiGet("/department/all").then((data) => setDepartmentList(data));
   }, [id]);
 
   const handleSubmit = (e) => {
@@ -88,8 +89,8 @@ const PersonForm = () => {
         />
         <InputSelect
           name="departments"
-          items={departments}
-          multiple={true}
+          items={departmentList}
+          multiple={false}
           label="Oddělení"
           prompt="Vyber oddělení"
           showLabel="departmentNumber"

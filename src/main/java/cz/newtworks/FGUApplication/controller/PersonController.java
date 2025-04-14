@@ -1,5 +1,4 @@
 package cz.newtworks.FGUApplication.controller;
-
 import cz.newtworks.FGUApplication.dto.person.PersonDTO;
 import cz.newtworks.FGUApplication.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +17,11 @@ public class PersonController {
     @GetMapping("/all")
     public List<PersonDTO> getAllPeople() {
         return personService.getAllPeople();
+    }
+
+    @GetMapping("/info/{departmentId}")
+    public List<PersonDTO> getAllPeopleInDepartment(@PathVariable long departmentId){
+        return personService.getAllPeopleInDepartment(departmentId);
     }
 
     @GetMapping("/detail/{personId}")

@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class ThesisDTO {
 
-    private long id;
+    private Long id;
     //private ThesisType thesisType;
     @JsonFormat(pattern = "dd-mm-yyyy")
     private LocalDate startDate;

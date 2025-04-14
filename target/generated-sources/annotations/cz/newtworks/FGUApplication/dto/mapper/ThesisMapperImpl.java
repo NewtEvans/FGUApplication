@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-03-28T09:21:08+0100",
+    date = "2025-04-14T10:01:46+0200",
     comments = "version: 1.6.3, compiler: javac, environment: Java 23.0.2 (Oracle Corporation)"
 )
 @Component
@@ -56,7 +56,9 @@ public class ThesisMapperImpl implements ThesisMapper {
 
         ThesisEntity thesisEntity = new ThesisEntity();
 
-        thesisEntity.setId( source.getId() );
+        if ( source.getId() != null ) {
+            thesisEntity.setId( source.getId() );
+        }
         thesisEntity.setStartDate( source.getStartDate() );
         thesisEntity.setNameCz( source.getNameCz() );
         thesisEntity.setNameEn( source.getNameEn() );

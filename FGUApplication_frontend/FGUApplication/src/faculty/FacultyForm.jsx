@@ -25,7 +25,7 @@ const FacultyForm = () => {
       : apiPost("/faculty/create", faculty)
     )
       .then((data) => {
-        navigate("/faculty");
+        navigate("/faculties");
       })
       .catch((error) => {
         console.log(error.messagte);
@@ -38,7 +38,7 @@ const FacultyForm = () => {
       <hr />
       <form onSubmit={handleSubmit}>
         <InputField
-          required={false}
+          required={true}
           type="text"
           name="facultyName"
           label="Název fakulty"
@@ -49,7 +49,7 @@ const FacultyForm = () => {
           }}
         />
         <InputField
-          required={false}
+          required={true}
           type="text"
           name="facultyAbbreviation"
           label="Zkratka fakulty"

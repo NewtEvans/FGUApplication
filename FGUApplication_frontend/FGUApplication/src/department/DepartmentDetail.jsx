@@ -23,7 +23,7 @@ const DepartmentDetail = () => {
       <hr />
       <h2>{department.departmentName}</h2>
 
-      <Link to={`/department/edit/${id}`} className="btn btn-md btn-warning">
+      <Link to={`/departments/edit/${id}`} className="btn btn-md btn-warning">
         Upravit oddělení
       </Link>
     </div>

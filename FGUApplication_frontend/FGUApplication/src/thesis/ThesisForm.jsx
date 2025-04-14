@@ -26,7 +26,7 @@ const ThesisForm = () => {
 
   useEffect(() => {
     if (id) {
-      apiGet("/thesis/" + id).then((data) => setThesis(data));
+      apiGet("/thesis/detail/" + id).then((data) => setThesis(data));
     }
     apiGet("/person/all").then((data) => setPeople(data));
     apiGet("/faculty/all").then((data) => setFaculty(data));
@@ -35,7 +35,10 @@ const ThesisForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    (id ? apiPut("/theses") : apiPost("/theses/" + id, thesis))
+    (id
+      ? apiPut("/thesis/edit/" + id, thesis)
+      : apiPost("/thesis/create", thesis)
+    )
       .then((data) => {
         navigate("/theses");
       })
@@ -97,8 +100,8 @@ const ThesisForm = () => {
         <InputSelect
           name="trainer"
           items={people}
-          label="Student"
-          prompt="Vyber studenta"
+          label="Školitel"
+          prompt="Vyber školitele"
           showLabel="surname"
           showLabel2="name"
           value={thesis.trainer.id}
@@ -109,8 +112,8 @@ const ThesisForm = () => {
         <InputSelect
           name="consultant"
           items={people}
-          label="Student"
-          prompt="Vyber studenta"
+          label="Konzultant"
+          prompt="Vyber konzultanta"
           showLabel="surname"
           showLabel2="name"
           value={thesis.consultant.id}
