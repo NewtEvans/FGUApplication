@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import PersonTable from "./PersonTable";
 import { apiGet } from "../utils/api";
+import { Link } from "react-router";
 
 const PersonIndex = () => {
   const [url, setUrl] = useState("/person/all");
@@ -13,6 +14,13 @@ const PersonIndex = () => {
   return (
     <div>
       <h1>Seznam všeh osob</h1>
+      <div className="d-flex justify-content-between">
+        <p>Počet osob v databázi: {people.length}</p>
+        <Link to="create" className="btn btn-md btn-success">
+          Nová osoba
+        </Link>
+      </div>
+      <br />
       <PersonTable people={people} />
     </div>
   );

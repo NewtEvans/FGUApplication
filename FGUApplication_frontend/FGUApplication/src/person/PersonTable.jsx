@@ -1,15 +1,9 @@
-import { Link } from "react-router";
+import { Link, useParams } from "react-router";
 
 const PersonTable = ({ people }) => {
+  const { id } = useParams();
   return (
     <div>
-      <div className="d-flex justify-content-between">
-        <p>Počet osob v databázi: {people.length}</p>
-        <Link to="create" className="btn btn-md btn-success">
-          Nová osoba
-        </Link>
-      </div>
-      <br />
       <table className="table table-bordered table-hover ">
         <thead>
           <tr className="table-primary text-center">
@@ -25,7 +19,7 @@ const PersonTable = ({ people }) => {
             <tr key={person.id}>
               <td>
                 <Link
-                  to={`detail/${person.id}`}
+                  to={`/person/detail/${person.id}`}
                   className="d-block text-decoration-none text-dark p-3"
                 >
                   {index + 1}
@@ -33,7 +27,7 @@ const PersonTable = ({ people }) => {
               </td>
               <td>
                 <Link
-                  to={`detail/${person.id}`}
+                  to={`/person/detail/${person.id}`}
                   className="d-block text-decoration-none text-dark p-3"
                 >
                   {person.titleBeforeName}
@@ -41,7 +35,7 @@ const PersonTable = ({ people }) => {
               </td>
               <td>
                 <Link
-                  to={`detail/${person.id}`}
+                  to={`/person/detail/${person.id}`}
                   className="d-block text-decoration-none text-dark p-3"
                 >
                   {person.name}
@@ -50,7 +44,7 @@ const PersonTable = ({ people }) => {
 
               <td>
                 <Link
-                  to={`detail/${person.id}`}
+                  to={`/person/detail/${person.id}`}
                   className="d-block text-decoration-none text-dark p-3"
                 >
                   {person.surname}
@@ -58,7 +52,7 @@ const PersonTable = ({ people }) => {
               </td>
               <td>
                 <Link
-                  to={`detail/${person.id}`}
+                  to={`/person/detail/${person.id}`}
                   className="d-block text-decoration-none text-dark p-3"
                 >
                   {person.titleAfterName}

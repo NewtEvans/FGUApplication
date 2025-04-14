@@ -17,9 +17,13 @@ const DepartmentDetail = () => {
       .catch((error) => {
         console.log(error);
       });
-    apiGet("/person/info/" + id).then((data) =>
-      setPeople(data).catch((error) => console.log(error))
-    );
+    apiGet("/person/info/" + id)
+      .then((data) => {
+        setPeople(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
 
   return (
