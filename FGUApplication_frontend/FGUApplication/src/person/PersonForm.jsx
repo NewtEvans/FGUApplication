@@ -12,7 +12,7 @@ const PersonForm = () => {
     name: "",
     surname: "",
     titleAfterName: "",
-    departments: { id: 0 },
+    departments: [],
   });
 
   const [departmentList, setDepartmentList] = useState([]);
@@ -90,14 +90,14 @@ const PersonForm = () => {
         <InputSelect
           name="departments"
           items={departmentList}
-          multiple={false}
+          multiple={true}
           label="Oddělení"
           prompt="Vyber oddělení"
           showLabel="departmentNumber"
           showLabel2="departmentName"
-          value={person.departments}
+          value={person.departments.id}
           handleChange={(e) => {
-            setPerson({ ...person, departments: { id: e.target.value } });
+            setPerson({ ...person, departments: [{ id: e.target.value }] });
           }}
         />
         <br />

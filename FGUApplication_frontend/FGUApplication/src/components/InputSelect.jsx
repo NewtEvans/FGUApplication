@@ -37,7 +37,7 @@ export function InputSelect(props) {
         {objectItems
           ? /* vykreslení položek jako objektů z databáze */
             props.items.map((item, index) => (
-              <option key={required ? index : index + 1} value={item._id}>
+              <option key={required ? index : index + 1} value={item.id}>
                 {/* {`${item.name} ${item.surname}`} */}
                 {showLabel2
                   ? item[props.showLabel] + " " + item[props.showLabel2]

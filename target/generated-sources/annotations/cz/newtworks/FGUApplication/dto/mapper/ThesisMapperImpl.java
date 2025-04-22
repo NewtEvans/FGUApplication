@@ -10,16 +10,14 @@ import cz.newtworks.FGUApplication.entity.DepartmentEntity;
 import cz.newtworks.FGUApplication.entity.FacultyEntity;
 import cz.newtworks.FGUApplication.entity.PersonEntity;
 import cz.newtworks.FGUApplication.entity.ThesisEntity;
-import java.util.ArrayList;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Set;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-04-14T10:01:46+0200",
+    date = "2025-04-22T13:16:07+0200",
     comments = "version: 1.6.3, compiler: javac, environment: Java 23.0.2 (Oracle Corporation)"
 )
 @Component
@@ -87,17 +85,17 @@ public class ThesisMapperImpl implements ThesisMapper {
         return departmentDTO;
     }
 
-    protected Set<DepartmentDTO> departmentEntityListToDepartmentDTOSet(List<DepartmentEntity> list) {
-        if ( list == null ) {
+    protected Set<DepartmentDTO> departmentEntitySetToDepartmentDTOSet(Set<DepartmentEntity> set) {
+        if ( set == null ) {
             return null;
         }
 
-        Set<DepartmentDTO> set = LinkedHashSet.newLinkedHashSet( list.size() );
-        for ( DepartmentEntity departmentEntity : list ) {
-            set.add( departmentEntityToDepartmentDTO( departmentEntity ) );
+        Set<DepartmentDTO> set1 = LinkedHashSet.newLinkedHashSet( set.size() );
+        for ( DepartmentEntity departmentEntity : set ) {
+            set1.add( departmentEntityToDepartmentDTO( departmentEntity ) );
         }
 
-        return set;
+        return set1;
     }
 
     protected PersonDTO personEntityToPersonDTO(PersonEntity personEntity) {
@@ -112,7 +110,7 @@ public class ThesisMapperImpl implements ThesisMapper {
         personDTO.setName( personEntity.getName() );
         personDTO.setSurname( personEntity.getSurname() );
         personDTO.setTitleAfterName( personEntity.getTitleAfterName() );
-        personDTO.setDepartments( departmentEntityListToDepartmentDTOSet( personEntity.getDepartments() ) );
+        personDTO.setDepartments( departmentEntitySetToDepartmentDTOSet( personEntity.getDepartments() ) );
 
         return personDTO;
     }
@@ -160,17 +158,17 @@ public class ThesisMapperImpl implements ThesisMapper {
         return departmentEntity;
     }
 
-    protected List<DepartmentEntity> departmentDTOSetToDepartmentEntityList(Set<DepartmentDTO> set) {
+    protected Set<DepartmentEntity> departmentDTOSetToDepartmentEntitySet(Set<DepartmentDTO> set) {
         if ( set == null ) {
             return null;
         }
 
-        List<DepartmentEntity> list = new ArrayList<DepartmentEntity>( set.size() );
+        Set<DepartmentEntity> set1 = LinkedHashSet.newLinkedHashSet( set.size() );
         for ( DepartmentDTO departmentDTO : set ) {
-            list.add( departmentDTOToDepartmentEntity( departmentDTO ) );
+            set1.add( departmentDTOToDepartmentEntity( departmentDTO ) );
         }
 
-        return list;
+        return set1;
     }
 
     protected PersonEntity personDTOToPersonEntity(PersonDTO personDTO) {
@@ -187,7 +185,7 @@ public class ThesisMapperImpl implements ThesisMapper {
         personEntity.setName( personDTO.getName() );
         personEntity.setSurname( personDTO.getSurname() );
         personEntity.setTitleAfterName( personDTO.getTitleAfterName() );
-        personEntity.setDepartments( departmentDTOSetToDepartmentEntityList( personDTO.getDepartments() ) );
+        personEntity.setDepartments( departmentDTOSetToDepartmentEntitySet( personDTO.getDepartments() ) );
 
         return personEntity;
     }

@@ -92,7 +92,7 @@ const ThesisForm = () => {
           prompt="Vyber studenta"
           showLabel="surname"
           showLabel2="name"
-          value={thesis.student.id}
+          value={thesis.student}
           handleChange={(e) => {
             setThesis({ ...thesis, student: { id: e.target.value } });
           }}
