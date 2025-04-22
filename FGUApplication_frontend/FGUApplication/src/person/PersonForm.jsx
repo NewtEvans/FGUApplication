@@ -97,7 +97,12 @@ const PersonForm = () => {
           showLabel2="departmentName"
           value={person.departments.id}
           handleChange={(e) => {
-            setPerson({ ...person, departments: [{ id: e.target.value }] });
+            const selectedDepartments = Array.from(
+              e.target.selectedOptions,
+              (options) => options.value
+            );
+            const departments = selectedDepartments.map((id) => ({ id }));
+            setPerson({ ...person, departments });
           }}
         />
         <br />
