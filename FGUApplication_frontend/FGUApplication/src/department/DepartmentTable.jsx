@@ -15,7 +15,7 @@ const DepartmentTable = ({ departments }) => {
             <tr key={department.id}>
               <td>
                 <Link
-                  to={`detail/${department.id}`}
+                  to={`/departments/detail/${department.id}`}
                   className="d-block text-decoration-none text-dark p-3"
                 >
                   {department.departmentNumber}
@@ -23,7 +23,7 @@ const DepartmentTable = ({ departments }) => {
               </td>
               <td>
                 <Link
-                  to={`detail/${department.id}`}
+                  to={`/departments/detail/${department.id}`}
                   className="d-block text-decoration-none text-dark p-3"
                 >
                   {department.departmentName}

@@ -1,14 +1,25 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
-import { apiGet } from "../utils/api";
+import { useNavigate, useParams } from "react-router";
+import { apiGet, apiDelete } from "../utils/api";
 
 import { Link } from "react-router";
 
 import DepartmentTable from "../department/DepartmentTable";
 
 const PersonDetail = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [person, setPerson] = useState({});
+
+  const deleteFunction = async (id) => {
+    try {
+      await apiDelete("/person/delete/" + id);
+    } catch (error) {
+      console.log(error.message);
+      alert(error.message);
+    }
+    navigate("/person");
+  };
 
   useEffect(() => {
     apiGet("/person/detail/" + id)
@@ -36,15 +47,18 @@ const PersonDetail = () => {
       <p>
         <strong>Příjmenkový titul:</strong> {person.titleAfterName}
       </p>
-      <p>
-        <strong>Oddělení:</strong>
-      </p>
       <hr />
-      {/* <DepartmentTable departments={person.departments} /> */}
+      <DepartmentTable departments={person.departments || []} />
 
       <Link to={`/person/edit/${id}`} className="btn btn-md btn-warning">
         Upravit osobu
       </Link>
+      <button
+        className="btn btn-danger btn-md"
+        onClick={() => deleteFunction(id)}
+      >
+        Smazat osobu
+      </button>
     </div>
   );
 };
