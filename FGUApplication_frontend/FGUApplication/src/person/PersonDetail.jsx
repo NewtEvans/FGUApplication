@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { apiGet, apiDelete } from "../utils/api";
 
+import ThesisTable from "../thesis/ThesisTable";
+
 import { Link } from "react-router";
 
 import DepartmentTable from "../department/DepartmentTable";
@@ -47,8 +49,13 @@ const PersonDetail = () => {
       <p>
         <strong>Příjmenkový titul:</strong> {person.titleAfterName}
       </p>
-      <hr />
       <DepartmentTable departments={person.departments || []} />
+      <hr />
+      <h2>Vlastní práce: </h2>
+      <hr />
+      <h2>Školené práce: </h2>
+      <hr />
+      <h2>Konzultované práce:</h2>
 
       <Link to={`/person/edit/${id}`} className="btn btn-md btn-warning">
         Upravit osobu
