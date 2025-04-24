@@ -39,7 +39,7 @@ const DepartmentForm = () => {
       <hr />
       <form onSubmit={handleSubmit}>
         <InputField
-          required={false}
+          required={true}
           type="text"
           name="departmentName"
           label="Název oddělení"
@@ -50,7 +50,7 @@ const DepartmentForm = () => {
           }}
         />
         <InputField
-          required={false}
+          required={true}
           type="number"
           name="departmentNumber"
           label="Číslo oddělení"

@@ -15,7 +15,6 @@ public class ThesisDTO {
 
     private Long id;
     //private ThesisType thesisType;
-    @JsonFormat(pattern = "dd-mm-yyyy")
     private LocalDate startDate;
     private String nameCz;
     private String nameEn;

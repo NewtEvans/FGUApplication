@@ -17,7 +17,6 @@ const ThesisTable = ({ theses }) => {
             <th>Druh</th>
             <th>Název</th>
             <th>Datum ukončení</th>
-            <th>Oddělení</th>
             <th>Školitel</th>
             <th>Konzultant</th>
             <th>Poznámka</th>
@@ -56,14 +55,6 @@ const ThesisTable = ({ theses }) => {
                   className="d-block text-decoration-none text-dark p-3"
                 >
                   {thesis.endDate ? thesis.endDate : "Studuje"}
-                </Link>
-              </td>
-              <td>
-                <Link
-                  to={`detail/${thesis.id}`}
-                  className="d-block text-decoration-none text-dark p-3"
-                >
-                  Oddělení
                 </Link>
               </td>
               <td>
