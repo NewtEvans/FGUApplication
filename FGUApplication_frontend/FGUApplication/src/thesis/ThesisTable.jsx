@@ -5,9 +5,6 @@ const ThesisTable = ({ theses }) => {
     <div>
       <div className="d-flex justify-content-between">
         <p>Počet prací v databázi: {theses.length}</p>
-        <Link to="create" className="btn btn-md btn-success">
-          Nová práce
-        </Link>
       </div>
       <br />
       <table className="table table-bordered table-hover ">

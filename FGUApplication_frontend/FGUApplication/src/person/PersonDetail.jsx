@@ -12,6 +12,9 @@ const PersonDetail = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [person, setPerson] = useState({});
+  const [studentTheses, setStuedentTheses] = useState([]);
+  const [consultantTheses, setConsultantTheses] = useState([]);
+  const [trainerTheses, setTrainerTheses] = useState([]);
 
   const deleteFunction = async (id) => {
     try {
@@ -27,6 +30,36 @@ const PersonDetail = () => {
     apiGet("/person/detail/" + id)
       .then((data) => {
         setPerson(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  useEffect(() => {
+    apiGet("/thesis/consultant/" + id)
+      .then((data) => {
+        setConsultantTheses(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  useEffect(() => {
+    apiGet("/thesis/student/" + id)
+      .then((data) => {
+        setStuedentTheses(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  useEffect(() => {
+    apiGet("/thesis/trainer/" + id)
+      .then((data) => {
+        setTrainerTheses(data);
       })
       .catch((error) => {
         console.log(error);
@@ -50,12 +83,15 @@ const PersonDetail = () => {
         <strong>Příjmenkový titul:</strong> {person.titleAfterName}
       </p>
       <DepartmentTable departments={person.departments || []} />
-      <hr />
+      <br />
       <h2>Vlastní práce: </h2>
-      <hr />
+      <ThesisTable theses={studentTheses} />
+      <br />
       <h2>Školené práce: </h2>
-      <hr />
+      <ThesisTable theses={trainerTheses} />
+      <br />
       <h2>Konzultované práce:</h2>
+      <ThesisTable theses={consultantTheses} />
 
       <Link to={`/person/edit/${id}`} className="btn btn-md btn-warning">
         Upravit osobu
