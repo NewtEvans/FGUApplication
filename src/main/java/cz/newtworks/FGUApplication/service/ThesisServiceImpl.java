@@ -58,6 +58,30 @@ public class ThesisServiceImpl implements ThesisService{
     }
 
     @Override
+    public List<ThesisDTO> getAllThesisWithConsultantId(long consultantId) {
+        return thesisRepository.findAllThesisWithConsultantId(consultantId)
+                .stream()
+                .map(thesisEntity -> thesisMapper.toDTO(thesisEntity))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ThesisDTO> getAllThesisWithStudentId(long studentId) {
+        return thesisRepository.findAllThesisWithStudentId(studentId)
+                .stream()
+                .map(thesisEntity -> thesisMapper.toDTO(thesisEntity))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ThesisDTO> getAllThesisWithTrainerId(long trainerId) {
+        return thesisRepository.findAllThesisWithTrainerId(trainerId)
+                .stream()
+                .map(thesisEntity -> thesisMapper.toDTO(thesisEntity))
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public ThesisDTO editThesis(long thesisId, ThesisDTO thesisDTO) {
         ThesisEntity thesis = thesisMapper.toEntity(thesisDTO);
         thesis.setId(thesisId);
@@ -67,7 +91,7 @@ public class ThesisServiceImpl implements ThesisService{
     }
 
     @Override
-    public void deteleThesis(long thesisId) {
+    public void deleteThesis(long thesisId) {
         thesisRepository.delete(fetchThesisById(thesisId));
     }
 

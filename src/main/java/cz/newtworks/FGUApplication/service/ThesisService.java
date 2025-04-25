@@ -26,6 +26,28 @@ public interface ThesisService {
      */
     List<ThesisDTO> getAllThesis();
 
+
+    /**
+     * Method returns all thesis contains consultant with requested id.
+     * @param consultantId
+     * @return List of all theses with requested consultant id
+     */
+    List<ThesisDTO> getAllThesisWithConsultantId(long consultantId);
+
+    /**
+     * Method returns all thesis contains student with requested id.
+     * @param studentId
+     * @return List of all theses with requested student id
+     */
+    List<ThesisDTO> getAllThesisWithStudentId(long studentId);
+
+    /**
+     * Method returns all thesis contains trainer with requested id.
+     * @param trainerId
+     * @return List of all theses with requested trainer id
+     */
+    List<ThesisDTO> getAllThesisWithTrainerId(long trainerId);
+
     /**
      * Method edits already created thesis.
      * @param thesisId id of edited thesis
@@ -38,5 +60,5 @@ public interface ThesisService {
      * Method deletes thesis.
      * @param thesisId is of deleted thesis
      */
-    void deteleThesis(long thesisId);
+    void deleteThesis(long thesisId);
 }

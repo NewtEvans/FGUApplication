@@ -9,7 +9,8 @@ import java.time.LocalDate;
 
 
 
-@Entity(name = "theses")
+@Entity
+@Table(name = "theses")
 @Getter
 @Setter
 public class ThesisEntity {

@@ -36,6 +36,21 @@ public class ThesisController {
 
     @DeleteMapping("/delete/{thesisId}")
     public void deleteThesis(@PathVariable long thesisId){
-        thesisService.deteleThesis(thesisId);
+        thesisService.deleteThesis(thesisId);
+    }
+
+    @GetMapping("/consultant/{consultantId}")
+    public List<ThesisDTO> getConsultantsTheses(@PathVariable long consultantId){
+        return thesisService.getAllThesisWithConsultantId(consultantId);
+    }
+
+    @GetMapping("/student/{studentId}")
+    public List<ThesisDTO> getStudentTheses(@PathVariable long studentId){
+        return thesisService.getAllThesisWithStudentId(studentId);
+    }
+
+    @GetMapping("/trainer/{trainerId}")
+    public List<ThesisDTO> getTrainerTheses(@PathVariable long trainerId){
+        return thesisService.getAllThesisWithTrainerId(trainerId);
     }
 }
