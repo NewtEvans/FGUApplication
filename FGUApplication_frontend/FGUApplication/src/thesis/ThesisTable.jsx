@@ -3,16 +3,13 @@ import { Link } from "react-router";
 const ThesisTable = ({ theses }) => {
   return (
     <div>
-      <div className="d-flex justify-content-between">
-        <p>Počet prací v databázi: {theses.length}</p>
-      </div>
       <br />
       <table className="table table-bordered table-hover ">
         <thead>
           <tr className="table-primary text-center">
-            <th>Student</th>
+            <th>Název práce</th>
             <th>Druh</th>
-            <th>Název</th>
+            <th>Student</th>
             <th>Datum ukončení</th>
             <th>Školitel</th>
             <th>Konzultant</th>
@@ -24,23 +21,7 @@ const ThesisTable = ({ theses }) => {
             <tr key={thesis.id}>
               <td>
                 <Link
-                  to={`detail/${thesis.id}`}
-                  className="d-block text-decoration-none text-dark p-3"
-                >
-                  {`${thesis.student?.name} ${thesis.student?.surname}`}
-                </Link>
-              </td>
-              <td>
-                <Link
-                  to={`detail/${thesis.id}`}
-                  className="d-block text-decoration-none text-dark p-3"
-                >
-                  {thesis.thesisType}
-                </Link>
-              </td>
-              <td>
-                <Link
-                  to={`detail/${thesis.id}`}
+                  to={`/theses/detail/${thesis.id}`}
                   className="d-block text-decoration-none text-dark p-3"
                 >
                   {thesis.nameCz}
@@ -48,7 +29,23 @@ const ThesisTable = ({ theses }) => {
               </td>
               <td>
                 <Link
-                  to={`detail/${thesis.id}`}
+                  to={`/theses/detail/${thesis.id}`}
+                  className="d-block text-decoration-none text-dark p-3"
+                >
+                  {thesis.thesisType}
+                </Link>
+              </td>
+              <td>
+                <Link
+                  to={`/theses/detail/${thesis.id}`}
+                  className="d-block text-decoration-none text-dark p-3"
+                >
+                  {`${thesis.student?.name} ${thesis.student?.surname}`}
+                </Link>
+              </td>
+              <td>
+                <Link
+                  to={`/theses/detail/${thesis.id}`}
                   className="d-block text-decoration-none text-dark p-3"
                 >
                   {thesis.endDate ? thesis.endDate : "Studuje"}
@@ -56,19 +53,19 @@ const ThesisTable = ({ theses }) => {
               </td>
               <td>
                 <Link
-                  to={`detail/${thesis.id}`}
+                  to={`/theses/detail/${thesis.id}`}
                   className="d-block text-decoration-none text-dark p-3"
                 >{`${thesis.trainer?.name} ${thesis.trainer?.surname}`}</Link>
               </td>
               <td>
                 <Link
-                  to={`detail/${thesis.id}`}
+                  to={`/theses/detail/${thesis.id}`}
                   className="d-block text-decoration-none text-dark p-3"
                 >{`${thesis.consultant?.name} ${thesis.consultant?.surname}`}</Link>
               </td>
               <td>
                 <Link
-                  to={`detail/${thesis.id}`}
+                  to={`/theses/detail/${thesis.id}`}
                   className="d-block text-decoration-none text-dark p-3"
                 >
                   {thesis.note}

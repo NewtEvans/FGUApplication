@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
-import { apiGet } from "../utils/api";
+import { apiGet, apiDelete } from "../utils/api";
 
 const FacultyDetail = () => {
   const { id } = useParams();
@@ -16,9 +16,32 @@ const FacultyDetail = () => {
       });
   }, []);
 
+  const deleteFunction = async (id) => {
+    try {
+      await apiDelete("/faculty/delete/" + id);
+    } catch (error) {
+      console.log(error.message);
+      alert(error.message);
+    }
+    navigate("/faculty");
+  };
+
   return (
     <div>
-      <h1>Detail faculty</h1>
+      <div className="d-flex align-items-center justify-content-between">
+        <h1>Detail fakulty</h1>
+        <div>
+          <Link to={`/faculties/edit/${id}`} className="btn btn-md btn-warning">
+            Upravit fakultu
+          </Link>
+          <button
+            className="btn btn-danger btn-md"
+            onClick={() => deleteFunction(id)}
+          >
+            Smazat fakultu
+          </button>
+        </div>
+      </div>
       <hr />
       <p>
         <strong>Název fakulty:</strong> {faculty?.facultyName}
@@ -26,9 +49,6 @@ const FacultyDetail = () => {
       <p>
         <strong>Zkratka fakulty: </strong> {faculty?.facultyAbbreviation}
       </p>
-      <Link to={`/faculties/edit/${id}`} className="btn btn-md btn-warning">
-        Upravit fakultu
-      </Link>
     </div>
   );
 };

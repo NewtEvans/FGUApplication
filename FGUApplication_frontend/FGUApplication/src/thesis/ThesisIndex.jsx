@@ -13,15 +13,12 @@ const ThesisIndex = () => {
 
   return (
     <div>
-      <div className="row">
-        <div className="col">
-          <h1>Práce studentů</h1>
-        </div>
-        <div className="col">
-          <Link to="create" className="btn btn-md btn-success">
-            Nová práce
-          </Link>
-        </div>
+      <h1>Práce studentů</h1>
+      <div className="d-flex justify-content-between">
+        <p>Počet prací v databázi: {theses.length}</p>
+        <Link to="create" className="btn btn-md btn-success">
+          Nová práce
+        </Link>
       </div>
       <ThesisTable theses={theses} />
     </div>

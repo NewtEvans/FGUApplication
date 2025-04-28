@@ -68,7 +68,20 @@ const PersonDetail = () => {
 
   return (
     <div>
-      <h1>Detail osoby</h1>
+      <div className="d-flex align-items-center justify-content-between">
+        <h1>Detail osoby</h1>
+        <div>
+          <Link to={`/person/edit/${id}`} className="btn btn-md btn-warning">
+            Upravit osobu
+          </Link>
+          <button
+            className="btn btn-danger btn-md"
+            onClick={() => deleteFunction(id)}
+          >
+            Smazat osobu
+          </button>
+        </div>
+      </div>
       <hr />
       <p>
         <strong>Předložný titul:</strong> {person.titleBeforeName}
@@ -92,16 +105,6 @@ const PersonDetail = () => {
       <br />
       <h2>Konzultované práce:</h2>
       <ThesisTable theses={consultantTheses} />
-
-      <Link to={`/person/edit/${id}`} className="btn btn-md btn-warning">
-        Upravit osobu
-      </Link>
-      <button
-        className="btn btn-danger btn-md"
-        onClick={() => deleteFunction(id)}
-      >
-        Smazat osobu
-      </button>
     </div>
   );
 };

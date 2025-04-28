@@ -31,9 +31,22 @@ const ThesisDetail = () => {
 
   return (
     <div>
-      <h1>
-        Detail práce <em>({thesis.nameCz})</em>
-      </h1>
+      <div className="d-flex align-items-center justify-content-between">
+        <h1>
+          Detail práce <em>({thesis.nameCz})</em>
+        </h1>
+        <div>
+          <Link to={`/theses/edit/${id}`} className="btn btn-md btn-warning">
+            Upravit práci
+          </Link>
+          <button
+            className="btn btn-danger btn-md"
+            onClick={() => deleteFunction(id)}
+          >
+            Smazat práci
+          </button>
+        </div>
+      </div>
       <hr />
       <p>
         <strong>ID:</strong> {thesis.id}
@@ -99,15 +112,6 @@ const ThesisDetail = () => {
         <strong>Poznámka:</strong> {thesis.note}
       </p>
       <hr />
-      <Link to={`/theses/edit/${id}`} className="btn btn-md btn-warning">
-        Upravit práci
-      </Link>
-      <button
-        className="btn btn-danger btn-md"
-        onClick={() => deleteFunction(id)}
-      >
-        Smazat osobu
-      </button>
     </div>
   );
 };

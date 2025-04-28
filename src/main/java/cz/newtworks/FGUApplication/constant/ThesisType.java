@@ -4,5 +4,5 @@ public enum ThesisType {
         bakalarska,
         magisterska,
         doktorandska,
-        inzenyrske
+        inzenyrska
 }

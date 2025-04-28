@@ -39,23 +39,31 @@ const DepartmentDetail = () => {
 
   return (
     <div>
-      <h1>Detail oddělení</h1>
+      <div className="d-flex align-items-center justify-content-between">
+        <h1>Detail oddělení</h1>
+        <div>
+          <Link
+            to={`/departments/edit/${id}`}
+            className="btn btn-md btn-warning"
+          >
+            Upravit oddělení
+          </Link>
+          <button
+            className="btn btn-danger btn-md"
+            onClick={() => deleteFunction(id)}
+          >
+            Smazat oddělení
+          </button>
+        </div>
+      </div>
       <hr />
       <h2>
-        {department.departmentName} (odd. {department.departmentNumber})
+        <strong>
+          {department.departmentName} (odd. {department.departmentNumber})
+        </strong>
       </h2>
 
       <PersonTable people={people} />
-
-      <Link to={`/departments/edit/${id}`} className="btn btn-md btn-warning">
-        Upravit oddělení
-      </Link>
-      <button
-        className="btn btn-danger btn-md"
-        onClick={() => deleteFunction(id)}
-      >
-        Smazat oddělení
-      </button>
     </div>
   );
 };

@@ -14,7 +14,7 @@ const CouncilIndex = () => {
 
   return (
     <div>
-      <h1>Seznam všeh odorových rad</h1>
+      <h1>Seznam všeh oborových rad</h1>
       <div className="d-flex justify-content-between">
         <p>Počet oddělení v databázi: {counciles.length}</p>
         <Link to="create" className="btn btn-md btn-success">

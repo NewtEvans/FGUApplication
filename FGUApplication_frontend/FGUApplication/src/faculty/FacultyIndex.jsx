@@ -15,7 +15,6 @@ const FacultyIndex = () => {
   return (
     <div>
       <h1>Seznam všech fakult</h1>
-      <hr />
       <FacultyTable faculties={faculties} />
     </div>
   );
