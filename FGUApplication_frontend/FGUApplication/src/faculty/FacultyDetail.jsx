@@ -49,6 +49,9 @@ const FacultyDetail = () => {
       <p>
         <strong>Zkratka fakulty: </strong> {faculty?.facultyAbbreviation}
       </p>
+      <p>
+        <strong>Název školy: </strong> {faculty?.school}
+      </p>
     </div>
   );
 };

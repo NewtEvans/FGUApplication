@@ -10,6 +10,7 @@ const FacultyForm = () => {
   const [faculty, setFaculty] = useState({
     facultyName: "",
     facultyAbbreviation: "",
+    school: "",
   });
 
   useEffect(() => {
@@ -57,6 +58,17 @@ const FacultyForm = () => {
           value={faculty.facultyAbbreviation}
           handleChange={(e) => {
             setFaculty({ ...faculty, facultyAbbreviation: e.target.value });
+          }}
+        />
+        <InputField
+          required={true}
+          type="text"
+          name="school"
+          label="Škola"
+          prompt="Zadej školu"
+          value={faculty.school}
+          handleChange={(e) => {
+            setFaculty({ ...faculty, school: e.target.value });
           }}
         />
         <br />

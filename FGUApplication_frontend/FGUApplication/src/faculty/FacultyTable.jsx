@@ -46,6 +46,14 @@ const FacultyTable = ({ faculties }) => {
                   {faculty.facultyName}
                 </Link>
               </td>
+              <td>
+                <Link
+                  to={`detail/${faculty.id}`}
+                  className="d-block text-decoration-none text-dark p-3"
+                >
+                  {faculty.school}
+                </Link>
+              </td>
             </tr>
           ))}
         </tbody>

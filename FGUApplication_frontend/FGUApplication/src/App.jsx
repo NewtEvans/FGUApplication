@@ -24,7 +24,6 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
-import TestComponent from "./testFolder/TestComponent";
 
 function App() {
   return (
@@ -106,9 +105,6 @@ function App() {
                     Nastavení
                   </a>
                 </li>
-                <li className="nav-item">
-                  <Link to={"test"}>Test</Link>
-                </li>
               </ul>
             </div>
           </div>
@@ -149,10 +145,6 @@ function App() {
             <Route path="detail/:id" element={<CouncilDetail />} />
             <Route path="edit/:id" element={<CouncilForm />} />
             <Route path="create" element={<CouncilForm />} />
-          </Route>
-          <Route index element={<Navigate to={"/test"} />} />
-          <Route path="/test">
-            <Route index element={<TestComponent />} />
           </Route>
         </Routes>
       </div>

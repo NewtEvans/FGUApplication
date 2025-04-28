@@ -1,6 +1,7 @@
 package cz.newtworks.FGUApplication.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import cz.newtworks.FGUApplication.constant.ThesisType;
 import cz.newtworks.FGUApplication.dto.person.PersonDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,7 +15,7 @@ import java.time.LocalDate;
 public class ThesisDTO {
 
     private Long id;
-    //private ThesisType thesisType;
+    private ThesisType thesisType;
     private LocalDate startDate;
     private String nameCz;
     private String nameEn;

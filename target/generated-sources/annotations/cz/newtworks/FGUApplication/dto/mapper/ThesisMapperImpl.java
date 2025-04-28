@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-04-25T13:38:16+0200",
+    date = "2025-04-28T15:32:11+0200",
     comments = "version: 1.6.3, compiler: javac, environment: Java 23.0.2 (Oracle Corporation)"
 )
 @Component
@@ -32,6 +32,7 @@ public class ThesisMapperImpl implements ThesisMapper {
         ThesisDTO thesisDTO = new ThesisDTO();
 
         thesisDTO.setId( source.getId() );
+        thesisDTO.setThesisType( source.getThesisType() );
         thesisDTO.setStartDate( source.getStartDate() );
         thesisDTO.setNameCz( source.getNameCz() );
         thesisDTO.setNameEn( source.getNameEn() );
@@ -57,6 +58,7 @@ public class ThesisMapperImpl implements ThesisMapper {
         if ( source.getId() != null ) {
             thesisEntity.setId( source.getId() );
         }
+        thesisEntity.setThesisType( source.getThesisType() );
         thesisEntity.setStartDate( source.getStartDate() );
         thesisEntity.setNameCz( source.getNameCz() );
         thesisEntity.setNameEn( source.getNameEn() );
@@ -125,6 +127,7 @@ public class ThesisMapperImpl implements ThesisMapper {
         facultyDTO.setId( facultyEntity.getId() );
         facultyDTO.setFacultyName( facultyEntity.getFacultyName() );
         facultyDTO.setFacultyAbbreviation( facultyEntity.getFacultyAbbreviation() );
+        facultyDTO.setSchool( facultyEntity.getSchool() );
 
         return facultyDTO;
     }
@@ -200,6 +203,7 @@ public class ThesisMapperImpl implements ThesisMapper {
         facultyEntity.setId( facultyDTO.getId() );
         facultyEntity.setFacultyName( facultyDTO.getFacultyName() );
         facultyEntity.setFacultyAbbreviation( facultyDTO.getFacultyAbbreviation() );
+        facultyEntity.setSchool( facultyDTO.getSchool() );
 
         return facultyEntity;
     }

@@ -4,12 +4,14 @@ import { apiGet, apiPost, apiPut } from "../utils/api";
 
 import InputField from "../components/InputField";
 import InputSelect from "../components/InputSelect";
+import InputCheck from "../components/InputCheck";
 
 const ThesisForm = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [thesis, setThesis] = useState({
     startDate: "",
+    thesisType: "",
     nameCz: "",
     nameEn: "",
     student: { id: 0 },

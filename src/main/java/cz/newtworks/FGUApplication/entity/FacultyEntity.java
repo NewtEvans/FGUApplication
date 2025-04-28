@@ -20,6 +20,9 @@ public class FacultyEntity {
     @Column
     private String facultyAbbreviation;
 
+    @Column
+    private String school;
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "faculty")
     private Set<ThesisEntity> theses;
 }
