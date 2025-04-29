@@ -11,14 +11,13 @@ const ThesisForm = () => {
   const { id } = useParams();
   const [thesis, setThesis] = useState({
     startDate: "",
-    thesisType: "",
     nameCz: "",
     nameEn: "",
     student: { id: 0 },
     trainer: { id: 0 },
     consultant: { id: 0 },
     faculty: { id: 0 },
-    coucil: { id: 0 },
+    council: { id: 0 },
     endDate: "",
     note: "",
   });
@@ -147,7 +146,7 @@ const ThesisForm = () => {
         />
         <InputField
           required={false}
-          type="date"
+          type="number"
           name="endDate"
           label="Datum ukončení"
           prompt="Zadej datum ukončení práce"

@@ -43,7 +43,7 @@ public class ThesisEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     private CouncilEntity council;
 
-    private LocalDate endDate;
+    private int endDate;
 
     private String note;
 

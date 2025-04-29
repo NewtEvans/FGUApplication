@@ -24,6 +24,6 @@ public class ThesisDTO {
     private PersonDTO consultant;
     private FacultyDTO faculty;
     private CouncilDTO council;
-    private LocalDate endDate;
+    private int endDate;
     private String note;
 }

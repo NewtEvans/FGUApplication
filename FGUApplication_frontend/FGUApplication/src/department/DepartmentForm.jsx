@@ -51,7 +51,7 @@ const DepartmentForm = () => {
         />
         <InputField
           required={true}
-          type="number"
+          type="text"
           name="departmentNumber"
           label="Číslo oddělení"
           prompt="Zadej číslo oddělení"

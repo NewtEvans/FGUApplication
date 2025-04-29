@@ -36,6 +36,7 @@ public class ThesisServiceImpl implements ThesisService{
     @Override
     public ThesisDTO addThesis(ThesisDTO thesisDTO) {
 
+
         ThesisEntity entity = thesisMapper.toEntity(thesisDTO);
         thesisRepository.save(entity);
 
