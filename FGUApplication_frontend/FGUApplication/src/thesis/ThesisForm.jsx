@@ -65,7 +65,7 @@ const ThesisForm = () => {
           }}
         />
         <InputField
-          required={false}
+          required={true}
           type="text"
           name="nameCz"
           label="Český název"

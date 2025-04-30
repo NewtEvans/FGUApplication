@@ -1,5 +1,6 @@
 package cz.newtworks.FGUApplication.entity;
 
+import cz.newtworks.FGUApplication.constant.Employee;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,6 +28,9 @@ public class PersonEntity {
     private String surname;
 
     private String titleAfterName;
+
+    @Enumerated(EnumType.STRING)
+    private Employee isEmployee;
 
     //vazba mezi tabulkami - department
     @ManyToMany(fetch = FetchType.EAGER)

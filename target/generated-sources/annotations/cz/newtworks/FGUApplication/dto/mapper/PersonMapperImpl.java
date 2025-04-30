@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-04-29T10:54:04+0200",
+    date = "2025-04-30T09:14:25+0200",
     comments = "version: 1.6.3, compiler: javac, environment: Java 23.0.2 (Oracle Corporation)"
 )
 @Component
@@ -32,6 +32,7 @@ public class PersonMapperImpl implements PersonMapper {
         personEntity.setName( source.getName() );
         personEntity.setSurname( source.getSurname() );
         personEntity.setTitleAfterName( source.getTitleAfterName() );
+        personEntity.setIsEmployee( source.getIsEmployee() );
         personEntity.setDepartments( departmentDTOSetToDepartmentEntitySet( source.getDepartments() ) );
 
         return personEntity;
@@ -50,6 +51,7 @@ public class PersonMapperImpl implements PersonMapper {
         personDTO.setName( source.getName() );
         personDTO.setSurname( source.getSurname() );
         personDTO.setTitleAfterName( source.getTitleAfterName() );
+        personDTO.setIsEmployee( source.getIsEmployee() );
         personDTO.setDepartments( departmentEntitySetToDepartmentDTOSet( source.getDepartments() ) );
 
         return personDTO;

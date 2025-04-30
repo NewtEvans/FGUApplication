@@ -95,6 +95,10 @@ const PersonDetail = () => {
       <p>
         <strong>Příjmenkový titul:</strong> {person.titleAfterName}
       </p>
+      <p>
+        <strong>Zaměstnanec FGÚ: </strong>{" "}
+        {person.isEmployee === "IPHYS" ? "Ano" : "Ne"}
+      </p>
       <DepartmentTable departments={person.departments || []} />
       <br />
       <h2>Vlastní práce: </h2>

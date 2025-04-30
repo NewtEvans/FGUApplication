@@ -1,5 +1,6 @@
 package cz.newtworks.FGUApplication.dto.person;
 
+import cz.newtworks.FGUApplication.constant.Employee;
 import cz.newtworks.FGUApplication.dto.department.DepartmentDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,5 +18,6 @@ public class PersonDTO {
     private String name;
     private String surname;
     private String titleAfterName;
+    private Employee isEmployee;
     private Set<DepartmentDTO> departments;
 }

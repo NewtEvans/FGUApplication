@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-04-29T10:54:03+0200",
+    date = "2025-04-30T09:14:25+0200",
     comments = "version: 1.6.3, compiler: javac, environment: Java 23.0.2 (Oracle Corporation)"
 )
 @Component
@@ -112,6 +112,7 @@ public class ThesisMapperImpl implements ThesisMapper {
         personDTO.setName( personEntity.getName() );
         personDTO.setSurname( personEntity.getSurname() );
         personDTO.setTitleAfterName( personEntity.getTitleAfterName() );
+        personDTO.setIsEmployee( personEntity.getIsEmployee() );
         personDTO.setDepartments( departmentEntitySetToDepartmentDTOSet( personEntity.getDepartments() ) );
 
         return personDTO;
@@ -188,6 +189,7 @@ public class ThesisMapperImpl implements ThesisMapper {
         personEntity.setName( personDTO.getName() );
         personEntity.setSurname( personDTO.getSurname() );
         personEntity.setTitleAfterName( personDTO.getTitleAfterName() );
+        personEntity.setIsEmployee( personDTO.getIsEmployee() );
         personEntity.setDepartments( departmentDTOSetToDepartmentEntitySet( personDTO.getDepartments() ) );
 
         return personEntity;

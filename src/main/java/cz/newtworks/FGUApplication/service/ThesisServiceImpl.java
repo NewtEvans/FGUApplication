@@ -3,7 +3,13 @@ package cz.newtworks.FGUApplication.service;
 import cz.newtworks.FGUApplication.dto.ThesisDTO;
 import cz.newtworks.FGUApplication.dto.mapper.PersonMapper;
 import cz.newtworks.FGUApplication.dto.mapper.ThesisMapper;
+import cz.newtworks.FGUApplication.entity.CouncilEntity;
+import cz.newtworks.FGUApplication.entity.FacultyEntity;
+import cz.newtworks.FGUApplication.entity.PersonEntity;
 import cz.newtworks.FGUApplication.entity.ThesisEntity;
+import cz.newtworks.FGUApplication.entity.repository.CouncilRepository;
+import cz.newtworks.FGUApplication.entity.repository.FacultyRepository;
+import cz.newtworks.FGUApplication.entity.repository.PersonRepository;
 import cz.newtworks.FGUApplication.entity.repository.ThesisRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,16 +34,24 @@ public class ThesisServiceImpl implements ThesisService{
     private PersonMapper personMapper;
 
     @Autowired
+    private PersonRepository personRepository;
+
+    @Autowired
     private FacultyService facultyService;
+
+    @Autowired
+    private FacultyRepository facultyRepository;
 
     @Autowired
     private CouncilService councilService;
 
+    @Autowired
+    private CouncilRepository councilRepository;
+
     @Override
     public ThesisDTO addThesis(ThesisDTO thesisDTO) {
-
-
         ThesisEntity entity = thesisMapper.toEntity(thesisDTO);
+
         thesisRepository.save(entity);
 
         return fillThesisWithDTOs(thesisMapper.toDTO(entity), entity);

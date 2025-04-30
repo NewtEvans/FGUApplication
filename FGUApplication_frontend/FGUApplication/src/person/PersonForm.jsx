@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router";
 import { apiGet, apiPost, apiPut } from "../utils/api";
 import InputField from "../components/InputField";
 import InputSelect from "../components/InputSelect";
+import InputCheck from "../components/InputCheck";
 
 const PersonForm = () => {
   const navigate = useNavigate();
@@ -12,6 +13,7 @@ const PersonForm = () => {
     name: "",
     surname: "",
     titleAfterName: "",
+    isEmployee: "IPHYS",
     departments: [],
   });
 
@@ -105,6 +107,30 @@ const PersonForm = () => {
             setPerson({ ...person, departments });
           }}
         />
+
+        <div className="d-flex gap-3">
+          <InputCheck
+            type="radio"
+            name="isEmployee"
+            label="Zaměstnanec FGÚ"
+            value="IPHYS"
+            handleChange={(e) => {
+              setPerson({ ...person, isEmployee: e.target.value });
+            }}
+            checked={person.isEmployee === "IPHYS"}
+          />
+
+          <InputCheck
+            type="radio"
+            name="isEmployee"
+            label="Není zaměstnancem FGÚ"
+            value="none"
+            handleChange={(e) => {
+              setPerson({ ...person, isEmployee: e.target.value });
+            }}
+            checked={person.isEmployee === "none"}
+          />
+        </div>
         <br />
         <input type="submit" className="btn btn-success" value="Uložit" />
       </form>
