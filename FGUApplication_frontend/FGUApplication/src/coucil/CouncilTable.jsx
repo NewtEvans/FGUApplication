@@ -1,6 +1,6 @@
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 
-const CouncilTable = ({ counciles }) => {
+const CouncilTable = ({ councils }) => {
   return (
     <div>
       <table className="table table-bordered table-hover ">
@@ -12,7 +12,7 @@ const CouncilTable = ({ counciles }) => {
           </tr>
         </thead>
         <tbody className="text-center">
-          {counciles.map((council) => (
+          {councils.map((council) => (
             <tr key={council.id}>
               <td>
                 <Link

@@ -2,7 +2,10 @@ package cz.newtworks.FGUApplication.controller;
 
 import cz.newtworks.FGUApplication.dto.CouncilDTO;
 import cz.newtworks.FGUApplication.service.CouncilService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,29 +17,30 @@ public class CouncilController {
     @Autowired
     private CouncilService councilService;
 
-    @PostMapping("/create")
-    public CouncilDTO addCouncil(@RequestBody CouncilDTO councilDTO){
-        return councilService.addCouncil(councilDTO);
+    @PostMapping
+    public ResponseEntity<CouncilDTO> createCouncil(@Valid @RequestBody CouncilDTO councilDTO){
+        return ResponseEntity.status(HttpStatus.CREATED).body(councilService.addCouncil(councilDTO));
     }
 
     @GetMapping("/all")
-    public List<CouncilDTO> getAllCouncils(){
-        return councilService.getAllCouncils();
+    public ResponseEntity<List<CouncilDTO>> getAllCouncils(){
+        return ResponseEntity.ok(councilService.getAllCouncils());
     }
 
-    @GetMapping("/detail/{councilId}")
-    public CouncilDTO councilDetail(@PathVariable long councilId){
-        return councilService.councilDetail(councilId);
+    @GetMapping("/{councilId}")
+    public ResponseEntity<CouncilDTO> getCouncil(@PathVariable long councilId){
+        return ResponseEntity.ok(councilService.getCouncilById(councilId));
     }
 
-    @PutMapping("/edit/{councilId}")
-    public CouncilDTO editCouncil(@PathVariable long councilId, @RequestBody CouncilDTO councilDTO){
-        return councilService.editCouncil(councilId, councilDTO);
+    @PutMapping("/{councilId}")
+    public ResponseEntity<CouncilDTO> updateCouncil(@PathVariable long councilId, @RequestBody CouncilDTO councilDTO){
+        return ResponseEntity.ok(councilService.editCouncil(councilId, councilDTO));
     }
 
-    @DeleteMapping("/delete/{councilId}")
-    public void deleteCouncil(@PathVariable long councilId){
+    @DeleteMapping("/{councilId}")
+    public ResponseEntity<Void> deleteCouncil(@PathVariable long councilId){
         councilService.deleteCouncil(councilId);
+        return ResponseEntity.noContent().build();
     }
 
 }

@@ -4,7 +4,7 @@ import cz.newtworks.FGUApplication.dto.CouncilDTO;
 import cz.newtworks.FGUApplication.dto.mapper.CouncilMapper;
 import cz.newtworks.FGUApplication.entity.CouncilEntity;
 import cz.newtworks.FGUApplication.entity.repository.CouncilRepository;
-import jakarta.persistence.EntityNotFoundException;
+import cz.newtworks.FGUApplication.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,7 +37,7 @@ public class CouncilServiceImpl implements CouncilService{
     }
 
     @Override
-    public CouncilDTO councilDetail(long councilId) {
+    public CouncilDTO getCouncilById(long councilId) {
         return councilMapper.toDTO(fetchCouncilById(councilId));
     }
 
@@ -58,13 +58,13 @@ public class CouncilServiceImpl implements CouncilService{
     //Private methods
 
     /**
-     * Private method that returns council entity with specific ID.
-     * If asked ID doesn't exist method returns error exception.
-     * @param councilId
-     * @return Council entity with asked id
+     * Returns a council entity by ID
+     * @param councilId councilId the ID of the council
+     * @return the found CouncilEntity
+     * @throws ResourceNotFoundException if no council with the given ID is found
      */
     private CouncilEntity fetchCouncilById(long councilId){
        return councilRepository.findById(councilId)
-                .orElseThrow(() -> new EntityNotFoundException("Council with id " + councilId + " wasn't found in the database."));
+                .orElseThrow(() -> new ResourceNotFoundException("Council with ID " + councilId + " was not found in the database."));
     }
 }

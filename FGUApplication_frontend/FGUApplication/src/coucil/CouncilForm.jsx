@@ -14,16 +14,13 @@ const CouncilForm = () => {
 
   useEffect(() => {
     if (id) {
-      apiGet("/council/detail/" + id).then((data) => setCouncil(data));
+      apiGet("/council/" + id).then((data) => setCouncil(data));
     }
   }, [id]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    (id
-      ? apiPut("/council/edit/" + id, council)
-      : apiPost("/council/create", council)
-    )
+    (id ? apiPut("/council/" + id, council) : apiPost("/council", council))
       .then((data) => {
         navigate("/counciles");
       })

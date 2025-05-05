@@ -1,6 +1,7 @@
 package cz.newtworks.FGUApplication.service;
 
 import cz.newtworks.FGUApplication.dto.CouncilDTO;
+import cz.newtworks.FGUApplication.exception.ResourceNotFoundException;
 
 import java.util.List;
 
@@ -24,7 +25,7 @@ public interface CouncilService {
      * @param councilId
      * @return DTO with detail of council with requested id
      */
-    CouncilDTO councilDetail(long councilId);
+    CouncilDTO getCouncilById(long councilId) throws ResourceNotFoundException;
 
     /**
      * Method edits already created council.

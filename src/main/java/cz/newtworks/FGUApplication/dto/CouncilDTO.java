@@ -1,16 +1,21 @@
 package cz.newtworks.FGUApplication.dto;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.NotBlank;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class CouncilDTO {
+
     private long id;
+
+    @NotBlank(message = "Council name is required.")
     private String councilName;
+
     private String councilAbbreviation;
+
     private String councilNumber;
 }

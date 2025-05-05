@@ -3,9 +3,6 @@ package cz.newtworks.FGUApplication.service;
 import cz.newtworks.FGUApplication.dto.ThesisDTO;
 import cz.newtworks.FGUApplication.dto.mapper.PersonMapper;
 import cz.newtworks.FGUApplication.dto.mapper.ThesisMapper;
-import cz.newtworks.FGUApplication.entity.CouncilEntity;
-import cz.newtworks.FGUApplication.entity.FacultyEntity;
-import cz.newtworks.FGUApplication.entity.PersonEntity;
 import cz.newtworks.FGUApplication.entity.ThesisEntity;
 import cz.newtworks.FGUApplication.entity.repository.CouncilRepository;
 import cz.newtworks.FGUApplication.entity.repository.FacultyRepository;
@@ -135,7 +132,7 @@ public class ThesisServiceImpl implements ThesisService{
         thesisDTO.setTrainer(personService.personDetail(thesisEntity.getTrainer().getId()));
         thesisDTO.setConsultant(personService.personDetail(thesisEntity.getConsultant().getId()));
         thesisDTO.setFaculty(facultyService.facultyDetail(thesisEntity.getFaculty().getId()));
-        thesisDTO.setCouncil(councilService.councilDetail(thesisEntity.getCouncil().getId()));
+        thesisDTO.setCouncil(councilService.getCouncilById(thesisEntity.getCouncil().getId()));
 
         return thesisDTO;
     }
