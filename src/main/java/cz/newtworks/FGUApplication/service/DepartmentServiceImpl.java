@@ -1,12 +1,10 @@
 package cz.newtworks.FGUApplication.service;
 
-import cz.newtworks.FGUApplication.dto.department.DepartmentDTO;
+import cz.newtworks.FGUApplication.dto.DepartmentDTO;
 import cz.newtworks.FGUApplication.dto.mapper.DepartmentMapper;
-import cz.newtworks.FGUApplication.dto.person.PersonDTO;
 import cz.newtworks.FGUApplication.entity.DepartmentEntity;
 import cz.newtworks.FGUApplication.entity.repository.DepartmentRepository;
-import cz.newtworks.FGUApplication.entity.repository.PersonRepository;
-import jakarta.persistence.EntityNotFoundException;
+import cz.newtworks.FGUApplication.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +23,6 @@ public class DepartmentServiceImpl implements DepartmentService{
     @Override
     public DepartmentDTO addDepartment(DepartmentDTO departmentDTO) {
         DepartmentEntity newDepartment = departmentMapper.toEntity(departmentDTO);
-
         departmentRepository.save(newDepartment);
 
         return departmentMapper.toDTO(newDepartment);
@@ -40,16 +37,14 @@ public class DepartmentServiceImpl implements DepartmentService{
     }
 
     @Override
-    public DepartmentDTO departmentDetail(long departmentId) {
+    public DepartmentDTO getDepartmentById(long departmentId) {
         return departmentMapper.toDTO(fetchDepartmentById(departmentId));
     }
 
     @Override
     public DepartmentDTO editDepartment(DepartmentDTO departmentDTO, long departmentId) {
         DepartmentEntity newDepartment = departmentMapper.toEntity(departmentDTO);
-
         newDepartment.setId(departmentId);
-
         departmentRepository.save(newDepartment);
 
         return departmentMapper.toDTO(fetchDepartmentById(departmentId));
@@ -67,9 +62,10 @@ public class DepartmentServiceImpl implements DepartmentService{
      * If asked ID doesn't exist method returns error exception.
      * @param departmentId
      * @return Department entity with asked id
+      * @throws ResourceNotFoundException if no person with the given ID is found
      */
     private DepartmentEntity fetchDepartmentById(long departmentId) {
-       return  departmentRepository.findById(departmentId).orElseThrow(() -> new EntityNotFoundException("Department with id" + departmentId + "wasn't found in the database."));
+       return  departmentRepository.findById(departmentId).orElseThrow(() -> new ResourceNotFoundException("Department with id" + departmentId + "wasn't found in the database."));
     }
 
 

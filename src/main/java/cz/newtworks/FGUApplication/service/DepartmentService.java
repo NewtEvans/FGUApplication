@@ -1,7 +1,7 @@
 package cz.newtworks.FGUApplication.service;
 
-import cz.newtworks.FGUApplication.dto.department.DepartmentDTO;
-import cz.newtworks.FGUApplication.dto.person.PersonDTO;
+import cz.newtworks.FGUApplication.dto.DepartmentDTO;
+import cz.newtworks.FGUApplication.exception.ResourceNotFoundException;
 
 import java.util.List;
 
@@ -24,8 +24,9 @@ public interface DepartmentService {
      * Method returns details of department with requested id.
      * @param departmentId Requested id
      * @return DTO with detail of department with requested id
+     * @throws ResourceNotFoundException if department with requested id doesn't exist
      */
-    DepartmentDTO departmentDetail(long departmentId);
+    DepartmentDTO getDepartmentById(long departmentId) throws ResourceNotFoundException;
 
     /**
      * Method edits already created department.

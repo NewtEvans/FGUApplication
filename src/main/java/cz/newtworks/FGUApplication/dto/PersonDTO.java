@@ -1,11 +1,9 @@
-package cz.newtworks.FGUApplication.dto.person;
+package cz.newtworks.FGUApplication.dto;
 
 import cz.newtworks.FGUApplication.constant.Employee;
-import cz.newtworks.FGUApplication.dto.department.DepartmentDTO;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
-import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -17,6 +15,7 @@ public class PersonDTO {
     private Long id;
 
     private String titleBeforeName;
+
     @NotBlank(message = "Person name is required.")
     private String name;
 

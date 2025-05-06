@@ -24,6 +24,7 @@ public interface CouncilService {
      * Method returns details of council with requested id.
      * @param councilId
      * @return DTO with detail of council with requested id
+     * @throws ResourceNotFoundException if council with requested id doesn't exist
      */
     CouncilDTO getCouncilById(long councilId) throws ResourceNotFoundException;
 

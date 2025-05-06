@@ -1,5 +1,5 @@
 package cz.newtworks.FGUApplication.controller;
-import cz.newtworks.FGUApplication.dto.person.PersonDTO;
+import cz.newtworks.FGUApplication.dto.PersonDTO;
 import cz.newtworks.FGUApplication.service.PersonService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +33,7 @@ public class PersonController {
     }
 
     @PutMapping("/{personId}")
-    public ResponseEntity<PersonDTO> updatePerson(@RequestBody PersonDTO personDTO, @PathVariable long personId){
+    public ResponseEntity<PersonDTO> updatePerson(@Valid @RequestBody PersonDTO personDTO, @PathVariable long personId){
         return ResponseEntity.ok(personService.editPerson(personDTO, personId));
     }
 
@@ -43,7 +43,7 @@ public class PersonController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/{departmentId}")
+    @GetMapping("/department/{departmentId}")
     public ResponseEntity<List<PersonDTO>> getAllPeopleInDepartment(@PathVariable long departmentId){
         return ResponseEntity.ok(personService.getAllPeopleInDepartment(departmentId));
     }
