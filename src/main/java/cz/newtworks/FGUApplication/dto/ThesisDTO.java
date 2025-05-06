@@ -1,27 +1,40 @@
 package cz.newtworks.FGUApplication.dto;
 
 import cz.newtworks.FGUApplication.constant.ThesisType;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.NotBlank;
+import lombok.*;
 
 import java.time.LocalDate;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class ThesisDTO {
 
     private Long id;
+
     private ThesisType thesisType;
+
     private LocalDate startDate;
+
+    @NotBlank(message = "Czech name is required.")
     private String nameCz;
+
+    @NotBlank(message = "English name is required.")
     private String nameEn;
+
     private PersonDTO student;
+
     private PersonDTO trainer;
+
     private PersonDTO consultant;
+
     private FacultyDTO faculty;
+
     private CouncilDTO council;
-    private int endDate;
+
+    private LocalDate endDate;
+
     private String note;
 }

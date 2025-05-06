@@ -1,6 +1,7 @@
 package cz.newtworks.FGUApplication.service;
 
 import cz.newtworks.FGUApplication.dto.ThesisDTO;
+import cz.newtworks.FGUApplication.exception.ResourceNotFoundException;
 
 import java.util.List;
 
@@ -17,8 +18,9 @@ public interface ThesisService {
      * Method returns details of thesis with requested id.
      * @param thesisId Requested id
      * @return DTO with detail of thesis with requested id
+     * @throws ResourceNotFoundException if thesis with requested id doesn't exist
      */
-    ThesisDTO detailThesis(long thesisId);
+    ThesisDTO getThesisById(long thesisId) throws ResourceNotFoundException;
 
     /**
      * Method returns all theses in the database.

@@ -8,6 +8,7 @@ import cz.newtworks.FGUApplication.entity.repository.CouncilRepository;
 import cz.newtworks.FGUApplication.entity.repository.FacultyRepository;
 import cz.newtworks.FGUApplication.entity.repository.PersonRepository;
 import cz.newtworks.FGUApplication.entity.repository.ThesisRepository;
+import cz.newtworks.FGUApplication.exception.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,7 +56,7 @@ public class ThesisServiceImpl implements ThesisService{
     }
 
     @Override
-    public ThesisDTO detailThesis(long thesisId) {
+    public ThesisDTO getThesisById(long thesisId) {
         ThesisEntity thesis = fetchThesisById(thesisId);
 
         return thesisMapper.toDTO(thesis);
@@ -114,10 +115,11 @@ public class ThesisServiceImpl implements ThesisService{
      * If asked ID doesn't exist method returns error exception.
      * @param thesisId
      * @return Thesis entity with asked id
+     * @throws ResourceNotFoundException if no thesis with the given ID is found
      */
     private ThesisEntity fetchThesisById(long thesisId){
         return thesisRepository.findById(thesisId)
-                .orElseThrow(() -> new EntityNotFoundException("Thesis with id " + thesisId + " was not found in the database."));
+                .orElseThrow(() -> new ResourceNotFoundException("Thesis with id " + thesisId + " was not found in the database."));
     }
 
     /**
@@ -131,7 +133,7 @@ public class ThesisServiceImpl implements ThesisService{
         thesisDTO.setStudent(personService.getPersonById(thesisEntity.getStudent().getId()));
         thesisDTO.setTrainer(personService.getPersonById(thesisEntity.getTrainer().getId()));
         thesisDTO.setConsultant(personService.getPersonById(thesisEntity.getConsultant().getId()));
-        thesisDTO.setFaculty(facultyService.facultyDetail(thesisEntity.getFaculty().getId()));
+        thesisDTO.setFaculty(facultyService.getFacultyById(thesisEntity.getFaculty().getId()));
         thesisDTO.setCouncil(councilService.getCouncilById(thesisEntity.getCouncil().getId()));
 
         return thesisDTO;

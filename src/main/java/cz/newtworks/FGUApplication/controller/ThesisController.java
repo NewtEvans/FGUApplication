@@ -2,7 +2,10 @@ package cz.newtworks.FGUApplication.controller;
 
 import cz.newtworks.FGUApplication.dto.ThesisDTO;
 import cz.newtworks.FGUApplication.service.ThesisService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,43 +17,44 @@ public class ThesisController {
     @Autowired
      private ThesisService thesisService;
 
-    @PostMapping("/create")
-    public ThesisDTO addThesis(@RequestBody ThesisDTO thesisDTO){
-        return thesisService.addThesis(thesisDTO);
+    @PostMapping
+    public ResponseEntity<ThesisDTO> createThesis(@Valid @RequestBody ThesisDTO thesisDTO){
+        return ResponseEntity.status(HttpStatus.CREATED).body(thesisService.addThesis(thesisDTO));
     }
 
     @GetMapping("/all")
-    public List<ThesisDTO> getAllThesis(){
-        return thesisService.getAllThesis();
+    public ResponseEntity<List<ThesisDTO>> getAllThesis(){
+        return ResponseEntity.ok(thesisService.getAllThesis());
     }
 
-    @GetMapping("/detail/{thesisId}")
-    public ThesisDTO detailThesis(@PathVariable long thesisId){
-        return thesisService.detailThesis(thesisId);
+    @GetMapping("/{thesisId}")
+    public ResponseEntity<ThesisDTO> getThesis(@PathVariable long thesisId){
+        return ResponseEntity.ok(thesisService.getThesisById(thesisId));
     }
 
-    @PutMapping("/edit/{thesisId}")
-    public ThesisDTO editThesis(@PathVariable long thesisId, @RequestBody ThesisDTO thesisDTO){
-        return thesisService.editThesis(thesisId, thesisDTO);
+    @PutMapping("/{thesisId}")
+    public ResponseEntity<ThesisDTO> updateThesis(@Valid @PathVariable long thesisId, @RequestBody ThesisDTO thesisDTO){
+        return ResponseEntity.ok(thesisService.editThesis(thesisId, thesisDTO));
     }
 
-    @DeleteMapping("/delete/{thesisId}")
-    public void deleteThesis(@PathVariable long thesisId){
+    @DeleteMapping("/{thesisId}")
+    public ResponseEntity<Void> deleteThesis(@PathVariable long thesisId){
         thesisService.deleteThesis(thesisId);
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/consultant/{consultantId}")
-    public List<ThesisDTO> getConsultantsTheses(@PathVariable long consultantId){
-        return thesisService.getAllThesisWithConsultantId(consultantId);
+    public ResponseEntity<List<ThesisDTO>> getConsultantsTheses(@PathVariable long consultantId){
+        return ResponseEntity.ok(thesisService.getAllThesisWithConsultantId(consultantId));
     }
 
     @GetMapping("/student/{studentId}")
-    public List<ThesisDTO> getStudentTheses(@PathVariable long studentId){
-        return thesisService.getAllThesisWithStudentId(studentId);
+    public ResponseEntity<List<ThesisDTO>> getStudentTheses(@PathVariable long studentId){
+        return ResponseEntity.ok(thesisService.getAllThesisWithStudentId(studentId));
     }
 
     @GetMapping("/trainer/{trainerId}")
-    public List<ThesisDTO> getTrainerTheses(@PathVariable long trainerId){
-        return thesisService.getAllThesisWithTrainerId(trainerId);
+    public ResponseEntity<List<ThesisDTO>> getTrainerTheses(@PathVariable long trainerId){
+        return ResponseEntity.ok(thesisService.getAllThesisWithTrainerId(trainerId));
     }
 }

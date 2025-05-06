@@ -2,8 +2,11 @@ package cz.newtworks.FGUApplication.controller;
 
 import cz.newtworks.FGUApplication.dto.FacultyDTO;
 import cz.newtworks.FGUApplication.service.FacultyService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,28 +18,29 @@ public class FacultyController {
     @Autowired
     private FacultyService facultyService;
 
-    @PostMapping("/create")
-    public FacultyDTO addFaculty(@RequestBody FacultyDTO facultyDTO) {
-        return facultyService.addFaculty(facultyDTO);
+    @PostMapping
+    public ResponseEntity<FacultyDTO> createFaculty(@Valid @RequestBody FacultyDTO facultyDTO) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(facultyService.addFaculty(facultyDTO));
     }
 
     @GetMapping("/all")
-    public List<FacultyDTO> getAllFaculty() {
-        return facultyService.getAllFaculty();
+    public ResponseEntity<List<FacultyDTO>> getAllFaculty() {
+        return ResponseEntity.ok(facultyService.getAllFaculty());
     }
 
-    @GetMapping("/detail/{facultyId}")
-    public FacultyDTO facultyDetail(@PathVariable long facultyId) {
-        return facultyService.facultyDetail(facultyId);
+    @GetMapping("/{facultyId}")
+    public ResponseEntity<FacultyDTO> getFaculty(@PathVariable long facultyId) {
+        return ResponseEntity.ok(facultyService.getFacultyById(facultyId));
     }
 
-    @PutMapping("/edit/{facultyId}")
-    public FacultyDTO editFaculty(@PathVariable long facultyId, @RequestBody FacultyDTO facultyDTO){
-        return facultyService.editFaculty(facultyId, facultyDTO);
+    @PutMapping("/{facultyId}")
+    public ResponseEntity<FacultyDTO> updateFaculty(@Valid @PathVariable long facultyId, @RequestBody FacultyDTO facultyDTO){
+        return ResponseEntity.ok(facultyService.editFaculty(facultyId, facultyDTO));
     }
 
-    @DeleteMapping("/delete/{facultyId}")
-    public void deleteFaculty(@PathVariable long facultyId){
+    @DeleteMapping("/{facultyId}")
+    public ResponseEntity<Void>deleteFaculty(@PathVariable long facultyId){
         facultyService.deleteFaculty(facultyId);
+        return ResponseEntity.noContent().build();
     }
 }

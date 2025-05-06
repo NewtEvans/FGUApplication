@@ -1,14 +1,17 @@
 package cz.newtworks.FGUApplication.entity;
 
-import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 
 import java.util.Set;
 
-@Entity(name = "faculties")
-@Data
+@Entity
+@Table(name = "faculties")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class FacultyEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +23,7 @@ public class FacultyEntity {
     @Column
     private String facultyAbbreviation;
 
-    @Column
+    @Column(nullable = false)
     private String school;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "faculty")

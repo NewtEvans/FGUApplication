@@ -1,6 +1,7 @@
 package cz.newtworks.FGUApplication.service;
 
 import cz.newtworks.FGUApplication.dto.FacultyDTO;
+import cz.newtworks.FGUApplication.exception.ResourceNotFoundException;
 
 import java.util.List;
 
@@ -23,8 +24,9 @@ public interface FacultyService {
      * Method returns details of faculty with requested id.
      * @param facultyId Requested id
      * @return DTO with detail of faculty with requested id
+     * @throws ResourceNotFoundException if faculty with requested id doesn't exist
      */
-    FacultyDTO facultyDetail(long facultyId);
+    FacultyDTO getFacultyById(long facultyId) throws ResourceNotFoundException;
 
     /**
      * Method edits already created faculty.
