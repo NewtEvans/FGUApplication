@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router-dom";
 import { apiGet, apiDelete } from "../utils/api";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 
 const CouncilDetail = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [council, setCouncil] = useState({});
 
   useEffect(() => {
-    apiGet("/council/detail/" + id)
+    apiGet("/council/" + id)
       .then((data) => {
         setCouncil(data);
       })
@@ -18,13 +19,17 @@ const CouncilDetail = () => {
   }, []);
 
   const deleteFunction = async (id) => {
+    const confirmed = window.confirm("Opravdu chcete tuto radu smazat?");
+    if (!confirmed) return;
+
     try {
-      await apiDelete("/council/delete/" + id);
+      await apiDelete("/council/" + id);
+      alert("Rada byla úspešně smazána.");
     } catch (error) {
       console.log(error.message);
       alert(error.message);
     }
-    navigate("/council");
+    navigate("/counciles");
   };
 
   return (
@@ -32,7 +37,10 @@ const CouncilDetail = () => {
       <div className="d-flex align-items-center justify-content-between">
         <h1>Detail oborové rady</h1>
         <div>
-          <Link to={`/counciles/edit/${id}`} className="btn btn-md btn-warning">
+          <Link
+            to={`/counciles/edit/${id}`}
+            className="btn btn-md btn-warning me-3"
+          >
             Upravit radu
           </Link>
           <button

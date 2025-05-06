@@ -12,6 +12,10 @@ const CouncilForm = () => {
     councilNumber: "",
   });
 
+  const handleChange = (e) => {
+    setCouncil({ ...council, [e.target.name]: e.target.value });
+  };
+
   useEffect(() => {
     if (id) {
       apiGet("/council/" + id).then((data) => setCouncil(data));
@@ -31,8 +35,7 @@ const CouncilForm = () => {
 
   return (
     <div>
-      Council formulář
-      <h1>{id ? "Upravit" : "Vytvořit"} radu</h1>
+      <h1>{id ? "Upravit" : "Vytvořit"} oborovou radu</h1>
       <hr />
       <form onSubmit={handleSubmit}>
         <InputField
@@ -42,20 +45,16 @@ const CouncilForm = () => {
           label="Název rady"
           prompt="Zadej název rady"
           value={council.councilName}
-          handleChange={(e) => {
-            setCouncil({ ...council, councilName: e.target.value });
-          }}
+          handleChange={handleChange}
         />
         <InputField
           required={true}
           type="text"
-          name="councileAbbreviation"
+          name="councilAbbreviation"
           label="Zkratka rady"
           prompt="Zadej zkratku rady"
           value={council.councilAbbreviation}
-          handleChange={(e) => {
-            setCouncil({ ...council, councilAbbreviation: e.target.value });
-          }}
+          handleChange={handleChange}
         />
         <InputField
           required={true}
@@ -64,9 +63,7 @@ const CouncilForm = () => {
           label="Číslo rady"
           prompt="Zadej číslo rady"
           value={council.councilNumber}
-          handleChange={(e) => {
-            setCouncil({ ...council, councilNumber: e.target.value });
-          }}
+          handleChange={handleChange}
         />
         <br />
         <input type="submit" className="btn btn-success" value="Uložit" />
