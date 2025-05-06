@@ -12,7 +12,7 @@ const CouncilIndex = () => {
     apiGet(url)
       .then((data) => setCounciles(data))
       .catch((error) => {
-        console.error("Error during loading councils ", error);
+        console.error(error);
       });
   }, [url]);
 

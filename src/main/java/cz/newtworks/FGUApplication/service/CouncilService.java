@@ -8,7 +8,7 @@ import java.util.List;
 public interface CouncilService {
 
     /**
-     * Method creates a new council into the database
+     * Method creates a new council into the database.
      * @param councilDTO
      * @return DTO with freshly created council
      */

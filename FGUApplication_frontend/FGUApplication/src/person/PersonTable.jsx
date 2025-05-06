@@ -1,7 +1,6 @@
-import { Link, useParams } from "react-router";
+import { Link, useParams } from "react-router-dom";
 
 const PersonTable = ({ people }) => {
-  const { id } = useParams();
   return (
     <div>
       <table className="table table-bordered table-hover ">
@@ -19,7 +18,7 @@ const PersonTable = ({ people }) => {
             <tr key={person.id}>
               <td>
                 <Link
-                  to={`/person/detail/${person.id}`}
+                  to={`/person/${person.id}`}
                   className="d-block text-decoration-none text-dark p-3"
                 >
                   {index + 1}
@@ -27,7 +26,7 @@ const PersonTable = ({ people }) => {
               </td>
               <td>
                 <Link
-                  to={`/person/detail/${person.id}`}
+                  to={`/person/${person.id}`}
                   className="d-block text-decoration-none text-dark p-3"
                 >
                   {person.titleBeforeName}
@@ -35,7 +34,7 @@ const PersonTable = ({ people }) => {
               </td>
               <td>
                 <Link
-                  to={`/person/detail/${person.id}`}
+                  to={`/person/${person.id}`}
                   className="d-block text-decoration-none text-dark p-3"
                 >
                   {person.name}
@@ -44,7 +43,7 @@ const PersonTable = ({ people }) => {
 
               <td>
                 <Link
-                  to={`/person/detail/${person.id}`}
+                  to={`/person/${person.id}`}
                   className="d-block text-decoration-none text-dark p-3"
                 >
                   {person.surname}
@@ -52,7 +51,7 @@ const PersonTable = ({ people }) => {
               </td>
               <td>
                 <Link
-                  to={`/person/detail/${person.id}`}
+                  to={`/person/${person.id}`}
                   className="d-block text-decoration-none text-dark p-3"
                 >
                   {person.titleAfterName}

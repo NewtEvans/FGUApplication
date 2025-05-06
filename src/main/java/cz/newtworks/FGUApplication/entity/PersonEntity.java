@@ -2,7 +2,9 @@ package cz.newtworks.FGUApplication.entity;
 
 import cz.newtworks.FGUApplication.constant.Employee;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
@@ -13,6 +15,8 @@ import java.util.Set;
 @Table(name = "people")
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class PersonEntity {
 
     @Id
@@ -21,10 +25,10 @@ public class PersonEntity {
 
     private String titleBeforeName;
 
-//    @Column(nullable = false)
+    @Column(nullable = false)
     private String name;
 
-//    @Column(nullable = false)
+    @Column(nullable = false)
     private String surname;
 
     private String titleAfterName;
@@ -32,7 +36,7 @@ public class PersonEntity {
     @Enumerated(EnumType.STRING)
     private Employee isEmployee;
 
-    //vazba mezi tabulkami - department
+    //vazba mezi tabulkami
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "person_department",

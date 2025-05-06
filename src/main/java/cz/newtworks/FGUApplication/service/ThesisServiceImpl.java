@@ -128,9 +128,9 @@ public class ThesisServiceImpl implements ThesisService{
      */
     private ThesisDTO fillThesisWithDTOs(ThesisDTO thesisDTO, ThesisEntity thesisEntity){
 
-        thesisDTO.setStudent(personService.personDetail(thesisEntity.getStudent().getId()));
-        thesisDTO.setTrainer(personService.personDetail(thesisEntity.getTrainer().getId()));
-        thesisDTO.setConsultant(personService.personDetail(thesisEntity.getConsultant().getId()));
+        thesisDTO.setStudent(personService.getPersonById(thesisEntity.getStudent().getId()));
+        thesisDTO.setTrainer(personService.getPersonById(thesisEntity.getTrainer().getId()));
+        thesisDTO.setConsultant(personService.getPersonById(thesisEntity.getConsultant().getId()));
         thesisDTO.setFaculty(facultyService.facultyDetail(thesisEntity.getFaculty().getId()));
         thesisDTO.setCouncil(councilService.getCouncilById(thesisEntity.getCouncil().getId()));
 

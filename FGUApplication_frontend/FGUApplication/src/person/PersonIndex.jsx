@@ -1,15 +1,19 @@
 import { useEffect, useState } from "react";
 import PersonTable from "./PersonTable";
 import { apiGet } from "../utils/api";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 
 const PersonIndex = () => {
   const [url, setUrl] = useState("/person/all");
   const [people, setPeople] = useState([]);
 
   useEffect(() => {
-    apiGet(url).then((data) => setPeople(data));
-  }, []);
+    apiGet(url)
+      .then((data) => setPeople(data))
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [url]);
 
   return (
     <div>

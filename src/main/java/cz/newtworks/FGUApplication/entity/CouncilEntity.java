@@ -5,11 +5,11 @@ import lombok.*;
 
 import java.util.Set;
 
-@Entity(name = "councils")
+@Entity
+@Table(name = "councils")
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
+
 public class CouncilEntity {
 
     @Id

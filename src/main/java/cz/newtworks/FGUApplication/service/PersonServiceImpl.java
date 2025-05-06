@@ -1,20 +1,15 @@
 package cz.newtworks.FGUApplication.service;
 
-import cz.newtworks.FGUApplication.dto.department.DepartmentDTO;
 import cz.newtworks.FGUApplication.dto.person.PersonDTO;
 import cz.newtworks.FGUApplication.dto.mapper.DepartmentMapper;
 import cz.newtworks.FGUApplication.dto.mapper.PersonMapper;
-import cz.newtworks.FGUApplication.entity.DepartmentEntity;
 import cz.newtworks.FGUApplication.entity.PersonEntity;
 import cz.newtworks.FGUApplication.entity.repository.PersonRepository;
-import jakarta.persistence.EntityNotFoundException;
+import cz.newtworks.FGUApplication.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -54,7 +49,7 @@ public class PersonServiceImpl implements PersonService{
     }
 
     @Override
-    public PersonDTO personDetail(long id) {
+    public PersonDTO getPersonById(long id) {
         return personMapper.toDTO(fetchPersonById(id));
     }
 
@@ -72,16 +67,6 @@ public class PersonServiceImpl implements PersonService{
         personRepository.delete(fetchPersonById(personId));
     }
 
-//    @Override
-//    public List<DepartmentDTO> test() {
-//        PersonEntity person = fetchPersonById(1);
-//
-//        return person.getDepartments()
-//                .stream()
-//                .map(departmentEntity -> departmentMapper.toDTO(departmentEntity))
-//                .collect(Collectors.toList());
-//    }
-
     //Private methods
 
     /**
@@ -89,9 +74,10 @@ public class PersonServiceImpl implements PersonService{
      * If asked ID doesn't exist method returns error exception.
      * @param id
      * @return Person entity with asked id
+     * @throws ResourceNotFoundException if no person with the given ID is found
      */
     private PersonEntity fetchPersonById(long id){
         return personRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Person with id" + id + "wasn't found in the database."));
+                .orElseThrow(() -> new ResourceNotFoundException("Person with ID " + id + " was not found in the database"));
     }
 }

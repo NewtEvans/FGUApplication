@@ -1,7 +1,10 @@
 package cz.newtworks.FGUApplication.controller;
 import cz.newtworks.FGUApplication.dto.person.PersonDTO;
 import cz.newtworks.FGUApplication.service.PersonService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,33 +17,34 @@ public class PersonController {
     @Autowired
     private PersonService personService;
 
+    @PostMapping
+    public ResponseEntity<PersonDTO> createPerson(@Valid @RequestBody PersonDTO personDTO) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(personService.addPerson(personDTO));
+    }
+
     @GetMapping("/all")
-    public List<PersonDTO> getAllPeople() {
-        return personService.getAllPeople();
+    public ResponseEntity<List<PersonDTO>> getAllPeople() {
+        return ResponseEntity.ok(personService.getAllPeople());
     }
 
-    @GetMapping("/info/{departmentId}")
-    public List<PersonDTO> getAllPeopleInDepartment(@PathVariable long departmentId){
-        return personService.getAllPeopleInDepartment(departmentId);
+    @GetMapping("/{personId}")
+    public ResponseEntity<PersonDTO> getPerson(@PathVariable long personId){
+        return ResponseEntity.ok(personService.getPersonById(personId));
     }
 
-    @GetMapping("/detail/{personId}")
-    public PersonDTO personDetail(@PathVariable long personId){
-        return personService.personDetail(personId);
+    @PutMapping("/{personId}")
+    public ResponseEntity<PersonDTO> updatePerson(@RequestBody PersonDTO personDTO, @PathVariable long personId){
+        return ResponseEntity.ok(personService.editPerson(personDTO, personId));
     }
 
-    @PostMapping("/create")
-    public PersonDTO addPerson(@RequestBody PersonDTO personDTO) {
-        return personService.addPerson(personDTO);
-    }
-
-    @PutMapping("/edit/{personId}")
-    public PersonDTO editPerson(@RequestBody PersonDTO personDTO, @PathVariable long personId){
-        return personService.editPerson(personDTO, personId);
-    }
-
-    @DeleteMapping("/delete/{personId}")
-    public void deletePerson(@PathVariable long personId){
+    @DeleteMapping("/{personId}")
+    public ResponseEntity<Void> deletePerson(@PathVariable long personId){
         personService.deletePerson(personId);
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{departmentId}")
+    public ResponseEntity<List<PersonDTO>> getAllPeopleInDepartment(@PathVariable long departmentId){
+        return ResponseEntity.ok(personService.getAllPeopleInDepartment(departmentId));
     }
 }
