@@ -15,18 +15,15 @@ const FacultyForm = () => {
 
   useEffect(() => {
     if (id) {
-      apiGet("/faculty/detail/" + id).then((data) => setFaculty(data));
+      apiGet("/faculty/" + id).then((data) => setFaculty(data));
     }
   }, [id]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    (id
-      ? apiPut("/faculty/edit/" + id, faculty)
-      : apiPost("/faculty/create", faculty)
-    )
+    (id ? apiPut("/faculty/" + id, faculty) : apiPost("/faculty", faculty))
       .then((data) => {
-        navigate("/faculties");
+        id ? navigate("/faculties/detail/" + id) : navigate("/faculties");
       })
       .catch((error) => {
         console.log(error.messagte);

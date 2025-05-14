@@ -15,18 +15,18 @@ const DepartmentForm = () => {
 
   useEffect(() => {
     if (id) {
-      apiGet("/department/detail/" + id).then((data) => setDepartment(data));
+      apiGet("/department/" + id).then((data) => setDepartment(data));
     }
   }, [id]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     (id
-      ? apiPut("/department/edit/" + id, department)
-      : apiPost("/department/create", department)
+      ? apiPut("/department/" + id, department)
+      : apiPost("/department", department)
     )
       .then((data) => {
-        navigate("/departments");
+        id ? navigate("/departments/detail/" + id) : navigate("/departments");
       })
       .catch((error) => {
         console.log(error.message);

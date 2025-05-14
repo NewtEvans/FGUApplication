@@ -10,8 +10,12 @@ const ThesisDetail = () => {
   const [thesis, setThesis] = useState({});
 
   const deleteFunction = async (id) => {
+    const confirmed = window.confirm("Opravdu chcete smazat tuto práci?");
+    if (!confirmed) return;
+
     try {
-      await apiDelete("/thesis/delete/" + id);
+      await apiDelete("/thesis/" + id);
+      alert("Práce byla úspěšně smazána.");
     } catch (error) {
       console.log(error.message);
       alert(error.message);
@@ -20,14 +24,14 @@ const ThesisDetail = () => {
   };
 
   useEffect(() => {
-    apiGet("/thesis/detail/" + id)
+    apiGet("/thesis/" + id)
       .then((data) => {
         setThesis(data);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [id]);
 
   return (
     <div>
@@ -36,7 +40,10 @@ const ThesisDetail = () => {
           Detail práce <em>({thesis.nameCz})</em>
         </h1>
         <div>
-          <Link to={`/theses/edit/${id}`} className="btn btn-md btn-warning">
+          <Link
+            to={`/theses/edit/${id}`}
+            className="btn btn-md btn-warning me-1"
+          >
             Upravit práci
           </Link>
           <button
@@ -50,6 +57,9 @@ const ThesisDetail = () => {
       <hr />
       <p>
         <strong>ID:</strong> {thesis.id}
+      </p>
+      <p>
+        <strong>Druh práce:</strong> {thesis.thesisType}
       </p>
       <p>
         <strong>Celé datum zahájení:</strong> {thesis.startDate}

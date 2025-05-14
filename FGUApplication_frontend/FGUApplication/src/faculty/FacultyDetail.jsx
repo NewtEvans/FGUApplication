@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import { apiGet, apiDelete } from "../utils/api";
 
 const FacultyDetail = () => {
   const { id } = useParams();
   const [faculty, setFaculty] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    apiGet("/faculty/detail/" + id)
+    apiGet("/faculty/" + id)
       .then((data) => {
         setFaculty(data);
       })
@@ -17,13 +18,17 @@ const FacultyDetail = () => {
   }, []);
 
   const deleteFunction = async (id) => {
+    const confirmed = window.confirm("Opravdu chcete smazat tuto fakultu?");
+    if (!confirmed) return;
+
     try {
-      await apiDelete("/faculty/delete/" + id);
+      await apiDelete("/faculty/" + id);
+      alert("Fakulta byla smazána.");
     } catch (error) {
       console.log(error.message);
       alert(error.message);
     }
-    navigate("/faculty");
+    navigate("/faculties");
   };
 
   return (
@@ -31,7 +36,10 @@ const FacultyDetail = () => {
       <div className="d-flex align-items-center justify-content-between">
         <h1>Detail fakulty</h1>
         <div>
-          <Link to={`/faculties/edit/${id}`} className="btn btn-md btn-warning">
+          <Link
+            to={`/faculties/edit/${id}`}
+            className="btn btn-md btn-warning me-1"
+          >
             Upravit fakultu
           </Link>
           <button

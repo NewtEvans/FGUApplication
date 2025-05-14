@@ -11,8 +11,12 @@ const DepartmentDetail = () => {
   const [people, setPeople] = useState([]);
 
   const deleteFunction = async (id) => {
+    const confirmed = window.confirm("Opravdu chcete smazat toto oddělení?");
+    if (!confirmed) return;
+
     try {
-      await apiDelete("/department/delete/" + id);
+      await apiDelete("/department/" + id);
+      alert("Oddělení bylo smazáno.");
     } catch (error) {
       console.log(error.message);
       alert(error.message);
@@ -21,21 +25,21 @@ const DepartmentDetail = () => {
   };
 
   useEffect(() => {
-    apiGet("/department/detail/" + id)
+    apiGet("/department/" + id)
       .then((data) => {
         setDepartment(data);
       })
       .catch((error) => {
         console.log(error);
       });
-    apiGet("/person/info/" + id)
+    apiGet("/person/department/" + id)
       .then((data) => {
         setPeople(data);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [id]);
 
   return (
     <div>
@@ -44,7 +48,7 @@ const DepartmentDetail = () => {
         <div>
           <Link
             to={`/departments/edit/${id}`}
-            className="btn btn-md btn-warning"
+            className="btn btn-md btn-warning me-1"
           >
             Upravit oddělení
           </Link>

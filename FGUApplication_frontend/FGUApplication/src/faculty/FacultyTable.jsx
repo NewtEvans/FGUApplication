@@ -13,7 +13,6 @@ const FacultyTable = ({ faculties }) => {
       <table className="table table-bordered table-hover">
         <thead>
           <tr className="table-primary text-center">
-            <th className="col-1">#</th>
             <th className="col-2">Zkratka fakulty</th>
             <th className="col-7">Název fakulty</th>
             <th>škola</th>
@@ -22,14 +21,6 @@ const FacultyTable = ({ faculties }) => {
         <tbody className="text-center">
           {faculties.map((faculty, index) => (
             <tr key={faculty.id}>
-              <td>
-                <Link
-                  to={`detail/${faculty.id}`}
-                  className="d-block text-decoration-none text-dark p-3"
-                >
-                  {index + 1}
-                </Link>
-              </td>
               <td>
                 <Link
                   to={`detail/${faculty.id}`}

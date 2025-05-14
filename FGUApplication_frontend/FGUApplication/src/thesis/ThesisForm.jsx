@@ -19,6 +19,7 @@ const ThesisForm = () => {
     faculty: { id: 0 },
     council: { id: 0 },
     endDate: "",
+    thesisType: "",
     note: "",
   });
   const [people, setPeople] = useState([]);
@@ -27,7 +28,7 @@ const ThesisForm = () => {
 
   useEffect(() => {
     if (id) {
-      apiGet("/thesis/detail/" + id).then((data) => setThesis(data));
+      apiGet("/thesis/" + id).then((data) => setThesis(data));
     }
     apiGet("/person/all").then((data) => setPeople(data));
     apiGet("/faculty/all").then((data) => setFaculty(data));
@@ -36,12 +37,9 @@ const ThesisForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    (id
-      ? apiPut("/thesis/edit/" + id, thesis)
-      : apiPost("/thesis/create", thesis)
-    )
+    (id ? apiPut("/thesis/" + id, thesis) : apiPost("/thesis", thesis))
       .then((data) => {
-        navigate("/theses");
+        id ? navigate("/theses/detail/" + id) : navigate("/theses");
       })
       .catch((error) => {
         console.log(error.message);
@@ -166,6 +164,52 @@ const ThesisForm = () => {
             setThesis({ ...thesis, note: e.target.value });
           }}
         />
+        <p>Druh práce:</p>
+        <div className="d-flex align-items-center justify-content-between">
+          <InputCheck
+            type="radio"
+            name="thesisType"
+            label="Bakalářská"
+            value={"bakalarska"}
+            handleChange={(e) => {
+              setThesis({ ...thesis, thesisType: e.target.value });
+            }}
+            checked={"bakalarska" === thesis.thesisType}
+          />
+
+          <InputCheck
+            type="radio"
+            name="thesisType"
+            label="Magisterská"
+            value={"magisterska"}
+            handleChange={(e) => {
+              setThesis({ ...thesis, thesisType: e.target.value });
+            }}
+            checked={"magisterska" === thesis.thesisType}
+          />
+
+          <InputCheck
+            type="radio"
+            name="thesisType"
+            label="Doktorandská"
+            value={"doktorandska"}
+            handleChange={(e) => {
+              setThesis({ ...thesis, thesisType: e.target.value });
+            }}
+            checked={"doktorandska" === thesis.thesisType}
+          />
+
+          <InputCheck
+            type="radio"
+            name="thesisType"
+            label="Inženýrská"
+            value={"inzenyrska"}
+            handleChange={(e) => {
+              setThesis({ ...thesis, thesisType: e.target.value });
+            }}
+            checked={"inzenyrska" === thesis.thesisType}
+          />
+        </div>
         <br />
         <input type="submit" className="btn btn-success" value="Uložit" />
       </form>

@@ -26,7 +26,7 @@ const CouncilForm = () => {
     e.preventDefault();
     (id ? apiPut("/council/" + id, council) : apiPost("/council", council))
       .then((data) => {
-        navigate("/counciles");
+        id ? navigate("/counciles/detail/" + id) : navigate("/counciles");
       })
       .catch((error) => {
         console.log(error.message);

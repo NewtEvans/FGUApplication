@@ -39,7 +39,7 @@ const CouncilDetail = () => {
         <div>
           <Link
             to={`/counciles/edit/${id}`}
-            className="btn btn-md btn-warning me-3"
+            className="btn btn-md btn-warning me-1"
           >
             Upravit radu
           </Link>

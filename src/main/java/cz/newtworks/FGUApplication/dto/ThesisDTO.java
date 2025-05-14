@@ -1,5 +1,6 @@
 package cz.newtworks.FGUApplication.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import cz.newtworks.FGUApplication.constant.ThesisType;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
@@ -16,6 +17,7 @@ public class ThesisDTO {
 
     private ThesisType thesisType;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
 
     @NotBlank(message = "Czech name is required.")

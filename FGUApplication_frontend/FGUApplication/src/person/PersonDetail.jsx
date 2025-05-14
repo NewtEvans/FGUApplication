@@ -17,8 +17,12 @@ const PersonDetail = () => {
   const [trainerTheses, setTrainerTheses] = useState([]);
 
   const deleteFunction = async (id) => {
+    const confirmed = window.confirm("Opravdu chcete smazat tuto osobu?");
+    if (!confirmed) return;
+
     try {
-      await apiDelete("/person/delete/" + id);
+      await apiDelete("/person/" + id);
+      alert("Osoba byla úspešně smazána.");
     } catch (error) {
       console.log(error.message);
       alert(error.message);
@@ -27,7 +31,7 @@ const PersonDetail = () => {
   };
 
   useEffect(() => {
-    apiGet("/person/detail/" + id)
+    apiGet("/person/" + id)
       .then((data) => {
         setPerson(data);
       })
@@ -71,7 +75,10 @@ const PersonDetail = () => {
       <div className="d-flex align-items-center justify-content-between">
         <h1>Detail osoby</h1>
         <div>
-          <Link to={`/person/edit/${id}`} className="btn btn-md btn-warning">
+          <Link
+            to={`/person/edit/${id}`}
+            className="btn btn-md btn-warning me-1"
+          >
             Upravit osobu
           </Link>
           <button
@@ -97,7 +104,7 @@ const PersonDetail = () => {
       </p>
       <p>
         <strong>Zaměstnanec FGÚ: </strong>{" "}
-        {person.isEmployee === "IPHYS" ? "Ano" : "Ne"}
+        {person.isEmployee === "IPHYS" ? "Ano" : "Není"}
       </p>
       <DepartmentTable departments={person.departments || []} />
       <br />

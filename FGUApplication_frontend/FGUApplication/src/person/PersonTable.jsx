@@ -6,7 +6,6 @@ const PersonTable = ({ people }) => {
       <table className="table table-bordered table-hover ">
         <thead>
           <tr className="table-primary text-center">
-            <th>#</th>
             <th>Titul</th>
             <th>Jméno</th>
             <th>Přijmení</th>
@@ -18,15 +17,7 @@ const PersonTable = ({ people }) => {
             <tr key={person.id}>
               <td>
                 <Link
-                  to={`/person/${person.id}`}
-                  className="d-block text-decoration-none text-dark p-3"
-                >
-                  {index + 1}
-                </Link>
-              </td>
-              <td>
-                <Link
-                  to={`/person/${person.id}`}
+                  to={`/person/detail/${person.id}`}
                   className="d-block text-decoration-none text-dark p-3"
                 >
                   {person.titleBeforeName}
@@ -34,7 +25,7 @@ const PersonTable = ({ people }) => {
               </td>
               <td>
                 <Link
-                  to={`/person/${person.id}`}
+                  to={`/person/detail/${person.id}`}
                   className="d-block text-decoration-none text-dark p-3"
                 >
                   {person.name}
@@ -43,7 +34,7 @@ const PersonTable = ({ people }) => {
 
               <td>
                 <Link
-                  to={`/person/${person.id}`}
+                  to={`/person/detail/${person.id}`}
                   className="d-block text-decoration-none text-dark p-3"
                 >
                   {person.surname}
@@ -51,7 +42,7 @@ const PersonTable = ({ people }) => {
               </td>
               <td>
                 <Link
-                  to={`/person/${person.id}`}
+                  to={`/person/detail/${person.id}`}
                   className="d-block text-decoration-none text-dark p-3"
                 >
                   {person.titleAfterName}

@@ -21,19 +21,16 @@ const PersonForm = () => {
 
   useEffect(() => {
     if (id) {
-      apiGet("/person/detail/" + id).then((data) => setPerson(data));
+      apiGet("/person/" + id).then((data) => setPerson(data));
     }
     apiGet("/department/all").then((data) => setDepartmentList(data));
   }, [id]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    (id
-      ? apiPut("/person/edit/" + id, person)
-      : apiPost("/person/create", person)
-    )
+    (id ? apiPut("/person/" + id, person) : apiPost("/person", person))
       .then((data) => {
-        navigate("/person");
+        id ? navigate("/person/detail/" + id) : navigate("/person");
       })
       .catch((error) => {
         console.log(error.message);
