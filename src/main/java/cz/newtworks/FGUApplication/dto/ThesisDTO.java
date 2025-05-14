@@ -36,6 +36,7 @@ public class ThesisDTO {
 
     private CouncilDTO council;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
 
     private String note;

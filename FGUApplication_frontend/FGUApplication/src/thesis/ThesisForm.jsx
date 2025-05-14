@@ -5,6 +5,7 @@ import { apiGet, apiPost, apiPut } from "../utils/api";
 import InputField from "../components/InputField";
 import InputSelect from "../components/InputSelect";
 import InputCheck from "../components/InputCheck";
+import thesisType from "./ThesisType";
 
 const ThesisForm = () => {
   const navigate = useNavigate();
@@ -170,44 +171,44 @@ const ThesisForm = () => {
             type="radio"
             name="thesisType"
             label="Bakalářská"
-            value={"bakalarska"}
+            value={thesisType.BAKALARSKA}
             handleChange={(e) => {
               setThesis({ ...thesis, thesisType: e.target.value });
             }}
-            checked={"bakalarska" === thesis.thesisType}
+            checked={thesisType.BAKALARSKA === thesis.thesisType}
           />
 
           <InputCheck
             type="radio"
             name="thesisType"
             label="Magisterská"
-            value={"magisterska"}
+            value={thesisType.MAGISTERSKA}
             handleChange={(e) => {
               setThesis({ ...thesis, thesisType: e.target.value });
             }}
-            checked={"magisterska" === thesis.thesisType}
+            checked={thesisType.MAGISTERSKA === thesis.thesisType}
           />
 
           <InputCheck
             type="radio"
             name="thesisType"
             label="Doktorandská"
-            value={"doktorandska"}
+            value={thesisType.DOKTORANDSKA}
             handleChange={(e) => {
               setThesis({ ...thesis, thesisType: e.target.value });
             }}
-            checked={"doktorandska" === thesis.thesisType}
+            checked={thesisType.DOKTORANDSKA === thesis.thesisType}
           />
 
           <InputCheck
             type="radio"
             name="thesisType"
             label="Inženýrská"
-            value={"inzenyrska"}
+            value={thesisType.INZENYRSKA}
             handleChange={(e) => {
               setThesis({ ...thesis, thesisType: e.target.value });
             }}
-            checked={"inzenyrska" === thesis.thesisType}
+            checked={thesisType.INZENYRSKA === thesis.thesisType}
           />
         </div>
         <br />
