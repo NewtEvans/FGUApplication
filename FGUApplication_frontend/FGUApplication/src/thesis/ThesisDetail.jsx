@@ -3,8 +3,9 @@ import { useNavigate, useParams } from "react-router";
 import { apiDelete, apiGet } from "../utils/api";
 
 import { Link } from "react-router";
+import { ThesisTypeTransfer } from "../utils/thesisTypeTransfer";
 
-const ThesisDetail = () => {
+function ThesisDetail() {
   const navigate = useNavigate();
   const { id } = useParams();
   const [thesis, setThesis] = useState({});
@@ -59,7 +60,8 @@ const ThesisDetail = () => {
         <strong>ID:</strong> {thesis.id}
       </p>
       <p>
-        <strong>Druh práce:</strong> {thesis.thesisType}
+        <strong>Druh práce: </strong>{" "}
+        <ThesisTypeTransfer thesisType={thesis.thesisType} />
       </p>
       <p>
         <strong>Celé datum zahájení:</strong> {thesis.startDate}
@@ -124,6 +126,6 @@ const ThesisDetail = () => {
       <hr />
     </div>
   );
-};
+}
 
 export default ThesisDetail;
