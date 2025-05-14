@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import { ThesisTypeTransfer } from "../utils/ThesisTypeTransfer";
 
 const ThesisTable = ({ theses }) => {
   return (
@@ -8,7 +9,7 @@ const ThesisTable = ({ theses }) => {
         <thead>
           <tr className="table-primary text-center">
             <th>Název práce</th>
-            <th>Druh</th>
+            <th>Druh práce</th>
             <th>Student</th>
             <th>Datum ukončení</th>
             <th>Školitel</th>
@@ -32,7 +33,7 @@ const ThesisTable = ({ theses }) => {
                   to={`/theses/detail/${thesis.id}`}
                   className="d-block text-decoration-none text-dark p-3"
                 >
-                  {thesis.thesisType}
+                  <ThesisTypeTransfer thesisType={thesis.thesisType} />
                 </Link>
               </td>
               <td>
