@@ -7,6 +7,8 @@ import cz.newtworks.FGUApplication.entity.PersonEntity;
 import cz.newtworks.FGUApplication.entity.repository.PersonRepository;
 import cz.newtworks.FGUApplication.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -65,6 +67,11 @@ public class PersonServiceImpl implements PersonService{
     @Override
     public void deletePerson(long personId) {
         personRepository.delete(fetchPersonById(personId));
+    }
+
+    //Test method
+    public Page<PersonDTO> getPaginatedPeople(Pageable pageable){
+        return personRepository.findAll(pageable).map(personMapper::toDTO);
     }
 
     //Private methods

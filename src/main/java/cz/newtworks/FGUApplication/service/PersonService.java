@@ -2,6 +2,8 @@ package cz.newtworks.FGUApplication.service;
 
 import cz.newtworks.FGUApplication.dto.PersonDTO;
 import cz.newtworks.FGUApplication.exception.ResourceNotFoundException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -47,4 +49,7 @@ public interface PersonService {
      * @param personId id of deleted person
      */
     void deletePerson(long personId);
+
+    //Test method
+    Page<PersonDTO> getPaginatedPeople(Pageable pageable);
 }
