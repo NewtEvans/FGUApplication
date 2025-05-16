@@ -3,11 +3,12 @@ import cz.newtworks.FGUApplication.dto.DepartmentDTO;
 import cz.newtworks.FGUApplication.service.DepartmentService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/department")
@@ -22,8 +23,12 @@ public class DepartmentController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<DepartmentDTO>> getAllDepartment(){
-        return ResponseEntity.ok(departmentService.getAllDepartments());
+    public ResponseEntity<Page<DepartmentDTO>> getAllDepartment(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size
+    ){
+        Pageable pageable = PageRequest.of(page, size);
+        return ResponseEntity.ok(departmentService.getAllDepartments(pageable));
     }
 
     @GetMapping("/{departmentId}")
@@ -41,4 +46,5 @@ public class DepartmentController {
         departmentService.deleteDepartment(departmentId);
         return ResponseEntity.noContent().build();
     }
+
 }

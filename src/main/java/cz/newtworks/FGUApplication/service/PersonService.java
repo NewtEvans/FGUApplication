@@ -5,6 +5,7 @@ import cz.newtworks.FGUApplication.exception.ResourceNotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+
 import java.util.List;
 
 public interface PersonService {
@@ -18,9 +19,10 @@ public interface PersonService {
 
     /**
      * Method returns all people in the database.
+     * Contains pagination components.
      * @return List of all people in the database
      */
-    List<PersonDTO> getAllPeople();
+    Page<PersonDTO> getAllPeople(Pageable pageable);
 
     /**
      * Method returns all people in particular department
@@ -50,6 +52,4 @@ public interface PersonService {
      */
     void deletePerson(long personId);
 
-    //Test method
-    Page<PersonDTO> getPaginatedPeople(Pageable pageable);
 }

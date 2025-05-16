@@ -35,11 +35,8 @@ public class PersonServiceImpl implements PersonService{
     }
 
     @Override
-    public List<PersonDTO> getAllPeople() {
-        return personRepository.findAll()
-                .stream()
-                .map(i -> personMapper.toDTO(i))
-                .collect(Collectors.toList());
+    public Page<PersonDTO> getAllPeople(Pageable pageable) {
+        return personRepository.findAll(pageable).map(personMapper :: toDTO);
     }
 
     @Override
@@ -67,11 +64,6 @@ public class PersonServiceImpl implements PersonService{
     @Override
     public void deletePerson(long personId) {
         personRepository.delete(fetchPersonById(personId));
-    }
-
-    //Test method
-    public Page<PersonDTO> getPaginatedPeople(Pageable pageable){
-        return personRepository.findAll(pageable).map(personMapper::toDTO);
     }
 
     //Private methods

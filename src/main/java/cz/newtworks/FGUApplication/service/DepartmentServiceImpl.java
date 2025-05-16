@@ -6,6 +6,8 @@ import cz.newtworks.FGUApplication.entity.DepartmentEntity;
 import cz.newtworks.FGUApplication.entity.repository.DepartmentRepository;
 import cz.newtworks.FGUApplication.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,11 +31,8 @@ public class DepartmentServiceImpl implements DepartmentService{
     }
 
     @Override
-    public List<DepartmentDTO> getAllDepartments() {
-        return departmentRepository.findAll()
-                .stream()
-                .map(i -> departmentMapper.toDTO(i))
-                .collect(Collectors.toList());
+    public Page<DepartmentDTO> getAllDepartments(Pageable pageable) {
+        return departmentRepository.findAll(pageable).map(departmentMapper :: toDTO);
     }
 
     @Override

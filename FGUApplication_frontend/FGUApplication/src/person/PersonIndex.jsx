@@ -4,13 +4,12 @@ import { apiGet } from "../utils/api";
 import { Link } from "react-router-dom";
 
 const PersonIndex = () => {
-  /* const [url, setUrl] = useState("/person/all"); */
-  const [url, setUrl] = useState("/person/people/test");
+  const [url, setUrl] = useState("/person/all");
   const [people, setPeople] = useState([]);
 
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState();
-  const [size, setSize] = useState(3);
+  const [size, setSize] = useState(10);
 
   useEffect(() => {
     apiGet(url, {
@@ -25,7 +24,7 @@ const PersonIndex = () => {
       .catch((error) => {
         console.error(error);
       });
-  }, [url, page, size]);
+  }, [url, page, size, totalPages]);
 
   return (
     <div>
@@ -55,7 +54,7 @@ const PersonIndex = () => {
             setSize(parseInt(e.target.value));
           }}
         >
-          <option value="5">5</option>
+          <option value="10">10</option>
           <option value="25">25</option>
           <option value="50">50</option>
           <option value="100">100</option>

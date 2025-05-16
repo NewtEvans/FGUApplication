@@ -26,8 +26,12 @@ public class PersonController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<PersonDTO>> getAllPeople() {
-        return ResponseEntity.ok(personService.getAllPeople());
+    public ResponseEntity<Page<PersonDTO>> getAllPeople(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size
+    ) {
+        Pageable pageable = PageRequest.of(page, size);
+        return ResponseEntity.ok(personService.getAllPeople(pageable));
     }
 
     @GetMapping("/{personId}")
@@ -49,15 +53,5 @@ public class PersonController {
     @GetMapping("/department/{departmentId}")
     public ResponseEntity<List<PersonDTO>> getAllPeopleInDepartment(@PathVariable long departmentId){
         return ResponseEntity.ok(personService.getAllPeopleInDepartment(departmentId));
-    }
-
-    //Test method
-    @GetMapping("/people/test")
-    public Page<PersonDTO> getPaginatedPeople(
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "5") int size
-    ) {
-        Pageable pageable = PageRequest.of(page, size);
-        return personService.getPaginatedPeople(pageable);
     }
 }
