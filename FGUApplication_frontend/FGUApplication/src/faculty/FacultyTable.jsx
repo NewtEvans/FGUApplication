@@ -3,12 +3,6 @@ import { Link } from "react-router";
 const FacultyTable = ({ faculties }) => {
   return (
     <div>
-      <div className="d-flex justify-content-between">
-        <p>Počet fakult v databázi: {faculties.length}</p>
-        <Link to="create" className="btn btn-md btn-success">
-          Nová fakulta
-        </Link>
-      </div>
       <br />
       <table className="table table-bordered table-hover">
         <thead>

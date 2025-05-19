@@ -6,6 +6,8 @@ import cz.newtworks.FGUApplication.entity.FacultyEntity;
 import cz.newtworks.FGUApplication.entity.repository.FacultyRepository;
 import cz.newtworks.FGUApplication.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,11 +31,9 @@ public class FacultyServiceImpl implements FacultyService{
     }
 
     @Override
-    public List<FacultyDTO> getAllFaculty() {
-        return facultyRepository.findAll()
-                .stream()
-                .map(i -> facultyMapper.toDTO(i))
-                .collect(Collectors.toList());
+    public Page<FacultyDTO> getAllFaculty(Pageable pageable) {
+        return facultyRepository.findAll(pageable)
+                .map(facultyMapper::toDTO);
     }
 
     @Override

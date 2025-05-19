@@ -2,6 +2,8 @@ package cz.newtworks.FGUApplication.service;
 
 import cz.newtworks.FGUApplication.dto.FacultyDTO;
 import cz.newtworks.FGUApplication.exception.ResourceNotFoundException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -18,7 +20,7 @@ public interface FacultyService {
      * Method returns list with all faculties in the database.
      * @return List of all faculties in the database
      */
-    List<FacultyDTO> getAllFaculty();
+    Page<FacultyDTO> getAllFaculty(Pageable pageable);
 
     /**
      * Method returns details of faculty with requested id.
