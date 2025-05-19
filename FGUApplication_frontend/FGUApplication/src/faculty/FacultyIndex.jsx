@@ -43,9 +43,9 @@ const FacultyIndex = () => {
         <button
           className="btn btn-primary btn-sm"
           disabled={page === 0}
-          onClick={() => setPage(page + 1)}
+          onClick={() => setPage(page - 1)}
         >
-          Další
+          Předchozí
         </button>
         <select
           id="pageSize"
@@ -66,7 +66,7 @@ const FacultyIndex = () => {
           disabled={page + 1 >= totalPages}
           onClick={() => setPage(page + 1)}
         >
-          Předchozí
+          Další
         </button>
       </div>
     </div>

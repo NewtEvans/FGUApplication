@@ -6,6 +6,8 @@ import cz.newtworks.FGUApplication.entity.CouncilEntity;
 import cz.newtworks.FGUApplication.entity.repository.CouncilRepository;
 import cz.newtworks.FGUApplication.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,11 +31,9 @@ public class CouncilServiceImpl implements CouncilService{
     }
 
     @Override
-    public List<CouncilDTO> getAllCouncils() {
-        return councilRepository.findAll()
-                .stream()
-                .map(councilEntity -> councilMapper.toDTO(councilEntity))
-                .collect(Collectors.toList());
+    public Page<CouncilDTO> getAllCouncils(Pageable pageable) {
+        return councilRepository.findAll(pageable)
+                .map(councilMapper::toDTO);
     }
 
     @Override

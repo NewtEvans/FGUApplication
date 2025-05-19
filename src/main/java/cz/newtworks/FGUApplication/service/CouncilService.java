@@ -2,8 +2,9 @@ package cz.newtworks.FGUApplication.service;
 
 import cz.newtworks.FGUApplication.dto.CouncilDTO;
 import cz.newtworks.FGUApplication.exception.ResourceNotFoundException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
-import java.util.List;
 
 public interface CouncilService {
 
@@ -18,7 +19,7 @@ public interface CouncilService {
      * Method returns list with all councils in the database.
      * @return List of all councils in the database
      */
-    List<CouncilDTO> getAllCouncils();
+    Page<CouncilDTO> getAllCouncils(Pageable pageable);
 
     /**
      * Method returns details of council with requested id.
