@@ -10,12 +10,14 @@ const PersonIndex = () => {
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState();
   const [size, setSize] = useState(10);
+  const [sort, setSort] = useState("surname");
 
   useEffect(() => {
     apiGet(url, {
       page: page,
       size: size,
       totalPages: totalPages,
+      sort: sort,
     })
       .then((data) => {
         setPeople(data.content);

@@ -26,11 +26,7 @@ public class PersonController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<Page<PersonDTO>> getAllPeople(
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size
-    ) {
-        Pageable pageable = PageRequest.of(page, size);
+    public ResponseEntity<Page<PersonDTO>> getAllPeople(Pageable pageable) {
         return ResponseEntity.ok(personService.getAllPeople(pageable));
     }
 

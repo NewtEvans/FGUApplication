@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 const PersonTable = ({ people }) => {
   return (
     <div>
-      <table className="table table-bordered table-hover ">
+      <table className="table table-bordered table-hover rounded-top">
         <thead>
           <tr className="table-primary text-center">
             <th>Titul</th>
