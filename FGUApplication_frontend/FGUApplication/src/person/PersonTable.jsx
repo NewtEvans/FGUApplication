@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const PersonTable = ({ people }) => {
   return (
@@ -13,7 +13,7 @@ const PersonTable = ({ people }) => {
           </tr>
         </thead>
         <tbody className="text-center">
-          {people.map((person, index) => (
+          {people.map((person) => (
             <tr key={person.id}>
               <td>
                 <Link

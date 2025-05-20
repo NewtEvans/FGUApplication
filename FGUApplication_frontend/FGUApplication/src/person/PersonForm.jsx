@@ -23,7 +23,7 @@ const PersonForm = () => {
     if (id) {
       apiGet("/person/" + id).then((data) => setPerson(data));
     }
-    apiGet("/department/all").then((data) => setDepartmentList(data));
+    apiGet("/department/all").then((data) => setDepartmentList(data.content));
   }, [id]);
 
   const handleSubmit = (e) => {

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import PersonTable from "./PersonTable";
 import { apiGet } from "../utils/api";
 import { Link } from "react-router-dom";
-import { pageUI } from "../components/Pagination";
+import { Pagination } from "../components/Pagination";
 
 const PersonIndex = () => {
   const [url, setUrl] = useState("/person/all");
@@ -27,7 +27,7 @@ const PersonIndex = () => {
       .catch((error) => {
         console.error(error);
       });
-  }, [url, page, size, totalPages]);
+  }, [url, page, size, totalPages, sort]);
 
   return (
     <div>
@@ -39,8 +39,50 @@ const PersonIndex = () => {
         </Link>
       </div>
       <br />
+      <select
+        id="allResultsSort"
+        className="form-select w-auto d-inline-block"
+        value={sort}
+        onChange={(e) => {
+          setSort(e.target.value);
+        }}
+      >
+        <option value="surname">prijmeni</option>
+        <option value="name">name</option>
+        <option value="id">id</option>
+      </select>
+      <select
+        id="employeeSort"
+        className="form-select w-auto d-inline-block"
+        value={sort}
+        onChange={(e) => {
+          setSort(e.target.value);
+        }}
+      >
+        <option value="surname">prijmeni</option>
+        <option value="name">name</option>
+        <option value="id">id</option>
+      </select>
+      <select
+        id="nonEmployeeSort"
+        className="form-select w-auto d-inline-block"
+        value={sort}
+        onChange={(e) => {
+          setSort(e.target.value);
+        }}
+      >
+        <option value="surname">prijmeni</option>
+        <option value="name">name</option>
+        <option value="id">id</option>
+      </select>
       <PersonTable people={people} />
-      {pageUI({ page, setPage, totalPages, size, setSize })}
+      <Pagination
+        page={page}
+        setPage={setPage}
+        totalPages={totalPages}
+        size={size}
+        setSize={setSize}
+      />
     </div>
   );
 };

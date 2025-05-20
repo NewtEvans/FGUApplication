@@ -1,22 +1,42 @@
-export const pageUI = ({ page, setPage, totalPages, size, setSize }) => {
+export const Pagination = ({ page, setPage, totalPages, size, setSize }) => {
+  const pages = [...Array(totalPages).keys()];
+
   return (
     <div className="d-flex justify-content-between align-items-end">
-      <div className="d-flex flex-grow-1 justify-content-center">
-        <button
-          className="btn btn-primary btn-sm"
-          disabled={page === 0}
-          onClick={() => setPage(page - 1)}
-        >
-          Předchozí
-        </button>
-        <button
-          className="btn btn-primary btn-sm"
-          disabled={page + 1 >= totalPages}
-          onClick={() => setPage(page + 1)}
-        >
-          Další
-        </button>
-      </div>
+      <div style={{ minWidth: "100px" }}></div>
+
+      <nav>
+        <ul className="pagination mb-0 justify-content-center">
+          <li className={`page-item ${page === 0 ? "disabled" : ""}`}>
+            <button
+              className="page-link"
+              onClick={() => setPage(page - 1)}
+              disabled={page === 0}
+            >
+              Předchozí
+            </button>
+          </li>
+          {pages.map((p) => (
+            <li key={p} className={`page-item ${page === p ? "active" : ""}`}>
+              <button className="page-link" onClick={() => setPage(p)}>
+                {p + 1}
+              </button>
+            </li>
+          ))}
+          <li
+            className={`page-item ${page === totalPages - 1 ? "disabled" : ""}`}
+          >
+            <button
+              className="page-link"
+              onClick={() => setPage(page + 1)}
+              disabled={page === totalPages - 1}
+            >
+              Další
+            </button>
+          </li>
+        </ul>
+      </nav>
+
       <div className="d-flex align-items-end">
         <select
           id="pageSize"
@@ -36,3 +56,4 @@ export const pageUI = ({ page, setPage, totalPages, size, setSize }) => {
     </div>
   );
 };
+export default Pagination;
