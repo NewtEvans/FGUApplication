@@ -27,11 +27,8 @@ public class FacultyController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<Page<FacultyDTO>> getAllFaculty(
-            @RequestParam(defaultValue = "10") int size,
-            @RequestParam(defaultValue = "0") int page
-    ) {
-        Pageable pageable = PageRequest.of(page, size);
+    public ResponseEntity<Page<FacultyDTO>> getAllFaculty(Pageable pageable) {
+
         return ResponseEntity.ok(facultyService.getAllFaculty(pageable));
     }
 

@@ -4,7 +4,6 @@ import cz.newtworks.FGUApplication.service.DepartmentService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,11 +22,7 @@ public class DepartmentController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<Page<DepartmentDTO>> getAllDepartment(
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size
-    ){
-        Pageable pageable = PageRequest.of(page, size);
+    public ResponseEntity<Page<DepartmentDTO>> getAllDepartment(Pageable pageable){
         return ResponseEntity.ok(departmentService.getAllDepartments(pageable));
     }
 

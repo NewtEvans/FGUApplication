@@ -26,11 +26,7 @@ public class CouncilController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<Page<CouncilDTO>> getAllCouncils(
-            @RequestParam(defaultValue = "10") int size,
-            @RequestParam(defaultValue = "0") int page
-    ){
-        Pageable pageable = PageRequest.of(page, size);
+    public ResponseEntity<Page<CouncilDTO>> getAllCouncils(Pageable pageable){
         return ResponseEntity.ok(councilService.getAllCouncils(pageable));
     }
 
