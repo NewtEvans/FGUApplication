@@ -39,7 +39,49 @@ const PersonIndex = () => {
         </Link>
       </div>
       <br />
-      <select
+      <div className="dropdown">
+        <button
+          id="sortDropdownMenuButton1"
+          className="btn dropdown-toggle"
+          type="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+          onChange={(e) => {
+            setSort(e.target.value);
+          }}
+        >
+          Seřadit dle
+        </button>
+        <div
+          className="dropdown-menu"
+          aria-labelledby="sortDropdownMenuButton2"
+        >
+          <option value="surname" className="dropdown-item">
+            prijmeni
+          </option>
+          <option value="name" className="dropdown-item">
+            name
+          </option>
+          <option value="id" className="dropdown-item">
+            id
+          </option>
+        </div>
+      </div>
+      {/* Zde prijde komponenta pro sort menu */}
+      <PersonTable people={people} />
+      <Pagination
+        page={page}
+        setPage={setPage}
+        totalPages={totalPages}
+        size={size}
+        setSize={setSize}
+      />
+    </div>
+  );
+};
+
+{
+  /* <select
         id="allResultsSort"
         className="form-select w-auto d-inline-block"
         value={sort}
@@ -74,17 +116,7 @@ const PersonIndex = () => {
         <option value="surname">prijmeni</option>
         <option value="name">name</option>
         <option value="id">id</option>
-      </select>
-      <PersonTable people={people} />
-      <Pagination
-        page={page}
-        setPage={setPage}
-        totalPages={totalPages}
-        size={size}
-        setSize={setSize}
-      />
-    </div>
-  );
-};
+      </select> */
+}
 
 export default PersonIndex;

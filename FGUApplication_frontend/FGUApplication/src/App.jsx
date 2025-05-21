@@ -1,6 +1,6 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.js";
+import * as bootstrap from "bootstrap/dist/js/bootstrap.bundle.min.js";
 import PersonIndex from "./person/PersonIndex";
 import PersonDetail from "./person/PersonDetail";
 import PersonForm from "./person/PersonForm";
@@ -24,6 +24,8 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
+
+window.bootstrap = bootstrap;
 
 function App() {
   return (
