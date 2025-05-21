@@ -1,13 +1,16 @@
 package cz.newtworks.FGUApplication.service;
 
 import cz.newtworks.FGUApplication.dto.FacultyDTO;
+import cz.newtworks.FGUApplication.dto.filter.FacultyFilterDTO;
 import cz.newtworks.FGUApplication.dto.mapper.FacultyMapper;
 import cz.newtworks.FGUApplication.entity.FacultyEntity;
 import cz.newtworks.FGUApplication.entity.repository.FacultyRepository;
 import cz.newtworks.FGUApplication.exception.ResourceNotFoundException;
+import cz.newtworks.FGUApplication.specification.FacultySpecification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -28,8 +31,10 @@ public class FacultyServiceImpl implements FacultyService {
     }
 
     @Override
-    public Page<FacultyDTO> getAllFaculty(Pageable pageable) {
-        return facultyRepository.findAll(pageable)
+    public Page<FacultyDTO> getAllFaculty(Pageable pageable, FacultyFilterDTO facultyFilterDTO) {
+        Specification<FacultyEntity> specification = FacultySpecification.buildSpecification(facultyFilterDTO);
+
+        return facultyRepository.findAll(specification, pageable)
                 .map(facultyMapper::toDTO);
     }
 

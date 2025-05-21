@@ -1,6 +1,7 @@
 package cz.newtworks.FGUApplication.controller;
 
 import cz.newtworks.FGUApplication.dto.FacultyDTO;
+import cz.newtworks.FGUApplication.dto.filter.FacultyFilterDTO;
 import cz.newtworks.FGUApplication.service.FacultyService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +24,11 @@ public class FacultyController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<Page<FacultyDTO>> getAllFaculty(Pageable pageable) {
+    public ResponseEntity<Page<FacultyDTO>> getAllFaculty(
+            @ModelAttribute FacultyFilterDTO facultyFilterDTO,
+            Pageable pageable) {
 
-        return ResponseEntity.ok(facultyService.getAllFaculty(pageable));
+        return ResponseEntity.ok(facultyService.getAllFaculty(pageable, facultyFilterDTO));
     }
 
     @GetMapping("/{facultyId}")
