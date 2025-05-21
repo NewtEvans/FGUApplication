@@ -1,7 +1,8 @@
 package cz.newtworks.FGUApplication.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Set;
 

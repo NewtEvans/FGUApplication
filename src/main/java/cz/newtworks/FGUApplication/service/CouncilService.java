@@ -10,19 +10,23 @@ public interface CouncilService {
 
     /**
      * Method creates a new council into the database.
+     *
      * @param councilDTO
      * @return DTO with freshly created council
      */
     CouncilDTO addCouncil(CouncilDTO councilDTO);
 
     /**
-     * Method returns list with all councils in the database.
-     * @return List of all councils in the database
+     * Method returns all councils in the database.
+     * Contains pagination component.
+     *
+     * @return Page with all councils in the database
      */
     Page<CouncilDTO> getAllCouncils(Pageable pageable);
 
     /**
      * Method returns details of council with requested id.
+     *
      * @param councilId
      * @return DTO with detail of council with requested id
      * @throws ResourceNotFoundException if council with requested id doesn't exist
@@ -31,7 +35,8 @@ public interface CouncilService {
 
     /**
      * Method edits already created council.
-     * @param councilId id of edited council
+     *
+     * @param councilId  id of edited council
      * @param councilDTO new council data
      * @return DTO with updated council
      */
@@ -39,6 +44,7 @@ public interface CouncilService {
 
     /**
      * Method deletes council with requested id.
+     *
      * @param councilId id of council to delete
      */
     void deleteCouncil(long councilId);

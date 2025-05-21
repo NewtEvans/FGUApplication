@@ -4,15 +4,11 @@ import cz.newtworks.FGUApplication.dto.FacultyDTO;
 import cz.newtworks.FGUApplication.service.FacultyService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/faculty")
@@ -38,12 +34,12 @@ public class FacultyController {
     }
 
     @PutMapping("/{facultyId}")
-    public ResponseEntity<FacultyDTO> updateFaculty(@Valid @PathVariable long facultyId, @RequestBody FacultyDTO facultyDTO){
+    public ResponseEntity<FacultyDTO> updateFaculty(@Valid @PathVariable long facultyId, @RequestBody FacultyDTO facultyDTO) {
         return ResponseEntity.ok(facultyService.editFaculty(facultyId, facultyDTO));
     }
 
     @DeleteMapping("/{facultyId}")
-    public ResponseEntity<Void>deleteFaculty(@PathVariable long facultyId){
+    public ResponseEntity<Void> deleteFaculty(@PathVariable long facultyId) {
         facultyService.deleteFaculty(facultyId);
         return ResponseEntity.noContent().build();
     }

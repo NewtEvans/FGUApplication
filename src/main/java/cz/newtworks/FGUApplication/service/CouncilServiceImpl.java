@@ -10,11 +10,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 @Service
-public class CouncilServiceImpl implements CouncilService{
+public class CouncilServiceImpl implements CouncilService {
 
     @Autowired
     private CouncilRepository councilRepository;
@@ -59,12 +56,13 @@ public class CouncilServiceImpl implements CouncilService{
 
     /**
      * Returns a council entity by ID
+     *
      * @param councilId councilId the ID of the council
      * @return the found CouncilEntity
      * @throws ResourceNotFoundException if no council with the given ID is found
      */
-    private CouncilEntity fetchCouncilById(long councilId){
-       return councilRepository.findById(councilId)
+    private CouncilEntity fetchCouncilById(long councilId) {
+        return councilRepository.findById(councilId)
                 .orElseThrow(() -> new ResourceNotFoundException("Council with ID " + councilId + " was not found in the database."));
     }
 }

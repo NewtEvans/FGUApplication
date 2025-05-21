@@ -11,6 +11,7 @@ public interface ThesisService {
 
     /**
      * Method creates a new thesis into the database.
+     *
      * @param thesisDTO
      * @return DTO with new theses from the database
      */
@@ -18,6 +19,7 @@ public interface ThesisService {
 
     /**
      * Method returns details of thesis with requested id.
+     *
      * @param thesisId Requested id
      * @return DTO with detail of thesis with requested id
      * @throws ResourceNotFoundException if thesis with requested id doesn't exist
@@ -26,13 +28,16 @@ public interface ThesisService {
 
     /**
      * Method returns all theses in the database.
-     * @return List of all theses in the database
+     * Contains pagination components.
+     *
+     * @return Page with all theses in the database
      */
     Page<ThesisDTO> getAllThesis(Pageable pageable);
 
 
     /**
      * Method returns all thesis contains consultant with requested id.
+     *
      * @param consultantId
      * @return List of all theses with requested consultant id
      */
@@ -40,6 +45,7 @@ public interface ThesisService {
 
     /**
      * Method returns all thesis contains student with requested id.
+     *
      * @param studentId
      * @return List of all theses with requested student id
      */
@@ -47,6 +53,7 @@ public interface ThesisService {
 
     /**
      * Method returns all thesis contains trainer with requested id.
+     *
      * @param trainerId
      * @return List of all theses with requested trainer id
      */
@@ -54,7 +61,8 @@ public interface ThesisService {
 
     /**
      * Method edits already created thesis.
-     * @param thesisId id of edited thesis
+     *
+     * @param thesisId  id of edited thesis
      * @param thesisDTO new thesis data
      * @return DTO with updated thesis
      */
@@ -62,6 +70,7 @@ public interface ThesisService {
 
     /**
      * Method deletes thesis.
+     *
      * @param thesisId is of deleted thesis
      */
     void deleteThesis(long thesisId);

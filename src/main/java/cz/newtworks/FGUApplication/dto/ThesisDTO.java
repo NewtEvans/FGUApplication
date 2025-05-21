@@ -3,7 +3,10 @@ package cz.newtworks.FGUApplication.dto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import cz.newtworks.FGUApplication.constant.ThesisType;
 import jakarta.validation.constraints.NotBlank;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 

@@ -10,11 +10,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 @Service
-public class DepartmentServiceImpl implements DepartmentService{
+public class DepartmentServiceImpl implements DepartmentService {
 
     @Autowired
     private DepartmentMapper departmentMapper;
@@ -32,7 +29,7 @@ public class DepartmentServiceImpl implements DepartmentService{
 
     @Override
     public Page<DepartmentDTO> getAllDepartments(Pageable pageable) {
-        return departmentRepository.findAll(pageable).map(departmentMapper :: toDTO);
+        return departmentRepository.findAll(pageable).map(departmentMapper::toDTO);
     }
 
     @Override
@@ -59,12 +56,13 @@ public class DepartmentServiceImpl implements DepartmentService{
     /**
      * Private method that returns entity of department with specific ID.
      * If asked ID doesn't exist method returns error exception.
+     *
      * @param departmentId
      * @return Department entity with asked id
-      * @throws ResourceNotFoundException if no person with the given ID is found
+     * @throws ResourceNotFoundException if no person with the given ID is found
      */
     private DepartmentEntity fetchDepartmentById(long departmentId) {
-       return  departmentRepository.findById(departmentId).orElseThrow(() -> new ResourceNotFoundException("Department with id" + departmentId + "wasn't found in the database."));
+        return departmentRepository.findById(departmentId).orElseThrow(() -> new ResourceNotFoundException("Department with id" + departmentId + "wasn't found in the database."));
     }
 
 

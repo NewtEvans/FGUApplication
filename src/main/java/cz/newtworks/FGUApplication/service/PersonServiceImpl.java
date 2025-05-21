@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class PersonServiceImpl implements PersonService{
+public class PersonServiceImpl implements PersonService {
 
     @Autowired
     private PersonMapper personMapper;
@@ -27,7 +27,7 @@ public class PersonServiceImpl implements PersonService{
     private PersonRepository personRepository;
 
     @Override
-    public PersonDTO addPerson(PersonDTO personDTO){
+    public PersonDTO addPerson(PersonDTO personDTO) {
         PersonEntity newPersonEntity = personMapper.toEntity(personDTO);
         personRepository.save(newPersonEntity);
 
@@ -36,7 +36,7 @@ public class PersonServiceImpl implements PersonService{
 
     @Override
     public Page<PersonDTO> getAllPeople(Pageable pageable) {
-        return personRepository.findAll(pageable).map(personMapper :: toDTO);
+        return personRepository.findAll(pageable).map(personMapper::toDTO);
     }
 
     @Override
@@ -54,11 +54,11 @@ public class PersonServiceImpl implements PersonService{
 
     @Override
     public PersonDTO editPerson(PersonDTO personDTO, long personId) {
-       PersonEntity editedPerson = personMapper.toEntity(personDTO);
-       editedPerson.setId(personId);
-       personRepository.save(editedPerson);
+        PersonEntity editedPerson = personMapper.toEntity(personDTO);
+        editedPerson.setId(personId);
+        personRepository.save(editedPerson);
 
-       return personMapper.toDTO(fetchPersonById(personId));
+        return personMapper.toDTO(fetchPersonById(personId));
     }
 
     @Override
@@ -71,11 +71,12 @@ public class PersonServiceImpl implements PersonService{
     /**
      * Private method that returns person entity with specific ID.
      * If asked ID doesn't exist method returns error exception.
+     *
      * @param id
      * @return Person entity with asked id
      * @throws ResourceNotFoundException if no person with the given ID is found
      */
-    private PersonEntity fetchPersonById(long id){
+    private PersonEntity fetchPersonById(long id) {
         return personRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Person with ID " + id + " was not found in the database"));
     }

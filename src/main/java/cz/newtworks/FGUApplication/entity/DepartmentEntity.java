@@ -1,9 +1,11 @@
 package cz.newtworks.FGUApplication.entity;
 
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
@@ -15,16 +17,13 @@ import java.util.List;
 @AllArgsConstructor
 public class DepartmentEntity {
 
+    @ManyToMany(mappedBy = "departments", fetch = FetchType.EAGER)
+    List<PersonEntity> people;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
     @Column(nullable = false)
     private String departmentNumber;
-
     @Column(nullable = false)
     private String departmentName;
-
-    @ManyToMany(mappedBy = "departments", fetch = FetchType.EAGER)
-    List<PersonEntity> people;
 }

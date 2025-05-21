@@ -10,11 +10,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 @Service
-public class FacultyServiceImpl implements FacultyService{
+public class FacultyServiceImpl implements FacultyService {
 
     @Autowired
     private FacultyMapper facultyMapper;
@@ -60,11 +57,12 @@ public class FacultyServiceImpl implements FacultyService{
     /**
      * Private method that returns faculty entity with specific ID.
      * If asked ID doesn't exist method returns error exception.
+     *
      * @param facultyId
      * @return Faculty entity with asked id
      * @throws ResourceNotFoundException if no person with the given ID is found
      */
-    private FacultyEntity fetchFacultyById(long facultyId){
+    private FacultyEntity fetchFacultyById(long facultyId) {
         return facultyRepository.findById(facultyId)
                 .orElseThrow(() -> new ResourceNotFoundException("Faculty with id " + facultyId + " was not found in the database."));
     }

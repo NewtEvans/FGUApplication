@@ -9,7 +9,6 @@ import cz.newtworks.FGUApplication.entity.repository.FacultyRepository;
 import cz.newtworks.FGUApplication.entity.repository.PersonRepository;
 import cz.newtworks.FGUApplication.entity.repository.ThesisRepository;
 import cz.newtworks.FGUApplication.exception.ResourceNotFoundException;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,7 +18,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class ThesisServiceImpl implements ThesisService{
+public class ThesisServiceImpl implements ThesisService {
 
     @Autowired
     private ThesisRepository thesisRepository;
@@ -66,8 +65,8 @@ public class ThesisServiceImpl implements ThesisService{
 
     @Override
     public Page<ThesisDTO> getAllThesis(Pageable pageable) {
-       return thesisRepository.findAll(pageable)
-               .map(thesisMapper :: toDTO);
+        return thesisRepository.findAll(pageable)
+                .map(thesisMapper::toDTO);
     }
 
     @Override
@@ -113,22 +112,24 @@ public class ThesisServiceImpl implements ThesisService{
     /**
      * Private method that returns thesis entity with specific ID.
      * If asked ID doesn't exist method returns error exception.
+     *
      * @param thesisId
      * @return Thesis entity with asked id
      * @throws ResourceNotFoundException if no thesis with the given ID is found
      */
-    private ThesisEntity fetchThesisById(long thesisId){
+    private ThesisEntity fetchThesisById(long thesisId) {
         return thesisRepository.findById(thesisId)
                 .orElseThrow(() -> new ResourceNotFoundException("Thesis with id " + thesisId + " was not found in the database."));
     }
 
     /**
      * Private method that adding DTOs with data from different tables.
-     * @param thesisDTO DTO with added information
+     *
+     * @param thesisDTO    DTO with added information
      * @param thesisEntity Entity with ids of all requested data
      * @return DTO with all information
      */
-    private ThesisDTO fillThesisWithDTOs(ThesisDTO thesisDTO, ThesisEntity thesisEntity){
+    private ThesisDTO fillThesisWithDTOs(ThesisDTO thesisDTO, ThesisEntity thesisEntity) {
 
         thesisDTO.setStudent(personService.getPersonById(thesisEntity.getStudent().getId()));
         thesisDTO.setTrainer(personService.getPersonById(thesisEntity.getTrainer().getId()));
