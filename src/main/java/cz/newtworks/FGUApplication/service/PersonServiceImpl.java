@@ -1,14 +1,17 @@
 package cz.newtworks.FGUApplication.service;
 
 import cz.newtworks.FGUApplication.dto.PersonDTO;
+import cz.newtworks.FGUApplication.dto.filter.PersonFilterDTO;
 import cz.newtworks.FGUApplication.dto.mapper.DepartmentMapper;
 import cz.newtworks.FGUApplication.dto.mapper.PersonMapper;
 import cz.newtworks.FGUApplication.entity.PersonEntity;
 import cz.newtworks.FGUApplication.entity.repository.PersonRepository;
 import cz.newtworks.FGUApplication.exception.ResourceNotFoundException;
+import cz.newtworks.FGUApplication.specification.PersonSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,8 +38,11 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public Page<PersonDTO> getAllPeople(Pageable pageable) {
-        return personRepository.findAll(pageable).map(personMapper::toDTO);
+    public Page<PersonDTO> getAllPeople(Pageable pageable, PersonFilterDTO personFilterDTO) {
+        Specification<PersonEntity> specification = PersonSpecification.buildSpecification(personFilterDTO);
+
+        return personRepository.findAll(specification, pageable)
+                .map(personMapper::toDTO);
     }
 
     @Override

@@ -14,14 +14,14 @@ public class PersonFilterDTO {
 
     private Long id;
 
-    private String titleBeforeName;
+    private String titleBeforeNameFilter;
 
-    private String name;
+    private String nameFilter;
 
-    private String surname;
+    private String surnameFilter;
 
-    private String titleAfterName;
+    private String titleAfterNameFilter;
 
-    private Employee isEmployee;
+    private Employee isEmployeeFilter;
 
 }

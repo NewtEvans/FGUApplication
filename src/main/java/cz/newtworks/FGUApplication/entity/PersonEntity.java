@@ -30,14 +30,20 @@ public class PersonEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     private String titleBeforeName;
+    
     @Column(nullable = false)
     private String name;
+
     @Column(nullable = false)
     private String surname;
+
     private String titleAfterName;
+
     @Enumerated(EnumType.STRING)
     private Employee isEmployee;
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "student")
     private List<ThesisEntity> studied;
 

@@ -1,6 +1,7 @@
 package cz.newtworks.FGUApplication.controller;
 
 import cz.newtworks.FGUApplication.dto.PersonDTO;
+import cz.newtworks.FGUApplication.dto.filter.PersonFilterDTO;
 import cz.newtworks.FGUApplication.service.PersonService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,10 @@ public class PersonController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<Page<PersonDTO>> getAllPeople(Pageable pageable) {
-        return ResponseEntity.ok(personService.getAllPeople(pageable));
+    public ResponseEntity<Page<PersonDTO>> getAllPeople(
+            Pageable pageable,
+            @ModelAttribute PersonFilterDTO personFilterDTO) {
+        return ResponseEntity.ok(personService.getAllPeople(pageable, personFilterDTO));
     }
 
     @GetMapping("/{personId}")

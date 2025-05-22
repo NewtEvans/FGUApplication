@@ -1,6 +1,7 @@
 package cz.newtworks.FGUApplication.service;
 
 import cz.newtworks.FGUApplication.dto.PersonDTO;
+import cz.newtworks.FGUApplication.dto.filter.PersonFilterDTO;
 import cz.newtworks.FGUApplication.exception.ResourceNotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,11 +20,11 @@ public interface PersonService {
 
     /**
      * Method returns all people in the database.
-     * Contains pagination components.
+     * Contains pagination and specification components.
      *
      * @return Page with all people in the database
      */
-    Page<PersonDTO> getAllPeople(Pageable pageable);
+    Page<PersonDTO> getAllPeople(Pageable pageable, PersonFilterDTO personFilterDTO);
 
     /**
      * Method returns all people in particular department
