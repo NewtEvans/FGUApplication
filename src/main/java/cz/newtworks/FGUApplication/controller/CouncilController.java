@@ -1,6 +1,7 @@
 package cz.newtworks.FGUApplication.controller;
 
 import cz.newtworks.FGUApplication.dto.CouncilDTO;
+import cz.newtworks.FGUApplication.dto.filter.CouncilFilterDTO;
 import cz.newtworks.FGUApplication.service.CouncilService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,10 @@ public class CouncilController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<Page<CouncilDTO>> getAllCouncils(Pageable pageable) {
-        return ResponseEntity.ok(councilService.getAllCouncils(pageable));
+    public ResponseEntity<Page<CouncilDTO>> getAllCouncils(
+            Pageable pageable,
+            @ModelAttribute CouncilFilterDTO councilFilterDTO) {
+        return ResponseEntity.ok(councilService.getAllCouncils(pageable, councilFilterDTO));
     }
 
     @GetMapping("/{councilId}")

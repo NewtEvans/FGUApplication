@@ -1,6 +1,7 @@
 package cz.newtworks.FGUApplication.service;
 
 import cz.newtworks.FGUApplication.dto.CouncilDTO;
+import cz.newtworks.FGUApplication.dto.filter.CouncilFilterDTO;
 import cz.newtworks.FGUApplication.exception.ResourceNotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,11 +19,11 @@ public interface CouncilService {
 
     /**
      * Method returns all councils in the database.
-     * Contains pagination component.
+     * Contains pagination and specification component.
      *
      * @return Page with all councils in the database
      */
-    Page<CouncilDTO> getAllCouncils(Pageable pageable);
+    Page<CouncilDTO> getAllCouncils(Pageable pageable, CouncilFilterDTO councilFilterDTO);
 
     /**
      * Method returns details of council with requested id.

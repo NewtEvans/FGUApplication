@@ -1,13 +1,16 @@
 package cz.newtworks.FGUApplication.service;
 
 import cz.newtworks.FGUApplication.dto.CouncilDTO;
+import cz.newtworks.FGUApplication.dto.filter.CouncilFilterDTO;
 import cz.newtworks.FGUApplication.dto.mapper.CouncilMapper;
 import cz.newtworks.FGUApplication.entity.CouncilEntity;
 import cz.newtworks.FGUApplication.entity.repository.CouncilRepository;
 import cz.newtworks.FGUApplication.exception.ResourceNotFoundException;
+import cz.newtworks.FGUApplication.specification.CouncilSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -28,8 +31,10 @@ public class CouncilServiceImpl implements CouncilService {
     }
 
     @Override
-    public Page<CouncilDTO> getAllCouncils(Pageable pageable) {
-        return councilRepository.findAll(pageable)
+    public Page<CouncilDTO> getAllCouncils(Pageable pageable, CouncilFilterDTO councilFilterDTO) {
+        Specification<CouncilEntity> specification = CouncilSpecification.buildSpecification(councilFilterDTO);
+
+        return councilRepository.findAll(specification, pageable)
                 .map(councilMapper::toDTO);
     }
 
