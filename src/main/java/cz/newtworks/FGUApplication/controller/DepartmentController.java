@@ -1,5 +1,7 @@
 package cz.newtworks.FGUApplication.controller;
+
 import cz.newtworks.FGUApplication.dto.DepartmentDTO;
+import cz.newtworks.FGUApplication.dto.filter.DepartmentFilterDTO;
 import cz.newtworks.FGUApplication.service.DepartmentService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,27 +19,29 @@ public class DepartmentController {
     private DepartmentService departmentService;
 
     @PostMapping
-    public ResponseEntity<DepartmentDTO> createDepartment(@Valid @RequestBody DepartmentDTO departmentDTO){
-       return ResponseEntity.status(HttpStatus.CREATED).body(departmentService.addDepartment(departmentDTO));
+    public ResponseEntity<DepartmentDTO> createDepartment(@Valid @RequestBody DepartmentDTO departmentDTO) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(departmentService.addDepartment(departmentDTO));
     }
 
     @GetMapping("/all")
-    public ResponseEntity<Page<DepartmentDTO>> getAllDepartment(Pageable pageable){
-        return ResponseEntity.ok(departmentService.getAllDepartments(pageable));
+    public ResponseEntity<Page<DepartmentDTO>> getAllDepartment(
+            Pageable pageable,
+            @ModelAttribute DepartmentFilterDTO departmentFilterDTO) {
+        return ResponseEntity.ok(departmentService.getAllDepartments(pageable, departmentFilterDTO));
     }
 
     @GetMapping("/{departmentId}")
-    public ResponseEntity<DepartmentDTO> getDepartment(@PathVariable long departmentId){
+    public ResponseEntity<DepartmentDTO> getDepartment(@PathVariable long departmentId) {
         return ResponseEntity.ok(departmentService.getDepartmentById(departmentId));
     }
 
     @PutMapping("/{departmentId}")
-    public ResponseEntity<DepartmentDTO> updateDepartment(@Valid @RequestBody DepartmentDTO departmentDTO, @PathVariable long departmentId){
+    public ResponseEntity<DepartmentDTO> updateDepartment(@Valid @RequestBody DepartmentDTO departmentDTO, @PathVariable long departmentId) {
         return ResponseEntity.ok(departmentService.editDepartment(departmentDTO, departmentId));
     }
 
     @DeleteMapping("/{departmentId}")
-    public ResponseEntity<Void> deleteDepartment(@PathVariable long departmentId){
+    public ResponseEntity<Void> deleteDepartment(@PathVariable long departmentId) {
         departmentService.deleteDepartment(departmentId);
         return ResponseEntity.noContent().build();
     }

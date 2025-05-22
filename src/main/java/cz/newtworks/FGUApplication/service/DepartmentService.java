@@ -1,6 +1,7 @@
 package cz.newtworks.FGUApplication.service;
 
 import cz.newtworks.FGUApplication.dto.DepartmentDTO;
+import cz.newtworks.FGUApplication.dto.filter.DepartmentFilterDTO;
 import cz.newtworks.FGUApplication.exception.ResourceNotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,11 +18,11 @@ public interface DepartmentService {
 
     /**
      * Method returns all departments in the database.
-     * Contains pagination components.
+     * Contains pagination and specification components.
      *
      * @return List with DTO of all department from the database
      */
-    Page<DepartmentDTO> getAllDepartments(Pageable pageable);
+    Page<DepartmentDTO> getAllDepartments(Pageable pageable, DepartmentFilterDTO departmentFilterDTO);
 
     /**
      * Method returns details of department with requested id.

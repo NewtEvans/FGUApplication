@@ -27,7 +27,6 @@ public class FacultyController {
     public ResponseEntity<Page<FacultyDTO>> getAllFaculty(
             @ModelAttribute FacultyFilterDTO facultyFilterDTO,
             Pageable pageable) {
-
         return ResponseEntity.ok(facultyService.getAllFaculty(pageable, facultyFilterDTO));
     }
 

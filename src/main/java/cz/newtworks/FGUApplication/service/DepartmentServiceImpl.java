@@ -1,13 +1,16 @@
 package cz.newtworks.FGUApplication.service;
 
 import cz.newtworks.FGUApplication.dto.DepartmentDTO;
+import cz.newtworks.FGUApplication.dto.filter.DepartmentFilterDTO;
 import cz.newtworks.FGUApplication.dto.mapper.DepartmentMapper;
 import cz.newtworks.FGUApplication.entity.DepartmentEntity;
 import cz.newtworks.FGUApplication.entity.repository.DepartmentRepository;
 import cz.newtworks.FGUApplication.exception.ResourceNotFoundException;
+import cz.newtworks.FGUApplication.specification.DepartmentSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -28,8 +31,11 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public Page<DepartmentDTO> getAllDepartments(Pageable pageable) {
-        return departmentRepository.findAll(pageable).map(departmentMapper::toDTO);
+    public Page<DepartmentDTO> getAllDepartments(Pageable pageable, DepartmentFilterDTO departmentFilterDTO) {
+        Specification<DepartmentEntity> specification = DepartmentSpecification.buildSpecification(departmentFilterDTO);
+
+        return departmentRepository.findAll(specification, pageable)
+                .map(departmentMapper::toDTO);
     }
 
     @Override
