@@ -1,6 +1,7 @@
 package cz.newtworks.FGUApplication.service;
 
 import cz.newtworks.FGUApplication.dto.ThesisDTO;
+import cz.newtworks.FGUApplication.dto.filter.ThesisFilterDTO;
 import cz.newtworks.FGUApplication.dto.mapper.PersonMapper;
 import cz.newtworks.FGUApplication.dto.mapper.ThesisMapper;
 import cz.newtworks.FGUApplication.entity.ThesisEntity;
@@ -9,9 +10,11 @@ import cz.newtworks.FGUApplication.entity.repository.FacultyRepository;
 import cz.newtworks.FGUApplication.entity.repository.PersonRepository;
 import cz.newtworks.FGUApplication.entity.repository.ThesisRepository;
 import cz.newtworks.FGUApplication.exception.ResourceNotFoundException;
+import cz.newtworks.FGUApplication.specification.ThesisSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -64,8 +67,10 @@ public class ThesisServiceImpl implements ThesisService {
     }
 
     @Override
-    public Page<ThesisDTO> getAllThesis(Pageable pageable) {
-        return thesisRepository.findAll(pageable)
+    public Page<ThesisDTO> getAllThesis(Pageable pageable, ThesisFilterDTO thesisFilterDTO) {
+        Specification<ThesisEntity> specification = ThesisSpecification.buildSpecification(thesisFilterDTO);
+
+        return thesisRepository.findAll(specification, pageable)
                 .map(thesisMapper::toDTO);
     }
 

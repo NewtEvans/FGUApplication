@@ -1,6 +1,7 @@
 package cz.newtworks.FGUApplication.service;
 
 import cz.newtworks.FGUApplication.dto.ThesisDTO;
+import cz.newtworks.FGUApplication.dto.filter.ThesisFilterDTO;
 import cz.newtworks.FGUApplication.exception.ResourceNotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -32,7 +33,7 @@ public interface ThesisService {
      *
      * @return Page with all theses in the database
      */
-    Page<ThesisDTO> getAllThesis(Pageable pageable);
+    Page<ThesisDTO> getAllThesis(Pageable pageable, ThesisFilterDTO thesisFilterDTO);
 
 
     /**
