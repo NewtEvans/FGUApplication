@@ -86,7 +86,7 @@ const PersonForm = () => {
             setPerson({ ...person, titleAfterName: e.target.value });
           }}
         />
-        <InputSelect
+        {/* <InputSelect
           name="departments"
           items={departmentList}
           multiple={true}
@@ -102,6 +102,18 @@ const PersonForm = () => {
             );
             const departments = selectedDepartments.map((id) => ({ id }));
             setPerson({ ...person, departments });
+          }}
+        /> */}
+        <InputSelect
+          name="departments"
+          items={departmentList}
+          label="Oddělení"
+          placeHolder="Vyber oddělení"
+          value={person.departments.id}
+          showLabel="departmentNumber"
+          showLabel2="departmentName"
+          onChange={(id) => {
+            setPerson({ ...person, department: { id } });
           }}
         />
 

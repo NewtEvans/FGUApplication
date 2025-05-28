@@ -89,58 +89,61 @@ const ThesisForm = () => {
           name="student"
           items={people}
           label="Student"
-          prompt="Vyber studenta"
+          placeHolder="Vyber studenta"
           showLabel="surname"
           showLabel2="name"
           value={thesis.student.id}
-          handleChange={(e) => {
-            setThesis({ ...thesis, student: { id: e.target.value } });
+          onChange={(id) => {
+            setThesis({ ...thesis, student: { id } });
           }}
         />
         <InputSelect
           name="trainer"
           items={people}
           label="Školitel"
-          prompt="Vyber školitele"
+          placeHolder="Vyber školitele"
           showLabel="surname"
           showLabel2="name"
           value={thesis.trainer.id}
-          handleChange={(e) => {
-            setThesis({ ...thesis, trainer: { id: e.target.value } });
+          onChange={(id) => {
+            setThesis({ ...thesis, trainer: { id } });
           }}
         />
         <InputSelect
           name="consultant"
           items={people}
           label="Konzultant"
-          prompt="Vyber konzultanta"
+          placeHolder="Vyber konzultanta"
           showLabel="surname"
           showLabel2="name"
           value={thesis.consultant.id}
-          handleChange={(e) => {
-            setThesis({ ...thesis, consultant: { id: e.target.value } });
+          onChange={(id) => {
+            setThesis({
+              ...thesis,
+              consultant: { id },
+            });
           }}
         />
         <InputSelect
           name="faculty"
           items={faculty}
           label="Fakulta"
-          prompt="Vyber fakultu"
+          placeHolder="Vyber fakultu"
           value={thesis.faculty.id}
           showLabel="facultyName"
-          handleChange={(e) => {
-            setThesis({ ...thesis, faculty: { id: e.target.value } });
+          onChange={(id) => {
+            setThesis({ ...thesis, faculty: { id } });
           }}
         />
         <InputSelect
           name="council"
           items={council}
           label="Rada"
-          prompt="Vyber radu"
+          placeHolder="Vyber radu"
           value={thesis.council?.id}
           showLabel="councilName"
-          handleChange={(e) => {
-            setThesis({ ...thesis, council: { id: e.target.value } });
+          onChange={(id) => {
+            setThesis({ ...thesis, council: { id } });
           }}
         />
         <InputField

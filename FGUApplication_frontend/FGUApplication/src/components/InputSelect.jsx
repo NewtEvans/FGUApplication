@@ -1,57 +1,47 @@
-import React from "react";
+import Select from "react-select";
 
-export function InputSelect(props) {
-  const multiple = props.multiple;
-  const required = props.required || false;
-  const showLabel = props.showLabel;
-  const showLabel2 = props.showLabel2;
+export function InputSelect({
+  items, //vsechna data
+  value, //aktualni vybrana hodnota
+  onChange, //funkce, co se ma zavolat pri vyberu
+  label,
+  name,
+  isMulti = false,
+  placeHolder,
+  showLabel = "name",
+  showLabel2,
+}) {
+  const options = items.map((item) => ({
+    value: item.id,
+    label: showLabel2
+      ? `${item[showLabel]} ${item[showLabel2]}`
+      : item[showLabel],
+  }));
 
-  // příznak označení prázdné hodnoty
-  const emptySelected = multiple ? props.value?.length === 0 : !props.value;
-  // příznak objektové struktury položek
-  const objectItems = props.enum ? false : true;
+  const selectedValue = isMulti
+    ? options.filter((option) => value?.includes(option.value))
+    : options.find((option) => option.value === value);
 
   return (
     <div className="form-group">
-      <label>{props.label}:</label>
-      <select
-        required={required}
-        className="browser-default form-select"
-        multiple={multiple}
-        name={props.name}
-        onChange={props.handleChange}
-        value={props.value}
-      >
-        {required ? (
-          /* prázdná hodnota zakázaná (pro úpravu záznamu) */
-          <option disabled value={emptySelected}>
-            {props.prompt}
-          </option>
-        ) : (
-          /* prázdná hodnota povolená (pro filtrování přehledu) */
-          <option key={0} value={emptySelected}>
-            ({props.prompt})
-          </option>
-        )}
-
-        {objectItems
-          ? /* vykreslení položek jako objektů z databáze */
-            props.items.map((item, index) => (
-              <option key={required ? index : index + 1} value={item.id}>
-                {/* {`${item.name} ${item.surname}`} */}
-                {showLabel2
-                  ? item[props.showLabel] + " " + item[props.showLabel2]
-                  : item[props.showLabel]}
-                {/* {item[props.showLabel]} */}
-              </option>
-            ))
-          : /* vykreslení položek jako hodnot z výčtu */
-            props.items.map((item, index) => (
-              <option key={required ? index : index + 1} value={item}>
-                {props.enum[item]}
-              </option>
-            ))}
-      </select>
+      <label>{label}</label>
+      <Select
+        isMulti={isMulti}
+        name={name}
+        placeholder={placeHolder}
+        options={options}
+        value={selectedValue}
+        onChange={(selected) =>
+          onChange(
+            isMulti
+              ? selected.map((option) => option.value)
+              : selected?.value || null
+          )
+        }
+        className="basic-single"
+        classNamePrefix="select"
+        isClearable={!isMulti}
+      />
     </div>
   );
 }
