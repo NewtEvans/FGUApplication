@@ -16,6 +16,7 @@ import FacultyForm from "./faculty/FacultyForm";
 import CouncilIndex from "./coucil/CouncilIndex";
 import CouncilDetail from "./coucil/CouncilDetail";
 import CouncilForm from "./coucil/CouncilForm";
+import FilterForm from "./components/filter/FilterField";
 
 import {
   BrowserRouter as Router,
@@ -93,7 +94,7 @@ function App() {
                   </ul>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
+                  <a className="nav-link" href="/summary">
                     Roční přehled
                   </a>
                 </li>
@@ -147,6 +148,10 @@ function App() {
             <Route path="detail/:id" element={<CouncilDetail />} />
             <Route path="edit/:id" element={<CouncilForm />} />
             <Route path="create" element={<CouncilForm />} />
+          </Route>
+          <Route index element={<Navigate to={"/summary"} />} />
+          <Route path="/summary">
+            <Route index element={<FilterForm />} />
           </Route>
         </Routes>
       </div>

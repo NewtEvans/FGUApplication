@@ -1,4 +1,4 @@
-export const Pagination = ({ page, setPage, totalPages, size, setSize }) => {
+export function Pagination({ page, setPage, totalPages, size, setSize }) {
   const pages = [...Array(totalPages).keys()];
 
   return (
@@ -55,5 +55,5 @@ export const Pagination = ({ page, setPage, totalPages, size, setSize }) => {
       </div>
     </div>
   );
-};
+}
 export default Pagination;

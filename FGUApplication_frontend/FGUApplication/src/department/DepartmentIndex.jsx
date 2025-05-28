@@ -4,6 +4,7 @@ import { Link } from "react-router";
 import { Pagination } from "../components/Pagination";
 
 import DepartmentTable from "./DepartmentTable";
+import FilterForm from "../components/filter/FilterForm";
 
 const DepartmentIndex = () => {
   const [url, setUrl] = useState("/department/all");
@@ -13,12 +14,32 @@ const DepartmentIndex = () => {
   const [totalPages, setTotalPages] = useState();
   const [size, setSize] = useState(10);
 
+  const [sort, setSort] = useState();
+
+  const [filter, setFilter] = useState([]);
+
+  const filterFields = [
+    { name: "name", label: "Název oddělení", type: "text" },
+    { name: "number", label: "Číslo oddělení", type: "text" },
+  ];
+
+  const handleFilter = (filterData) => {
+    setPage(0);
+    setFilter({
+      departmentNameFilter: filterData.name,
+      departmentNumberFilter: filterData.number,
+    });
+  };
+
   useEffect(() => {
-    apiGet(url, {
-      page: page,
-      size: size,
-      totalPages: totalPages,
-    })
+    const params = {
+      page,
+      size,
+      totalPages,
+      ...filter,
+    };
+
+    apiGet(url, params)
       .then((data) => {
         setDepartments(data.content);
         setTotalPages(data.totalPages);
@@ -26,7 +47,7 @@ const DepartmentIndex = () => {
       .catch((error) => {
         console.error(error);
       });
-  }, [url, page, size, totalPages]);
+  }, [url, page, size, filter]);
 
   return (
     <div>
@@ -37,6 +58,10 @@ const DepartmentIndex = () => {
           Nové oddělení
         </Link>
       </div>
+      <div>
+        <FilterForm onFilter={handleFilter} fields={filterFields} />
+      </div>
+
       <br />
       <DepartmentTable departments={departments} />
       <Pagination
