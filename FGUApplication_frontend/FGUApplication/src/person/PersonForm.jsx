@@ -109,11 +109,12 @@ const PersonForm = () => {
           items={departmentList}
           label="Oddělení"
           placeHolder="Vyber oddělení"
-          value={person.departments.id}
+          value={person.departments.map((department) => department.id)}
           showLabel="departmentNumber"
           showLabel2="departmentName"
-          onChange={(id) => {
-            setPerson({ ...person, department: { id } });
+          isMulti={true}
+          onChange={(ids) => {
+            setPerson({ ...person, departments: ids.map((id) => ({ id })) });
           }}
         />
 
