@@ -6,6 +6,7 @@ import FacultyTable from "./FacultyTable";
 import { apiGet } from "../utils/api";
 
 import { Pagination } from "../components/Pagination";
+import FilterForm from "../components/filter/FilterForm";
 
 const FacultyIndex = () => {
   const [url, setUrl] = useState("/faculty/all");
@@ -15,12 +16,31 @@ const FacultyIndex = () => {
   const [totalPages, setTotalPages] = useState();
   const [size, setSize] = useState(10);
 
+  const [filter, setFilter] = useState([]);
+
+  const filterFields = [
+    { name: "facultyAbbreviation", label: "Zkratka fakulty", type: "text" },
+    { name: "facultyName", label: "Název fakulty", type: "text" },
+    { name: "school", label: "Škola", type: "text" },
+  ];
+
+  const handleFilter = (filterData) => {
+    setPage(0);
+    setFilter({
+      facultyNameFilter: filterData.facultyName,
+      schoolFilter: filterData.school,
+      facultyAbbreviationFilter: filterData.facultyAbbreviation,
+    });
+  };
+
   useEffect(() => {
-    apiGet(url, {
-      page: page,
-      totalPages: totalPages,
-      size: size,
-    })
+    const params = {
+      page,
+      totalPages,
+      size,
+      ...filter,
+    };
+    apiGet(url, params)
       .then((data) => {
         setFaculties(data.content);
         setTotalPages(data.totalPages);
@@ -28,7 +48,7 @@ const FacultyIndex = () => {
       .catch((error) => {
         console.error(error);
       });
-  }, [url, page, totalPages, size]);
+  }, [url, page, size, filter]);
 
   return (
     <div>
@@ -39,6 +59,8 @@ const FacultyIndex = () => {
           Nová fakulta
         </Link>
       </div>
+
+      <FilterForm onFilter={handleFilter} fields={filterFields} />
       <br />
       <FacultyTable faculties={faculties} />
       <Pagination

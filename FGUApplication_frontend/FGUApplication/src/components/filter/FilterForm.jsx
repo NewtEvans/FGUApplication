@@ -28,7 +28,7 @@ const FilterForm = ({ onFilter, fields }) => {
           ))}
         </div>
 
-        <button type="submit" className="btn btn-primary btn-md">
+        <button type="submit" className="btn btn-success btn-md">
           Filtrovat
         </button>
         <button onClick={handleReset} className="btn btn-warning btn-md">

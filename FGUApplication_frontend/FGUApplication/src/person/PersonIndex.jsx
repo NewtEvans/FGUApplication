@@ -3,6 +3,7 @@ import PersonTable from "./PersonTable";
 import { apiGet } from "../utils/api";
 import { Link } from "react-router-dom";
 import { Pagination } from "../components/Pagination";
+import FilterForm from "../components/filter/FilterForm";
 
 const PersonIndex = () => {
   const [url, setUrl] = useState("/person/all");
@@ -11,15 +12,34 @@ const PersonIndex = () => {
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState();
   const [size, setSize] = useState(10);
+
   const [sort, setSort] = useState("surname");
 
+  const [filter, setFilter] = useState([]);
+
+  const filterFields = [
+    { name: "name", label: "Jméno", type: "text" },
+    { name: "surname", label: "Přijmení", type: "text" },
+  ];
+
+  const handleFilter = (filterData) => {
+    setPage(0);
+    setFilter({
+      nameFilter: filterData.name,
+      surnameFilter: filterData.surname,
+    });
+  };
+
   useEffect(() => {
-    apiGet(url, {
-      page: page,
-      size: size,
-      totalPages: totalPages,
-      sort: sort,
-    })
+    const params = {
+      page,
+      size,
+      totalPages,
+      sort,
+      ...filter,
+    };
+
+    apiGet(url, params)
       .then((data) => {
         setPeople(data.content);
         setTotalPages(data.totalPages);
@@ -27,7 +47,7 @@ const PersonIndex = () => {
       .catch((error) => {
         console.error(error);
       });
-  }, [url, page, size, totalPages, sort]);
+  }, [url, page, size, filter]);
 
   return (
     <div>
@@ -39,43 +59,51 @@ const PersonIndex = () => {
         </Link>
       </div>
       <br />
-      <div className="dropdown">
-        <button
-          id="sortDropdownMenuButton1"
-          className="btn dropdown-toggle"
-          type="button"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-          onChange={(e) => {
-            setSort(e.target.value);
-          }}
-        >
-          Seřadit dle
-        </button>
-        <div
-          className="dropdown-menu"
-          aria-labelledby="sortDropdownMenuButton2"
-        >
-          <option value="surname" className="dropdown-item">
-            prijmeni
-          </option>
-          <option value="name" className="dropdown-item">
-            name
-          </option>
-          <option value="id" className="dropdown-item">
-            id
-          </option>
-        </div>
-      </div>
+
       {/* Zde prijde komponenta pro sort menu */}
+      <FilterForm onFilter={handleFilter} fields={filterFields} />
+      <br />
       <PersonTable people={people} />
-      <Pagination
-        page={page}
-        setPage={setPage}
-        totalPages={totalPages}
-        size={size}
-        setSize={setSize}
-      />
+      <div className="d-flex justify-content-between align-item-center">
+        <div className="dropdown">
+          <button
+            id="sortDropdownMenuButton1"
+            className="btn dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            onChange={(e) => {
+              setSort(e.target.value);
+            }}
+          >
+            Seřadit dle
+          </button>
+          <div
+            className="dropdown-menu"
+            aria-labelledby="sortDropdownMenuButton2"
+          >
+            <option value="surname" className="dropdown-item">
+              prijmeni
+            </option>
+            <option value="name" className="dropdown-item">
+              name
+            </option>
+            <option value="id" className="dropdown-item">
+              id
+            </option>
+          </div>
+        </div>
+
+        <span className="mx-auto">
+          <Pagination
+            page={page}
+            setPage={setPage}
+            totalPages={totalPages}
+            size={size}
+            setSize={setSize}
+          />
+        </span>
+      </div>
     </div>
   );
 };

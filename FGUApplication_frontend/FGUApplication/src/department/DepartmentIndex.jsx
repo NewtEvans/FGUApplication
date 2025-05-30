@@ -19,8 +19,8 @@ const DepartmentIndex = () => {
   const [filter, setFilter] = useState([]);
 
   const filterFields = [
-    { name: "name", label: "Název oddělení", type: "text" },
     { name: "number", label: "Číslo oddělení", type: "text" },
+    { name: "name", label: "Název oddělení", type: "text" },
   ];
 
   const handleFilter = (filterData) => {

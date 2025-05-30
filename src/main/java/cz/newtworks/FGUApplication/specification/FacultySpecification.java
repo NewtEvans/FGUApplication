@@ -26,6 +26,14 @@ public class FacultySpecification {
                         "%" + facultyFilterDTO.getSchoolFilter().toLowerCase() + "%"
                 ));
             }
+
+            if (facultyFilterDTO.getFacultyAbbreviationFilter() != null && !facultyFilterDTO.getFacultyAbbreviationFilter().isEmpty()) {
+                predicates.add(criteriaBuilder.like(
+                        criteriaBuilder.lower(root.get("facultyAbbreviation")),
+                        "%" + facultyFilterDTO.getFacultyAbbreviationFilter().toLowerCase() + "%"
+                ));
+            }
+            
             return criteriaBuilder.and(predicates.toArray(predicates.toArray(new Predicate[0])));
         };
 

@@ -2,9 +2,7 @@ export function Pagination({ page, setPage, totalPages, size, setSize }) {
   const pages = [...Array(totalPages).keys()];
 
   return (
-    <div className="d-flex justify-content-between align-items-end">
-      <div style={{ minWidth: "100px" }}></div>
-
+    <div className="d-flex align-item-center justify-content-between">
       <nav>
         <ul className="pagination mb-0 justify-content-center">
           <li className={`page-item ${page === 0 ? "disabled" : ""}`}>
@@ -37,7 +35,7 @@ export function Pagination({ page, setPage, totalPages, size, setSize }) {
         </ul>
       </nav>
 
-      <div className="d-flex align-items-end">
+      <div>
         <select
           id="pageSize"
           className="form-select w-auto d-inline-block"

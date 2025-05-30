@@ -27,6 +27,13 @@ public class CouncilSpecification {
                 ));
             }
 
+            if (councilFilterDTO.getCouncilAbbreviationFilter() != null && !councilFilterDTO.getCouncilAbbreviationFilter().isEmpty()) {
+                predicates.add(criteriaBuilder.like(
+                        criteriaBuilder.lower(root.get("councilAbbreviation")),
+                        "%" + councilFilterDTO.getCouncilAbbreviationFilter().toLowerCase() + "%"
+                ));
+            }
+
             return criteriaBuilder.and(predicates.toArray(predicates.toArray(new Predicate[0])));
         };
 

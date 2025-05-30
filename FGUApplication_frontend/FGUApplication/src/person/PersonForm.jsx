@@ -86,24 +86,6 @@ const PersonForm = () => {
             setPerson({ ...person, titleAfterName: e.target.value });
           }}
         />
-        {/* <InputSelect
-          name="departments"
-          items={departmentList}
-          multiple={true}
-          label="Oddělení"
-          prompt="Vyber oddělení"
-          showLabel="departmentNumber"
-          showLabel2="departmentName"
-          value={person.departments.id}
-          handleChange={(e) => {
-            const selectedDepartments = Array.from(
-              e.target.selectedOptions,
-              (options) => options.value
-            );
-            const departments = selectedDepartments.map((id) => ({ id }));
-            setPerson({ ...person, departments });
-          }}
-        /> */}
         <InputSelect
           name="departments"
           items={departmentList}

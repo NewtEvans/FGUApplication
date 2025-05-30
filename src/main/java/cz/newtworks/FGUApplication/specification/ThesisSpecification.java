@@ -26,6 +26,13 @@ public class ThesisSpecification {
                         "%" + thesisFilterDTO.getNameEnFilter().toLowerCase() + "%"
                 ));
             }
+
+            if (thesisFilterDTO.getThesisTypeFilter() != null) {
+                predicates.add(criteriaBuilder.equal(
+                        root.get("thesisType"),
+                        thesisFilterDTO.getThesisTypeFilter()
+                ));
+            }
             return criteriaBuilder.and(predicates.toArray(predicates.toArray(new Predicate[0])));
         };
 

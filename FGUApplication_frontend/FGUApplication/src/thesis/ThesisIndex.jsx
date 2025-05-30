@@ -12,6 +12,13 @@ const ThesisIndex = () => {
   const [totalPages, setTotalPages] = useState();
   const [size, setSize] = useState(10);
 
+  const [filter, setFilter] = useState([]);
+  const filterFields = [
+    { name: "nameCzFilter", label: "Český název práce", type: "text" },
+    { name: "nameEnFilter", label: "Anglický název práce", type: "text" },
+    { name: "thesisTypeFilter", label: "Druh práce", type: "text" },
+  ];
+
   useEffect(() => {
     apiGet(url, {
       page: page,
