@@ -20,7 +20,7 @@ public class PersonDTO {
     private String titleBeforeName;
 
     @NotBlank(message = "Person name is required.")
-    private String name;
+    private String firstName;
 
     @NotBlank(message = "Person surname is required.")
     private String surname;

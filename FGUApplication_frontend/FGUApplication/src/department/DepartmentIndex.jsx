@@ -14,7 +14,7 @@ const DepartmentIndex = () => {
   const [totalPages, setTotalPages] = useState();
   const [size, setSize] = useState(10);
 
-  const [sort, setSort] = useState();
+  const [sort, setSort] = useState("departmentNumber");
 
   const [filter, setFilter] = useState([]);
 
@@ -36,6 +36,7 @@ const DepartmentIndex = () => {
       page,
       size,
       totalPages,
+      sort,
       ...filter,
     };
 

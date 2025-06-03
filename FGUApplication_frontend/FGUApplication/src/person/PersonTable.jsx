@@ -28,7 +28,7 @@ const PersonTable = ({ people }) => {
                   to={`/person/detail/${person.id}`}
                   className="d-block text-decoration-none text-dark p-3"
                 >
-                  {person.name}
+                  {person.firstName}
                 </Link>
               </td>
 

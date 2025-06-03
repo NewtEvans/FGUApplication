@@ -32,9 +32,9 @@ public class PersonEntity {
     private long id;
 
     private String titleBeforeName;
-    
+
     @Column(nullable = false)
-    private String name;
+    private String firstName;
 
     @Column(nullable = false)
     private String surname;

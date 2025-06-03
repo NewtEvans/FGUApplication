@@ -4,6 +4,7 @@ import { apiGet } from "../utils/api";
 import { Link } from "react-router-dom";
 import { Pagination } from "../components/Pagination";
 import FilterForm from "../components/filter/FilterForm";
+import SortDropdown from "../components/SortDropdown";
 
 const PersonIndex = () => {
   const [url, setUrl] = useState("/person/all");
@@ -13,19 +14,25 @@ const PersonIndex = () => {
   const [totalPages, setTotalPages] = useState();
   const [size, setSize] = useState(10);
 
-  const [sort, setSort] = useState("surname");
+  const [sort, setSort] = useState("id");
 
   const [filter, setFilter] = useState([]);
 
   const filterFields = [
-    { name: "name", label: "Jméno", type: "text" },
+    { name: "firstName", label: "Jméno", type: "text" },
     { name: "surname", label: "Přijmení", type: "text" },
+  ];
+
+  const sortFields = [
+    { value: "id", label: "ID" },
+    { value: "surname", label: "Přijmení" },
+    { value: "firstName", label: "Jméno" },
   ];
 
   const handleFilter = (filterData) => {
     setPage(0);
     setFilter({
-      nameFilter: filterData.name,
+      nameFilter: filterData.firstName,
       surnameFilter: filterData.surname,
     });
   };
@@ -47,7 +54,7 @@ const PersonIndex = () => {
       .catch((error) => {
         console.error(error);
       });
-  }, [url, page, size, filter]);
+  }, [url, page, size, filter, sort]);
 
   return (
     <div>
@@ -58,92 +65,18 @@ const PersonIndex = () => {
           Nová osoba
         </Link>
       </div>
-
-      {/* Zde prijde komponenta pro sort menu */}
       <FilterForm onFilter={handleFilter} fields={filterFields} />
-      <br />
+      <SortDropdown setSort={setSort} sort={sort} fields={sortFields} />
       <PersonTable people={people} />
-      <div className="d-flex justify-content-between align-item-center">
-        <div className="dropdown">
-          <button
-            id="sortDropdownMenuButton1"
-            className="btn dropdown-toggle"
-            type="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-            onChange={(e) => {
-              setSort(e.target.value);
-            }}
-          >
-            Seřadit dle
-          </button>
-          <div
-            className="dropdown-menu"
-            aria-labelledby="sortDropdownMenuButton2"
-          >
-            <option value="surname" className="dropdown-item">
-              prijmeni
-            </option>
-            <option value="name" className="dropdown-item">
-              name
-            </option>
-            <option value="id" className="dropdown-item">
-              id
-            </option>
-          </div>
-        </div>
-
-        <span className="mx-auto">
-          <Pagination
-            page={page}
-            setPage={setPage}
-            totalPages={totalPages}
-            size={size}
-            setSize={setSize}
-          />
-        </span>
-      </div>
+      <Pagination
+        page={page}
+        setPage={setPage}
+        totalPages={totalPages}
+        size={size}
+        setSize={setSize}
+      />
     </div>
   );
 };
-
-{
-  /* <select
-        id="allResultsSort"
-        className="form-select w-auto d-inline-block"
-        value={sort}
-        onChange={(e) => {
-          setSort(e.target.value);
-        }}
-      >
-        <option value="surname">prijmeni</option>
-        <option value="name">name</option>
-        <option value="id">id</option>
-      </select>
-      <select
-        id="employeeSort"
-        className="form-select w-auto d-inline-block"
-        value={sort}
-        onChange={(e) => {
-          setSort(e.target.value);
-        }}
-      >
-        <option value="surname">prijmeni</option>
-        <option value="name">name</option>
-        <option value="id">id</option>
-      </select>
-      <select
-        id="nonEmployeeSort"
-        className="form-select w-auto d-inline-block"
-        value={sort}
-        onChange={(e) => {
-          setSort(e.target.value);
-        }}
-      >
-        <option value="surname">prijmeni</option>
-        <option value="name">name</option>
-        <option value="id">id</option>
-      </select> */
-}
 
 export default PersonIndex;

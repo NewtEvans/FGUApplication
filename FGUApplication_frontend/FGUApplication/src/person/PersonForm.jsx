@@ -10,7 +10,7 @@ const PersonForm = () => {
   const { id } = useParams();
   const [person, setPerson] = useState({
     titleBeforeName: "",
-    name: "",
+    firstName: "",
     surname: "",
     titleAfterName: "",
     isEmployee: "IPHYS",
@@ -59,9 +59,9 @@ const PersonForm = () => {
           name="name"
           label="Jméno"
           prompt="Zadej jméno osoby"
-          value={person.name}
+          value={person.firstName}
           handleChange={(e) => {
-            setPerson({ ...person, name: e.target.value });
+            setPerson({ ...person, firstName: e.target.value });
           }}
         />
         <InputField

@@ -94,7 +94,7 @@ const PersonDetail = () => {
         <strong>Předložný titul:</strong> {person.titleBeforeName}
       </p>
       <p>
-        <strong>Jméno:</strong> {person.name}
+        <strong>Jméno:</strong> {person.firstName}
       </p>
       <p>
         <strong>Přijmení:</strong> {person.surname}

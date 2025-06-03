@@ -13,10 +13,10 @@ public class PersonSpecification {
         return (root, query, criteriaBuilder) -> {
             List<Predicate> predicates = new ArrayList<>();
 
-            if (personFilterDTO.getNameFilter() != null && !personFilterDTO.getNameFilter().isEmpty()) {
+            if (personFilterDTO.getFirstNameFilter() != null && !personFilterDTO.getFirstNameFilter().isEmpty()) {
                 predicates.add(criteriaBuilder.like(
                         criteriaBuilder.lower(root.get("name")),
-                        "%" + personFilterDTO.getNameFilter().toLowerCase() + "%"
+                        "%" + personFilterDTO.getFirstNameFilter().toLowerCase() + "%"
                 ));
             }
 

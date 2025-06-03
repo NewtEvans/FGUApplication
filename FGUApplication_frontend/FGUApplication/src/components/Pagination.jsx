@@ -2,8 +2,8 @@ export function Pagination({ page, setPage, totalPages, size, setSize }) {
   const pages = [...Array(totalPages).keys()];
 
   return (
-    <div className="d-flex align-item-center justify-content-between">
-      <nav>
+    <div className="d-flex justify-content-between align-items-center">
+      <nav className="mx-auto">
         <ul className="pagination mb-0 justify-content-center">
           <li className={`page-item ${page === 0 ? "disabled" : ""}`}>
             <button

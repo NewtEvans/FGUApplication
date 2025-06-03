@@ -16,7 +16,7 @@ public class PersonFilterDTO {
 
     private String titleBeforeNameFilter;
 
-    private String nameFilter;
+    private String firstNameFilter;
 
     private String surnameFilter;
 

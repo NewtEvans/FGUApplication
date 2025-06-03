@@ -4,6 +4,7 @@ import { apiGet } from "../utils/api";
 import { Link } from "react-router";
 import { Pagination } from "../components/Pagination";
 import FilterForm from "../components/filter/FilterForm";
+import SortDropdown from "../components/SortDropdown";
 
 const ThesisIndex = () => {
   const [url, setUrl] = useState("/thesis/all");
@@ -12,6 +13,15 @@ const ThesisIndex = () => {
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState();
   const [size, setSize] = useState(10);
+
+  const [sort, setSort] = useState();
+  const sortFields = [
+    { value: "nameCz", label: "CZ název" },
+    { value: "nameEn", label: "EN název" },
+    { value: "startDate", label: "Datum zaháhejí" },
+    { value: "endDate", label: "Datum ukončení" },
+    { value: "id", label: "ID" },
+  ];
 
   const [filter, setFilter] = useState([]);
   const filterFields = [
@@ -43,6 +53,7 @@ const ThesisIndex = () => {
       page,
       totalPages,
       size,
+      sort,
       ...filter,
     };
     apiGet(url, params)
@@ -53,7 +64,7 @@ const ThesisIndex = () => {
       .catch((error) => {
         console.error(error);
       });
-  }, [url, page, totalPages, filter, size]);
+  }, [url, page, totalPages, filter, size, sort]);
 
   return (
     <div>
@@ -66,7 +77,7 @@ const ThesisIndex = () => {
       </div>
 
       <FilterForm onFilter={handleFilter} fields={filterFields} />
-      <br />
+      <SortDropdown fields={sortFields} setSort={setSort} sort={sort} />
       <ThesisTable theses={theses} />
       <Pagination
         page={page}
