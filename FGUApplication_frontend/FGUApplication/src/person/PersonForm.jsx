@@ -95,6 +95,7 @@ const PersonForm = () => {
           showLabel="departmentNumber"
           showLabel2="departmentName"
           isMulti={true}
+          isDisabled={person.isEmployee === "none"}
           onChange={(ids) => {
             setPerson({ ...person, departments: ids.map((id) => ({ id })) });
           }}

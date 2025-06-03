@@ -20,13 +20,19 @@ public class ThesisFilterDTO {
     private ThesisType thesisTypeFilter;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDate startDateFilter;
+    private LocalDate startDateFilterFrom;
+
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate startDateFilterTo;
 
     private String nameCzFilter;
 
     private String nameEnFilter;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private LocalDate endDateFilter;
+    private LocalDate endDateFilterFrom;
+
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate endDateFilterTo;
 
 }

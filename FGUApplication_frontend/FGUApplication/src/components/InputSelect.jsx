@@ -10,6 +10,7 @@ export function InputSelect({
   placeHolder,
   showLabel = "name",
   showLabel2,
+  isDisabled = false,
 }) {
   const options = items.map((item) => ({
     value: item.id,
@@ -41,6 +42,7 @@ export function InputSelect({
         className="basic-single"
         classNamePrefix="select"
         isClearable={!isMulti}
+        isDisabled={isDisabled}
       />
     </div>
   );

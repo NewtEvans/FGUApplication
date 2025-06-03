@@ -3,7 +3,10 @@ import { useNavigate, useParams } from "react-router";
 import { apiDelete, apiGet } from "../utils/api";
 
 import { Link } from "react-router";
-import { ThesisTypeTransfer } from "../utils/thesisTypeTransfer";
+
+import { ThesisTypeTransfer } from "../utils/ThesisTypeTransfer";
+
+import { formatDate } from "../utils/dateUtil";
 
 function ThesisDetail() {
   const navigate = useNavigate();
@@ -64,7 +67,7 @@ function ThesisDetail() {
         <ThesisTypeTransfer thesisType={thesis.thesisType} />
       </p>
       <p>
-        <strong>Celé datum zahájení:</strong> {thesis.startDate}
+        <strong>Celé datum zahájení:</strong> {formatDate(thesis.startDate)}
       </p>
       <p>
         <strong>Český název:</strong> {thesis.nameCz}
@@ -118,7 +121,7 @@ function ThesisDetail() {
         </Link>
       </p>
       <p>
-        <strong>Celé datum ukončení:</strong> {thesis.endDate}
+        <strong>Celé datum ukončení:</strong> {formatDate(thesis.endDate)}
       </p>
       <p>
         <strong>Poznámka:</strong> {thesis.note}

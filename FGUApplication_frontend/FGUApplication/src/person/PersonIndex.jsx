@@ -58,7 +58,6 @@ const PersonIndex = () => {
           Nová osoba
         </Link>
       </div>
-      <br />
 
       {/* Zde prijde komponenta pro sort menu */}
       <FilterForm onFilter={handleFilter} fields={filterFields} />

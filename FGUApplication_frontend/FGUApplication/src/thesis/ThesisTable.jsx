@@ -1,5 +1,6 @@
 import { Link } from "react-router";
 import { ThesisTypeTransfer } from "../utils/ThesisTypeTransfer";
+import { formatDate } from "../utils/dateUtil";
 
 const ThesisTable = ({ theses }) => {
   return (
@@ -11,6 +12,7 @@ const ThesisTable = ({ theses }) => {
             <th>Název práce</th>
             <th>Druh práce</th>
             <th>Student</th>
+            <th>Datum zahájení</th>
             <th>Datum ukončení</th>
             <th>Školitel</th>
             <th>Konzultant</th>
@@ -49,7 +51,17 @@ const ThesisTable = ({ theses }) => {
                   to={`/theses/detail/${thesis.id}`}
                   className="d-block text-decoration-none text-dark p-3"
                 >
-                  {thesis.endDate ? thesis.endDate : "Studuje"}
+                  {formatDate(thesis.startDate)}
+                </Link>
+              </td>
+              <td>
+                <Link
+                  to={`/theses/detail/${thesis.id}`}
+                  className="d-block text-decoration-none text-dark p-3"
+                >
+                  {formatDate(thesis.endDate)
+                    ? formatDate(thesis.endDate)
+                    : "Studuje"}
                 </Link>
               </td>
               <td>

@@ -33,6 +33,36 @@ public class ThesisSpecification {
                         thesisFilterDTO.getThesisTypeFilter()
                 ));
             }
+
+            if (thesisFilterDTO.getEndDateFilterFrom() != null) {
+                predicates.add(criteriaBuilder.greaterThanOrEqualTo(
+                        root.get("endDate"),
+                        thesisFilterDTO.getEndDateFilterFrom()
+                ));
+            }
+
+            if (thesisFilterDTO.getEndDateFilterTo() != null) {
+                predicates.add(criteriaBuilder.lessThanOrEqualTo(
+                        root.get("endDate"),
+                        thesisFilterDTO.getEndDateFilterTo()
+                ));
+
+            }
+
+            if (thesisFilterDTO.getStartDateFilterFrom() != null) {
+                predicates.add(criteriaBuilder.greaterThanOrEqualTo(
+                        root.get("startDate"),
+                        thesisFilterDTO.getStartDateFilterFrom()
+                ));
+            }
+
+            if (thesisFilterDTO.getStartDateFilterTo() != null) {
+                predicates.add(criteriaBuilder.lessThanOrEqualTo(
+                        root.get("startDate"),
+                        thesisFilterDTO.getStartDateFilterTo()
+                ));
+
+            }
             return criteriaBuilder.and(predicates.toArray(predicates.toArray(new Predicate[0])));
         };
 

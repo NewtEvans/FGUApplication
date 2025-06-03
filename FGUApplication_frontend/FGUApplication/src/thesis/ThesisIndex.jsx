@@ -3,6 +3,7 @@ import ThesisTable from "./ThesisTable";
 import { apiGet } from "../utils/api";
 import { Link } from "react-router";
 import { Pagination } from "../components/Pagination";
+import FilterForm from "../components/filter/FilterForm";
 
 const ThesisIndex = () => {
   const [url, setUrl] = useState("/thesis/all");
@@ -14,17 +15,37 @@ const ThesisIndex = () => {
 
   const [filter, setFilter] = useState([]);
   const filterFields = [
-    { name: "nameCzFilter", label: "Český název práce", type: "text" },
-    { name: "nameEnFilter", label: "Anglický název práce", type: "text" },
-    { name: "thesisTypeFilter", label: "Druh práce", type: "text" },
+    { name: "nameCzFilter", label: "Český název práce:", type: "text" },
+    { name: "nameEnFilter", label: "Anglický název práce:", type: "text" },
+    /* { name: "thesisTypeFilter", label: "Druh práce", type: "select" }, */
+
+    {
+      type: "date-range",
+      label: "Rozsah data zahájení:",
+      nameFrom: "startDateFilterFrom",
+      nameTo: "startDateFilterTo",
+    },
+    {
+      type: "date-range",
+      label: "Rozsah data ukončení:",
+      nameFrom: "endDateFilterFrom",
+      nameTo: "endDateFilterTo",
+    },
   ];
 
+  const handleFilter = (filterData) => {
+    setPage(0);
+    setFilter(filterData);
+  };
+
   useEffect(() => {
-    apiGet(url, {
-      page: page,
-      totalPages: totalPages,
-      size: size,
-    })
+    const params = {
+      page,
+      totalPages,
+      size,
+      ...filter,
+    };
+    apiGet(url, params)
       .then((data) => {
         setTheses(data.content);
         setTotalPages(data.totalPages);
@@ -32,7 +53,7 @@ const ThesisIndex = () => {
       .catch((error) => {
         console.error(error);
       });
-  }, [url, page, totalPages, size]);
+  }, [url, page, totalPages, filter, size]);
 
   return (
     <div>
@@ -43,6 +64,9 @@ const ThesisIndex = () => {
           Nová práce
         </Link>
       </div>
+
+      <FilterForm onFilter={handleFilter} fields={filterFields} />
+      <br />
       <ThesisTable theses={theses} />
       <Pagination
         page={page}

@@ -57,7 +57,7 @@ const ThesisForm = () => {
           type="date"
           name="startDate"
           label="Datum začátku"
-          prompt="Zadej datum začátku"
+          prompt="Zadej datum začátku práce"
           value={thesis.startDate}
           handleChange={(e) => {
             setThesis({ ...thesis, startDate: e.target.value });
@@ -148,7 +148,7 @@ const ThesisForm = () => {
         />
         <InputField
           required={false}
-          type="number"
+          type="date"
           name="endDate"
           label="Datum ukončení"
           prompt="Zadej datum ukončení práce"
@@ -157,6 +157,7 @@ const ThesisForm = () => {
             setThesis({ ...thesis, endDate: e.target.value });
           }}
         />
+
         <InputField
           required={false}
           type="text"
