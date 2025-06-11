@@ -26,6 +26,14 @@ public class PersonSpecification {
                         "%" + personFilterDTO.getSurnameFilter().toLowerCase() + "%"
                 ));
             }
+
+            if (personFilterDTO.getIsArchivedFilter() != null) {
+                predicates.add(criteriaBuilder.equal(
+                        root.get("isArchived"),
+                        personFilterDTO.getIsArchivedFilter()
+                ));
+            }
+
             return criteriaBuilder.and(predicates.toArray(predicates.toArray(new Predicate[0])));
         };
     }

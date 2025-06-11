@@ -14,6 +14,7 @@ const PersonForm = () => {
     surname: "",
     titleAfterName: "",
     isEmployee: "IPHYS",
+    isArchived: false,
     departments: [],
   });
 
@@ -123,6 +124,17 @@ const PersonForm = () => {
             }}
             checked={person.isEmployee === "none"}
           />
+
+          {/* <InputCheck
+            type="radio"
+            name="isEmployee"
+            label="Není zaměstnancem FGÚ"
+            value="none"
+            handleChange={(e) => {
+              setPerson({ ...person, isEmployee: e.target.value });
+            }}
+            checked={person.isEmployee === "none"}
+          /> */}
         </div>
         <br />
         <input type="submit" className="btn btn-success" value="Uložit" />

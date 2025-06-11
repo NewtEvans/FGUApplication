@@ -69,7 +69,9 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public void deletePerson(long personId) {
-        personRepository.delete(fetchPersonById(personId));
+        PersonEntity personEntity = fetchPersonById(personId);
+        personEntity.setArchived(true);
+        personRepository.save(personEntity);
     }
 
     //Private methods

@@ -29,6 +29,7 @@ public class PersonDTO {
 
     private Employee isEmployee;
 
+    private Boolean isArchived;
     //vazba mezi tabulkami
     private Set<DepartmentDTO> departments;
 }

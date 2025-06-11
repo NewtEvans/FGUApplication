@@ -41,6 +41,8 @@ public class PersonEntity {
 
     private String titleAfterName;
 
+    private boolean isArchived;
+
     @Enumerated(EnumType.STRING)
     private Employee isEmployee;
 

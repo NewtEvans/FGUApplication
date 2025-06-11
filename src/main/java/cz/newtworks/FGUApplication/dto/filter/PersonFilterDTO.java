@@ -22,6 +22,9 @@ public class PersonFilterDTO {
 
     private String titleAfterNameFilter;
 
+    private Boolean isArchivedFilter;
+
     private Employee isEmployeeFilter;
+
 
 }
