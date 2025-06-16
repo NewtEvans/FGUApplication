@@ -18,8 +18,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PersonEntity {
-
-    //vazba mezi tabulkami
+    
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "person_department",

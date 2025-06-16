@@ -1,5 +1,10 @@
 import { Link } from "react-router-dom";
 
+const getRowClass = (person) => {
+  if (person.archived === true) return "table-danger";
+  if (person.archived === false) return "table";
+};
+
 const PersonTable = ({ people }) => {
   return (
     <div>
@@ -14,7 +19,7 @@ const PersonTable = ({ people }) => {
         </thead>
         <tbody className="text-center">
           {people.map((person) => (
-            <tr key={person.id}>
+            <tr key={person.id} className={getRowClass(person)}>
               <td>
                 <Link
                   to={`/person/detail/${person.id}`}

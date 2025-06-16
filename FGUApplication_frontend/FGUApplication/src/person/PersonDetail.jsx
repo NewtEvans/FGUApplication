@@ -81,13 +81,21 @@ const PersonDetail = () => {
           >
             Upravit osobu
           </Link>
-          {/* Podminka pro archivovaci tlacitko a nebo enablovaci tlacitko */}
-          <button
-            className="btn btn-danger btn-md"
-            onClick={() => deleteFunction(id)}
-          >
-            Archivovat osobu
-          </button>
+          {person.archived ? (
+            <button
+              className="btn btn-success btn-md"
+              onClick={() => deleteFunction(id)}
+            >
+              Obnovit osobu
+            </button>
+          ) : (
+            <button
+              className="btn btn-danger btn-md"
+              onClick={() => deleteFunction(id)}
+            >
+              Archivovat osobu
+            </button>
+          )}
         </div>
       </div>
       <hr />
