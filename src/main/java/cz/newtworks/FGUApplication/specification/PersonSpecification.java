@@ -15,7 +15,7 @@ public class PersonSpecification {
 
             if (personFilterDTO.getFirstNameFilter() != null && !personFilterDTO.getFirstNameFilter().isEmpty()) {
                 predicates.add(criteriaBuilder.like(
-                        criteriaBuilder.lower(root.get("name")),
+                        criteriaBuilder.lower(root.get("firstName")),
                         "%" + personFilterDTO.getFirstNameFilter().toLowerCase() + "%"
                 ));
             }

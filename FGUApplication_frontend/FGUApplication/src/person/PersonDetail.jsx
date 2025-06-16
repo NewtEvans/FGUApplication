@@ -17,12 +17,12 @@ const PersonDetail = () => {
   const [trainerTheses, setTrainerTheses] = useState([]);
 
   const deleteFunction = async (id) => {
-    const confirmed = window.confirm("Opravdu chcete smazat tuto osobu?");
+    const confirmed = window.confirm("Opravdu chcete archivovat tuto osobu?");
     if (!confirmed) return;
 
     try {
       await apiDelete("/person/" + id);
-      alert("Osoba byla úspešně smazána.");
+      alert("Osoba byla úspešně archivována.");
     } catch (error) {
       console.log(error.message);
       alert(error.message);
@@ -81,11 +81,12 @@ const PersonDetail = () => {
           >
             Upravit osobu
           </Link>
+          {/* Podminka pro archivovaci tlacitko a nebo enablovaci tlacitko */}
           <button
             className="btn btn-danger btn-md"
             onClick={() => deleteFunction(id)}
           >
-            Smazat osobu
+            Archivovat osobu
           </button>
         </div>
       </div>

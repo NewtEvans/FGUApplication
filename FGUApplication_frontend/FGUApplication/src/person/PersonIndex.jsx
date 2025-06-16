@@ -21,6 +21,7 @@ const PersonIndex = () => {
   const filterFields = [
     { name: "firstName", label: "Jméno", type: "text" },
     { name: "surname", label: "Přijmení", type: "text" },
+    { name: "isArchived", label: "Archivován", type: "checkbox" },
   ];
 
   const sortFields = [
@@ -32,8 +33,9 @@ const PersonIndex = () => {
   const handleFilter = (filterData) => {
     setPage(0);
     setFilter({
-      nameFilter: filterData.firstName,
+      firstNameFilter: filterData.firstName,
       surnameFilter: filterData.surname,
+      isArchivedFilter: filterData.isArchived,
     });
   };
 
