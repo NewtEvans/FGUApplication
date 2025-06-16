@@ -70,8 +70,13 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public void deletePerson(long personId) {
         PersonEntity personEntity = fetchPersonById(personId);
-        personEntity.setArchived(true);
-        personRepository.save(personEntity);
+        if (personEntity.isArchived()) {
+            personEntity.setArchived(false);
+            personRepository.save(personEntity);
+        } else {
+            personEntity.setArchived(true);
+            personRepository.save(personEntity);
+        }
     }
 
     //Private methods

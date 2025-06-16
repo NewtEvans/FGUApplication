@@ -17,12 +17,16 @@ const PersonDetail = () => {
   const [trainerTheses, setTrainerTheses] = useState([]);
 
   const deleteFunction = async (id) => {
-    const confirmed = window.confirm("Opravdu chcete archivovat tuto osobu?");
+    const message = person.archived
+      ? "Opravdu chcete osobu obnovit?"
+      : "Opravdu chcete archivovat osobu?";
+
+    const confirmed = window.confirm(message);
     if (!confirmed) return;
 
     try {
       await apiDelete("/person/" + id);
-      alert("Osoba byla úspešně archivována.");
+      alert("Akce proběhla úspešně!");
     } catch (error) {
       console.log(error.message);
       alert(error.message);
