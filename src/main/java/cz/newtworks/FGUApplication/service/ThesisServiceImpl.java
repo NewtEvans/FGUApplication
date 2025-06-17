@@ -4,6 +4,9 @@ import cz.newtworks.FGUApplication.dto.ThesisDTO;
 import cz.newtworks.FGUApplication.dto.filter.ThesisFilterDTO;
 import cz.newtworks.FGUApplication.dto.mapper.PersonMapper;
 import cz.newtworks.FGUApplication.dto.mapper.ThesisMapper;
+import cz.newtworks.FGUApplication.entity.CouncilEntity;
+import cz.newtworks.FGUApplication.entity.FacultyEntity;
+import cz.newtworks.FGUApplication.entity.PersonEntity;
 import cz.newtworks.FGUApplication.entity.ThesisEntity;
 import cz.newtworks.FGUApplication.entity.repository.CouncilRepository;
 import cz.newtworks.FGUApplication.entity.repository.FacultyRepository;
@@ -52,11 +55,9 @@ public class ThesisServiceImpl implements ThesisService {
 
     @Override
     public ThesisDTO addThesis(ThesisDTO thesisDTO) {
-        ThesisEntity entity = thesisMapper.toEntity(thesisDTO);
-
+        ThesisEntity entity = createFillEntity(thesisDTO);
         thesisRepository.save(entity);
-
-        return fillThesisWithDTOs(thesisMapper.toDTO(entity), entity);
+        return thesisMapper.toDTO(entity);
     }
 
     @Override
@@ -130,19 +131,44 @@ public class ThesisServiceImpl implements ThesisService {
     /**
      * Private method that adding DTOs with data from different tables.
      *
-     * @param thesisDTO    DTO with added information
-     * @param thesisEntity Entity with ids of all requested data
+     * @param thesisDTO DTO with added information
      * @return DTO with all information
      */
-    private ThesisDTO fillThesisWithDTOs(ThesisDTO thesisDTO, ThesisEntity thesisEntity) {
+    private ThesisEntity createFillEntity(ThesisDTO thesisDTO) {
+        ThesisEntity filledThesisEntity = thesisMapper.toEntity(thesisDTO);
 
-        thesisDTO.setStudent(personService.getPersonById(thesisEntity.getStudent().getId()));
-        thesisDTO.setTrainer(personService.getPersonById(thesisEntity.getTrainer().getId()));
-        thesisDTO.setConsultant(personService.getPersonById(thesisEntity.getConsultant().getId()));
-        thesisDTO.setFaculty(facultyService.getFacultyById(thesisEntity.getFaculty().getId()));
-        thesisDTO.setCouncil(councilService.getCouncilById(thesisEntity.getCouncil().getId()));
+        if (thesisDTO.getStudent() != null) {
+            PersonEntity student = personRepository.findById(thesisDTO.getStudent().getId())
+                    .orElseThrow(() -> new ResourceNotFoundException("Student with id " + filledThesisEntity.getStudent().getId() + " wasn't found in the database."));
+            filledThesisEntity.setStudent(student);
+        } else filledThesisEntity.setStudent(null);
 
-        return thesisDTO;
+        if (thesisDTO.getTrainer() != null) {
+            PersonEntity trainer = personRepository.findById(thesisDTO.getTrainer().getId())
+                    .orElseThrow(() -> new ResourceNotFoundException("Trainer with id " + filledThesisEntity.getTrainer().getId() + " wasn't found in the database."));
+            filledThesisEntity.setTrainer(trainer);
+        } else filledThesisEntity.setTrainer(null);
+
+        if (thesisDTO.getConsultant() != null) {
+            PersonEntity consultant = personRepository.findById(thesisDTO.getConsultant().getId())
+                    .orElseThrow(() -> new ResourceNotFoundException("Consultant with id " + filledThesisEntity.getConsultant().getId() + " wasn't found in the database."));
+            filledThesisEntity.setConsultant(consultant);
+        } else filledThesisEntity.setConsultant(null);
+
+        if (thesisDTO.getCouncil() != null) {
+            CouncilEntity council = councilRepository.findById(thesisDTO.getCouncil().getId())
+                    .orElseThrow(() -> new ResourceNotFoundException("Council with id " + filledThesisEntity.getCouncil().getId() + " wasn't found in the database."));
+            filledThesisEntity.setCouncil(council);
+        } else filledThesisEntity.setCouncil(null);
+
+        if (thesisDTO.getFaculty() != null) {
+            FacultyEntity faculty = facultyRepository.findById(thesisDTO.getFaculty().getId())
+                    .orElseThrow(() -> new ResourceNotFoundException("Faculty with id " + filledThesisEntity.getFaculty().getId() + " wasn't found in the database."));
+            filledThesisEntity.setFaculty(faculty);
+        } else filledThesisEntity.setFaculty(null);
+
+
+        return filledThesisEntity;
     }
 
 

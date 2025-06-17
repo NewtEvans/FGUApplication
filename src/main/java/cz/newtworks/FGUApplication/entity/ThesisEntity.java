@@ -40,7 +40,7 @@ public class ThesisEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     private PersonEntity trainer;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @ManyToOne(fetch = FetchType.LAZY)
     private PersonEntity consultant;
 
     @ManyToOne(fetch = FetchType.LAZY)

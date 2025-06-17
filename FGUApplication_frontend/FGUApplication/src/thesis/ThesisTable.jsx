@@ -43,7 +43,7 @@ const ThesisTable = ({ theses }) => {
                   to={`/theses/detail/${thesis.id}`}
                   className="d-block text-decoration-none text-dark p-3"
                 >
-                  {`${thesis.student?.name} ${thesis.student?.surname}`}
+                  {`${thesis.student?.firstName} ${thesis.student?.surname}`}
                 </Link>
               </td>
               <td>
@@ -68,13 +68,13 @@ const ThesisTable = ({ theses }) => {
                 <Link
                   to={`/theses/detail/${thesis.id}`}
                   className="d-block text-decoration-none text-dark p-3"
-                >{`${thesis.trainer?.name} ${thesis.trainer?.surname}`}</Link>
+                >{`${thesis.trainer?.firstName} ${thesis.trainer?.surname}`}</Link>
               </td>
               <td>
                 <Link
                   to={`/theses/detail/${thesis.id}`}
                   className="d-block text-decoration-none text-dark p-3"
-                >{`${thesis.consultant?.name} ${thesis.consultant?.surname}`}</Link>
+                >{`${thesis.consultant?.firstName} ${thesis.consultant?.surname}`}</Link>
               </td>
               <td>
                 <Link
