@@ -8,8 +8,9 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface PersonRepository extends JpaRepository<PersonEntity, Long>, JpaSpecificationExecutor<PersonEntity> {
+    @Query("SELECT COUNT(*) FROM PersonEntity")
+    int countAllPerson();
+
     @Query("SELECT p FROM PersonEntity p JOIN p.departments d WHERE d.id = ?1")
     List<PersonEntity> findAllPeopleInDepartment(long departmentId);
-
-    
 }

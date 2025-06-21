@@ -2,11 +2,15 @@ import FilterDateField from "./FilterDateField";
 import FilterField from "./FilterField";
 import FilterCheckBoxField from "./FilterCheckBoxField";
 import { useForm } from "react-hook-form";
+import FilterSelect from "./FilterSelect";
 
 const FilterForm = ({ onFilter, fields }) => {
   const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = (data) => {
+    if (data.isArchived) {
+      data.siArchived = "";
+    }
     onFilter(data);
   };
 
@@ -37,6 +41,18 @@ const FilterForm = ({ onFilter, fields }) => {
                   key={field.name}
                   name={field.name}
                   label={field.label}
+                  value={field.value}
+                  register={register}
+                />
+              );
+            }
+            if (field.type === "select") {
+              return (
+                <FilterSelect
+                  key={field.name}
+                  label={field.label}
+                  name={field.name}
+                  options={field.options}
                   register={register}
                 />
               );

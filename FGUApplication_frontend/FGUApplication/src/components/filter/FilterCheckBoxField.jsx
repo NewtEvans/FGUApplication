@@ -1,9 +1,10 @@
-const FilterCheckBoxField = ({ name, label, register }) => {
+const FilterCheckBoxField = ({ name, label, register, value }) => {
   return (
     <div>
       <input
         type="checkbox"
         className="form-check-input"
+        value={value}
         id={name}
         {...register(name)}
       />

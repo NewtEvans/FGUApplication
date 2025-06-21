@@ -46,13 +46,8 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public int getNumberOfAllUnarchivedPeople() {
-        return 0;
-    }
-
-    @Override
     public int getNumberOfAllPeople() {
-        return personRepository.findAll().toArray().length;
+        return personRepository.countAllPerson();
     }
 
     @Override

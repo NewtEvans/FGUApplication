@@ -33,6 +33,11 @@ public class PersonController {
         return ResponseEntity.ok(personService.getAllPeople(pageable, personFilterDTO));
     }
 
+    @GetMapping("/count")
+    public int countAllPeople() {
+        return personService.getNumberOfAllPeople();
+    }
+
     @GetMapping("/{personId}")
     public ResponseEntity<PersonDTO> getPerson(@PathVariable long personId) {
         return ResponseEntity.ok(personService.getPersonById(personId));

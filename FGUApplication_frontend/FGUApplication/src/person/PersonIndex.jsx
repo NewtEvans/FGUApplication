@@ -9,6 +9,7 @@ import SortDropdown from "../components/SortDropdown";
 const PersonIndex = () => {
   const [url, setUrl] = useState("/person/all");
   const [people, setPeople] = useState([]);
+  const [numberOfRecords, setNumberOfRecords] = useState();
 
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState();
@@ -21,7 +22,12 @@ const PersonIndex = () => {
   const filterFields = [
     { name: "firstName", label: "Jméno", type: "text" },
     { name: "surname", label: "Přijmení", type: "text" },
-    { name: "isArchived", label: "Archivován", type: "checkbox" },
+    {
+      name: "isArchived",
+      label: "Archivovaní",
+      type: "checkbox",
+      value: "",
+    },
   ];
 
   const sortFields = [
@@ -48,6 +54,10 @@ const PersonIndex = () => {
       ...filter,
     };
 
+    apiGet("/person/count").then((data) => {
+      setNumberOfRecords(data);
+    });
+
     apiGet(url, params)
       .then((data) => {
         setPeople(data.content);
@@ -62,7 +72,7 @@ const PersonIndex = () => {
     <div>
       <h1>Seznam všeh osob</h1>
       <div className="d-flex justify-content-between">
-        <p>Počet osob v databázi: {people.length}</p>
+        <p>Počet osob v databázi: {numberOfRecords}</p>
         <Link to="create" className="btn btn-md btn-success">
           Nová osoba
         </Link>
