@@ -11,6 +11,5 @@ public interface PersonRepository extends JpaRepository<PersonEntity, Long>, Jpa
     @Query("SELECT p FROM PersonEntity p JOIN p.departments d WHERE d.id = ?1")
     List<PersonEntity> findAllPeopleInDepartment(long departmentId);
 
-    @Query("SELECT p FROM PersonEntity p WHERE p.isArchived = false")
-    List<PersonEntity> findAllUnarchivedPeople();
+    
 }
