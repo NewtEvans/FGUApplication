@@ -92,7 +92,11 @@ const PersonForm = () => {
           items={departmentList}
           label="Oddělení"
           placeHolder="Vyber oddělení"
-          value={person.departments.map((department) => department.id)}
+          value={
+            person.isEmployee === "none"
+              ? []
+              : person.departments.map((department) => department.id)
+          }
           showLabel="departmentNumber"
           showLabel2="departmentName"
           isMulti={true}
@@ -120,7 +124,11 @@ const PersonForm = () => {
             label="Není zaměstnancem FGÚ"
             value="none"
             handleChange={(e) => {
-              setPerson({ ...person, isEmployee: e.target.value });
+              setPerson({
+                ...person,
+                isEmployee: e.target.value,
+                departments: [],
+              });
             }}
             checked={person.isEmployee === "none"}
           />

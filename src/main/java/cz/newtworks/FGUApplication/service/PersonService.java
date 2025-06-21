@@ -26,6 +26,10 @@ public interface PersonService {
      */
     Page<PersonDTO> getAllPeople(Pageable pageable, PersonFilterDTO personFilterDTO);
 
+    int getNumberOfAllUnarchivedPeople();
+
+    int getNumberOfAllPeople();
+
     /**
      * Method returns all people in particular department
      *

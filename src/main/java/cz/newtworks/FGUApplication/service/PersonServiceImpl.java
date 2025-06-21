@@ -46,6 +46,16 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
+    public int getNumberOfAllUnarchivedPeople() {
+        return 0;
+    }
+
+    @Override
+    public int getNumberOfAllPeople() {
+        return personRepository.findAll().toArray().length;
+    }
+
+    @Override
     public List<PersonDTO> getAllPeopleInDepartment(long departmentId) {
         return personRepository.findAllPeopleInDepartment(departmentId)
                 .stream()
