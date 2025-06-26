@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router";
+import { useNavigate, useParams } from "react-router-dom";
 import { apiDelete, apiGet } from "../utils/api";
 
 import { Link } from "react-router";
@@ -7,6 +7,7 @@ import { Link } from "react-router";
 import { ThesisTypeTransfer } from "../utils/ThesisTypeTransfer";
 
 import { formatDate } from "../utils/dateUtil";
+import { toast } from "react-toastify";
 
 function ThesisDetail() {
   const navigate = useNavigate();
@@ -19,10 +20,10 @@ function ThesisDetail() {
 
     try {
       await apiDelete("/thesis/" + id);
-      alert("Práce byla úspěšně smazána.");
+      toast.success("Práce byla úspěšně smazána.");
     } catch (error) {
-      console.log(error.message);
-      alert(error.message);
+      toast.error(`Chyba: ${error.message}`);
+      console.error(error.message);
     }
     navigate("/theses");
   };
@@ -33,7 +34,8 @@ function ThesisDetail() {
         setThesis(data);
       })
       .catch((error) => {
-        console.log(error);
+        toast.error(`Chyba: ${error.message}`);
+        console.log(error.message);
       });
   }, [id]);
 
@@ -90,13 +92,13 @@ function ThesisDetail() {
           to={`/person/detail/${thesis.trainer?.id}`}
           className="link-dark link-underline-opacity-0 link-underline-opacity-100-hover"
         >
-          {thesis.trainer?.name} {thesis.trainer?.surname}
+          {thesis.trainer?.firstName} {thesis.trainer?.surname}
         </Link>
       </p>
       <p>
         <strong>Konzultant:</strong>{" "}
         <Link
-          to={`/person/detail/${thesis.trainer?.id}`}
+          to={`/person/detail/${thesis.consultant?.id}`}
           className="link-dark link-underline-opacity-0 link-underline-opacity-100-hover"
         >
           {thesis.consultant?.name} {thesis.consultant?.surname}

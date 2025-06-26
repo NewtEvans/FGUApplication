@@ -4,6 +4,7 @@ import { apiGet, apiPost, apiPut } from "../utils/api";
 import InputField from "../components/InputField";
 import InputSelect from "../components/InputSelect";
 import InputCheck from "../components/InputCheck";
+import { toast } from "react-toastify";
 
 const PersonForm = () => {
   const navigate = useNavigate();
@@ -31,10 +32,12 @@ const PersonForm = () => {
     e.preventDefault();
     (id ? apiPut("/person/" + id, person) : apiPost("/person", person))
       .then((data) => {
+        toast.success(`Osoba byla ${id ? "upravena" : "založena"} úspešně.`);
         id ? navigate("/person/detail/" + id) : navigate("/person");
       })
       .catch((error) => {
-        console.log(error.message);
+        toast.error(`Chyba: ${error.message}`);
+        console.error(error.message);
       });
   };
 
@@ -132,17 +135,6 @@ const PersonForm = () => {
             }}
             checked={person.isEmployee === "none"}
           />
-
-          {/* <InputCheck
-            type="radio"
-            name="isEmployee"
-            label="Není zaměstnancem FGÚ"
-            value="none"
-            handleChange={(e) => {
-              setPerson({ ...person, isEmployee: e.target.value });
-            }}
-            checked={person.isEmployee === "none"}
-          /> */}
         </div>
         <br />
         <input type="submit" className="btn btn-success" value="Uložit" />

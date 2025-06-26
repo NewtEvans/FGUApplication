@@ -54,19 +54,25 @@ const PersonIndex = () => {
       ...filter,
     };
 
-    apiGet("/person/count").then((data) => {
-      setNumberOfRecords(data);
-    });
-
     apiGet(url, params)
       .then((data) => {
         setPeople(data.content);
         setTotalPages(data.totalPages);
       })
       .catch((error) => {
+        toast.error(`Chyba: ${error.message}`);
         console.error(error);
       });
   }, [url, page, size, filter, sort]);
+
+  useEffect(() => {
+    apiGet("/person/count")
+      .then((data) => setNumberOfRecords(data))
+      .catch((error) => {
+        toast.error(`Chyba: ${error.message}`);
+        console.log(error.message);
+      });
+  }, []);
 
   return (
     <div>

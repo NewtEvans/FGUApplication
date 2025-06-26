@@ -26,6 +26,13 @@ public interface CouncilService {
     Page<CouncilDTO> getAllCouncils(Pageable pageable, CouncilFilterDTO councilFilterDTO);
 
     /**
+     * Method returns number of all councils in the database.
+     *
+     * @return int with number
+     */
+    int getNumberOfAllCouncils();
+
+    /**
      * Method returns details of council with requested id.
      *
      * @param councilId

@@ -25,6 +25,13 @@ public interface FacultyService {
     Page<FacultyDTO> getAllFaculty(Pageable pageable, FacultyFilterDTO facultyFilterDTO);
 
     /**
+     * Method returns number of all faculty in the database.
+     *
+     * @return int with number
+     */
+    int getCountOfAllFaculty();
+
+    /**
      * Method returns details of faculty with requested id.
      *
      * @param facultyId Requested id

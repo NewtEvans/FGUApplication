@@ -35,6 +35,12 @@ public interface ThesisService {
      */
     Page<ThesisDTO> getAllThesis(Pageable pageable, ThesisFilterDTO thesisFilterDTO);
 
+    /**
+     * Method returns number of all theses in the database.
+     *
+     * @return int with number
+     */
+    int getCountOfAllThesis();
 
     /**
      * Method returns all thesis contains consultant with requested id.

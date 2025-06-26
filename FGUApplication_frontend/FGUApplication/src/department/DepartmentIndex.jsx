@@ -9,6 +9,7 @@ import FilterForm from "../components/filter/FilterForm";
 const DepartmentIndex = () => {
   const [url, setUrl] = useState("/department/all");
   const [departments, setDepartments] = useState([]);
+  const [numberOfRecords, setNumberOfRecords] = useState();
 
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState();
@@ -46,15 +47,25 @@ const DepartmentIndex = () => {
         setTotalPages(data.totalPages);
       })
       .catch((error) => {
+        toast.error(`Chyba: ${error.message}`);
         console.error(error);
       });
   }, [url, page, size, filter]);
+
+  useEffect(() => {
+    apiGet("/department/count")
+      .then((data) => setNumberOfRecords(data))
+      .catch((error) => {
+        toast.error(`Chyba: ${error.message}`);
+        console.error(error);
+      });
+  }, []);
 
   return (
     <div>
       <h1>Seznam všech oddělení</h1>
       <div className="d-flex justify-content-between">
-        <p>Počet oddělení v databázi: {departments.length}</p>
+        <p>Počet oddělení v databázi: {numberOfRecords}</p>
         <Link to="create" className="btn btn-md btn-success">
           Nové oddělení
         </Link>

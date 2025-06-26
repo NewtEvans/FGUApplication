@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router";
 import { apiGet, apiPut, apiPost } from "../utils/api";
 
 import InputField from "../components/InputField";
+import { toast } from "react-toastify";
 
 const FacultyForm = () => {
   const navigate = useNavigate();
@@ -15,7 +16,12 @@ const FacultyForm = () => {
 
   useEffect(() => {
     if (id) {
-      apiGet("/faculty/" + id).then((data) => setFaculty(data));
+      apiGet("/faculty/" + id)
+        .then((data) => setFaculty(data))
+        .catch((error) => {
+          toast.error(`Chyba: ${error.message}`);
+          console.error(error.message);
+        });
     }
   }, [id]);
 
@@ -23,10 +29,12 @@ const FacultyForm = () => {
     e.preventDefault();
     (id ? apiPut("/faculty/" + id, faculty) : apiPost("/faculty", faculty))
       .then((data) => {
+        toast.success(`Fakulta byla ${id ? "upravena" : "vytvořena"} úspěšně.`);
         id ? navigate("/faculties/detail/" + id) : navigate("/faculties");
       })
       .catch((error) => {
-        console.log(error.messagte);
+        toast.error(`Chyba: ${error.message}`);
+        console.error(error.messagte);
       });
   };
 

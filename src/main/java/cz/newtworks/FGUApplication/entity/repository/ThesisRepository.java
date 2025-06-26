@@ -16,4 +16,7 @@ public interface ThesisRepository extends JpaRepository<ThesisEntity, Long>, Jpa
 
     @Query("SELECT t FROM ThesisEntity t WHERE trainer.id = ?1")
     List<ThesisEntity> findAllThesisWithTrainerId(long trainerId);
+
+    @Query("SELECT COUNT(*) FROM ThesisEntity")
+    int countAllThesis();
 }

@@ -32,6 +32,11 @@ public class ThesisController {
         return ResponseEntity.ok(thesisService.getAllThesis(pageable, thesisFilterDTO));
     }
 
+    @GetMapping("/count")
+    public int getCountOfAllThesis() {
+        return thesisService.getCountOfAllThesis();
+    }
+
     @GetMapping("/{thesisId}")
     public ResponseEntity<ThesisDTO> getThesis(@PathVariable long thesisId) {
         return ResponseEntity.ok(thesisService.getThesisById(thesisId));

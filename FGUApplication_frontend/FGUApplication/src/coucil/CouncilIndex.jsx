@@ -7,8 +7,9 @@ import CouncilTable from "./CouncilTable";
 import FilterForm from "../components/filter/FilterForm";
 
 const CouncilIndex = () => {
-  const [councils, setCounciles] = useState([]);
   const [url, setUrl] = useState("/council/all");
+  const [councils, setCounciles] = useState([]);
+  const [numberOfRecords, setNumberOfRecords] = useState();
 
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState();
@@ -45,15 +46,25 @@ const CouncilIndex = () => {
         setTotalPages(data.totalPages);
       })
       .catch((error) => {
-        console.error(error);
+        toast.error(`Chyba: ${error.message}`);
+        console.error(error.message);
       });
   }, [url, page, filter, size]);
+
+  useEffect(() => {
+    apiGet("/council/count")
+      .then((data) => setNumberOfRecords(data))
+      .catch((error) => {
+        toast.error(`Chyba: ${error.message}`);
+        console.error(error.message);
+      });
+  }, []);
 
   return (
     <div>
       <h1>Seznam všech oborových rad</h1>
       <div className="d-flex justify-content-between">
-        <p>Počet oddělení v databázi: {councils.length}</p>
+        <p>Počet oddělení v databázi: {numberOfRecords}</p>
         <Link to="create" className="btn btn-md btn-success">
           Nové rada
         </Link>

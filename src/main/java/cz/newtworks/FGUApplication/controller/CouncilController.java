@@ -30,6 +30,11 @@ public class CouncilController {
         return ResponseEntity.ok(councilService.getAllCouncils(pageable, councilFilterDTO));
     }
 
+    @GetMapping("/count")
+    public int countAllCouncils() {
+        return councilService.getNumberOfAllCouncils();
+    }
+
     @GetMapping("/{councilId}")
     public ResponseEntity<CouncilDTO> getCouncil(@PathVariable long councilId) {
         return ResponseEntity.ok(councilService.getCouncilById(councilId));

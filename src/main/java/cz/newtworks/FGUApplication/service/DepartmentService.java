@@ -25,6 +25,13 @@ public interface DepartmentService {
     Page<DepartmentDTO> getAllDepartments(Pageable pageable, DepartmentFilterDTO departmentFilterDTO);
 
     /**
+     * Method returns number of all departments in the database.
+     *
+     * @return int with number
+     */
+    int getNumberOfAllDepartments();
+
+    /**
      * Method returns details of department with requested id.
      *
      * @param departmentId Requested id

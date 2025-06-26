@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { apiGet, apiPost, apiPut } from "../utils/api";
 import InputField from "../components/InputField";
+import { toast } from "react-toastify";
 
 const CouncilForm = () => {
   const navigate = useNavigate();
@@ -18,7 +19,12 @@ const CouncilForm = () => {
 
   useEffect(() => {
     if (id) {
-      apiGet("/council/" + id).then((data) => setCouncil(data));
+      apiGet("/council/" + id)
+        .then((data) => setCouncil(data))
+        .catch((error) => {
+          toast.error(`Chyba: ${error.message}`);
+          console.error(error.message);
+        });
     }
   }, [id]);
 
@@ -26,10 +32,12 @@ const CouncilForm = () => {
     e.preventDefault();
     (id ? apiPut("/council/" + id, council) : apiPost("/council", council))
       .then((data) => {
+        toast.success(`Rada byla ${id ? "upravena" : "založena"} úspěšně.`);
         id ? navigate("/counciles/detail/" + id) : navigate("/counciles");
       })
       .catch((error) => {
-        console.log(error.message);
+        toast.error(`Chyba: ${error.message}`);
+        console.error(error.message);
       });
   };
 

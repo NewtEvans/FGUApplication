@@ -17,6 +17,7 @@ import CouncilIndex from "./coucil/CouncilIndex";
 import CouncilDetail from "./coucil/CouncilDetail";
 import CouncilForm from "./coucil/CouncilForm";
 import FilterForm from "./components/filter/FilterField";
+import { ToastContainer } from "react-toastify";
 
 import {
   BrowserRouter as Router,
@@ -154,6 +155,7 @@ function App() {
             <Route index element={<FilterForm />} />
           </Route>
         </Routes>
+        <ToastContainer position="top-center" autoClose={3000} />
       </div>
     </Router>
   );

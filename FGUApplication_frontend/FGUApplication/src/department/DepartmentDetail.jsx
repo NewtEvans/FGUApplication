@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router";
 import { apiGet, apiDelete } from "../utils/api";
 import { Link } from "react-router";
 import PersonTable from "../person/PersonTable";
+import { toast } from "react-toastify";
 
 const DepartmentDetail = () => {
   const navigate = useNavigate();
@@ -16,10 +17,10 @@ const DepartmentDetail = () => {
 
     try {
       await apiDelete("/department/" + id);
-      alert("Oddělení bylo smazáno.");
+      toast.success("Oddělení bylo smazáno.");
     } catch (error) {
+      toast.error(`Chyba: ${error.message}`);
       console.log(error.message);
-      alert(error.message);
     }
     navigate("/departments");
   };
@@ -30,14 +31,17 @@ const DepartmentDetail = () => {
         setDepartment(data);
       })
       .catch((error) => {
-        console.log(error);
+        toast.error(`Chyba: ${error.message}`);
+        console.error(error.message);
       });
+
     apiGet("/person/department/" + id)
       .then((data) => {
         setPeople(data);
       })
       .catch((error) => {
-        console.log(error);
+        toast.error(`Chyba: ${error.message}`);
+        console.error(error.message);
       });
   }, [id]);
 

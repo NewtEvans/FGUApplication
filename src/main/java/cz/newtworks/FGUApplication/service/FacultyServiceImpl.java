@@ -39,6 +39,11 @@ public class FacultyServiceImpl implements FacultyService {
     }
 
     @Override
+    public int getCountOfAllFaculty() {
+        return facultyRepository.countAllFaculty();
+    }
+
+    @Override
     public FacultyDTO getFacultyById(long facultyId) {
         return facultyMapper.toDTO(fetchFacultyById(facultyId));
     }

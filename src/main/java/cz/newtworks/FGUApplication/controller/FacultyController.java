@@ -30,6 +30,11 @@ public class FacultyController {
         return ResponseEntity.ok(facultyService.getAllFaculty(pageable, facultyFilterDTO));
     }
 
+    @GetMapping("/count")
+    public int getNumberOfAllFaculty() {
+        return facultyService.getCountOfAllFaculty();
+    }
+
     @GetMapping("/{facultyId}")
     public ResponseEntity<FacultyDTO> getFaculty(@PathVariable long facultyId) {
         return ResponseEntity.ok(facultyService.getFacultyById(facultyId));

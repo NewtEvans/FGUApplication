@@ -39,6 +39,11 @@ public class CouncilServiceImpl implements CouncilService {
     }
 
     @Override
+    public int getNumberOfAllCouncils() {
+        return councilRepository.countAllCouncils();
+    }
+
+    @Override
     public CouncilDTO getCouncilById(long councilId) {
         return councilMapper.toDTO(fetchCouncilById(councilId));
     }

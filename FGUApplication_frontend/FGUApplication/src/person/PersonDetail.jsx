@@ -4,19 +4,20 @@ import { apiGet, apiDelete } from "../utils/api";
 
 import ThesisTable from "../thesis/ThesisTable";
 
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 
 import DepartmentTable from "../department/DepartmentTable";
+import { toast } from "react-toastify";
 
 const PersonDetail = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [person, setPerson] = useState({});
-  const [studentTheses, setStuedentTheses] = useState([]);
+  const [studentTheses, setStudentTheses] = useState([]);
   const [consultantTheses, setConsultantTheses] = useState([]);
   const [trainerTheses, setTrainerTheses] = useState([]);
 
-  const deleteFunction = async (id) => {
+  const archiveFunction = async (id) => {
     const message = person.archived
       ? "Opravdu chcete osobu obnovit?"
       : "Opravdu chcete archivovat osobu?";
@@ -26,10 +27,10 @@ const PersonDetail = () => {
 
     try {
       await apiDelete("/person/" + id);
-      alert("Akce proběhla úspešně!");
+      toast.success("Akce proběhla úspešně!");
     } catch (error) {
-      console.log(error.message);
-      alert(error.message);
+      toast.error(`Chyba: ${error.message}`);
+      console.error(error.message);
     }
     navigate("/person");
   };
@@ -40,37 +41,32 @@ const PersonDetail = () => {
         setPerson(data);
       })
       .catch((error) => {
-        console.log(error);
+        toast.error(`Chyba: ${error.message}`);
+        console.error(error.message);
       });
-  }, []);
-
-  useEffect(() => {
     apiGet("/thesis/consultant/" + id)
       .then((data) => {
         setConsultantTheses(data);
       })
       .catch((error) => {
-        console.log(error);
+        toast.error(`Chyba: ${error.message}`);
+        console.error(error.message);
       });
-  }, []);
-
-  useEffect(() => {
     apiGet("/thesis/student/" + id)
       .then((data) => {
-        setStuedentTheses(data);
+        setStudentTheses(data);
       })
       .catch((error) => {
-        console.log(error);
+        toast.error(`Chyba: ${error.message}`);
+        console.error(error.message);
       });
-  }, []);
-
-  useEffect(() => {
     apiGet("/thesis/trainer/" + id)
       .then((data) => {
         setTrainerTheses(data);
       })
       .catch((error) => {
-        console.log(error);
+        toast.error(`Chyba: ${error.message}`);
+        console.error(error.message);
       });
   }, []);
 
@@ -88,14 +84,14 @@ const PersonDetail = () => {
           {person.archived ? (
             <button
               className="btn btn-success btn-md"
-              onClick={() => deleteFunction(id)}
+              onClick={() => archiveFunction(id)}
             >
               Obnovit osobu
             </button>
           ) : (
             <button
               className="btn btn-danger btn-md"
-              onClick={() => deleteFunction(id)}
+              onClick={() => archiveFunction(id)}
             >
               Archivovat osobu
             </button>

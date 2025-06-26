@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
 import { apiGet, apiDelete } from "../utils/api";
+import { toast } from "react-toastify";
 
 const FacultyDetail = () => {
   const { id } = useParams();
@@ -13,7 +14,8 @@ const FacultyDetail = () => {
         setFaculty(data);
       })
       .catch((error) => {
-        console.log(error);
+        toast.error(`Chyba: ${error.message}`);
+        console.error(error.message);
       });
   }, []);
 
@@ -23,10 +25,10 @@ const FacultyDetail = () => {
 
     try {
       await apiDelete("/faculty/" + id);
-      alert("Fakulta byla smazána.");
+      toast.success("Fakulta byla smazána.");
     } catch (error) {
-      console.log(error.message);
-      alert(error.message);
+      toast.error(`Chyba: ${error.message}`);
+      console.error(error.message);
     }
     navigate("/faculties");
   };

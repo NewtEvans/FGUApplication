@@ -8,10 +8,12 @@ import { apiGet } from "../utils/api";
 import { Pagination } from "../components/Pagination";
 import FilterForm from "../components/filter/FilterForm";
 import SortDropdown from "../components/SortDropdown";
+import { toast } from "react-toastify";
 
 const FacultyIndex = () => {
   const [url, setUrl] = useState("/faculty/all");
   const [faculties, setFaculties] = useState([]);
+  const [numberOfRecords, setNumberOfRecords] = useState();
 
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState();
@@ -50,21 +52,32 @@ const FacultyIndex = () => {
       sort,
       ...filter,
     };
+
     apiGet(url, params)
       .then((data) => {
         setFaculties(data.content);
         setTotalPages(data.totalPages);
       })
       .catch((error) => {
+        toast.error(`Chyba: ${error.message}`);
         console.error(error);
       });
   }, [url, page, size, filter, sort]);
+
+  useEffect(() => {
+    apiGet("/faculty/count")
+      .then((data) => setNumberOfRecords(data))
+      .catch((error) => {
+        toast.error(`Chyba: ${error.message}`);
+        console.error(error.message);
+      });
+  }, []);
 
   return (
     <div>
       <h1>Seznam všech fakult</h1>
       <div className="d-flex justify-content-between">
-        <p>Počet fakult v databázi: {faculties.length}</p>
+        <p>Počet fakult v databázi: {numberOfRecords}</p>
         <Link to="create" className="btn btn-md btn-success">
           Nová fakulta
         </Link>

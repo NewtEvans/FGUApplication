@@ -76,6 +76,11 @@ public class ThesisServiceImpl implements ThesisService {
     }
 
     @Override
+    public int getCountOfAllThesis() {
+        return thesisRepository.countAllThesis();
+    }
+    
+    @Override
     public List<ThesisDTO> getAllThesisWithConsultantId(long consultantId) {
         return thesisRepository.findAllThesisWithConsultantId(consultantId)
                 .stream()

@@ -30,6 +30,11 @@ public class DepartmentController {
         return ResponseEntity.ok(departmentService.getAllDepartments(pageable, departmentFilterDTO));
     }
 
+    @GetMapping("/count")
+    public int getNumberOfAllDepartments() {
+        return departmentService.getNumberOfAllDepartments();
+    }
+
     @GetMapping("/{departmentId}")
     public ResponseEntity<DepartmentDTO> getDepartment(@PathVariable long departmentId) {
         return ResponseEntity.ok(departmentService.getDepartmentById(departmentId));

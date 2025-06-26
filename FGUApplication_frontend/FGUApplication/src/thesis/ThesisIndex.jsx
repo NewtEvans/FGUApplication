@@ -5,10 +5,12 @@ import { Link } from "react-router";
 import { Pagination } from "../components/Pagination";
 import FilterForm from "../components/filter/FilterForm";
 import SortDropdown from "../components/SortDropdown";
+import { toast } from "react-toastify";
 
 const ThesisIndex = () => {
   const [url, setUrl] = useState("/thesis/all");
   const [theses, setTheses] = useState([]);
+  const [numberOfRecords, setNumberOfRecords] = useState();
 
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState();
@@ -56,21 +58,32 @@ const ThesisIndex = () => {
       sort,
       ...filter,
     };
+
     apiGet(url, params)
       .then((data) => {
         setTheses(data.content);
         setTotalPages(data.totalPages);
       })
       .catch((error) => {
-        console.error(error);
+        toast.error(`Chyba: ${error.message}`);
+        console.error(error.message);
       });
   }, [url, page, totalPages, filter, size, sort]);
+
+  useEffect(() => {
+    apiGet("/thesis/count")
+      .then((data) => setNumberOfRecords(data))
+      .catch((error) => {
+        toast.error(`Chyba: ${error.message}`);
+        console.error(error.message);
+      });
+  }, []);
 
   return (
     <div>
       <h1>Práce studentů</h1>
       <div className="d-flex justify-content-between">
-        <p>Počet prací v databázi: {theses.length}</p>
+        <p>Počet prací v databázi: {numberOfRecords}</p>
         <Link to="create" className="btn btn-md btn-success">
           Nová práce
         </Link>

@@ -6,6 +6,7 @@ import InputField from "../components/InputField";
 import InputSelect from "../components/InputSelect";
 import InputCheck from "../components/InputCheck";
 import thesisType from "./ThesisType";
+import { toast } from "react-toastify";
 
 const ThesisForm = () => {
   const navigate = useNavigate();
@@ -40,10 +41,12 @@ const ThesisForm = () => {
     e.preventDefault();
     (id ? apiPut("/thesis/" + id, thesis) : apiPost("/thesis", thesis))
       .then((data) => {
+        toast.success(`Práce byla ${id ? "upravena" : "založena"} úspěšně.`);
         id ? navigate("/theses/detail/" + id) : navigate("/theses");
       })
       .catch((error) => {
-        console.log(error.message);
+        toast.error(`Chyba: ${error.message}`);
+        console.error(error.message);
       });
   };
 
@@ -91,7 +94,7 @@ const ThesisForm = () => {
           label="Student"
           placeHolder="Vyber studenta"
           showLabel="surname"
-          showLabel2="name"
+          showLabel2="firstName"
           value={thesis.student.id}
           onChange={(id) => {
             setThesis({ ...thesis, student: { id } });
@@ -103,7 +106,7 @@ const ThesisForm = () => {
           label="Školitel"
           placeHolder="Vyber školitele"
           showLabel="surname"
-          showLabel2="name"
+          showLabel2="firstName"
           value={thesis.trainer.id}
           onChange={(id) => {
             setThesis({ ...thesis, trainer: { id } });
@@ -115,7 +118,7 @@ const ThesisForm = () => {
           label="Konzultant"
           placeHolder="Vyber konzultanta"
           showLabel="surname"
-          showLabel2="name"
+          showLabel2="firstName"
           value={thesis.consultant.id}
           onChange={(id) => {
             setThesis({

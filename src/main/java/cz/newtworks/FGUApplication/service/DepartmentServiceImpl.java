@@ -39,6 +39,11 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
+    public int getNumberOfAllDepartments() {
+        return departmentRepository.countAllDepartments();
+    }
+
+    @Override
     public DepartmentDTO getDepartmentById(long departmentId) {
         return departmentMapper.toDTO(fetchDepartmentById(departmentId));
     }

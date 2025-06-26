@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { apiGet, apiPost, apiPut } from "../utils/api";
+import { toast } from "react-toastify";
 
 import InputField from "../components/InputField";
 
@@ -9,7 +10,7 @@ const DepartmentForm = () => {
   const { id } = useParams();
   const [department, setDepartment] = useState({
     departmentName: "",
-    departmentId: "",
+    departmentNumber: "",
     people: [{}],
   });
 
@@ -21,14 +22,19 @@ const DepartmentForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     (id
       ? apiPut("/department/" + id, department)
       : apiPost("/department", department)
     )
       .then((data) => {
+        toast.success(
+          `Oddělení bylo ${id ? "upraveno" : "vytvořeno"} úspěšně.`
+        );
         id ? navigate("/departments/detail/" + id) : navigate("/departments");
       })
       .catch((error) => {
+        toast.error(`Chyba: ${error.message}`);
         console.log(error.message);
       });
   };

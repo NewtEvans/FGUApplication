@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { apiGet, apiDelete } from "../utils/api";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const CouncilDetail = () => {
   const navigate = useNavigate();
@@ -14,7 +15,8 @@ const CouncilDetail = () => {
         setCouncil(data);
       })
       .catch((error) => {
-        console.log(error);
+        toast.error(`Chyba: ${error.message}`);
+        console.error(error.message);
       });
   }, []);
 
@@ -24,10 +26,10 @@ const CouncilDetail = () => {
 
     try {
       await apiDelete("/council/" + id);
-      alert("Rada byla úspešně smazána.");
+      toast.success("Rada byla úspešně smazána.");
     } catch (error) {
-      console.log(error.message);
-      alert(error.message);
+      toast.error(`Chyba: ${error.message}`);
+      console.error(error.message);
     }
     navigate("/counciles");
   };
