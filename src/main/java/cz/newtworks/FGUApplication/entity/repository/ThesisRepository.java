@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface ThesisRepository extends JpaRepository<ThesisEntity, Long>, JpaSpecificationExecutor<ThesisEntity> {
@@ -19,4 +20,7 @@ public interface ThesisRepository extends JpaRepository<ThesisEntity, Long>, Jpa
 
     @Query("SELECT COUNT(*) FROM ThesisEntity")
     int countAllThesis();
+
+    @Query("SELECT COUNT(*) FROM Thesisentity WHERE startDate = ?1")
+    int findAllThesisByData(LocalDate date);
 }
