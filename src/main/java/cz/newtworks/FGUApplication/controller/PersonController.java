@@ -33,6 +33,11 @@ public class PersonController {
         return ResponseEntity.ok(personService.getAllPeople(pageable, personFilterDTO));
     }
 
+    @GetMapping("/department/{departmentId}")
+    public ResponseEntity<List<PersonDTO>> getAllPeopleInDepartment(@PathVariable long departmentId) {
+        return ResponseEntity.ok(personService.getAllPeopleInDepartment(departmentId));
+    }
+
     @GetMapping("/count")
     public int countAllPeople() {
         return personService.getNumberOfAllPeople();
@@ -54,8 +59,4 @@ public class PersonController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/department/{departmentId}")
-    public ResponseEntity<List<PersonDTO>> getAllPeopleInDepartment(@PathVariable long departmentId) {
-        return ResponseEntity.ok(personService.getAllPeopleInDepartment(departmentId));
-    }
 }

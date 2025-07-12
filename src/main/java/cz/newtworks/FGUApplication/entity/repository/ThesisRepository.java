@@ -21,6 +21,6 @@ public interface ThesisRepository extends JpaRepository<ThesisEntity, Long>, Jpa
     @Query("SELECT COUNT(*) FROM ThesisEntity")
     int countAllThesis();
 
-    @Query("SELECT COUNT(*) FROM Thesisentity WHERE startDate = ?1")
+    @Query("SELECT COUNT(*) FROM ThesisEntity WHERE startDate = ?1")
     int findAllThesisByData(LocalDate date);
 }
