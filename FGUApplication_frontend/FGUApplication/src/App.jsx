@@ -16,7 +16,6 @@ import FacultyForm from "./faculty/FacultyForm";
 import CouncilIndex from "./coucil/CouncilIndex";
 import CouncilDetail from "./coucil/CouncilDetail";
 import CouncilForm from "./coucil/CouncilForm";
-import FilterForm from "./components/filter/FilterField";
 import { ToastContainer } from "react-toastify";
 
 import {
@@ -26,6 +25,7 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
+import Summaryindex from "./summary/SummaryIndex";
 
 window.bootstrap = bootstrap;
 
@@ -95,9 +95,9 @@ function App() {
                   </ul>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/summary">
+                  <Link to={"summary"} className="nav-link">
                     Roční přehled
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
                   <a className="nav-link" href="#">
@@ -152,7 +152,7 @@ function App() {
           </Route>
           <Route index element={<Navigate to={"/summary"} />} />
           <Route path="/summary">
-            <Route index element={<FilterForm />} />
+            <Route index element={<Summaryindex />} />
           </Route>
         </Routes>
         <ToastContainer position="top-center" autoClose={3000} />
