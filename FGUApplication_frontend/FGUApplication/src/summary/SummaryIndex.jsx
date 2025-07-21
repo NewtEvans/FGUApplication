@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { apiGet } from "../utils/api";
 import { toast } from "react-toastify";
-import SummaryTable from "./SummaryTable";
 
 const Summaryindex = () => {
   const [url, setUrl] = useState("/summary");
