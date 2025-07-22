@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/department")
 public class DepartmentController {
@@ -21,6 +23,12 @@ public class DepartmentController {
     @PostMapping
     public ResponseEntity<DepartmentDTO> createDepartment(@Valid @RequestBody DepartmentDTO departmentDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(departmentService.addDepartment(departmentDTO));
+    }
+
+    @PostMapping("/multiple")
+    public ResponseEntity<?> createDepartments(@RequestBody List<DepartmentDTO> departmentDTOs) {
+        departmentService.addDepartments(departmentDTOs);
+        return ResponseEntity.ok("OK");
     }
 
     @GetMapping("/all")

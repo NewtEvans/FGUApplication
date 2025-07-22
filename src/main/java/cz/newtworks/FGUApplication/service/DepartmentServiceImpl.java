@@ -13,6 +13,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class DepartmentServiceImpl implements DepartmentService {
 
@@ -28,6 +31,17 @@ public class DepartmentServiceImpl implements DepartmentService {
         departmentRepository.save(newDepartment);
 
         return departmentMapper.toDTO(newDepartment);
+    }
+
+    @Override
+    public List<DepartmentDTO> addDepartments(List<DepartmentDTO> departmentDTOs) {
+        List<DepartmentEntity> departmentEntities = departmentDTOs.stream()
+                .map(departmentDTO -> departmentMapper.toEntity(departmentDTO))
+                .collect(Collectors.toList());
+
+        departmentRepository.saveAll(departmentEntities);
+
+        return null;
     }
 
     @Override

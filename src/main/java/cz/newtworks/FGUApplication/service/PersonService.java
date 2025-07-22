@@ -18,6 +18,8 @@ public interface PersonService {
      */
     PersonDTO addPerson(PersonDTO personDTO);
 
+    List<PersonDTO> addPeople(List<PersonDTO> people);
+
     /**
      * Method returns all people in the database.
      * Contains pagination and specification components.

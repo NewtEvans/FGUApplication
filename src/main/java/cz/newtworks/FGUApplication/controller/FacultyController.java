@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/faculty")
 public class FacultyController {
@@ -21,6 +23,12 @@ public class FacultyController {
     @PostMapping
     public ResponseEntity<FacultyDTO> createFaculty(@Valid @RequestBody FacultyDTO facultyDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(facultyService.addFaculty(facultyDTO));
+    }
+
+    @PostMapping("/multiple")
+    public ResponseEntity<?> createFaculties(@RequestBody List<FacultyDTO> facultyDTOs) {
+        facultyService.addFaculties(facultyDTOs);
+        return ResponseEntity.ok("OK");
     }
 
     @GetMapping("/all")

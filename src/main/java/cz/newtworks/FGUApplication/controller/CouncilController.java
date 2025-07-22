@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/council")
 public class CouncilController {
@@ -21,6 +23,13 @@ public class CouncilController {
     @PostMapping
     public ResponseEntity<CouncilDTO> createCouncil(@Valid @RequestBody CouncilDTO councilDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(councilService.addCouncil(councilDTO));
+    }
+
+    @PostMapping("/multiple")
+    public ResponseEntity<?> createCounciles(@RequestBody List<CouncilDTO> councilDTOs) {
+        councilService.addCounciles(councilDTOs);
+
+        return ResponseEntity.ok("OK");
     }
 
     @GetMapping("/all")

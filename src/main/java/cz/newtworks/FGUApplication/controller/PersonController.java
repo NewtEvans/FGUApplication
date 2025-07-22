@@ -26,6 +26,12 @@ public class PersonController {
         return ResponseEntity.status(HttpStatus.CREATED).body(personService.addPerson(personDTO));
     }
 
+    @PostMapping("/multiple")
+    public ResponseEntity<?> createPeople(@RequestBody List<PersonDTO> people) {
+        personService.addPeople(people);
+        return ResponseEntity.ok("OK");
+    }
+
     @GetMapping("/all")
     public ResponseEntity<Page<PersonDTO>> getAllPeople(
             Pageable pageable,

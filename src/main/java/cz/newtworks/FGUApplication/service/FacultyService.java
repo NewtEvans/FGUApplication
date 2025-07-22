@@ -6,6 +6,8 @@ import cz.newtworks.FGUApplication.exception.ResourceNotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 public interface FacultyService {
 
     /**
@@ -15,6 +17,8 @@ public interface FacultyService {
      * @return DTO with freshly created faculty
      */
     FacultyDTO addFaculty(FacultyDTO facultyDTO);
+
+    List<FacultyDTO> addFaculties(List<FacultyDTO> facultyDTOs);
 
     /**
      * Method returns all faculties in the database.

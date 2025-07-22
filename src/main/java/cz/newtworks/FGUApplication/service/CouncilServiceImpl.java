@@ -13,6 +13,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class CouncilServiceImpl implements CouncilService {
 
@@ -28,6 +31,17 @@ public class CouncilServiceImpl implements CouncilService {
         councilRepository.save(council);
 
         return councilMapper.toDTO(council);
+    }
+
+    @Override
+    public List<CouncilDTO> addCounciles(List<CouncilDTO> councilDTOs) {
+        List<CouncilEntity> councilEntities = councilDTOs.stream()
+                .map(councilDTO -> councilMapper.toEntity(councilDTO))
+                .collect(Collectors.toList());
+
+        councilRepository.saveAll(councilEntities);
+
+        return null;
     }
 
     @Override

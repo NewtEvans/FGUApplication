@@ -13,6 +13,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class FacultyServiceImpl implements FacultyService {
 
@@ -28,6 +31,17 @@ public class FacultyServiceImpl implements FacultyService {
         facultyRepository.save(facultyEntity);
 
         return facultyMapper.toDTO(facultyEntity);
+    }
+
+    @Override
+    public List<FacultyDTO> addFaculties(List<FacultyDTO> facultyDTOs) {
+        List<FacultyEntity> facultyEntities = facultyDTOs.stream()
+                .map(facultyDTO -> facultyMapper.toEntity(facultyDTO))
+                .collect(Collectors.toList());
+
+        facultyRepository.saveAll(facultyEntities);
+
+        return null;
     }
 
     @Override

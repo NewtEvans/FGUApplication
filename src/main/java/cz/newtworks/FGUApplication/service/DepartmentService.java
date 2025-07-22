@@ -6,6 +6,8 @@ import cz.newtworks.FGUApplication.exception.ResourceNotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 public interface DepartmentService {
 
     /**
@@ -15,6 +17,8 @@ public interface DepartmentService {
      * @return DTO with freshly created department
      */
     DepartmentDTO addDepartment(DepartmentDTO departmentDTO);
+
+    List<DepartmentDTO> addDepartments(List<DepartmentDTO> departmentDTOs);
 
     /**
      * Method returns all departments in the database.

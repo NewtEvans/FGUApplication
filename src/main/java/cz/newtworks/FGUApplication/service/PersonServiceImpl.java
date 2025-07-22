@@ -38,6 +38,17 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
+    public List<PersonDTO> addPeople(List<PersonDTO> people) {
+        List<PersonEntity> personEntities = people.stream()
+                .map(personDTO -> personMapper.toEntity(personDTO))
+                .collect(Collectors.toList());
+
+        personRepository.saveAll(personEntities);
+
+        return null;
+    }
+
+    @Override
     public Page<PersonDTO> getAllPeople(Pageable pageable, PersonFilterDTO personFilterDTO) {
         Specification<PersonEntity> specification = PersonSpecification.buildSpecification(personFilterDTO);
 
