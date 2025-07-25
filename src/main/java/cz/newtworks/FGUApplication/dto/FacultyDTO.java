@@ -12,7 +12,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class FacultyDTO {
 
-    private long id;
+    private Long id;
 
     @NotBlank(message = "Faculty name is required.")
     private String facultyName;

@@ -15,7 +15,7 @@ const ThesisForm = () => {
     startDate: "",
     nameCz: "",
     nameEn: "",
-    student: { id: 0 },
+    student: {},
     trainer: {},
     consultant: {},
     faculty: {},

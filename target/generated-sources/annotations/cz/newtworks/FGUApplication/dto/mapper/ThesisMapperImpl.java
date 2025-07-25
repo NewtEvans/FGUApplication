@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-07-16T13:25:20+0200",
+    date = "2025-07-25T16:29:28+0200",
     comments = "version: 1.6.3, compiler: javac, environment: Java 23.0.2 (Oracle Corporation)"
 )
 @Component
@@ -204,7 +204,9 @@ public class ThesisMapperImpl implements ThesisMapper {
 
         FacultyEntity facultyEntity = new FacultyEntity();
 
-        facultyEntity.setId( facultyDTO.getId() );
+        if ( facultyDTO.getId() != null ) {
+            facultyEntity.setId( facultyDTO.getId() );
+        }
         facultyEntity.setFacultyName( facultyDTO.getFacultyName() );
         facultyEntity.setFacultyAbbreviation( facultyDTO.getFacultyAbbreviation() );
         facultyEntity.setSchool( facultyDTO.getSchool() );
@@ -219,7 +221,9 @@ public class ThesisMapperImpl implements ThesisMapper {
 
         CouncilEntity councilEntity = new CouncilEntity();
 
-        councilEntity.setId( councilDTO.getId() );
+        if ( councilDTO.getId() != null ) {
+            councilEntity.setId( councilDTO.getId() );
+        }
         councilEntity.setCouncilName( councilDTO.getCouncilName() );
         councilEntity.setCouncilAbbreviation( councilDTO.getCouncilAbbreviation() );
         councilEntity.setCouncilNumber( councilDTO.getCouncilNumber() );

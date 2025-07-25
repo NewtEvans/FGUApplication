@@ -79,7 +79,7 @@ public class ThesisServiceImpl implements ThesisService {
     public int getCountOfAllThesis() {
         return thesisRepository.countAllThesis();
     }
-    
+
     @Override
     public List<ThesisDTO> getAllThesisWithConsultantId(long consultantId) {
         return thesisRepository.findAllThesisWithConsultantId(consultantId)
@@ -142,31 +142,31 @@ public class ThesisServiceImpl implements ThesisService {
     private ThesisEntity createFillEntity(ThesisDTO thesisDTO) {
         ThesisEntity filledThesisEntity = thesisMapper.toEntity(thesisDTO);
 
-        if (thesisDTO.getStudent() != null) {
+        if (thesisDTO.getStudent().getId() != null) {
             PersonEntity student = personRepository.findById(thesisDTO.getStudent().getId())
                     .orElseThrow(() -> new ResourceNotFoundException("Student with id " + filledThesisEntity.getStudent().getId() + " wasn't found in the database."));
             filledThesisEntity.setStudent(student);
         } else filledThesisEntity.setStudent(null);
 
-        if (thesisDTO.getTrainer() != null && thesisDTO.getTrainer().equals("")) {
+        if (thesisDTO.getTrainer().getId() != null) {
             PersonEntity trainer = personRepository.findById(thesisDTO.getTrainer().getId())
                     .orElseThrow(() -> new ResourceNotFoundException("Trainer with id " + filledThesisEntity.getTrainer().getId() + " wasn't found in the database."));
             filledThesisEntity.setTrainer(trainer);
         } else filledThesisEntity.setTrainer(null);
 
-        if (thesisDTO.getConsultant() != null && thesisDTO.getConsultant().equals("")) {
+        if (thesisDTO.getConsultant().getId() != null) {
             PersonEntity consultant = personRepository.findById(thesisDTO.getConsultant().getId())
                     .orElseThrow(() -> new ResourceNotFoundException("Consultant with id " + filledThesisEntity.getConsultant().getId() + " wasn't found in the database."));
             filledThesisEntity.setConsultant(consultant);
         } else filledThesisEntity.setConsultant(null);
 
-        if (thesisDTO.getCouncil() != null && thesisDTO.getConsultant().equals("")) {
+        if (thesisDTO.getCouncil().getId() != null) {
             CouncilEntity council = councilRepository.findById(thesisDTO.getCouncil().getId())
                     .orElseThrow(() -> new ResourceNotFoundException("Council with id " + filledThesisEntity.getCouncil().getId() + " wasn't found in the database."));
             filledThesisEntity.setCouncil(council);
         } else filledThesisEntity.setCouncil(null);
 
-        if (thesisDTO.getFaculty() != null && thesisDTO.getFaculty().equals("")) {
+        if (thesisDTO.getFaculty().getId() != null) {
             FacultyEntity faculty = facultyRepository.findById(thesisDTO.getFaculty().getId())
                     .orElseThrow(() -> new ResourceNotFoundException("Faculty with id " + filledThesisEntity.getFaculty().getId() + " wasn't found in the database."));
             filledThesisEntity.setFaculty(faculty);

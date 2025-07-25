@@ -11,6 +11,7 @@ const ThesisIndex = () => {
   const [url, setUrl] = useState("/thesis/all");
   const [theses, setTheses] = useState([]);
   const [numberOfRecords, setNumberOfRecords] = useState();
+  const [loading, setLoading] = useState(true);
 
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState();
@@ -67,7 +68,8 @@ const ThesisIndex = () => {
       .catch((error) => {
         toast.error(`Chyba: ${error.message}`);
         console.error(error.message);
-      });
+      })
+      .finally(() => setLoading(false));
   }, [url, page, totalPages, filter, size, sort]);
 
   useEffect(() => {
@@ -78,6 +80,14 @@ const ThesisIndex = () => {
         console.error(error.message);
       });
   }, []);
+
+  if (loading) {
+    return (
+      <div className="text-center mt-5">
+        <div className="spinner-border text-primary" />
+      </div>
+    );
+  }
 
   return (
     <div>

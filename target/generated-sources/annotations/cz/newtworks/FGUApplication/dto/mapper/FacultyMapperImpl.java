@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-07-16T13:25:20+0200",
+    date = "2025-07-25T16:29:28+0200",
     comments = "version: 1.6.3, compiler: javac, environment: Java 23.0.2 (Oracle Corporation)"
 )
 @Component
@@ -21,7 +21,9 @@ public class FacultyMapperImpl implements FacultyMapper {
 
         FacultyEntity facultyEntity = new FacultyEntity();
 
-        facultyEntity.setId( source.getId() );
+        if ( source.getId() != null ) {
+            facultyEntity.setId( source.getId() );
+        }
         facultyEntity.setFacultyName( source.getFacultyName() );
         facultyEntity.setFacultyAbbreviation( source.getFacultyAbbreviation() );
         facultyEntity.setSchool( source.getSchool() );

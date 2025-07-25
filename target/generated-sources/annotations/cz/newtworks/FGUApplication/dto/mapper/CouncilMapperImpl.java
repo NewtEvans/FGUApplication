@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-07-16T13:25:20+0200",
+    date = "2025-07-25T16:29:27+0200",
     comments = "version: 1.6.3, compiler: javac, environment: Java 23.0.2 (Oracle Corporation)"
 )
 @Component
@@ -21,7 +21,9 @@ public class CouncilMapperImpl implements CouncilMapper {
 
         CouncilEntity councilEntity = new CouncilEntity();
 
-        councilEntity.setId( source.getId() );
+        if ( source.getId() != null ) {
+            councilEntity.setId( source.getId() );
+        }
         councilEntity.setCouncilName( source.getCouncilName() );
         councilEntity.setCouncilAbbreviation( source.getCouncilAbbreviation() );
         councilEntity.setCouncilNumber( source.getCouncilNumber() );

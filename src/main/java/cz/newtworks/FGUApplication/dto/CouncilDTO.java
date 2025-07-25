@@ -13,7 +13,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class CouncilDTO {
 
-    private long id;
+    private Long id;
 
     @NotBlank(message = "Council name is required.")
     private String councilName;
