@@ -16,7 +16,7 @@ oborových rad.
 # Použité technologie
 
 - Backend:
-    - Java <verze>, Spring Boot, Spring Data JPA, Maven
+    - Java openjdk-19 (Oracle OpenJDK 23.0.2), Spring Boot, Spring Data JPA, Maven
 - Frontend:
     - React, Bootstrap, React Router
 - Databáze:
