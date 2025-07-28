@@ -10,6 +10,7 @@ const DepartmentIndex = () => {
   const [url, setUrl] = useState("/department/all");
   const [departments, setDepartments] = useState([]);
   const [numberOfRecords, setNumberOfRecords] = useState();
+  const [loading, setLoading] = useState(true);
 
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState();
@@ -49,7 +50,8 @@ const DepartmentIndex = () => {
       .catch((error) => {
         toast.error(`Chyba: ${error.message}`);
         console.error(error);
-      });
+      })
+      .finally(() => setLoading(false));
   }, [url, page, size, filter]);
 
   useEffect(() => {
@@ -60,6 +62,14 @@ const DepartmentIndex = () => {
         console.error(error);
       });
   }, []);
+
+  if (loading) {
+    return (
+      <div className="text-center mt-5">
+        <div className="spinner-border text-primary" />
+      </div>
+    );
+  }
 
   return (
     <div>

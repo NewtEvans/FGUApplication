@@ -10,6 +10,7 @@ const CouncilIndex = () => {
   const [url, setUrl] = useState("/council/all");
   const [councils, setCounciles] = useState([]);
   const [numberOfRecords, setNumberOfRecords] = useState();
+  const [loading, setLoading] = useState(true);
 
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState();
@@ -48,7 +49,8 @@ const CouncilIndex = () => {
       .catch((error) => {
         toast.error(`Chyba: ${error.message}`);
         console.error(error.message);
-      });
+      })
+      .finally(() => setLoading(false));
   }, [url, page, filter, size]);
 
   useEffect(() => {
@@ -59,6 +61,14 @@ const CouncilIndex = () => {
         console.error(error.message);
       });
   }, []);
+
+  if (loading) {
+    return (
+      <div className="text-center mt-5">
+        <div className="spinner-border text-primary" />
+      </div>
+    );
+  }
 
   return (
     <div>

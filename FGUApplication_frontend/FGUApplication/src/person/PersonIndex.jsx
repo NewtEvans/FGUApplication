@@ -10,6 +10,7 @@ const PersonIndex = () => {
   const [url, setUrl] = useState("/person/all");
   const [people, setPeople] = useState([]);
   const [numberOfRecords, setNumberOfRecords] = useState();
+  const [loading, setLoading] = useState(true);
 
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState();
@@ -62,7 +63,8 @@ const PersonIndex = () => {
       .catch((error) => {
         toast.error(`Chyba: ${error.message}`);
         console.error(error);
-      });
+      })
+      .finally(() => setLoading(false));
   }, [url, page, size, filter, sort]);
 
   useEffect(() => {
@@ -73,6 +75,14 @@ const PersonIndex = () => {
         console.log(error.message);
       });
   }, []);
+
+  if (loading) {
+    return (
+      <div className="text-center mt-5">
+        <div className="spinner-border text-primary" />
+      </div>
+    );
+  }
 
   return (
     <div>
