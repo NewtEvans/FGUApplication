@@ -18,7 +18,7 @@ oborových rad.
 - Backend:
     - Java openjdk-19 (Oracle OpenJDK 23.0.2), Spring Boot, Spring Data JPA, Maven
 - Frontend:
-    - React, Bootstrap, React Router
+    - React, Bootstrap, React Router, Node JS
 - Databáze:
     - MySQL (Docker kontejner)
 - Docker:
@@ -27,7 +27,7 @@ oborových rad.
 # Spouštění aplikace
 
 1) Naklonování repozitáře
-    - git clone https://github.com/newt...
+    - git clone https://github.com/NewtEvans/FGUApplication
 2) Spustit přes Docker (docker-compose up --build)
     - Spustí se:
         - Spring Boot backend: https://localhost:8080
