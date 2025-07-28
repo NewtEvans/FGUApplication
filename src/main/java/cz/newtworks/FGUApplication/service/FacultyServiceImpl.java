@@ -26,7 +26,7 @@ public class FacultyServiceImpl implements FacultyService {
     private FacultyRepository facultyRepository;
 
     @Override
-    public FacultyDTO addFaculty(FacultyDTO facultyDTO) {
+    public FacultyDTO createFaculty(FacultyDTO facultyDTO) {
         FacultyEntity facultyEntity = facultyMapper.toEntity(facultyDTO);
         facultyRepository.save(facultyEntity);
 
@@ -34,14 +34,12 @@ public class FacultyServiceImpl implements FacultyService {
     }
 
     @Override
-    public List<FacultyDTO> addFaculties(List<FacultyDTO> facultyDTOs) {
+    public void createMultipleFaculties(List<FacultyDTO> facultyDTOs) {
         List<FacultyEntity> facultyEntities = facultyDTOs.stream()
                 .map(facultyDTO -> facultyMapper.toEntity(facultyDTO))
                 .collect(Collectors.toList());
 
         facultyRepository.saveAll(facultyEntities);
-
-        return null;
     }
 
     @Override
@@ -53,7 +51,7 @@ public class FacultyServiceImpl implements FacultyService {
     }
 
     @Override
-    public int getCountOfAllFaculty() {
+    public int countFaculties() {
         return facultyRepository.countAllFaculty();
     }
 

@@ -30,7 +30,7 @@ public class PersonServiceImpl implements PersonService {
     private PersonRepository personRepository;
 
     @Override
-    public PersonDTO addPerson(PersonDTO personDTO) {
+    public PersonDTO createPerson(PersonDTO personDTO) {
         PersonEntity newPersonEntity = personMapper.toEntity(personDTO);
         personRepository.save(newPersonEntity);
 
@@ -38,14 +38,12 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public List<PersonDTO> addPeople(List<PersonDTO> people) {
+    public void createMultiplePerson(List<PersonDTO> people) {
         List<PersonEntity> personEntities = people.stream()
                 .map(personDTO -> personMapper.toEntity(personDTO))
                 .collect(Collectors.toList());
 
         personRepository.saveAll(personEntities);
-
-        return null;
     }
 
     @Override
@@ -57,7 +55,7 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public int getNumberOfAllPeople() {
+    public int countPeople() {
         return personRepository.countAllPerson();
     }
 

@@ -26,7 +26,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     private DepartmentRepository departmentRepository;
 
     @Override
-    public DepartmentDTO addDepartment(DepartmentDTO departmentDTO) {
+    public DepartmentDTO createDepartment(DepartmentDTO departmentDTO) {
         DepartmentEntity newDepartment = departmentMapper.toEntity(departmentDTO);
         departmentRepository.save(newDepartment);
 
@@ -34,14 +34,12 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public List<DepartmentDTO> addDepartments(List<DepartmentDTO> departmentDTOs) {
+    public void createMultipleDepartments(List<DepartmentDTO> departmentDTOs) {
         List<DepartmentEntity> departmentEntities = departmentDTOs.stream()
                 .map(departmentDTO -> departmentMapper.toEntity(departmentDTO))
                 .collect(Collectors.toList());
 
         departmentRepository.saveAll(departmentEntities);
-
-        return null;
     }
 
     @Override
@@ -53,7 +51,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public int getNumberOfAllDepartments() {
+    public int countDepartments() {
         return departmentRepository.countAllDepartments();
     }
 

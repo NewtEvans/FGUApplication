@@ -22,12 +22,12 @@ public class FacultyController {
 
     @PostMapping
     public ResponseEntity<FacultyDTO> createFaculty(@Valid @RequestBody FacultyDTO facultyDTO) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(facultyService.addFaculty(facultyDTO));
+        return ResponseEntity.status(HttpStatus.CREATED).body(facultyService.createFaculty(facultyDTO));
     }
 
     @PostMapping("/multiple")
-    public ResponseEntity<?> createFaculties(@RequestBody List<FacultyDTO> facultyDTOs) {
-        facultyService.addFaculties(facultyDTOs);
+    public ResponseEntity<?> createMultipleFaculties(@RequestBody List<FacultyDTO> facultyDTOs) {
+        facultyService.createMultipleFaculties(facultyDTOs);
         return ResponseEntity.ok("OK");
     }
 
@@ -39,8 +39,8 @@ public class FacultyController {
     }
 
     @GetMapping("/count")
-    public int getNumberOfAllFaculty() {
-        return facultyService.getCountOfAllFaculty();
+    public ResponseEntity<Integer> getFacultiesCount() {
+        return ResponseEntity.ok(facultyService.countFaculties());
     }
 
     @GetMapping("/{facultyId}")

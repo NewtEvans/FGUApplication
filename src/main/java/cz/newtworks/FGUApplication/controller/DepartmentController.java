@@ -22,12 +22,12 @@ public class DepartmentController {
 
     @PostMapping
     public ResponseEntity<DepartmentDTO> createDepartment(@Valid @RequestBody DepartmentDTO departmentDTO) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(departmentService.addDepartment(departmentDTO));
+        return ResponseEntity.status(HttpStatus.CREATED).body(departmentService.createDepartment(departmentDTO));
     }
 
     @PostMapping("/multiple")
-    public ResponseEntity<?> createDepartments(@RequestBody List<DepartmentDTO> departmentDTOs) {
-        departmentService.addDepartments(departmentDTOs);
+    public ResponseEntity<?> createMultipleDepartments(@RequestBody List<DepartmentDTO> departmentDTOs) {
+        departmentService.createMultipleDepartments(departmentDTOs);
         return ResponseEntity.ok("OK");
     }
 
@@ -39,8 +39,8 @@ public class DepartmentController {
     }
 
     @GetMapping("/count")
-    public int getNumberOfAllDepartments() {
-        return departmentService.getNumberOfAllDepartments();
+    public ResponseEntity<Integer> getDepartmentCount() {
+        return ResponseEntity.ok(departmentService.countDepartments());
     }
 
     @GetMapping("/{departmentId}")

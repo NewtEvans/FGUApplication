@@ -22,7 +22,7 @@ public class ThesisController {
 
     @PostMapping
     public ResponseEntity<ThesisDTO> createThesis(@Valid @RequestBody ThesisDTO thesisDTO) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(thesisService.addThesis(thesisDTO));
+        return ResponseEntity.status(HttpStatus.CREATED).body(thesisService.createThesis(thesisDTO));
     }
 
     @GetMapping("/all")
@@ -33,8 +33,8 @@ public class ThesisController {
     }
 
     @GetMapping("/count")
-    public int getCountOfAllThesis() {
-        return thesisService.getCountOfAllThesis();
+    public ResponseEntity<Integer> getThesesCount() {
+        return ResponseEntity.ok(thesisService.countTheses());
     }
 
     @GetMapping("/{thesisId}")

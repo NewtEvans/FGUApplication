@@ -16,7 +16,7 @@ public interface ThesisService {
      * @param thesisDTO
      * @return DTO with new theses from the database
      */
-    ThesisDTO addThesis(ThesisDTO thesisDTO);
+    ThesisDTO createThesis(ThesisDTO thesisDTO);
 
     /**
      * Method returns details of thesis with requested id.
@@ -40,7 +40,7 @@ public interface ThesisService {
      *
      * @return int with number
      */
-    int getCountOfAllThesis();
+    int countTheses();
 
     /**
      * Method returns all thesis contains consultant with requested id.

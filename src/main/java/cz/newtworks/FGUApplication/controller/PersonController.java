@@ -23,12 +23,12 @@ public class PersonController {
 
     @PostMapping
     public ResponseEntity<PersonDTO> createPerson(@Valid @RequestBody PersonDTO personDTO) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(personService.addPerson(personDTO));
+        return ResponseEntity.status(HttpStatus.CREATED).body(personService.createPerson(personDTO));
     }
 
     @PostMapping("/multiple")
-    public ResponseEntity<?> createPeople(@RequestBody List<PersonDTO> people) {
-        personService.addPeople(people);
+    public ResponseEntity<?> createMultiplePeople(@RequestBody List<PersonDTO> people) {
+        personService.createMultiplePerson(people);
         return ResponseEntity.ok("OK");
     }
 
@@ -45,8 +45,8 @@ public class PersonController {
     }
 
     @GetMapping("/count")
-    public int countAllPeople() {
-        return personService.getNumberOfAllPeople();
+    public ResponseEntity<Integer> getPeopleCount() {
+        return ResponseEntity.ok(personService.countPeople());
     }
 
     @GetMapping("/{personId}")

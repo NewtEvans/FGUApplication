@@ -54,7 +54,7 @@ public class ThesisServiceImpl implements ThesisService {
     private CouncilRepository councilRepository;
 
     @Override
-    public ThesisDTO addThesis(ThesisDTO thesisDTO) {
+    public ThesisDTO createThesis(ThesisDTO thesisDTO) {
         ThesisEntity entity = createFillEntity(thesisDTO);
         thesisRepository.save(entity);
         return thesisMapper.toDTO(entity);
@@ -76,7 +76,7 @@ public class ThesisServiceImpl implements ThesisService {
     }
 
     @Override
-    public int getCountOfAllThesis() {
+    public int countTheses() {
         return thesisRepository.countAllThesis();
     }
 
@@ -134,7 +134,7 @@ public class ThesisServiceImpl implements ThesisService {
     }
 
     /**
-     * Private method that adding DTOs with data from different tables.
+     * Private method that adds DTOs with data from different tables.
      *
      * @param thesisDTO DTO with added information
      * @return DTO with all information

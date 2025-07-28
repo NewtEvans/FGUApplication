@@ -16,9 +16,14 @@ public interface FacultyService {
      * @param facultyDTO
      * @return DTO with freshly created faculty
      */
-    FacultyDTO addFaculty(FacultyDTO facultyDTO);
+    FacultyDTO createFaculty(FacultyDTO facultyDTO);
 
-    List<FacultyDTO> addFaculties(List<FacultyDTO> facultyDTOs);
+    /**
+     * Method allows to create multiple new faculties into the database.
+     *
+     * @param facultyDTOs
+     */
+    void createMultipleFaculties(List<FacultyDTO> facultyDTOs);
 
     /**
      * Method returns all faculties in the database.
@@ -33,7 +38,7 @@ public interface FacultyService {
      *
      * @return int with number
      */
-    int getCountOfAllFaculty();
+    int countFaculties();
 
     /**
      * Method returns details of faculty with requested id.

@@ -26,7 +26,7 @@ public class CouncilServiceImpl implements CouncilService {
     private CouncilMapper councilMapper;
 
     @Override
-    public CouncilDTO addCouncil(CouncilDTO councilDTO) {
+    public CouncilDTO createCouncil(CouncilDTO councilDTO) {
         CouncilEntity council = councilMapper.toEntity(councilDTO);
         councilRepository.save(council);
 
@@ -34,14 +34,12 @@ public class CouncilServiceImpl implements CouncilService {
     }
 
     @Override
-    public List<CouncilDTO> addCounciles(List<CouncilDTO> councilDTOs) {
+    public void createMultipleCouncils(List<CouncilDTO> councilDTOs) {
         List<CouncilEntity> councilEntities = councilDTOs.stream()
                 .map(councilDTO -> councilMapper.toEntity(councilDTO))
                 .collect(Collectors.toList());
 
         councilRepository.saveAll(councilEntities);
-
-        return null;
     }
 
     @Override
@@ -53,7 +51,7 @@ public class CouncilServiceImpl implements CouncilService {
     }
 
     @Override
-    public int getNumberOfAllCouncils() {
+    public int countCouncils() {
         return councilRepository.countAllCouncils();
     }
 

@@ -16,9 +16,14 @@ public interface DepartmentService {
      * @param departmentDTO
      * @return DTO with freshly created department
      */
-    DepartmentDTO addDepartment(DepartmentDTO departmentDTO);
+    DepartmentDTO createDepartment(DepartmentDTO departmentDTO);
 
-    List<DepartmentDTO> addDepartments(List<DepartmentDTO> departmentDTOs);
+    /**
+     * Method allows to create multiple departments into the database.
+     *
+     * @param departmentDTOs
+     */
+    void createMultipleDepartments(List<DepartmentDTO> departmentDTOs);
 
     /**
      * Method returns all departments in the database.
@@ -33,7 +38,7 @@ public interface DepartmentService {
      *
      * @return int with number
      */
-    int getNumberOfAllDepartments();
+    int countDepartments();
 
     /**
      * Method returns details of department with requested id.

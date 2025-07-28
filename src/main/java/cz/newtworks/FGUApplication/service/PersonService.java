@@ -16,9 +16,14 @@ public interface PersonService {
      * @param personDTO
      * @return DTO with newly created person
      */
-    PersonDTO addPerson(PersonDTO personDTO);
+    PersonDTO createPerson(PersonDTO personDTO);
 
-    List<PersonDTO> addPeople(List<PersonDTO> people);
+    /**
+     * Method allows to create multiple people in the database.
+     *
+     * @param people
+     */
+    void createMultiplePerson(List<PersonDTO> people);
 
     /**
      * Method returns all people in the database.
@@ -34,7 +39,7 @@ public interface PersonService {
      *
      * @return int with number
      */
-    int getNumberOfAllPeople();
+    int countPeople();
 
 
     /**

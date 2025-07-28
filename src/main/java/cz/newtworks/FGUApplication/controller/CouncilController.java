@@ -22,12 +22,12 @@ public class CouncilController {
 
     @PostMapping
     public ResponseEntity<CouncilDTO> createCouncil(@Valid @RequestBody CouncilDTO councilDTO) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(councilService.addCouncil(councilDTO));
+        return ResponseEntity.status(HttpStatus.CREATED).body(councilService.createCouncil(councilDTO));
     }
 
     @PostMapping("/multiple")
-    public ResponseEntity<?> createCounciles(@RequestBody List<CouncilDTO> councilDTOs) {
-        councilService.addCounciles(councilDTOs);
+    public ResponseEntity<?> createMultipleCouncils(@RequestBody List<CouncilDTO> councilDTOs) {
+        councilService.createMultipleCouncils(councilDTOs);
 
         return ResponseEntity.ok("OK");
     }
@@ -40,8 +40,8 @@ public class CouncilController {
     }
 
     @GetMapping("/count")
-    public int countAllCouncils() {
-        return councilService.getNumberOfAllCouncils();
+    public ResponseEntity<Integer> getCouncilCount() {
+        return ResponseEntity.ok(councilService.countCouncils());
     }
 
     @GetMapping("/{councilId}")

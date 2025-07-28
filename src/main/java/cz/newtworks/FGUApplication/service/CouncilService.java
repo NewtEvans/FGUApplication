@@ -17,9 +17,14 @@ public interface CouncilService {
      * @param councilDTO
      * @return DTO with freshly created council
      */
-    CouncilDTO addCouncil(CouncilDTO councilDTO);
+    CouncilDTO createCouncil(CouncilDTO councilDTO);
 
-    List<CouncilDTO> addCounciles(List<CouncilDTO> councilDTOs);
+    /**
+     * Method allows to create multiple councils into the database.
+     *
+     * @param councilDTOs
+     */
+    void createMultipleCouncils(List<CouncilDTO> councilDTOs);
 
     /**
      * Method returns all councils in the database.
@@ -34,7 +39,7 @@ public interface CouncilService {
      *
      * @return int with number
      */
-    int getNumberOfAllCouncils();
+    int countCouncils();
 
     /**
      * Method returns details of council with requested id.
