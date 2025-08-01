@@ -37,6 +37,11 @@ public class ThesisController {
         return ResponseEntity.ok(thesisService.countTheses());
     }
 
+    @GetMapping("/years")
+    public ResponseEntity<List<Integer>> getYears() {
+        return ResponseEntity.ok(thesisService.getYears());
+    }
+
     @GetMapping("/{thesisId}")
     public ResponseEntity<ThesisDTO> getThesis(@PathVariable long thesisId) {
         return ResponseEntity.ok(thesisService.getThesisById(thesisId));

@@ -23,6 +23,8 @@ oborových rad.
     - MySQL (Docker kontejner)
 - Docker:
     - Docker Compose
+- Dokumentace:
+    - Swagger
 
 # Spouštění aplikace
 
@@ -96,6 +98,9 @@ oborových rad.
         │   ├── VerificationService.java
         │   └── VerificationServiceImpl.java
         └── ApplicationMain.java
+
+4) Dokumentace
+    - http://localhost:8081/swagger-ui/index.html#/
 
 # Autor
 

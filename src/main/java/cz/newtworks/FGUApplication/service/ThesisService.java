@@ -43,6 +43,14 @@ public interface ThesisService {
     int countTheses();
 
     /**
+     * Test method for getting all used years in database
+     * pozn. mozna bude potreba vrace list int a ne list Integer
+     *
+     * @return
+     */
+    List<Integer> getYears();
+
+    /**
      * Method returns all thesis contains consultant with requested id.
      *
      * @param consultantId

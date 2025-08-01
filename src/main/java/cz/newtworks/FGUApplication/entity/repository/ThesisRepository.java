@@ -36,4 +36,7 @@ public interface ThesisRepository extends JpaRepository<ThesisEntity, Long>, Jpa
 
     @Query("SELECT COUNT(*) FROM ThesisEntity t WHERE t.endDate BETWEEN :start AND :end AND t.thesisType = :type")
     int findEndedThesesByEndDateAndThesisType(LocalDate start, LocalDate end, ThesisType type);
+
+    @Query("SELECT DISTINCT YEAR(t.endDate) y FROM ThesisEntity t ORDER BY y")
+    List<Integer> findYearsInDatabase();
 }

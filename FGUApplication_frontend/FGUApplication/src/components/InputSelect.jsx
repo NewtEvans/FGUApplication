@@ -10,11 +10,14 @@ export function InputSelect({
   placeHolder,
   showLabel = "name",
   showLabel2,
+  itemLabel,
   isDisabled = false,
 }) {
   const options = items.map((item) => ({
     value: item.id,
-    label: showLabel2
+    label: itemLabel
+      ? item
+      : showLabel2
       ? `${item[showLabel]} ${item[showLabel2]}`
       : item[showLabel],
   }));

@@ -81,6 +81,11 @@ public class ThesisServiceImpl implements ThesisService {
     }
 
     @Override
+    public List<Integer> getYears() {
+        return thesisRepository.findYearsInDatabase();
+    }
+
+    @Override
     public List<ThesisDTO> getAllThesisWithConsultantId(long consultantId) {
         return thesisRepository.findAllThesisWithConsultantId(consultantId)
                 .stream()
