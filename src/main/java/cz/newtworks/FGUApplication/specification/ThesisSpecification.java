@@ -34,6 +34,7 @@ public class ThesisSpecification {
                 ));
             }
 
+            
             if (thesisFilterDTO.getEndDateFilterFrom() != null) {
                 predicates.add(criteriaBuilder.greaterThanOrEqualTo(
                         root.get("endDate"),

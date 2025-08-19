@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { apiGet } from "../utils/api";
 import { toast } from "react-toastify";
-import InputSelect from "../components/InputSelect";
 
 const Summaryindex = () => {
   const [url, setUrl] = useState("/summary");
@@ -53,6 +52,13 @@ const Summaryindex = () => {
         <p>- magisterské: {data.newMagisterska}</p>
         <p>- doktorandská: {data.newDoktorandska}</p>
         <p>- inženýrská: {data.newInzenyrska}</p>
+      </div>
+      <div>
+        <p>Počet probíhajících prací: </p>
+        <p>- bakalářská: {}</p>
+        <p>- magisterské: {}</p>
+        <p>- doktorandská: {}</p>
+        <p>- inženýrská: {}</p>
       </div>
     </div>
   );
