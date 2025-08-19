@@ -6,6 +6,7 @@ import { Pagination } from "../components/Pagination";
 import FilterForm from "../components/filter/FilterForm";
 import SortDropdown from "../components/SortDropdown";
 import { toast } from "react-toastify";
+import thesisType from "./ThesisType";
 
 const ThesisIndex = () => {
   const [url, setUrl] = useState("/thesis/all");
@@ -30,7 +31,7 @@ const ThesisIndex = () => {
   const filterFields = [
     { name: "nameCzFilter", label: "Český název práce:", type: "text" },
     { name: "nameEnFilter", label: "Anglický název práce:", type: "text" },
-    /* { name: "thesisTypeFilter", label: "Druh práce", type: "select" }, */
+    
 
     {
       type: "date-range",
@@ -44,6 +45,17 @@ const ThesisIndex = () => {
       nameFrom: "endDateFilterFrom",
       nameTo: "endDateFilterTo",
     },
+
+    { name: "thesisTypeFilter",
+      label: "Druh práce",
+      type: "select",
+      options: 
+      [
+        {value: thesisType.BAKALARSKA, label: "Bakalářská"},
+        {value: thesisType.DOKTORANDSKA, label: "Doktorandská"},
+        {value: thesisType.INZENYRSKA, label: "Inženýrská"},
+        {value: thesisType.MAGISTERSKA, label: "Magisterská"},
+      ]},
   ];
 
   const handleFilter = (filterData) => {
