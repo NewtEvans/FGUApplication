@@ -4,6 +4,7 @@ import cz.newtworks.FGUApplication.dto.PersonDTO;
 import cz.newtworks.FGUApplication.dto.filter.PersonFilterDTO;
 import cz.newtworks.FGUApplication.dto.mapper.DepartmentMapper;
 import cz.newtworks.FGUApplication.dto.mapper.PersonMapper;
+import cz.newtworks.FGUApplication.dto.special.PersonNameSurnameDTO;
 import cz.newtworks.FGUApplication.entity.PersonEntity;
 import cz.newtworks.FGUApplication.entity.repository.PersonRepository;
 import cz.newtworks.FGUApplication.exception.ResourceNotFoundException;
@@ -52,6 +53,11 @@ public class PersonServiceImpl implements PersonService {
 
         return personRepository.findAll(specification, pageable)
                 .map(personMapper::toDTO);
+    }
+
+    @Override
+    public List<PersonNameSurnameDTO> getAllNames() {
+        return personRepository.findAllNamesInDatabase();
     }
 
     @Override

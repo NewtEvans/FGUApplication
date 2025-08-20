@@ -1,5 +1,6 @@
 package cz.newtworks.FGUApplication.entity.repository;
 
+import cz.newtworks.FGUApplication.dto.special.PersonNameSurnameDTO;
 import cz.newtworks.FGUApplication.entity.PersonEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
@@ -13,4 +14,7 @@ public interface PersonRepository extends JpaRepository<PersonEntity, Long>, Jpa
 
     @Query("SELECT p FROM PersonEntity p JOIN p.departments d WHERE d.id = ?1")
     List<PersonEntity> findAllPeopleInDepartment(long departmentId);
+
+    @Query("SELECT new PersonNameSurnameDTO(p.id, p.firstName, p.surname) FROM PersonEntity p")
+    List<PersonNameSurnameDTO> findAllNamesInDatabase();
 }

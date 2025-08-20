@@ -2,6 +2,7 @@ package cz.newtworks.FGUApplication.service;
 
 import cz.newtworks.FGUApplication.dto.PersonDTO;
 import cz.newtworks.FGUApplication.dto.filter.PersonFilterDTO;
+import cz.newtworks.FGUApplication.dto.special.PersonNameSurnameDTO;
 import cz.newtworks.FGUApplication.exception.ResourceNotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -33,6 +34,7 @@ public interface PersonService {
      */
     Page<PersonDTO> getAllPeople(Pageable pageable, PersonFilterDTO personFilterDTO);
 
+    List<PersonNameSurnameDTO> getAllNames();
 
     /**
      * Method returns number of all people in the database.

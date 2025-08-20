@@ -2,6 +2,7 @@ package cz.newtworks.FGUApplication.dto.mapper;
 
 import cz.newtworks.FGUApplication.dto.DepartmentDTO;
 import cz.newtworks.FGUApplication.dto.PersonDTO;
+import cz.newtworks.FGUApplication.dto.special.PersonNameSurnameDTO;
 import cz.newtworks.FGUApplication.entity.DepartmentEntity;
 import cz.newtworks.FGUApplication.entity.PersonEntity;
 import java.util.LinkedHashSet;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-08-18T12:00:31+0200",
+    date = "2025-08-20T15:06:18+0200",
     comments = "version: 1.6.3, compiler: javac, environment: Java 23.0.2 (Oracle Corporation)"
 )
 @Component
@@ -57,6 +58,21 @@ public class PersonMapperImpl implements PersonMapper {
         personDTO.setDepartments( departmentEntitySetToDepartmentDTOSet( source.getDepartments() ) );
 
         return personDTO;
+    }
+
+    @Override
+    public PersonNameSurnameDTO toNameSurnameDTO(PersonEntity source) {
+        if ( source == null ) {
+            return null;
+        }
+
+        PersonNameSurnameDTO personNameSurnameDTO = new PersonNameSurnameDTO();
+
+        personNameSurnameDTO.setId( source.getId() );
+        personNameSurnameDTO.setFirstName( source.getFirstName() );
+        personNameSurnameDTO.setSurname( source.getSurname() );
+
+        return personNameSurnameDTO;
     }
 
     protected DepartmentEntity departmentDTOToDepartmentEntity(DepartmentDTO departmentDTO) {
