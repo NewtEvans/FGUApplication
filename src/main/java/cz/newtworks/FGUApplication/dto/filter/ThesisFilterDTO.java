@@ -35,4 +35,14 @@ public class ThesisFilterDTO {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDateFilterTo;
 
+    private int studentIdFilter;
+
+    private int trainerIdFilter;
+
+    private int consultantIdFilter;
+
+    private int facultyIdFilter;
+
+    private int councilIdFilter;
+
 }

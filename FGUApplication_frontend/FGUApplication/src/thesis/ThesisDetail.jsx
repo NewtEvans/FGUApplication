@@ -83,7 +83,7 @@ function ThesisDetail() {
           to={`/person/detail/${thesis.student?.id}`}
           className="link-dark link-underline-opacity-0 link-underline-opacity-100-hover"
         >
-          {thesis.student?.name} {thesis.student?.surname}
+          {thesis.student?.firstName} {thesis.student?.surname}
         </Link>
       </p>
       <p>
@@ -101,7 +101,7 @@ function ThesisDetail() {
           to={`/person/detail/${thesis.consultant?.id}`}
           className="link-dark link-underline-opacity-0 link-underline-opacity-100-hover"
         >
-          {thesis.consultant?.name} {thesis.consultant?.surname}
+          {thesis.consultant?.firstName} {thesis.consultant?.surname}
         </Link>
       </p>
       <p>
