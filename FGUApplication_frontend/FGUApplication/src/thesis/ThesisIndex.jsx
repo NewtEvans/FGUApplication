@@ -13,6 +13,13 @@ const ThesisIndex = () => {
   const [theses, setTheses] = useState([]);
   const [numberOfRecords, setNumberOfRecords] = useState();
   const [loading, setLoading] = useState(true);
+  const [people, setPeople] = useState([
+    /*     {
+      id: null,
+      firstName: null,
+      surname: null,
+    }, */
+  ]);
 
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState();
@@ -57,7 +64,12 @@ const ThesisIndex = () => {
       ],
     },
 
-    { name: "studentIdFileter", label: "Student", type: "select", options: [] },
+    {
+      name: "studentIdFileter",
+      label: "Student",
+      type: "select",
+      options: people,
+    },
   ];
 
   const handleFilter = (filterData) => {
@@ -79,6 +91,14 @@ const ThesisIndex = () => {
         setTheses(data.content);
         setTotalPages(data.totalPages);
       })
+      .then(
+        apiGet("/person/all/names").then((data) => {
+          const mapped = data.map((person) => ({
+            label: `${person.surname} ${person.firstName}`,
+          }));
+          setPeople(mapped);
+        })
+      )
       .catch((error) => {
         toast.error(`Chyba: ${error.message}`);
         console.error(error.message);
