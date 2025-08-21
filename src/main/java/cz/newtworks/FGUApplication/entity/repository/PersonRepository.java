@@ -15,6 +15,7 @@ public interface PersonRepository extends JpaRepository<PersonEntity, Long>, Jpa
     @Query("SELECT p FROM PersonEntity p JOIN p.departments d WHERE d.id = ?1")
     List<PersonEntity> findAllPeopleInDepartment(long departmentId);
 
-    @Query("SELECT new PersonNameSurnameDTO(p.id, p.firstName, p.surname) FROM PersonEntity p")
+    @Query("SELECT new cz.newtworks.FGUApplication.dto.special.PersonNameSurnameDTO(p.id, p.firstName, p.surname) FROM PersonEntity p")
+        //constructor expression
     List<PersonNameSurnameDTO> findAllNamesInDatabase();
 }

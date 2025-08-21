@@ -31,7 +31,6 @@ const ThesisIndex = () => {
   const filterFields = [
     { name: "nameCzFilter", label: "Český název práce:", type: "text" },
     { name: "nameEnFilter", label: "Anglický název práce:", type: "text" },
-    
 
     {
       type: "date-range",
@@ -46,16 +45,19 @@ const ThesisIndex = () => {
       nameTo: "endDateFilterTo",
     },
 
-    { name: "thesisTypeFilter",
+    {
+      name: "thesisTypeFilter",
       label: "Druh práce",
       type: "select",
-      options: 
-      [
-        {value: thesisType.BAKALARSKA, label: "Bakalářská"},
-        {value: thesisType.DOKTORANDSKA, label: "Doktorandská"},
-        {value: thesisType.INZENYRSKA, label: "Inženýrská"},
-        {value: thesisType.MAGISTERSKA, label: "Magisterská"},
-      ]},
+      options: [
+        { value: thesisType.BAKALARSKA, label: "Bakalářská" },
+        { value: thesisType.DOKTORANDSKA, label: "Doktorandská" },
+        { value: thesisType.INZENYRSKA, label: "Inženýrská" },
+        { value: thesisType.MAGISTERSKA, label: "Magisterská" },
+      ],
+    },
+
+    { name: "studentIdFileter", label: "Student", type: "select", options: [] },
   ];
 
   const handleFilter = (filterData) => {
