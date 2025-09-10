@@ -65,7 +65,7 @@ const ThesisIndex = () => {
     },
 
     {
-      name: "studentIdFileter",
+      name: "studentIdFilter",
       label: "Student",
       type: "select",
       options: people,
@@ -95,6 +95,7 @@ const ThesisIndex = () => {
         apiGet("/person/all/names").then((data) => {
           const mapped = data.map((person) => ({
             label: `${person.surname} ${person.firstName}`,
+            id: person.id,
           }));
           setPeople(mapped);
         })
