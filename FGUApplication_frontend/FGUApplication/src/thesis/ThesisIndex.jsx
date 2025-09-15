@@ -13,13 +13,9 @@ const ThesisIndex = () => {
   const [theses, setTheses] = useState([]);
   const [numberOfRecords, setNumberOfRecords] = useState();
   const [loading, setLoading] = useState(true);
-  const [people, setPeople] = useState([
-    /*     {
-      id: null,
-      firstName: null,
-      surname: null,
-    }, */
-  ]);
+  const [people, setPeople] = useState([]);
+  const [faculty, setFaculty] = useState([]);
+  const [council, setCouncil] = useState([]);
 
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState();
@@ -70,6 +66,34 @@ const ThesisIndex = () => {
       type: "select",
       options: people,
     },
+
+    {
+      name: "trainerIdFilter",
+      label: "Školitel",
+      type: "select",
+      options: people,
+    },
+
+    {
+      name: "consultantIdFilter",
+      label: "Konzultant",
+      type: "select",
+      options: people,
+    },
+
+    /* {
+      name: "facultyIdFilter",
+      label: "Fakulta",
+      type: "select",
+      options: people,
+    }, */
+
+    /* {
+      name: "councilIdFilter",
+      label: "Rada",
+      type: "select",
+      options: people,
+    }, */
   ];
 
   const handleFilter = (filterData) => {
