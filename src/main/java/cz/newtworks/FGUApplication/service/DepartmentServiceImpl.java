@@ -43,11 +43,19 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public Page<DepartmentDTO> getAllDepartments(Pageable pageable, DepartmentFilterDTO departmentFilterDTO) {
+    public Page<DepartmentDTO> getAllDepartmentsPageable(Pageable pageable, DepartmentFilterDTO departmentFilterDTO) {
         Specification<DepartmentEntity> specification = DepartmentSpecification.buildSpecification(departmentFilterDTO);
 
         return departmentRepository.findAll(specification, pageable)
                 .map(departmentMapper::toDTO);
+    }
+
+    @Override
+    public List<DepartmentDTO> getAllDepartments() {
+        return departmentRepository.findAll()
+                .stream()
+                .map(departmentEntity -> departmentMapper.toDTO(departmentEntity))
+                .collect(Collectors.toList());
     }
 
     @Override

@@ -32,7 +32,7 @@ const ThesisForm = () => {
     if (id) {
       apiGet("/thesis/" + id).then((data) => setThesis(data));
     }
-    apiGet("/person/all").then((data) => setPeople(data.content));
+    apiGet("/person/all").then((data) => setPeople(data));
     apiGet("/faculty/all").then((data) => setFaculty(data.content));
     apiGet("/council/all").then((data) => setCouncil(data.content));
   }, [id]);

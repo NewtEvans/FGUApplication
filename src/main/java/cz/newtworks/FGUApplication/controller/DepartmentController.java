@@ -31,11 +31,16 @@ public class DepartmentController {
         return ResponseEntity.ok("OK");
     }
 
-    @GetMapping("/all")
-    public ResponseEntity<Page<DepartmentDTO>> getAllDepartment(
+    @GetMapping("/all/pageable")
+    public ResponseEntity<Page<DepartmentDTO>> getAllDepartmentPageable(
             Pageable pageable,
             @ModelAttribute DepartmentFilterDTO departmentFilterDTO) {
-        return ResponseEntity.ok(departmentService.getAllDepartments(pageable, departmentFilterDTO));
+        return ResponseEntity.ok(departmentService.getAllDepartmentsPageable(pageable, departmentFilterDTO));
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<DepartmentDTO>> getAllDepartment() {
+        return ResponseEntity.ok(departmentService.getAllDepartments());
     }
 
     @GetMapping("/count")

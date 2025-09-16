@@ -31,7 +31,9 @@ public interface DepartmentService {
      *
      * @return List with DTO of all department from the database
      */
-    Page<DepartmentDTO> getAllDepartments(Pageable pageable, DepartmentFilterDTO departmentFilterDTO);
+    Page<DepartmentDTO> getAllDepartmentsPageable(Pageable pageable, DepartmentFilterDTO departmentFilterDTO);
+
+    List<DepartmentDTO> getAllDepartments();
 
     /**
      * Method returns number of all departments in the database.

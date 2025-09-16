@@ -48,7 +48,7 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public Page<PersonDTO> getAllPeople(Pageable pageable, PersonFilterDTO personFilterDTO) {
+    public Page<PersonDTO> getAllPeoplePageable(Pageable pageable, PersonFilterDTO personFilterDTO) {
         Specification<PersonEntity> specification = PersonSpecification.buildSpecification(personFilterDTO);
 
         return personRepository.findAll(specification, pageable)
@@ -56,8 +56,11 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public List<PersonNameSurnameDTO> getAllNames() {
-        return personRepository.findAllNamesInDatabase();
+    public List<PersonNameSurnameDTO> getAllPeople() {
+        return personRepository.findAll()
+                .stream()
+                .map(personEntity -> personMapper.toNameSurnameDTO(personEntity))
+                .collect(Collectors.toList());
     }
 
     @Override

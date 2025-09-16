@@ -7,7 +7,7 @@ import FilterForm from "../components/filter/FilterForm";
 import SortDropdown from "../components/SortDropdown";
 
 const PersonIndex = () => {
-  const [url, setUrl] = useState("/person/all");
+  const [url, setUrl] = useState("/person/all/pageable");
   const [people, setPeople] = useState([]);
   const [numberOfRecords, setNumberOfRecords] = useState();
   const [loading, setLoading] = useState(true);

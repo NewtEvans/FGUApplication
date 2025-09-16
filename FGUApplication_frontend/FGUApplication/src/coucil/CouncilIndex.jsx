@@ -7,7 +7,7 @@ import CouncilTable from "./CouncilTable";
 import FilterForm from "../components/filter/FilterForm";
 
 const CouncilIndex = () => {
-  const [url, setUrl] = useState("/council/all");
+  const [url, setUrl] = useState("/council/all/pageable");
   const [councils, setCounciles] = useState([]);
   const [numberOfRecords, setNumberOfRecords] = useState();
   const [loading, setLoading] = useState(true);

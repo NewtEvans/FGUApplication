@@ -1,13 +1,14 @@
 package cz.newtworks.FGUApplication.dto.mapper;
 
 import cz.newtworks.FGUApplication.dto.FacultyDTO;
+import cz.newtworks.FGUApplication.dto.special.FacultyNameOnlyDTO;
 import cz.newtworks.FGUApplication.entity.FacultyEntity;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-08-18T12:00:31+0200",
+    date = "2025-09-16T13:42:54+0200",
     comments = "version: 1.6.3, compiler: javac, environment: Java 23.0.2 (Oracle Corporation)"
 )
 @Component
@@ -45,5 +46,19 @@ public class FacultyMapperImpl implements FacultyMapper {
         facultyDTO.setSchool( source.getSchool() );
 
         return facultyDTO;
+    }
+
+    @Override
+    public FacultyNameOnlyDTO toNameOnlyDTO(FacultyEntity source) {
+        if ( source == null ) {
+            return null;
+        }
+
+        FacultyNameOnlyDTO facultyNameOnlyDTO = new FacultyNameOnlyDTO();
+
+        facultyNameOnlyDTO.setId( source.getId() );
+        facultyNameOnlyDTO.setFacultyName( source.getFacultyName() );
+
+        return facultyNameOnlyDTO;
     }
 }

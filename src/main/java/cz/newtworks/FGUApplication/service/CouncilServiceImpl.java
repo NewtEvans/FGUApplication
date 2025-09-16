@@ -3,6 +3,7 @@ package cz.newtworks.FGUApplication.service;
 import cz.newtworks.FGUApplication.dto.CouncilDTO;
 import cz.newtworks.FGUApplication.dto.filter.CouncilFilterDTO;
 import cz.newtworks.FGUApplication.dto.mapper.CouncilMapper;
+import cz.newtworks.FGUApplication.dto.special.CouncilNameOnlyDTO;
 import cz.newtworks.FGUApplication.entity.CouncilEntity;
 import cz.newtworks.FGUApplication.entity.repository.CouncilRepository;
 import cz.newtworks.FGUApplication.exception.ResourceNotFoundException;
@@ -43,11 +44,19 @@ public class CouncilServiceImpl implements CouncilService {
     }
 
     @Override
-    public Page<CouncilDTO> getAllCouncils(Pageable pageable, CouncilFilterDTO councilFilterDTO) {
+    public Page<CouncilDTO> getAllCouncilsPageable(Pageable pageable, CouncilFilterDTO councilFilterDTO) {
         Specification<CouncilEntity> specification = CouncilSpecification.buildSpecification(councilFilterDTO);
 
         return councilRepository.findAll(specification, pageable)
                 .map(councilMapper::toDTO);
+    }
+
+    @Override
+    public List<CouncilNameOnlyDTO> getAllCouncils() {
+        return councilRepository.findAll()
+                .stream()
+                .map(councilEntity -> councilMapper.toNameOnlyDTO(councilEntity))
+                .collect(Collectors.toList());
     }
 
     @Override

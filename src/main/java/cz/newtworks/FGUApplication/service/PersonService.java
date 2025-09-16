@@ -32,9 +32,14 @@ public interface PersonService {
      *
      * @return Page with all people in the database
      */
-    Page<PersonDTO> getAllPeople(Pageable pageable, PersonFilterDTO personFilterDTO);
+    Page<PersonDTO> getAllPeoplePageable(Pageable pageable, PersonFilterDTO personFilterDTO);
 
-    List<PersonNameSurnameDTO> getAllNames();
+    /**
+     * Method returns DTOs with name and surname of all people in the database.
+     *
+     * @return List of DTOs filled with names and surnames of users.
+     */
+    List<PersonNameSurnameDTO> getAllPeople();
 
     /**
      * Method returns number of all people in the database.

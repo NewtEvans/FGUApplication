@@ -1,6 +1,7 @@
 package cz.newtworks.FGUApplication.dto.mapper;
 
 import cz.newtworks.FGUApplication.dto.FacultyDTO;
+import cz.newtworks.FGUApplication.dto.special.FacultyNameOnlyDTO;
 import cz.newtworks.FGUApplication.entity.FacultyEntity;
 import org.mapstruct.Mapper;
 
@@ -9,4 +10,6 @@ public interface FacultyMapper {
     FacultyEntity toEntity(FacultyDTO source);
 
     FacultyDTO toDTO(FacultyEntity source);
+
+    FacultyNameOnlyDTO toNameOnlyDTO(FacultyEntity source);
 }

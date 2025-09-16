@@ -7,7 +7,7 @@ import DepartmentTable from "./DepartmentTable";
 import FilterForm from "../components/filter/FilterForm";
 
 const DepartmentIndex = () => {
-  const [url, setUrl] = useState("/department/all");
+  const [url, setUrl] = useState("/department/all/pageable");
   const [departments, setDepartments] = useState([]);
   const [numberOfRecords, setNumberOfRecords] = useState();
   const [loading, setLoading] = useState(true);

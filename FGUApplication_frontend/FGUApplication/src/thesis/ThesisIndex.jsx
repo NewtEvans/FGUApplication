@@ -116,7 +116,7 @@ const ThesisIndex = () => {
         setTotalPages(data.totalPages);
       })
       .then(
-        apiGet("/person/all/names").then((data) => {
+        apiGet("/person/all").then((data) => {
           const mapped = data.map((person) => ({
             label: `${person.surname} ${person.firstName}`,
             id: person.id,

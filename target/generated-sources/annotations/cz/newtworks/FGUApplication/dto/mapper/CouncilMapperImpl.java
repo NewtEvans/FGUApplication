@@ -1,13 +1,14 @@
 package cz.newtworks.FGUApplication.dto.mapper;
 
 import cz.newtworks.FGUApplication.dto.CouncilDTO;
+import cz.newtworks.FGUApplication.dto.special.CouncilNameOnlyDTO;
 import cz.newtworks.FGUApplication.entity.CouncilEntity;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-08-18T12:00:31+0200",
+    date = "2025-09-16T13:42:54+0200",
     comments = "version: 1.6.3, compiler: javac, environment: Java 23.0.2 (Oracle Corporation)"
 )
 @Component
@@ -45,5 +46,19 @@ public class CouncilMapperImpl implements CouncilMapper {
         councilDTO.setCouncilNumber( source.getCouncilNumber() );
 
         return councilDTO;
+    }
+
+    @Override
+    public CouncilNameOnlyDTO toNameOnlyDTO(CouncilEntity source) {
+        if ( source == null ) {
+            return null;
+        }
+
+        CouncilNameOnlyDTO councilNameOnlyDTO = new CouncilNameOnlyDTO();
+
+        councilNameOnlyDTO.setId( source.getId() );
+        councilNameOnlyDTO.setCouncilName( source.getCouncilName() );
+
+        return councilNameOnlyDTO;
     }
 }

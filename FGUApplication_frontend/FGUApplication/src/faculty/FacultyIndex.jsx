@@ -11,7 +11,7 @@ import SortDropdown from "../components/SortDropdown";
 import { toast } from "react-toastify";
 
 const FacultyIndex = () => {
-  const [url, setUrl] = useState("/faculty/all");
+  const [url, setUrl] = useState("/faculty/all/pageable");
   const [faculties, setFaculties] = useState([]);
   const [numberOfRecords, setNumberOfRecords] = useState();
   const [loading, setLoading] = useState(true);

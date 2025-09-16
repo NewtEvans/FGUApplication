@@ -3,6 +3,7 @@ package cz.newtworks.FGUApplication.service;
 import cz.newtworks.FGUApplication.dto.FacultyDTO;
 import cz.newtworks.FGUApplication.dto.filter.FacultyFilterDTO;
 import cz.newtworks.FGUApplication.dto.mapper.FacultyMapper;
+import cz.newtworks.FGUApplication.dto.special.FacultyNameOnlyDTO;
 import cz.newtworks.FGUApplication.entity.FacultyEntity;
 import cz.newtworks.FGUApplication.entity.repository.FacultyRepository;
 import cz.newtworks.FGUApplication.exception.ResourceNotFoundException;
@@ -43,11 +44,19 @@ public class FacultyServiceImpl implements FacultyService {
     }
 
     @Override
-    public Page<FacultyDTO> getAllFaculty(Pageable pageable, FacultyFilterDTO facultyFilterDTO) {
+    public Page<FacultyDTO> getAllFacultyPageable(Pageable pageable, FacultyFilterDTO facultyFilterDTO) {
         Specification<FacultyEntity> specification = FacultySpecification.buildSpecification(facultyFilterDTO);
 
         return facultyRepository.findAll(specification, pageable)
                 .map(facultyMapper::toDTO);
+    }
+
+    @Override
+    public List<FacultyNameOnlyDTO> getAllFaculty() {
+        return facultyRepository.findAll()
+                .stream()
+                .map(facultyEntity -> facultyMapper.toNameOnlyDTO(facultyEntity))
+                .collect(Collectors.toList());
     }
 
     @Override

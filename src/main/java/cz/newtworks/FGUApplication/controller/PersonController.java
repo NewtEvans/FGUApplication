@@ -33,16 +33,16 @@ public class PersonController {
         return ResponseEntity.ok("OK");
     }
 
-    @GetMapping("/all")
-    public ResponseEntity<Page<PersonDTO>> getAllPeople(
+    @GetMapping("/all/pageable")
+    public ResponseEntity<Page<PersonDTO>> getAllPeoplePageable(
             Pageable pageable,
             @ModelAttribute PersonFilterDTO personFilterDTO) {
-        return ResponseEntity.ok(personService.getAllPeople(pageable, personFilterDTO));
+        return ResponseEntity.ok(personService.getAllPeoplePageable(pageable, personFilterDTO));
     }
 
-    @GetMapping("/all/names")
-    public ResponseEntity<List<PersonNameSurnameDTO>> getAllNames() {
-        return ResponseEntity.ok(personService.getAllNames());
+    @GetMapping("/all")
+    public ResponseEntity<List<PersonNameSurnameDTO>> getAllPeople() {
+        return ResponseEntity.ok(personService.getAllPeople());
     }
 
     @GetMapping("/department/{departmentId}")
