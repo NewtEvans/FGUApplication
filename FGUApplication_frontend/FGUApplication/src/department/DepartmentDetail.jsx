@@ -11,6 +11,8 @@ const DepartmentDetail = () => {
   const [department, setDepartment] = useState({});
   const [people, setPeople] = useState([]);
 
+  const [loading, setLoading] = useState(true);
+
   const deleteFunction = async (id) => {
     const confirmed = window.confirm("Opravdu chcete smazat toto oddělení?");
     if (!confirmed) return;
@@ -42,8 +44,17 @@ const DepartmentDetail = () => {
       .catch((error) => {
         toast.error(`Chyba: ${error.message}`);
         console.error(error.message);
-      });
+      })
+      .finally(() => setLoading(false));
   }, [id]);
+
+  if (loading) {
+    return (
+      <div className="text-center mt-5">
+        <div className="spinner-border text-primary" />
+      </div>
+    );
+  }
 
   return (
     <div>

@@ -17,6 +17,8 @@ const PersonDetail = () => {
   const [consultantTheses, setConsultantTheses] = useState([]);
   const [trainerTheses, setTrainerTheses] = useState([]);
 
+  const [loading, setLoading] = useState(true);
+
   const archiveFunction = async (id) => {
     const message = person.archived
       ? "Opravdu chcete osobu obnovit?"
@@ -67,8 +69,17 @@ const PersonDetail = () => {
       .catch((error) => {
         toast.error(`Chyba: ${error.message}`);
         console.error(error.message);
-      });
+      })
+      .finally(() => setLoading(false));
   }, []);
+
+  if (loading) {
+    return (
+      <div className="text-center mt-5">
+        <div className="spinner-border text-primary" />
+      </div>
+    );
+  }
 
   return (
     <div>

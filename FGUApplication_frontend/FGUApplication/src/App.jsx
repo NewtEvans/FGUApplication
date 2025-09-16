@@ -99,16 +99,6 @@ function App() {
                     Roční přehled
                   </Link>
                 </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    Kvalifikační práce
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    Nastavení
-                  </a>
-                </li>
               </ul>
             </div>
           </div>

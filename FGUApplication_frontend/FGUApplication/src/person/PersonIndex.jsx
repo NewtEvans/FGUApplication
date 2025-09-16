@@ -10,6 +10,7 @@ const PersonIndex = () => {
   const [url, setUrl] = useState("/person/all/pageable");
   const [people, setPeople] = useState([]);
   const [numberOfRecords, setNumberOfRecords] = useState();
+
   const [loading, setLoading] = useState(true);
 
   const [page, setPage] = useState(0);

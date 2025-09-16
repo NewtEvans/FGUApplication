@@ -9,6 +9,8 @@ const CouncilDetail = () => {
   const { id } = useParams();
   const [council, setCouncil] = useState({});
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     apiGet("/council/" + id)
       .then((data) => {
@@ -17,7 +19,8 @@ const CouncilDetail = () => {
       .catch((error) => {
         toast.error(`Chyba: ${error.message}`);
         console.error(error.message);
-      });
+      })
+      .finally(() => setLoading(false));
   }, []);
 
   const deleteFunction = async (id) => {
@@ -33,6 +36,14 @@ const CouncilDetail = () => {
     }
     navigate("/counciles");
   };
+
+  if (loading) {
+    return (
+      <div className="text-center mt-5">
+        <div className="spinner-border text-primary" />
+      </div>
+    );
+  }
 
   return (
     <div>

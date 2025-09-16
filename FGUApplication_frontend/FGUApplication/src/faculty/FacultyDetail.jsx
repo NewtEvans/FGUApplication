@@ -8,6 +8,8 @@ const FacultyDetail = () => {
   const [faculty, setFaculty] = useState();
   const navigate = useNavigate();
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     apiGet("/faculty/" + id)
       .then((data) => {
@@ -16,7 +18,8 @@ const FacultyDetail = () => {
       .catch((error) => {
         toast.error(`Chyba: ${error.message}`);
         console.error(error.message);
-      });
+      })
+      .finally(() => setLoading(false));
   }, []);
 
   const deleteFunction = async (id) => {
@@ -32,6 +35,14 @@ const FacultyDetail = () => {
     }
     navigate("/faculties");
   };
+
+  if (loading) {
+    return (
+      <div className="text-center mt-5">
+        <div className="spinner-border text-primary" />
+      </div>
+    );
+  }
 
   return (
     <div>
