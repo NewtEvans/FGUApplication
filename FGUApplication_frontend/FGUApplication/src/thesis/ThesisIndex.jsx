@@ -81,19 +81,19 @@ const ThesisIndex = () => {
       options: people,
     },
 
-    /* {
+    {
       name: "facultyIdFilter",
       label: "Fakulta",
       type: "select",
-      options: people,
-    }, */
+      options: faculty,
+    },
 
-    /* {
+    {
       name: "councilIdFilter",
       label: "Rada",
       type: "select",
-      options: people,
-    }, */
+      options: council,
+    },
   ];
 
   const handleFilter = (filterData) => {
@@ -122,6 +122,24 @@ const ThesisIndex = () => {
             id: person.id,
           }));
           setPeople(mapped);
+        })
+      )
+      .then(
+        apiGet("/faculty/all").then((data) => {
+          const mapped = data.map((faculty) => ({
+            label: `${faculty.facultyName}`,
+            id: faculty.id,
+          }));
+          setFaculty(mapped);
+        })
+      )
+      .then(
+        apiGet("/council/all").then((data) => {
+          const mapped = data.map((council) => ({
+            label: `${council.councilName}`,
+            id: council.id,
+          }));
+          setCouncil(mapped);
         })
       )
       .catch((error) => {
