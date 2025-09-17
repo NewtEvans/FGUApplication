@@ -33,7 +33,7 @@ public class ThesisController {
     }
 
     @GetMapping("/count")
-    public ResponseEntity<Integer> getThesesCount() {
+    public ResponseEntity<Long> getThesesCount() {
         return ResponseEntity.ok(thesisService.countTheses());
     }
 

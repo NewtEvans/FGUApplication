@@ -11,16 +11,16 @@ import lombok.Setter;
 @NoArgsConstructor
 public class SummaryDTO {
 
-    int numberOfNewTheses;
-    int newBakalarska;
-    int newMagisterska;
-    int newDoktorandska;
-    int newInzenyrska;
+    long numberOfNewTheses;
+    long newBakalarska;
+    long newMagisterska;
+    long newDoktorandska;
+    long newInzenyrska;
 
-    int numberOfEndedTheses;
-    int endedBakalarska;
-    int endedMagisterska;
-    int endedDoktorandska;
-    int endedInzenyrska;
+    long numberOfEndedTheses;
+    long endedBakalarska;
+    long endedMagisterska;
+    long endedDoktorandska;
+    long endedInzenyrska;
 }
 

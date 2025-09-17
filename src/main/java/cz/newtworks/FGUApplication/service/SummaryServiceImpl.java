@@ -59,28 +59,28 @@ public class SummaryServiceImpl implements SummaryService {
      * @param year
      * @return
      */
-    private int getNumberOfThesesByStartYear(int year) {
+    private long getNumberOfThesesByStartYear(int year) {
         LocalDate start = LocalDate.of(year, 1, 1);
         LocalDate end = LocalDate.of(year, 12, 31);
         return thesisRepository.countAllByStartDateBetween(start, end);
     }
 
-    private int getNumberOfThesesByStartYear(int year, ThesisType thesisType) {
+    private long getNumberOfThesesByStartYear(int year, ThesisType thesisType) {
         LocalDate start = LocalDate.of(year, 1, 1);
         LocalDate end = LocalDate.of(year, 12, 31);
-        return thesisRepository.findNewThesesByStartDateAndThesisType(start, end, thesisType);
+        return thesisRepository.countByStartDateBetweenAndThesisType(start, end, thesisType);
     }
 
-    private int getNumberOfThesesByEndYear(int year) {
+    private long getNumberOfThesesByEndYear(int year) {
         LocalDate start = LocalDate.of(year, 1, 1);
         LocalDate end = LocalDate.of(year, 12, 31);
-        return thesisRepository.findAllByEndDateBetween(start, end);
+        return thesisRepository.countAllByEndDateBetween(start, end);
     }
 
-    private int getNumberOfThesesByEndYear(int year, ThesisType thesisType) {
+    private long getNumberOfThesesByEndYear(int year, ThesisType thesisType) {
         LocalDate start = LocalDate.of(year, 1, 1);
         LocalDate end = LocalDate.of(year, 12, 31);
-        return thesisRepository.findEndedThesesByEndDateAndThesisType(start, end, thesisType);
+        return thesisRepository.countByEndDateBetweenAndThesisType(start, end, thesisType);
     }
 
 

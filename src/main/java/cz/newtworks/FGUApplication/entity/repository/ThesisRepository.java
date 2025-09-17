@@ -10,36 +10,28 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface ThesisRepository extends JpaRepository<ThesisEntity, Long>, JpaSpecificationExecutor<ThesisEntity> {
-    @Query("SELECT t FROM ThesisEntity t WHERE consultant.id = ?1")
-    List<ThesisEntity> findAllThesisWithConsultantId(long consultantId);
 
-    @Query("SELECT t FROM ThesisEntity t WHERE student.id = ?1")
-    List<ThesisEntity> findAllThesisWithStudentId(long studentId);
+    List<ThesisEntity> findAllByConsultantId(long consultantId);
 
-    @Query("SELECT t FROM ThesisEntity t WHERE trainer.id = ?1")
-    List<ThesisEntity> findAllThesisWithTrainerId(long trainerId);
+    List<ThesisEntity> findAllByStudentId(long studentId);
 
-    @Query("SELECT COUNT(*) FROM ThesisEntity")
-    int countAllThesis();
+    List<ThesisEntity> findAllByTrainerId(long trainerId);
+
+    long count();
 
     @Query("SELECT COUNT(*) FROM ThesisEntity WHERE startDate = ?1")
-    int findAllThesisByData(LocalDate date);
+    long countAllThesisByData(LocalDate date);
 
-    @Query("SELECT COUNT(*) FROM ThesisEntity t WHERE t.startDate BETWEEN :start AND :end")
-    int findAllByStartDateBetween(LocalDate start, LocalDate end);
+    long countAllByStartDateBetween(LocalDate start, LocalDate end);
 
-    @Query("SELECT COUNT(*) FROM ThesisEntity t WHERE t.endDate BETWEEN :start AND :end")
-    int findAllByEndDateBetween(LocalDate start, LocalDate end);
+    long countAllByEndDateBetween(LocalDate start, LocalDate end);
 
-    @Query("SELECT COUNT(*) FROM ThesisEntity t WHERE t.startDate BETWEEN :start AND :end AND t.thesisType = :type")
-    int findNewThesesByStartDateAndThesisType(LocalDate start, LocalDate end, ThesisType type);
+    long countByStartDateBetweenAndThesisType(LocalDate start, LocalDate end, ThesisType type);
 
-    @Query("SELECT COUNT(*) FROM ThesisEntity t WHERE t.endDate BETWEEN :start AND :end AND t.thesisType = :type")
-    int findEndedThesesByEndDateAndThesisType(LocalDate start, LocalDate end, ThesisType type);
+    long countByEndDateBetweenAndThesisType(LocalDate start, LocalDate end, ThesisType type);
 
     @Query("SELECT DISTINCT YEAR(t.endDate) y FROM ThesisEntity t WHERE t.endDate IS NOT NULL UNION SELECT DISTINCT YEAR(t.startDate) y FROM ThesisEntity t WHERE t.startDate IS NOT NULL ORDER BY y")
     List<Integer> findYearsInDatabase();
 
-    //Testovaci metoda
-    int countAllByStartDateBetween(LocalDate start, LocalDate end);
+
 }

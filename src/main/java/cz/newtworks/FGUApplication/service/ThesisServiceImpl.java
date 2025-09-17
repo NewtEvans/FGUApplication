@@ -76,8 +76,8 @@ public class ThesisServiceImpl implements ThesisService {
     }
 
     @Override
-    public int countTheses() {
-        return thesisRepository.countAllThesis();
+    public long countTheses() {
+        return thesisRepository.count();
     }
 
     @Override
@@ -87,7 +87,7 @@ public class ThesisServiceImpl implements ThesisService {
 
     @Override
     public List<ThesisDTO> getAllThesisWithConsultantId(long consultantId) {
-        return thesisRepository.findAllThesisWithConsultantId(consultantId)
+        return thesisRepository.findAllByConsultantId(consultantId)
                 .stream()
                 .map(thesisEntity -> thesisMapper.toDTO(thesisEntity))
                 .collect(Collectors.toList());
@@ -95,7 +95,7 @@ public class ThesisServiceImpl implements ThesisService {
 
     @Override
     public List<ThesisDTO> getAllThesisWithStudentId(long studentId) {
-        return thesisRepository.findAllThesisWithStudentId(studentId)
+        return thesisRepository.findAllByStudentId(studentId)
                 .stream()
                 .map(thesisEntity -> thesisMapper.toDTO(thesisEntity))
                 .collect(Collectors.toList());
@@ -103,7 +103,7 @@ public class ThesisServiceImpl implements ThesisService {
 
     @Override
     public List<ThesisDTO> getAllThesisWithTrainerId(long trainerId) {
-        return thesisRepository.findAllThesisWithTrainerId(trainerId)
+        return thesisRepository.findAllByTrainerId(trainerId)
                 .stream()
                 .map(thesisEntity -> thesisMapper.toDTO(thesisEntity))
                 .collect(Collectors.toList());

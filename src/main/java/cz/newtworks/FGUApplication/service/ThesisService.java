@@ -40,7 +40,7 @@ public interface ThesisService {
      *
      * @return int with number
      */
-    int countTheses();
+    long countTheses();
 
     /**
      * Test method for getting all used years in database

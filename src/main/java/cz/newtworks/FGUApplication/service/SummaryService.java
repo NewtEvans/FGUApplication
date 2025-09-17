@@ -8,12 +8,14 @@ public interface SummaryService {
 
     /**
      *
+     *
      * @param date
      * @return
      */
     SummaryDTO getNumberOfAllFinishedTheses(LocalDate date);
 
     /**
+     *
      *
      * @param date
      * @return
@@ -22,15 +24,17 @@ public interface SummaryService {
 
     /**
      *
+     *
      * @param date
      * @return
      */
     SummaryDTO getNumberOfOngoingTheses(LocalDate date);
 
     /**
+     * Method returns DTO with complete summary from the database.
      *
      * @param year
-     * @return
+     * @return DTO with complete summary
      */
     SummaryDTO getCompleteSummary(int year);
 
