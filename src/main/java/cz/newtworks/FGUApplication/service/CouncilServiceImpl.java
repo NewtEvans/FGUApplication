@@ -86,7 +86,7 @@ public class CouncilServiceImpl implements CouncilService {
     //Private methods
 
     /**
-     * Returns a council entity by ID
+     * Method that returns the council entity with a specific ID and returns exception if no council with the given ID is found.
      *
      * @param councilId councilId the ID of the council
      * @return the found CouncilEntity

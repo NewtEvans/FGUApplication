@@ -18,7 +18,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PersonEntity {
-    
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "person_department",
@@ -26,6 +26,7 @@ public class PersonEntity {
             inverseJoinColumns = @JoinColumn(name = "department_id")
     )
     Set<DepartmentEntity> departments;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

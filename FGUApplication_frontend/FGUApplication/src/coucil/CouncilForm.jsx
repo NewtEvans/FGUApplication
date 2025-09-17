@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 const CouncilForm = () => {
   const navigate = useNavigate();
   const { id } = useParams();
+
   const [council, setCouncil] = useState({
     councilName: "",
     councilAbbreviation: "",
@@ -30,8 +31,9 @@ const CouncilForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     (id ? apiPut("/council/" + id, council) : apiPost("/council", council))
-      .then((data) => {
+      .then(() => {
         toast.success(`Rada byla ${id ? "upravena" : "založena"} úspěšně.`);
         id ? navigate("/counciles/detail/" + id) : navigate("/counciles");
       })
@@ -55,6 +57,7 @@ const CouncilForm = () => {
           value={council.councilName}
           handleChange={handleChange}
         />
+
         <InputField
           required={true}
           type="text"
@@ -64,6 +67,7 @@ const CouncilForm = () => {
           value={council.councilAbbreviation}
           handleChange={handleChange}
         />
+
         <InputField
           required={true}
           type="text"
@@ -73,6 +77,7 @@ const CouncilForm = () => {
           value={council.councilNumber}
           handleChange={handleChange}
         />
+
         <br />
         <input type="submit" className="btn btn-success" value="Uložit" />
       </form>

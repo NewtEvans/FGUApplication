@@ -12,8 +12,11 @@ import { toast } from "react-toastify";
 
 const FacultyIndex = () => {
   const [url, setUrl] = useState("/faculty/all/pageable");
+
   const [faculties, setFaculties] = useState([]);
+
   const [numberOfRecords, setNumberOfRecords] = useState();
+
   const [loading, setLoading] = useState(true);
 
   const [page, setPage] = useState(0);
@@ -86,6 +89,7 @@ const FacultyIndex = () => {
   return (
     <div>
       <h1>Seznam všech fakult</h1>
+
       <div className="d-flex justify-content-between">
         <p>Počet fakult v databázi: {numberOfRecords}</p>
         <Link to="create" className="btn btn-md btn-success">
@@ -94,8 +98,11 @@ const FacultyIndex = () => {
       </div>
 
       <FilterForm onFilter={handleFilter} fields={filterFields} />
+
       <SortDropdown sort={sort} setSort={setSort} fields={sortFields} />
+
       <FacultyTable faculties={faculties} />
+
       <Pagination
         page={page}
         setPage={setPage}

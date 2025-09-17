@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 const PersonForm = () => {
   const navigate = useNavigate();
   const { id } = useParams();
+
   const [person, setPerson] = useState({
     titleBeforeName: "",
     firstName: "",
@@ -18,7 +19,6 @@ const PersonForm = () => {
     isArchived: false,
     departments: [],
   });
-
   const [departmentList, setDepartmentList] = useState([]);
 
   useEffect(() => {
@@ -44,6 +44,7 @@ const PersonForm = () => {
   return (
     <div>
       <h1>{id ? "Upravit" : "Vytvořit"} osobu</h1>
+
       <hr />
       <form onSubmit={handleSubmit}>
         <InputField
@@ -57,6 +58,7 @@ const PersonForm = () => {
             setPerson({ ...person, titleBeforeName: e.target.value });
           }}
         />
+
         <InputField
           required={true}
           type="text"
@@ -68,6 +70,7 @@ const PersonForm = () => {
             setPerson({ ...person, firstName: e.target.value });
           }}
         />
+
         <InputField
           required={true}
           type="text"
@@ -79,6 +82,7 @@ const PersonForm = () => {
             setPerson({ ...person, surname: e.target.value });
           }}
         />
+
         <InputField
           required={false}
           type="text"
@@ -90,6 +94,7 @@ const PersonForm = () => {
             setPerson({ ...person, titleAfterName: e.target.value });
           }}
         />
+
         <InputSelect
           name="departments"
           items={departmentList}
@@ -137,6 +142,7 @@ const PersonForm = () => {
           />
         </div>
         <br />
+
         <input type="submit" className="btn btn-success" value="Uložit" />
       </form>
     </div>

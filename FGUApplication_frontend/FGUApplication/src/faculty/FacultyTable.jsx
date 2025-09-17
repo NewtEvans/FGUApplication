@@ -12,6 +12,7 @@ const FacultyTable = ({ faculties }) => {
             <th>škola</th>
           </tr>
         </thead>
+
         <tbody className="text-center">
           {faculties.map((faculty, index) => (
             <tr key={faculty.id}>
@@ -23,6 +24,7 @@ const FacultyTable = ({ faculties }) => {
                   {faculty.facultyAbbreviation}
                 </Link>
               </td>
+
               <td>
                 <Link
                   to={`detail/${faculty.id}`}
@@ -31,6 +33,7 @@ const FacultyTable = ({ faculties }) => {
                   {faculty.facultyName}
                 </Link>
               </td>
+
               <td>
                 <Link
                   to={`detail/${faculty.id}`}

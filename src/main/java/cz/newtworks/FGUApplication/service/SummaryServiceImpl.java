@@ -11,7 +11,6 @@ import java.time.LocalDate;
 
 @Service
 public class SummaryServiceImpl implements SummaryService {
-    private final LocalDate date = LocalDate.parse("2016-03-01");
 
     @Autowired
     ThesisRepository thesisRepository;
@@ -53,10 +52,17 @@ public class SummaryServiceImpl implements SummaryService {
     }
 
     //Private methods
+
+    /**
+     * Method that returns number
+     *
+     * @param year
+     * @return
+     */
     private int getNumberOfThesesByStartYear(int year) {
         LocalDate start = LocalDate.of(year, 1, 1);
         LocalDate end = LocalDate.of(year, 12, 31);
-        return thesisRepository.findAllByStartDateBetween(start, end);
+        return thesisRepository.countAllByStartDateBetween(start, end);
     }
 
     private int getNumberOfThesesByStartYear(int year, ThesisType thesisType) {

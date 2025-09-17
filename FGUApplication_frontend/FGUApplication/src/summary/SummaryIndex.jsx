@@ -46,6 +46,7 @@ const Summaryindex = () => {
         <p>- doktorandská: {data.endedDoktorandska}</p>
         <p>- inženýrská: {data.endedInzenyrska}</p>
       </div>
+
       <div>
         <p>Počet nově přijatých prací v roce: {data.numberOfNewTheses}</p>
         <p>- bakalářská: {data.newBakalarska}</p>
@@ -53,6 +54,7 @@ const Summaryindex = () => {
         <p>- doktorandská: {data.newDoktorandska}</p>
         <p>- inženýrská: {data.newInzenyrska}</p>
       </div>
+
       <div>
         <p>Počet probíhajících prací: </p>
         <p>- bakalářská: {}</p>

@@ -25,11 +25,11 @@ public class ThesisController {
         return ResponseEntity.status(HttpStatus.CREATED).body(thesisService.createThesis(thesisDTO));
     }
 
-    @GetMapping("/all")
-    public ResponseEntity<Page<ThesisDTO>> getAllThesis(
+    @GetMapping("/all/pageable")
+    public ResponseEntity<Page<ThesisDTO>> getAllThesisPageable(
             Pageable pageable,
             @ModelAttribute ThesisFilterDTO thesisFilterDTO) {
-        return ResponseEntity.ok(thesisService.getAllThesis(pageable, thesisFilterDTO));
+        return ResponseEntity.ok(thesisService.getAllThesisPageable(pageable, thesisFilterDTO));
     }
 
     @GetMapping("/count")
@@ -55,6 +55,7 @@ public class ThesisController {
     @DeleteMapping("/{thesisId}")
     public ResponseEntity<Void> deleteThesis(@PathVariable long thesisId) {
         thesisService.deleteThesis(thesisId);
+
         return ResponseEntity.noContent().build();
     }
 

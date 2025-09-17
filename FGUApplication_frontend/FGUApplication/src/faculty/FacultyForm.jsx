@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 const FacultyForm = () => {
   const navigate = useNavigate();
   const { id } = useParams();
+
   const [faculty, setFaculty] = useState({
     facultyName: "",
     facultyAbbreviation: "",
@@ -41,7 +42,9 @@ const FacultyForm = () => {
   return (
     <div>
       <h1>{id ? "Upravit" : "Vytvořit"} fakultu</h1>
+
       <hr />
+
       <form onSubmit={handleSubmit}>
         <InputField
           required={true}
@@ -54,6 +57,7 @@ const FacultyForm = () => {
             setFaculty({ ...faculty, facultyName: e.target.value });
           }}
         />
+
         <InputField
           required={true}
           type="text"
@@ -65,6 +69,7 @@ const FacultyForm = () => {
             setFaculty({ ...faculty, facultyAbbreviation: e.target.value });
           }}
         />
+
         <InputField
           required={true}
           type="text"
@@ -76,6 +81,7 @@ const FacultyForm = () => {
             setFaculty({ ...faculty, school: e.target.value });
           }}
         />
+
         <br />
         <input type="submit" className="btn btn-success" value="Uložit" />
       </form>

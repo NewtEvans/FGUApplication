@@ -35,6 +35,11 @@ public interface CouncilService {
      */
     Page<CouncilDTO> getAllCouncilsPageable(Pageable pageable, CouncilFilterDTO councilFilterDTO);
 
+    /**
+     * Method returns DTOs with information of all councils in the database.
+     *
+     * @return A list of DTOs filled with all councils from the database.
+     */
     List<CouncilNameOnlyDTO> getAllCouncils();
 
     /**

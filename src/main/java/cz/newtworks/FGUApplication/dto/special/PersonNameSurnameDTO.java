@@ -12,7 +12,9 @@ import lombok.Setter;
 public class PersonNameSurnameDTO {
 
     private Long id;
+
     private String firstName;
+
     private String surname;
-    
+
 }

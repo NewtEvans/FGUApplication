@@ -10,6 +10,7 @@ const DepartmentTable = ({ departments }) => {
             <th className="col-10">Název oddělení</th>
           </tr>
         </thead>
+
         <tbody className="text-center">
           {departments.map((department) => (
             <tr key={department.id}>
@@ -21,6 +22,7 @@ const DepartmentTable = ({ departments }) => {
                   {department.departmentNumber}
                 </Link>
               </td>
+
               <td>
                 <Link
                   to={`/departments/detail/${department.id}`}

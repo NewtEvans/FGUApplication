@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 const DepartmentDetail = () => {
   const navigate = useNavigate();
   const { id } = useParams();
+
   const [department, setDepartment] = useState({});
   const [people, setPeople] = useState([]);
 
@@ -60,6 +61,7 @@ const DepartmentDetail = () => {
     <div>
       <div className="d-flex align-items-center justify-content-between">
         <h1>Detail oddělení</h1>
+
         <div>
           <Link
             to={`/departments/edit/${id}`}
@@ -76,6 +78,7 @@ const DepartmentDetail = () => {
         </div>
       </div>
       <hr />
+
       <h2>
         <strong>
           {department.departmentName} (odd. {department.departmentNumber})

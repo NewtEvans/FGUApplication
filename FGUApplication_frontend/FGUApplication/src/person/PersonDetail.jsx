@@ -12,6 +12,7 @@ import { toast } from "react-toastify";
 const PersonDetail = () => {
   const navigate = useNavigate();
   const { id } = useParams();
+
   const [person, setPerson] = useState({});
   const [studentTheses, setStudentTheses] = useState([]);
   const [consultantTheses, setConsultantTheses] = useState([]);
@@ -46,6 +47,7 @@ const PersonDetail = () => {
         toast.error(`Chyba: ${error.message}`);
         console.error(error.message);
       });
+
     apiGet("/thesis/consultant/" + id)
       .then((data) => {
         setConsultantTheses(data);
@@ -54,6 +56,7 @@ const PersonDetail = () => {
         toast.error(`Chyba: ${error.message}`);
         console.error(error.message);
       });
+
     apiGet("/thesis/student/" + id)
       .then((data) => {
         setStudentTheses(data);
@@ -62,6 +65,7 @@ const PersonDetail = () => {
         toast.error(`Chyba: ${error.message}`);
         console.error(error.message);
       });
+
     apiGet("/thesis/trainer/" + id)
       .then((data) => {
         setTrainerTheses(data);
@@ -85,6 +89,7 @@ const PersonDetail = () => {
     <div>
       <div className="d-flex align-items-center justify-content-between">
         <h1>Detail osoby</h1>
+
         <div>
           <Link
             to={`/person/edit/${id}`}
@@ -109,31 +114,40 @@ const PersonDetail = () => {
           )}
         </div>
       </div>
+
       <hr />
+
       <p>
         <strong>Předložný titul:</strong> {person.titleBeforeName}
       </p>
+
       <p>
         <strong>Jméno:</strong> {person.firstName}
       </p>
+
       <p>
         <strong>Přijmení:</strong> {person.surname}
       </p>
       <p>
         <strong>Příjmenkový titul:</strong> {person.titleAfterName}
       </p>
+
       <p>
         <strong>Zaměstnanec FGÚ: </strong>{" "}
         {person.isEmployee === "IPHYS" ? "Ano" : "Není"}
       </p>
+
       <DepartmentTable departments={person.departments || []} />
       <br />
+
       <h2>Vlastní práce: </h2>
       <ThesisTable theses={studentTheses} />
       <br />
+
       <h2>Školené práce: </h2>
       <ThesisTable theses={trainerTheses} />
       <br />
+
       <h2>Konzultované práce:</h2>
       <ThesisTable theses={consultantTheses} />
     </div>

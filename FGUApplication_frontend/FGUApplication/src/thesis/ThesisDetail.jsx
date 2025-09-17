@@ -1,17 +1,15 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { apiDelete, apiGet } from "../utils/api";
-
 import { Link } from "react-router";
-
 import { ThesisTypeTransfer } from "../utils/ThesisTypeTransfer";
-
 import { formatDate } from "../utils/dateUtil";
 import { toast } from "react-toastify";
 
 function ThesisDetail() {
   const navigate = useNavigate();
   const { id } = useParams();
+
   const [thesis, setThesis] = useState({});
 
   const deleteFunction = async (id) => {
@@ -45,6 +43,7 @@ function ThesisDetail() {
         <h1>
           Detail práce <em>({thesis.nameCz})</em>
         </h1>
+
         <div>
           <Link
             to={`/theses/edit/${id}`}
@@ -60,23 +59,29 @@ function ThesisDetail() {
           </button>
         </div>
       </div>
+
       <hr />
       <p>
         <strong>ID:</strong> {thesis.id}
       </p>
+
       <p>
         <strong>Druh práce: </strong>{" "}
         <ThesisTypeTransfer thesisType={thesis.thesisType} />
       </p>
+
       <p>
         <strong>Celé datum zahájení:</strong> {formatDate(thesis.startDate)}
       </p>
+
       <p>
         <strong>Český název:</strong> {thesis.nameCz}
       </p>
+
       <p>
         <strong>Anglický název:</strong> {thesis.nameEn}
       </p>
+
       <p>
         <strong>Student:</strong>{" "}
         <Link
@@ -86,6 +91,7 @@ function ThesisDetail() {
           {thesis.student?.firstName} {thesis.student?.surname}
         </Link>
       </p>
+
       <p>
         <strong>Školitel:</strong>{" "}
         <Link
@@ -95,6 +101,7 @@ function ThesisDetail() {
           {thesis.trainer?.firstName} {thesis.trainer?.surname}
         </Link>
       </p>
+
       <p>
         <strong>Konzultant:</strong>{" "}
         <Link
@@ -104,6 +111,7 @@ function ThesisDetail() {
           {thesis.consultant?.firstName} {thesis.consultant?.surname}
         </Link>
       </p>
+
       <p>
         <strong>Fakulta:</strong>{" "}
         <Link
@@ -113,6 +121,7 @@ function ThesisDetail() {
           {thesis.faculty?.facultyName}
         </Link>
       </p>
+
       <p>
         <strong>Rada:</strong>{" "}
         <Link
@@ -122,12 +131,15 @@ function ThesisDetail() {
           {thesis.council?.councilName}
         </Link>
       </p>
+
       <p>
         <strong>Celé datum ukončení:</strong> {formatDate(thesis.endDate)}
       </p>
+
       <p>
         <strong>Poznámka:</strong> {thesis.note}
       </p>
+
       <hr />
     </div>
   );

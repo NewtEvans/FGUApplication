@@ -2,14 +2,17 @@ import { useEffect, useState } from "react";
 import { apiGet } from "../utils/api";
 import { Link } from "react-router-dom";
 import { Pagination } from "../components/Pagination";
+import { toast } from "react-toastify";
 
 import CouncilTable from "./CouncilTable";
 import FilterForm from "../components/filter/FilterForm";
 
 const CouncilIndex = () => {
   const [url, setUrl] = useState("/council/all/pageable");
+
   const [councils, setCounciles] = useState([]);
   const [numberOfRecords, setNumberOfRecords] = useState();
+
   const [loading, setLoading] = useState(true);
 
   const [page, setPage] = useState(0);
@@ -20,17 +23,13 @@ const CouncilIndex = () => {
 
   const filterFields = [
     { name: "councilNameFilter", label: "Název rady", type: "text" },
-    { name: "councilAbbreviation", label: "Zkratka rady", type: "text" },
+    { name: "councilAbbreviationFilter", label: "Zkratka rady", type: "text" },
     { name: "councilNumberFilter", label: "Číslo rady", type: "text" },
   ];
 
   const handleFilter = (filterData) => {
     setPage(0);
-    setFilter({
-      councilNameFilter: filterData.councilNameFilter,
-      councilAbbreviationFilter: filterData.councilAbbreviationFilter,
-      councilNumberFilter: filterData.councilNumberFilter,
-    });
+    setFilter(filterData);
   };
 
   useEffect(() => {
@@ -41,10 +40,12 @@ const CouncilIndex = () => {
       ...filter,
     };
 
+    setLoading(true);
+
     apiGet(url, params)
       .then((data) => {
-        setCounciles(data.content);
-        setTotalPages(data.totalPages);
+        setCounciles(data.content || []);
+        setTotalPages(data.totalPages || 0);
       })
       .catch((error) => {
         toast.error(`Chyba: ${error.message}`);
@@ -73,15 +74,19 @@ const CouncilIndex = () => {
   return (
     <div>
       <h1>Seznam všech oborových rad</h1>
+
       <div className="d-flex justify-content-between">
         <p>Počet oddělení v databázi: {numberOfRecords}</p>
         <Link to="create" className="btn btn-md btn-success">
           Nové rada
         </Link>
       </div>
+
       <FilterForm fields={filterFields} onFilter={handleFilter} />
       <br />
+
       <CouncilTable councils={councils} />
+
       <Pagination
         page={page}
         setPage={setPage}

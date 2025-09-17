@@ -8,9 +8,12 @@ import FilterForm from "../components/filter/FilterForm";
 
 const DepartmentIndex = () => {
   const [url, setUrl] = useState("/department/all/pageable");
+
   const [departments, setDepartments] = useState([]);
-  const [numberOfRecords, setNumberOfRecords] = useState();
+
   const [loading, setLoading] = useState(true);
+
+  const [numberOfRecords, setNumberOfRecords] = useState();
 
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState();
@@ -74,18 +77,21 @@ const DepartmentIndex = () => {
   return (
     <div>
       <h1>Seznam všech oddělení</h1>
+
       <div className="d-flex justify-content-between">
         <p>Počet oddělení v databázi: {numberOfRecords}</p>
         <Link to="create" className="btn btn-md btn-success">
           Nové oddělení
         </Link>
       </div>
+
       <div>
         <FilterForm onFilter={handleFilter} fields={filterFields} />
       </div>
 
       <br />
       <DepartmentTable departments={departments} />
+
       <Pagination
         page={page}
         setPage={setPage}

@@ -10,6 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CouncilNameOnlyDTO {
+
     private Long id;
 
     private String councilName;

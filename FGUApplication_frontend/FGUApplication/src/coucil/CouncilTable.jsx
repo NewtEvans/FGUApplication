@@ -11,6 +11,7 @@ const CouncilTable = ({ councils }) => {
             <th>Číslo rady</th>
           </tr>
         </thead>
+
         <tbody className="text-center">
           {councils.map((council) => (
             <tr key={council.id}>
@@ -22,6 +23,7 @@ const CouncilTable = ({ councils }) => {
                   {council.councilName}
                 </Link>
               </td>
+
               <td>
                 <Link
                   to={`detail/${council.id}`}
@@ -30,6 +32,7 @@ const CouncilTable = ({ councils }) => {
                   {council.councilAbbreviation}
                 </Link>
               </td>
+
               <td>
                 <Link
                   to={`detail/${council.id}`}

@@ -25,8 +25,4 @@ public class SummaryController {
     public ResponseEntity<SummaryDTO> getCompleteSummary(@RequestParam int year) {
         return ResponseEntity.ok(summaryService.getCompleteSummary(year));
     }
-
-//    @GetMapping("/test")
-//    public SummaryDTO countThesesByEndDateRange(@RequestParam int year) {
-//    }
 }

@@ -82,15 +82,14 @@ public class DepartmentServiceImpl implements DepartmentService {
         departmentRepository.delete(fetchDepartmentById(departmentId));
     }
 
-    //private methods
+    //Private methods
 
     /**
-     * Private method that returns entity of department with specific ID.
-     * If asked ID doesn't exist method returns error exception.
+     * Method that returns the department entity with a specific ID and returns exception if no department with the given ID is found.
      *
      * @param departmentId
      * @return Department entity with asked id
-     * @throws ResourceNotFoundException if no person with the given ID is found
+     * @throws ResourceNotFoundException if no department with the given ID is found
      */
     private DepartmentEntity fetchDepartmentById(long departmentId) {
         return departmentRepository.findById(departmentId).orElseThrow(() -> new ResourceNotFoundException("Department with id" + departmentId + "wasn't found in the database."));

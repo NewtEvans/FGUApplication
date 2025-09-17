@@ -30,7 +30,8 @@ public class PersonController {
     @PostMapping("/multiple")
     public ResponseEntity<?> createMultiplePeople(@RequestBody List<PersonDTO> people) {
         personService.createMultiplePerson(people);
-        return ResponseEntity.ok("OK");
+
+        return ResponseEntity.status(HttpStatus.CREATED).body("OK");
     }
 
     @GetMapping("/all/pageable")
@@ -68,6 +69,7 @@ public class PersonController {
     @DeleteMapping("/{personId}")
     public ResponseEntity<Void> deletePerson(@PathVariable long personId) {
         personService.deletePerson(personId);
+
         return ResponseEntity.noContent().build();
     }
 

@@ -86,12 +86,11 @@ public class FacultyServiceImpl implements FacultyService {
     //Private methods
 
     /**
-     * Private method that returns faculty entity with specific ID.
-     * If asked ID doesn't exist method returns error exception.
+     * Method that returns the faculty entity with a specific ID and returns exception if no faculty with the given ID is found.
      *
      * @param facultyId
      * @return Faculty entity with asked id
-     * @throws ResourceNotFoundException if no person with the given ID is found
+     * @throws ResourceNotFoundException if no faculty with the given ID is found
      */
     private FacultyEntity fetchFacultyById(long facultyId) {
         return facultyRepository.findById(facultyId)

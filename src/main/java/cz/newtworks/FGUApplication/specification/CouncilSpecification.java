@@ -20,17 +20,17 @@ public class CouncilSpecification {
                 ));
             }
 
-            if (councilFilterDTO.getCouncilNumberFilter() != null && !councilFilterDTO.getCouncilNumberFilter().isEmpty()) {
-                predicates.add(criteriaBuilder.equal(
-                        root.get("councilNumber"),
-                        councilFilterDTO.getCouncilNumberFilter()
-                ));
-            }
-
             if (councilFilterDTO.getCouncilAbbreviationFilter() != null && !councilFilterDTO.getCouncilAbbreviationFilter().isEmpty()) {
                 predicates.add(criteriaBuilder.like(
                         criteriaBuilder.lower(root.get("councilAbbreviation")),
                         "%" + councilFilterDTO.getCouncilAbbreviationFilter().toLowerCase() + "%"
+                ));
+            }
+
+            if (councilFilterDTO.getCouncilNumberFilter() != null && !councilFilterDTO.getCouncilNumberFilter().isEmpty()) {
+                predicates.add(criteriaBuilder.like(
+                        criteriaBuilder.lower(root.get("councilNumber")),
+                        "%" + councilFilterDTO.getCouncilNumberFilter().toLowerCase() + "%"
                 ));
             }
 

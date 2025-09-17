@@ -18,7 +18,7 @@ oborových rad.
 - Backend:
     - Java openjdk-19 (Oracle OpenJDK 23.0.2), Spring Boot, Spring Data JPA, Maven
 - Frontend:
-    - React, Bootstrap, React Router, Node JS
+    - React, Bootstrap, React Router, Node.js
 - Databáze:
     - MySQL (Docker kontejner)
 - Docker:
@@ -36,6 +36,7 @@ oborových rad.
         - React frontend: http://localhost:3000
         - MySQL: localhost: 3306
 3) Webové rozhraní
+    - Do slozky **FGUApplication_frontend** nainstalovat vsechny potrebne zavislosti a balicky (npm install)
     - Otevři prohlížeč na: http://localhost:3000
 
 # Struktura projektu

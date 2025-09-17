@@ -19,11 +19,14 @@ public class DepartmentEntity {
 
     @ManyToMany(mappedBy = "departments", fetch = FetchType.EAGER)
     List<PersonEntity> people;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     @Column(nullable = false)
     private String departmentNumber;
+
     @Column(nullable = false)
     private String departmentName;
 }

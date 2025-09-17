@@ -5,8 +5,9 @@ import { toast } from "react-toastify";
 
 const FacultyDetail = () => {
   const { id } = useParams();
-  const [faculty, setFaculty] = useState();
   const navigate = useNavigate();
+
+  const [faculty, setFaculty] = useState();
 
   const [loading, setLoading] = useState(true);
 
@@ -48,6 +49,7 @@ const FacultyDetail = () => {
     <div>
       <div className="d-flex align-items-center justify-content-between">
         <h1>Detail fakulty</h1>
+
         <div>
           <Link
             to={`/faculties/edit/${id}`}
@@ -63,13 +65,17 @@ const FacultyDetail = () => {
           </button>
         </div>
       </div>
+
       <hr />
+
       <p>
         <strong>Název fakulty:</strong> {faculty?.facultyName}
       </p>
+
       <p>
         <strong>Zkratka fakulty: </strong> {faculty?.facultyAbbreviation}
       </p>
+
       <p>
         <strong>Název školy: </strong> {faculty?.school}
       </p>

@@ -17,6 +17,7 @@ const PersonTable = ({ people }) => {
             <th>Titul</th>
           </tr>
         </thead>
+
         <tbody className="text-center">
           {people.map((person) => (
             <tr key={person.id} className={getRowClass(person)}>
@@ -28,6 +29,7 @@ const PersonTable = ({ people }) => {
                   {person.titleBeforeName}
                 </Link>
               </td>
+
               <td>
                 <Link
                   to={`/person/detail/${person.id}`}
@@ -45,6 +47,7 @@ const PersonTable = ({ people }) => {
                   {person.surname}
                 </Link>
               </td>
+
               <td>
                 <Link
                   to={`/person/detail/${person.id}`}

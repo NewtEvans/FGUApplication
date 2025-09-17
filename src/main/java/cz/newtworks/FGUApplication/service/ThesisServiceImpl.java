@@ -68,7 +68,7 @@ public class ThesisServiceImpl implements ThesisService {
     }
 
     @Override
-    public Page<ThesisDTO> getAllThesis(Pageable pageable, ThesisFilterDTO thesisFilterDTO) {
+    public Page<ThesisDTO> getAllThesisPageable(Pageable pageable, ThesisFilterDTO thesisFilterDTO) {
         Specification<ThesisEntity> specification = ThesisSpecification.buildSpecification(thesisFilterDTO);
 
         return thesisRepository.findAll(specification, pageable)

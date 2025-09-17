@@ -39,4 +39,7 @@ public interface ThesisRepository extends JpaRepository<ThesisEntity, Long>, Jpa
 
     @Query("SELECT DISTINCT YEAR(t.endDate) y FROM ThesisEntity t WHERE t.endDate IS NOT NULL UNION SELECT DISTINCT YEAR(t.startDate) y FROM ThesisEntity t WHERE t.startDate IS NOT NULL ORDER BY y")
     List<Integer> findYearsInDatabase();
+
+    //Testovaci metoda
+    int countAllByStartDateBetween(LocalDate start, LocalDate end);
 }

@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 const CouncilDetail = () => {
   const navigate = useNavigate();
   const { id } = useParams();
+
   const [council, setCouncil] = useState({});
 
   const [loading, setLoading] = useState(true);
@@ -49,6 +50,7 @@ const CouncilDetail = () => {
     <div>
       <div className="d-flex align-items-center justify-content-between">
         <h1>Detail oborové rady</h1>
+
         <div>
           <Link
             to={`/counciles/edit/${id}`}
@@ -68,9 +70,11 @@ const CouncilDetail = () => {
       <p>
         <strong>Název rady:</strong> {council.councilName}
       </p>
+
       <p>
         <strong>Zkratka rady:</strong> {council.councilAbbreviation}
       </p>
+
       <p>
         <strong>Číslo rady:</strong> {council.councilNumber}
       </p>

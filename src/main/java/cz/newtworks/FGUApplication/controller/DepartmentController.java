@@ -28,7 +28,8 @@ public class DepartmentController {
     @PostMapping("/multiple")
     public ResponseEntity<?> createMultipleDepartments(@RequestBody List<DepartmentDTO> departmentDTOs) {
         departmentService.createMultipleDepartments(departmentDTOs);
-        return ResponseEntity.ok("OK");
+
+        return ResponseEntity.status(HttpStatus.CREATED).body("OK");
     }
 
     @GetMapping("/all/pageable")
@@ -61,6 +62,7 @@ public class DepartmentController {
     @DeleteMapping("/{departmentId}")
     public ResponseEntity<Void> deleteDepartment(@PathVariable long departmentId) {
         departmentService.deleteDepartment(departmentId);
+        
         return ResponseEntity.noContent().build();
     }
 

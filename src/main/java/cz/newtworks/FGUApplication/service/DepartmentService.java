@@ -33,6 +33,11 @@ public interface DepartmentService {
      */
     Page<DepartmentDTO> getAllDepartmentsPageable(Pageable pageable, DepartmentFilterDTO departmentFilterDTO);
 
+    /**
+     * Method returns DTOs with information of all departments in the database.
+     *
+     * @return A list of DTOs filled with all departments from the database.
+     */
     List<DepartmentDTO> getAllDepartments();
 
     /**

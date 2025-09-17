@@ -19,6 +19,7 @@ const ThesisTable = ({ theses }) => {
             <th>Poznámka</th>
           </tr>
         </thead>
+
         <tbody className="text-center">
           {theses.map((thesis) => (
             <tr key={thesis.id}>
@@ -30,6 +31,7 @@ const ThesisTable = ({ theses }) => {
                   {thesis.nameCz}
                 </Link>
               </td>
+
               <td>
                 <Link
                   to={`/theses/detail/${thesis.id}`}
@@ -38,6 +40,7 @@ const ThesisTable = ({ theses }) => {
                   <ThesisTypeTransfer thesisType={thesis.thesisType} />
                 </Link>
               </td>
+
               <td>
                 <Link
                   to={`/theses/detail/${thesis.id}`}
@@ -48,6 +51,7 @@ const ThesisTable = ({ theses }) => {
                     : ""}
                 </Link>
               </td>
+
               <td>
                 <Link
                   to={`/theses/detail/${thesis.id}`}
@@ -56,6 +60,7 @@ const ThesisTable = ({ theses }) => {
                   {formatDate(thesis.startDate)}
                 </Link>
               </td>
+
               <td>
                 <Link
                   to={`/theses/detail/${thesis.id}`}
@@ -66,6 +71,7 @@ const ThesisTable = ({ theses }) => {
                     : "Studuje"}
                 </Link>
               </td>
+
               <td>
                 <Link
                   to={`/theses/detail/${thesis.id}`}
@@ -76,6 +82,7 @@ const ThesisTable = ({ theses }) => {
                     : "-"}
                 </Link>
               </td>
+
               <td>
                 <Link
                   to={`/theses/detail/${thesis.id}`}
@@ -86,6 +93,7 @@ const ThesisTable = ({ theses }) => {
                     : "-"}
                 </Link>
               </td>
+
               <td>
                 <Link
                   to={`/theses/detail/${thesis.id}`}

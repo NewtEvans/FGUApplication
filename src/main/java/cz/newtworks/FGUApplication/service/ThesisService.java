@@ -33,7 +33,7 @@ public interface ThesisService {
      *
      * @return Page with all theses in the database
      */
-    Page<ThesisDTO> getAllThesis(Pageable pageable, ThesisFilterDTO thesisFilterDTO);
+    Page<ThesisDTO> getAllThesisPageable(Pageable pageable, ThesisFilterDTO thesisFilterDTO);
 
     /**
      * Method returns number of all theses in the database.

@@ -105,8 +105,7 @@ public class PersonServiceImpl implements PersonService {
     //Private methods
 
     /**
-     * Private method that returns person entity with specific ID.
-     * If asked ID doesn't exist method returns error exception.
+     * Method that returns the person entity with a specific ID and returns exception if no person with the given ID is found.
      *
      * @param id
      * @return Person entity with asked id

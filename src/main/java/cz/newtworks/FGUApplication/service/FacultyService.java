@@ -35,8 +35,9 @@ public interface FacultyService {
     Page<FacultyDTO> getAllFacultyPageable(Pageable pageable, FacultyFilterDTO facultyFilterDTO);
 
     /**
+     * Method returns DTOs with information of all faculties in the database.
      *
-     * @return
+     * @return A list of DTOs filled with all faculties from the database.
      */
     List<FacultyNameOnlyDTO> getAllFaculty();
 

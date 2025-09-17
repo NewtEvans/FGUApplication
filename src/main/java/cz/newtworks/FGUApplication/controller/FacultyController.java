@@ -29,7 +29,8 @@ public class FacultyController {
     @PostMapping("/multiple")
     public ResponseEntity<?> createMultipleFaculties(@RequestBody List<FacultyDTO> facultyDTOs) {
         facultyService.createMultipleFaculties(facultyDTOs);
-        return ResponseEntity.ok("OK");
+
+        return ResponseEntity.status(HttpStatus.CREATED).body("OK");
     }
 
     @GetMapping("/all/pageable")
@@ -62,6 +63,7 @@ public class FacultyController {
     @DeleteMapping("/{facultyId}")
     public ResponseEntity<Void> deleteFaculty(@PathVariable long facultyId) {
         facultyService.deleteFaculty(facultyId);
+        
         return ResponseEntity.noContent().build();
     }
 }

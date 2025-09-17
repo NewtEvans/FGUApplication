@@ -1,27 +1,34 @@
 import { useEffect, useState } from "react";
-import ThesisTable from "./ThesisTable";
+import { toast } from "react-toastify";
 import { apiGet } from "../utils/api";
 import { Link } from "react-router";
 import { Pagination } from "../components/Pagination";
+
 import FilterForm from "../components/filter/FilterForm";
 import SortDropdown from "../components/SortDropdown";
-import { toast } from "react-toastify";
 import thesisType from "./ThesisType";
+import ThesisTable from "./ThesisTable";
 
 const ThesisIndex = () => {
-  const [url, setUrl] = useState("/thesis/all");
+  const [url, setUrl] = useState("/thesis/all/pageable");
+
   const [theses, setTheses] = useState([]);
-  const [numberOfRecords, setNumberOfRecords] = useState();
-  const [loading, setLoading] = useState(true);
   const [people, setPeople] = useState([]);
   const [faculty, setFaculty] = useState([]);
   const [council, setCouncil] = useState([]);
+
+  const [numberOfRecords, setNumberOfRecords] = useState();
+
+  const [loading, setLoading] = useState(true);
 
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState();
   const [size, setSize] = useState(10);
 
   const [sort, setSort] = useState();
+
+  const [filter, setFilter] = useState([]);
+
   const sortFields = [
     { value: "nameCz", label: "CZ název" },
     { value: "nameEn", label: "EN název" },
@@ -30,7 +37,6 @@ const ThesisIndex = () => {
     { value: "id", label: "ID" },
   ];
 
-  const [filter, setFilter] = useState([]);
   const filterFields = [
     { name: "nameCzFilter", label: "Český název práce:", type: "text" },
     { name: "nameEnFilter", label: "Anglický název práce:", type: "text" },
@@ -169,6 +175,7 @@ const ThesisIndex = () => {
   return (
     <div>
       <h1>Práce studentů</h1>
+
       <div className="d-flex justify-content-between">
         <p>Počet prací v databázi: {numberOfRecords}</p>
         <Link to="create" className="btn btn-md btn-success">
@@ -177,8 +184,11 @@ const ThesisIndex = () => {
       </div>
 
       <FilterForm onFilter={handleFilter} fields={filterFields} />
+
       <SortDropdown fields={sortFields} setSort={setSort} sort={sort} />
+
       <ThesisTable theses={theses} />
+
       <Pagination
         page={page}
         setPage={setPage}

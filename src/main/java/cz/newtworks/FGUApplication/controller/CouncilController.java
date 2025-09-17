@@ -30,7 +30,7 @@ public class CouncilController {
     public ResponseEntity<?> createMultipleCouncils(@RequestBody List<CouncilDTO> councilDTOs) {
         councilService.createMultipleCouncils(councilDTOs);
 
-        return ResponseEntity.ok("OK");
+        return ResponseEntity.status(HttpStatus.CREATED).body("OK");
     }
 
     @GetMapping("/all/pageable")
@@ -63,6 +63,7 @@ public class CouncilController {
     @DeleteMapping("/{councilId}")
     public ResponseEntity<Void> deleteCouncil(@PathVariable long councilId) {
         councilService.deleteCouncil(councilId);
+
         return ResponseEntity.noContent().build();
     }
 
