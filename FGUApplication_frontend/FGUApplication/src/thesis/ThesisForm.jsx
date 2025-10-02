@@ -11,6 +11,7 @@ import { toast } from "react-toastify";
 const ThesisForm = () => {
   const navigate = useNavigate();
   const { id } = useParams();
+
   const [thesis, setThesis] = useState({
     startDate: "",
     nameCz: "",
@@ -33,8 +34,8 @@ const ThesisForm = () => {
       apiGet("/thesis/" + id).then((data) => setThesis(data));
     }
     apiGet("/person/all").then((data) => setPeople(data));
-    apiGet("/faculty/all").then((data) => setFaculty(data.content));
-    apiGet("/council/all").then((data) => setCouncil(data.content));
+    apiGet("/faculty/all").then((data) => setFaculty(data));
+    apiGet("/council/all").then((data) => setCouncil(data));
   }, [id]);
 
   const handleSubmit = (e) => {
@@ -53,6 +54,7 @@ const ThesisForm = () => {
   return (
     <div>
       <h1>{id ? "Upravit" : "Vytvořit"} práci</h1>
+
       <hr />
       <form onSubmit={handleSubmit}>
         <InputField
@@ -66,6 +68,7 @@ const ThesisForm = () => {
             setThesis({ ...thesis, startDate: e.target.value });
           }}
         />
+
         <InputField
           required={true}
           type="text"
@@ -77,6 +80,7 @@ const ThesisForm = () => {
             setThesis({ ...thesis, nameCz: e.target.value });
           }}
         />
+
         <InputField
           required={false}
           type="text"
@@ -88,6 +92,7 @@ const ThesisForm = () => {
             setThesis({ ...thesis, nameEn: e.target.value });
           }}
         />
+
         <InputSelect
           name="student"
           items={people}
@@ -100,6 +105,7 @@ const ThesisForm = () => {
             setThesis({ ...thesis, student: { id } });
           }}
         />
+
         <InputSelect
           name="trainer"
           items={people}
@@ -112,6 +118,7 @@ const ThesisForm = () => {
             setThesis({ ...thesis, trainer: { id } });
           }}
         />
+
         <InputSelect
           name="consultant"
           items={people}
@@ -127,6 +134,7 @@ const ThesisForm = () => {
             });
           }}
         />
+
         <InputSelect
           name="faculty"
           items={faculty}
@@ -138,6 +146,7 @@ const ThesisForm = () => {
             setThesis({ ...thesis, faculty: { id } });
           }}
         />
+
         <InputSelect
           name="council"
           items={council}
@@ -149,6 +158,7 @@ const ThesisForm = () => {
             setThesis({ ...thesis, council: { id } });
           }}
         />
+
         <InputField
           required={false}
           type="date"
@@ -173,6 +183,7 @@ const ThesisForm = () => {
           }}
         />
         <p>Druh práce:</p>
+
         <div className="d-flex align-items-center justify-content-between">
           <InputCheck
             type="radio"

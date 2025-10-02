@@ -26,10 +26,7 @@ public class PersonSpecification {
                         "%" + personFilterDTO.getSurnameFilter().toLowerCase() + "%"
                 ));
             }
-            if (personFilterDTO.getIsArchivedFilter() == true) {
-                personFilterDTO.setIsArchivedFilter(null);
-            }
-            
+
             if (personFilterDTO.getIsArchivedFilter() != null) {
                 predicates.add(criteriaBuilder.equal(
                         root.get("isArchived"),

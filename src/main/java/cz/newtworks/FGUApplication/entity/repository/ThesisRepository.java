@@ -22,9 +22,9 @@ public interface ThesisRepository extends JpaRepository<ThesisEntity, Long>, Jpa
     @Query("SELECT COUNT(*) FROM ThesisEntity WHERE startDate = ?1")
     long countAllThesisByData(LocalDate date);
 
-    long countAllByStartDateBetween(LocalDate start, LocalDate end);
+    long countAllByStartDateBetween(LocalDate start, LocalDate end); //nove prijata prace
 
-    long countAllByEndDateBetween(LocalDate start, LocalDate end);
+    long countAllByEndDateBetween(LocalDate start, LocalDate end); //absolventi
 
     long countByStartDateBetweenAndThesisType(LocalDate start, LocalDate end, ThesisType type);
 

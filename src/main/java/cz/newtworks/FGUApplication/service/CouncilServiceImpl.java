@@ -83,6 +83,7 @@ public class CouncilServiceImpl implements CouncilService {
         councilRepository.delete(fetchCouncilById(councilId));
     }
 
+
     //Private methods
 
     /**
