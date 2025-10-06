@@ -20,6 +20,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -82,7 +83,11 @@ public class ThesisServiceImpl implements ThesisService {
 
     @Override
     public List<Integer> getYears() {
-        return thesisRepository.findYearsInDatabase();
+        List<Integer> listYear = thesisRepository.findYearsInDatabase();
+
+        Collections.sort(listYear, Collections.reverseOrder());
+
+        return listYear;
     }
 
     @Override
