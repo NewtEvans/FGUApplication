@@ -1,5 +1,6 @@
 package cz.newtworks.FGUApplication.entity;
 
+import cz.newtworks.FGUApplication.constant.ThesisStatus;
 import cz.newtworks.FGUApplication.constant.ThesisType;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -51,5 +52,8 @@ public class ThesisEntity {
 
     @Column
     private String note;
+
+    @Column
+    private ThesisStatus status;
 
 }

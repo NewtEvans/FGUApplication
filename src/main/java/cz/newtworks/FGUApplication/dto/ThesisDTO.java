@@ -1,6 +1,7 @@
 package cz.newtworks.FGUApplication.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import cz.newtworks.FGUApplication.constant.ThesisStatus;
 import cz.newtworks.FGUApplication.constant.ThesisType;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -43,4 +44,6 @@ public class ThesisDTO {
     private LocalDate endDate;
 
     private String note;
+
+    private ThesisStatus status;
 }
