@@ -1,76 +1,79 @@
-import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router";
-import { apiGet, apiPost, apiPut } from "../utils/api";
-import { toast } from "react-toastify";
+import {useEffect, useState} from "react";
+import {useNavigate, useParams} from "react-router";
+import {apiGet, apiPost, apiPut} from "../utils/api";
+import {toast} from "react-toastify";
 
 import InputField from "../components/InputField";
 
 const DepartmentForm = () => {
-  const navigate = useNavigate();
-  const { id } = useParams();
-  const [department, setDepartment] = useState({
-    departmentName: "",
-    departmentNumber: "",
-    people: [{}],
-  });
+    const navigate = useNavigate();
+    const {id} = useParams();
+    const [department, setDepartment] = useState({
+        departmentName: "",
+        departmentNumber: "",
+        people: [{}],
+    });
 
-  useEffect(() => {
-    if (id) {
-      apiGet("/department/" + id).then((data) => setDepartment(data));
-    }
-  }, [id]);
+    useEffect(() => {
+        if (id) {
+            apiGet("/department/" + id).then((data) => setDepartment(data));
+        }
+    }, [id]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+    const handleSubmit = (e) => {
+        e.preventDefault();
 
-    (id
-      ? apiPut("/department/" + id, department)
-      : apiPost("/department", department)
-    )
-      .then((data) => {
-        toast.success(
-          `Oddělení bylo ${id ? "upraveno" : "vytvořeno"} úspěšně.`
-        );
-        id ? navigate("/departments/detail/" + id) : navigate("/departments");
-      })
-      .catch((error) => {
-        toast.error(`Chyba: ${error.message}`);
-        console.log(error.message);
-      });
-  };
+        (id
+                ? apiPut("/department/" + id, department)
+                : apiPost("/department", department)
+        )
+            .then((data) => {
+                toast.success(
+                    `Oddělení bylo ${id ? "upraveno" : "vytvořeno"} úspěšně.`
+                );
+                id ? navigate("/departments/detail/" + id) : navigate("/departments");
+            })
+            .catch((error) => {
+                toast.error(`Chyba: ${error.message}`);
+                console.log(error.message);
+            });
+    };
 
-  return (
-    <div>
-      <h1>{id ? "Upravit" : "Vytvořit"} oddělení</h1>
-      <hr />
-      <form onSubmit={handleSubmit}>
-        <InputField
-          required={true}
-          type="text"
-          name="departmentName"
-          label="Název oddělení"
-          prompt="Zadej název oddělení"
-          value={department.departmentName}
-          handleChange={(e) => {
-            setDepartment({ ...department, departmentName: e.target.value });
-          }}
-        />
-        <InputField
-          required={true}
-          type="text"
-          name="departmentNumber"
-          label="Číslo oddělení"
-          prompt="Zadej číslo oddělení"
-          value={department.departmentNumber}
-          handleChange={(e) => {
-            setDepartment({ ...department, departmentNumber: e.target.value });
-          }}
-        />
-        <br />
-        <input type="submit" className="btn btn-success" value="Uložit" />
-      </form>
-    </div>
-  );
+    return (
+        <div>
+            <h1>{id ? "Upravit" : "Vytvořit"} oddělení</h1>
+            <hr/>
+            <form onSubmit={handleSubmit}>
+                <InputField
+                    required={true}
+                    type="text"
+                    name="departmentName"
+                    label="Název oddělení"
+                    prompt="Zadej název oddělení"
+                    value={department.departmentName}
+                    handleChange={(e) => {
+                        setDepartment({...department, departmentName: e.target.value});
+                    }}
+                />
+                <InputField
+                    required={true}
+                    type="text"
+                    name="departmentNumber"
+                    label="Číslo oddělení"
+                    prompt="Zadej číslo oddělení"
+                    value={department.departmentNumber}
+                    handleChange={(e) => {
+                        setDepartment({...department, departmentNumber: e.target.value});
+                    }}
+                />
+                <br/>
+                <div className="d-flex justify-content-between">
+                    <input type="submit" className="btn btn-success" value="Uložit"/>
+                    <button className="btn btn-danger" onClick={() => navigate(-1)}>Storno</button>
+                </div>
+            </form>
+        </div>
+    );
 };
 
 export default DepartmentForm;
