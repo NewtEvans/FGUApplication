@@ -5,7 +5,8 @@ import cz.newtworks.FGUApplication.dto.SummaryDTO;
 import java.time.LocalDate;
 
 public interface SummaryService {
-
+//TODO doplnit dokumentaci
+    
     /**
      *
      *
@@ -30,10 +31,18 @@ public interface SummaryService {
      */
     SummaryDTO getNumberOfOngoingTheses(LocalDate date);
 
-    //TODO doplnit dokumentaci
+    /**
+     *
+     *
+     * @return
+     */
     SummaryDTO getNumberOfAllPausedTheses();
 
-    //TODO doplnit dokumentaci
+    /**
+     *
+     *
+     * @return
+     */
     SummaryDTO getNumberOfAbandonedTheses();
 
     /**

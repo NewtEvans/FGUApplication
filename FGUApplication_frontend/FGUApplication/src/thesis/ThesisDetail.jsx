@@ -6,6 +6,7 @@ import {ThesisTypeTransfer} from "../utils/ThesisTypeTransfer";
 import {formatDate} from "../utils/dateUtil";
 import {toast} from "react-toastify";
 import {ThesisStatusTransfer} from "../utils/ThesisStatusTransfer.jsx";
+import thesisStatus from "./ThesisStatus.jsx";
 
 function ThesisDetail() {
     const navigate = useNavigate();
@@ -37,6 +38,20 @@ function ThesisDetail() {
                 console.log(error.message);
             });
     }, [id]);
+
+    const colorTest = () => {
+        switch (thesis.thesisStatus) {
+            case thesisStatus.PREDCASNE_UKONCENA || thesisStatus.UKONCENA:
+                return "text-danger"
+                break;
+            case thesisStatus.PRERUSENA:
+                return "text-warning"
+                break;
+            case thesisStatus.PROBIHAJICI:
+                return "text-success"
+        }
+
+    }
 
     return (
         <div>
@@ -140,7 +155,7 @@ function ThesisDetail() {
 
             <p>
                 <strong>Status: </strong>
-                <span><ThesisStatusTransfer thesisStatus={thesis.thesisStatus}/></span>
+                <span className={colorTest()}><ThesisStatusTransfer thesisStatus={thesis.thesisStatus}/></span>
             </p>
 
             <hr/>
