@@ -5,6 +5,7 @@ import {Link} from "react-router";
 import {ThesisTypeTransfer} from "../utils/ThesisTypeTransfer";
 import {formatDate} from "../utils/dateUtil";
 import {toast} from "react-toastify";
+import {ThesisStatusTransfer} from "../utils/ThesisStatusTransfer.jsx";
 
 function ThesisDetail() {
     const navigate = useNavigate();
@@ -61,9 +62,6 @@ function ThesisDetail() {
             </div>
 
             <hr/>
-            <p>
-                <strong>ID:</strong> {thesis.id}
-            </p>
 
             <p>
                 <strong>Druh práce: </strong>{" "}
@@ -141,7 +139,8 @@ function ThesisDetail() {
             </p>
 
             <p>
-                <strong>Status:</strong> {thesis.status}
+                <strong>Status: </strong>
+                <span><ThesisStatusTransfer thesisStatus={thesis.thesisStatus}/></span>
             </p>
 
             <hr/>

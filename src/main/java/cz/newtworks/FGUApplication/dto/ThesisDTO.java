@@ -45,5 +45,5 @@ public class ThesisDTO {
 
     private String note;
 
-    private ThesisStatus status;
+    private ThesisStatus thesisStatus;
 }

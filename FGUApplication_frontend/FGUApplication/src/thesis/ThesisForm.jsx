@@ -7,6 +7,7 @@ import InputSelect from "../components/InputSelect";
 import InputCheck from "../components/InputCheck";
 import thesisType from "./ThesisType";
 import {toast} from "react-toastify";
+import thesisStatus from "./ThesisStatus.jsx";
 
 const ThesisForm = () => {
     const navigate = useNavigate();
@@ -26,6 +27,7 @@ const ThesisForm = () => {
         endDate: "",
         thesisType: "",
         note: "",
+        thesisStatus: "",
     });
     const [people, setPeople] = useState([]);
     const [faculty, setFaculty] = useState([]);
@@ -243,6 +245,55 @@ const ThesisForm = () => {
                         }}
                         checked={thesisType.INZENYRSKA === thesis.thesisType}
                     />
+
+                </div>
+                <p>Status:</p>
+
+                <div className="d-flex align-items-center justify-content-between">
+                    <InputCheck
+                        type="radio"
+                        name="thesisStatus"
+                        label="Probíhající"
+                        value={thesisStatus.PROBIHAJICI}
+                        handleChange={(e) => {
+                            setThesis({...thesis, thesisStatus: e.target.value});
+                        }}
+                        checked={thesisStatus.PROBIHAJICI === thesis.thesisStatus}
+                    />
+
+                    <InputCheck
+                        type="radio"
+                        name="thesisStatus"
+                        label="Přerušená"
+                        value={thesisStatus.PRERUSENA}
+                        handleChange={(e) => {
+                            setThesis({...thesis, thesisStatus: e.target.value});
+                        }}
+                        checked={thesisStatus.PRERUSENA === thesis.thesisStatus}
+                    />
+
+                    <InputCheck
+                        type="radio"
+                        name="thesisStatus"
+                        label="Předčasně ukončená"
+                        value={thesisStatus.PREDCASEN_UKONCENA}
+                        handleChange={(e) => {
+                            setThesis({...thesis, thesisStatus: e.target.value});
+                        }}
+                        checked={thesisStatus.PREDCASEN_UKONCENA === thesis.thesisStatus}
+                    />
+
+                    <InputCheck
+                        type="radio"
+                        name="thesisStatus"
+                        label="Ukončená"
+                        value={thesisStatus.UKONCENA}
+                        handleChange={(e) => {
+                            setThesis({...thesis, thesisStatus: e.target.value});
+                        }}
+                        checked={thesisStatus.UKONCENA === thesis.thesisStatus}
+                    />
+
                 </div>
                 <br/>
                 <div className="d-flex justify-content-between">

@@ -54,6 +54,6 @@ public class ThesisEntity {
     private String note;
 
     @Column
-    private ThesisStatus status;
+    private ThesisStatus thesisStatus;
 
 }
