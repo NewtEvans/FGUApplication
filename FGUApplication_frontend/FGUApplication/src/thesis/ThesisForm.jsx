@@ -41,7 +41,7 @@ const ThesisForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         (id ? apiPut("/thesis/" + id, thesis) : apiPost("/thesis", thesis))
-            .then((data) => {
+            .then(() => {
                 toast.success(`Práce byla ${id ? "upravena" : "založena"} úspěšně.`);
                 id ? navigate("/theses/detail/" + id) : navigate("/theses");
             })

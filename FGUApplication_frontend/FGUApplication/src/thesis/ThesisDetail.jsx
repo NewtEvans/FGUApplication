@@ -141,7 +141,7 @@ function ThesisDetail() {
             </p>
 
             <p>
-                <strong>Status: </strong>
+                <strong>Status:</strong> {thesis.status}
             </p>
 
             <hr/>
