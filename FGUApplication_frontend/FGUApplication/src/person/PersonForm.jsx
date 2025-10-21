@@ -31,7 +31,7 @@ const PersonForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         (id ? apiPut("/person/" + id, person) : apiPost("/person", person))
-            .then((data) => {
+            .then(() => {
                 toast.success(`Osoba byla ${id ? "upravena" : "založena"} úspešně.`);
                 id ? navigate("/person/detail/" + id) : navigate("/person");
             })

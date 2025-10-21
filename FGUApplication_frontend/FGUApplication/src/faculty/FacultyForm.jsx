@@ -29,7 +29,7 @@ const FacultyForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         (id ? apiPut("/faculty/" + id, faculty) : apiPost("/faculty", faculty))
-            .then((data) => {
+            .then(() => {
                 toast.success(`Fakulta byla ${id ? "upravena" : "vytvořena"} úspěšně.`);
                 id ? navigate("/faculties/detail/" + id) : navigate("/faculties");
             })

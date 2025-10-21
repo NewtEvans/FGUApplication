@@ -27,7 +27,7 @@ const DepartmentForm = () => {
                 ? apiPut("/department/" + id, department)
                 : apiPost("/department", department)
         )
-            .then((data) => {
+            .then(() => {
                 toast.success(
                     `Oddělení bylo ${id ? "upraveno" : "vytvořeno"} úspěšně.`
                 );
