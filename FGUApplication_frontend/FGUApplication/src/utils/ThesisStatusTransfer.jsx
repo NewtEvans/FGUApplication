@@ -13,7 +13,7 @@ export const ThesisStatusTransfer = ({thesisStatus}) => {
             return "Předčasně ukončená";
             break;
         default:
-            return "nic";
+            return "zadny";
             break;
     }
 };

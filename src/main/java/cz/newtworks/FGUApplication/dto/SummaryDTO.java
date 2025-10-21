@@ -22,5 +22,17 @@ public class SummaryDTO {
     long endedMagisterska;
     long endedDoktorandska;
     long endedInzenyrska;
+
+    long numberOfPausedTheses;
+    long pausedBakalarska;
+    long pausedMagisterska;
+    long pausedDoktorandska;
+    long pausedInzenyrska;
+
+    long numberOfAbandonedTheses;
+    long abandonedBakalarska;
+    long abandonedMagisterska;
+    long abandonedDoktorandska;
+    long abandonedInzenyrska;
 }
 

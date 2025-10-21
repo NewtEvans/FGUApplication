@@ -30,6 +30,12 @@ public interface SummaryService {
      */
     SummaryDTO getNumberOfOngoingTheses(LocalDate date);
 
+    //TODO doplnit dokumentaci
+    SummaryDTO getNumberOfAllPausedTheses();
+
+    //TODO doplnit dokumentaci
+    SummaryDTO getNumberOfAbandonedTheses();
+
     /**
      * Method returns DTO with complete summary from the database.
      *

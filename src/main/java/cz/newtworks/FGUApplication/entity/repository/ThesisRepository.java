@@ -1,5 +1,6 @@
 package cz.newtworks.FGUApplication.entity.repository;
 
+import cz.newtworks.FGUApplication.constant.ThesisStatus;
 import cz.newtworks.FGUApplication.constant.ThesisType;
 import cz.newtworks.FGUApplication.entity.ThesisEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -30,8 +31,16 @@ public interface ThesisRepository extends JpaRepository<ThesisEntity, Long>, Jpa
 
     long countByEndDateBetweenAndThesisType(LocalDate start, LocalDate end, ThesisType type);
 
+    long countByStartDateBetweenAndThesisStatus(LocalDate start, LocalDate end, ThesisStatus status);
+
+    long countByEndDateBetweenAndThesisStatus(LocalDate start, LocalDate end, ThesisStatus status);
+
+    long countByEndDateBetweenAndThesisStatusAndThesisType(LocalDate endDateAfter, LocalDate endDateBefore, ThesisStatus thesisStatus, ThesisType thesisType);
+
     @Query("SELECT DISTINCT YEAR(t.endDate) y FROM ThesisEntity t WHERE t.endDate IS NOT NULL UNION SELECT DISTINCT YEAR(t.startDate) y FROM ThesisEntity t WHERE t.startDate IS NOT NULL ORDER BY y")
     List<Integer> findYearsInDatabase();
+
+    long countAllByThesisStatus(ThesisStatus thesisStatus);
 
 
 }
