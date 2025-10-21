@@ -39,6 +39,13 @@ public class ThesisSpecification {
                 ));
             }
 
+            if (thesisFilterDTO.getThesisStatusFilter() != null) {
+                predicates.add(criteriaBuilder.equal(
+                        root.get("thesisStatus"),
+                        thesisFilterDTO.getThesisStatusFilter()
+                ));
+            }
+
 
             if (thesisFilterDTO.getEndDateFilterFrom() != null) {
                 predicates.add(criteriaBuilder.greaterThanOrEqualTo(

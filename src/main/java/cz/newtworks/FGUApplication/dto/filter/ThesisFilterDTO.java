@@ -1,6 +1,7 @@
 package cz.newtworks.FGUApplication.dto.filter;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import cz.newtworks.FGUApplication.constant.ThesisStatus;
 import cz.newtworks.FGUApplication.constant.ThesisType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,6 +19,8 @@ public class ThesisFilterDTO {
     private Long id;
 
     private ThesisType thesisTypeFilter;
+
+    private ThesisStatus thesisStatusFilter;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDateFilterFrom;
