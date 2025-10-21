@@ -12,6 +12,8 @@ const ThesisForm = () => {
     const navigate = useNavigate();
     const {id} = useParams();
 
+    const [loading, setLoading] = useState(true);
+
     const [thesis, setThesis] = useState({
         startDate: "",
         nameCz: "",
@@ -35,7 +37,12 @@ const ThesisForm = () => {
         }
         apiGet("/person/all").then((data) => setPeople(data));
         apiGet("/faculty/all").then((data) => setFaculty(data));
-        apiGet("/council/all").then((data) => setCouncil(data));
+        apiGet("/council/all").then((data) => setCouncil(data))
+            .catch((error) => {
+                toast.error(`Chyba: ${error.message}`);
+                console.error(error.message);
+            })
+            .finally(() => setLoading(false));
     }, [id]);
 
     const handleSubmit = (e) => {
@@ -50,6 +57,14 @@ const ThesisForm = () => {
                 console.error(error.message);
             });
     };
+
+    if (loading) {
+        return (
+            <div className="text-center mt-5">
+                <div className="spinner-border text-primary"/>
+            </div>
+        )
+    }
 
     return (
         <div>
@@ -100,7 +115,7 @@ const ThesisForm = () => {
                     placeHolder="Vyber studenta"
                     showLabel="surname"
                     showLabel2="firstName"
-                    value={thesis.student.id}
+                    value={thesis.student?.id}
                     onChange={(id) => {
                         setThesis({...thesis, student: {id}});
                     }}
@@ -113,7 +128,7 @@ const ThesisForm = () => {
                     placeHolder="Vyber školitele"
                     showLabel="surname"
                     showLabel2="firstName"
-                    value={thesis.trainer.id}
+                    value={thesis.trainer?.id}
                     onChange={(id) => {
                         setThesis({...thesis, trainer: {id}});
                     }}
@@ -126,7 +141,7 @@ const ThesisForm = () => {
                     placeHolder="Vyber konzultanta"
                     showLabel="surname"
                     showLabel2="firstName"
-                    value={thesis.consultant.id}
+                    value={thesis.consultant?.id}
                     onChange={(id) => {
                         setThesis({
                             ...thesis,
@@ -140,7 +155,7 @@ const ThesisForm = () => {
                     items={faculty}
                     label="Fakulta"
                     placeHolder="Vyber fakultu"
-                    value={thesis.faculty.id}
+                    value={thesis.faculty?.id}
                     showLabel="facultyName"
                     onChange={(id) => {
                         setThesis({...thesis, faculty: {id}});
