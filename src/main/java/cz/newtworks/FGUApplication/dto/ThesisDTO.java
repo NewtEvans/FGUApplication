@@ -19,6 +19,7 @@ public class ThesisDTO {
 
     private Long id;
 
+    @NotBlank(message = "Thesis type is required.")
     private ThesisType thesisType;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
@@ -45,5 +46,6 @@ public class ThesisDTO {
 
     private String note;
 
+    @NotBlank(message = "Thesis status is required.")
     private ThesisStatus thesisStatus;
 }

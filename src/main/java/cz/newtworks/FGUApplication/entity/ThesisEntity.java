@@ -21,6 +21,7 @@ public class ThesisEntity {
     private long id;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private ThesisType thesisType;
 
     @Column
@@ -53,7 +54,7 @@ public class ThesisEntity {
     @Column
     private String note;
 
-    @Column
+    @Column(nullable = false)
     private ThesisStatus thesisStatus;
 
 }

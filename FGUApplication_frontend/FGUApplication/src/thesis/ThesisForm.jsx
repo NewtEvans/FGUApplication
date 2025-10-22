@@ -47,6 +47,10 @@ const ThesisForm = () => {
             .finally(() => setLoading(false));
     }, [id]);
 
+    const handleChange = (e) => {
+
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         (id ? apiPut("/thesis/" + id, thesis) : apiPost("/thesis", thesis))
@@ -258,7 +262,6 @@ const ThesisForm = () => {
                         handleChange={(e) => {
                             setThesis({...thesis, thesisStatus: e.target.value});
                         }}
-                        isDisabled={thesis.endDate <= Date.now}
                         checked={thesisStatus.PROBIHAJICI === thesis.thesisStatus}
                     />
 
@@ -277,11 +280,11 @@ const ThesisForm = () => {
                         type="radio"
                         name="thesisStatus"
                         label="Předčasně ukončená"
-                        value={thesisStatus.PREDCASEN_UKONCENA}
+                        value={thesisStatus.PREDCASNE_UKONCENA}
                         handleChange={(e) => {
                             setThesis({...thesis, thesisStatus: e.target.value});
                         }}
-                        checked={thesisStatus.PREDCASEN_UKONCENA === thesis.thesisStatus}
+                        checked={thesisStatus.PREDCASNE_UKONCENA === thesis.thesisStatus}
                     />
 
                     <InputCheck
