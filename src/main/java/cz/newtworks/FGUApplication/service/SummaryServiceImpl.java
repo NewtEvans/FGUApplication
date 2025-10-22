@@ -66,14 +66,12 @@ public class SummaryServiceImpl implements SummaryService {
         summaryDTO.setAbandonedDoktorandska(getNumberOfThesesByEndYear(year, ThesisType.doktorandska, ThesisStatus.PREDCASNE_UKONCENA));
         summaryDTO.setAbandonedInzenyrska(getNumberOfThesesByEndYear(year, ThesisType.inzenyrska, ThesisStatus.PREDCASNE_UKONCENA));
 
-        summaryDTO.setNumberOfPausedTheses(thesisRepository.countAllByThesisStatus(ThesisStatus.PRERUSENA));
-        summaryDTO.setPausedBakalarska(getNumberOfThesesByStartYear(year, ThesisStatus.PRERUSENA));
-        summaryDTO.setPausedMagisterska(getNumberOfThesesByStartYear(year, ThesisStatus.PRERUSENA));
-        summaryDTO.setPausedDoktorandska(getNumberOfThesesByStartYear(year, ThesisStatus.PRERUSENA));
-        summaryDTO.setPausedInzenyrska(getNumberOfThesesByStartYear(year, ThesisStatus.PRERUSENA));
-
-
-        summaryDTO.setNumberOfPausedTheses(thesisRepository.countAllByThesisStatus(ThesisStatus.PRERUSENA));
+        summaryDTO.setNumberOfPausedTheses(getNumberOfThesesByEndYear(year, ThesisStatus.PRERUSENA));
+        summaryDTO.setPausedBakalarska(getNumberOfThesesByEndYear(year, ThesisType.bakalarska, ThesisStatus.PRERUSENA));
+        summaryDTO.setPausedMagisterska(getNumberOfThesesByEndYear(year, ThesisType.magisterska, ThesisStatus.PRERUSENA));
+        summaryDTO.setPausedDoktorandska(getNumberOfThesesByEndYear(year, ThesisType.doktorandska, ThesisStatus.PRERUSENA));
+        summaryDTO.setPausedInzenyrska(getNumberOfThesesByEndYear(year, ThesisType.inzenyrska, ThesisStatus.PRERUSENA));
+        
         return summaryDTO;
     }
 
@@ -102,7 +100,7 @@ public class SummaryServiceImpl implements SummaryService {
         LocalDate end = LocalDate.of(year, 12, 31);
         return thesisRepository.countByStartDateBetweenAndThesisStatus(start, end, thesisStatus);
     }
-    
+
     private long getNumberOfThesesByEndYear(int year) {
         LocalDate start = LocalDate.of(year, 1, 1);
         LocalDate end = LocalDate.of(year, 12, 31);

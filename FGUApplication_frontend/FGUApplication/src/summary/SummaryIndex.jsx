@@ -39,13 +39,6 @@ const Summaryindex = () => {
             <h1>Výpis statistik za rok: {year}</h1>
 
             <br/>
-            <div>
-                <p>Počet absolventů v tomto roce: {data.numberOfEndedTheses}</p>
-                <p>- bakalářská: {data.endedBakalarska}</p>
-                <p>- magisterské: {data.endedMagisterska}</p>
-                <p>- doktorandská: {data.endedDoktorandska}</p>
-                <p>- inženýrská: {data.endedInzenyrska}</p>
-            </div>
 
             <div>
                 <p>Počet nově přijatých prací v roce: {data.numberOfNewTheses}</p>
@@ -56,6 +49,14 @@ const Summaryindex = () => {
             </div>
 
             <div>
+                <p>Počet absolventů v tomto roce: {data.numberOfEndedTheses}</p>
+                <p>- bakalářská: {data.endedBakalarska}</p>
+                <p>- magisterské: {data.endedMagisterska}</p>
+                <p>- doktorandská: {data.endedDoktorandska}</p>
+                <p>- inženýrská: {data.endedInzenyrska}</p>
+            </div>
+
+            <div>
                 <p>Počet předčasně ukončených prací: {data.numberOfAbandonedTheses}</p>
                 <p>- bakalářská: {data.abandonedBakalarska}</p>
                 <p>- magisterské: {data.abandonedMagisterska}</p>
@@ -63,14 +64,7 @@ const Summaryindex = () => {
                 <p>- inženýrská: {data.abandonedInzenyrska}</p>
             </div>
 
-            <div>
-                <p>Počet probíhajících prací: </p>
-                <p>- bakalářská: {}</p>
-                <p>- magisterské: {}</p>
-                <p>- doktorandská: {}</p>
-                <p>- inženýrská: {}</p>
-            </div>
-            
+
             <div>
                 <p>Počet přerušených prací: {data.numberOfPausedTheses}</p>
                 <p>- bakalářská: {data.pausedBakalarska}</p>

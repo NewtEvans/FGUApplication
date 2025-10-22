@@ -258,6 +258,7 @@ const ThesisForm = () => {
                         handleChange={(e) => {
                             setThesis({...thesis, thesisStatus: e.target.value});
                         }}
+                        isDisabled={thesis.endDate <= Date.now}
                         checked={thesisStatus.PROBIHAJICI === thesis.thesisStatus}
                     />
 

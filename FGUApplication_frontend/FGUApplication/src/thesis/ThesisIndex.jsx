@@ -74,7 +74,7 @@ const ThesisIndex = () => {
                 {value: thesisStatus.PROBIHAJICI, label: "Probíhající"},
                 {value: thesisStatus.UKONCENA, label: "Ukončená"},
                 {value: thesisStatus.PRERUSENA, label: "Přerušená"},
-                {value: thesisStatus.PREDCASEN_UKONCENA, label: "Předčasně ukončená"},
+                {value: thesisStatus.PREDCASNE_UKONCENA, label: "Předčasně ukončená"},
 
             ]
 
