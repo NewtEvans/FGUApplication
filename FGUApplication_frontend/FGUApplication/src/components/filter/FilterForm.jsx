@@ -2,47 +2,22 @@ import FilterField from "./FilterField";
 import FilterCheckBoxField from "./FilterCheckBoxField";
 import {useForm} from "react-hook-form";
 import FilterSelect from "./FilterSelect";
-import {endOfYear, format, startOfYear} from "date-fns";
-import DatePicker from "react-datepicker";
-import {useState} from "react";
 import FilterDateField from "./FilterDateField.jsx";
 
 const FilterForm = ({onFilter, fields}) => {
-    const {register, handleSubmit, reset} = useForm();
-    const [date, setDate] = useState()
+    const {register, handleSubmit, reset, setValue} = useForm();
 
     const onSubmit = (data) => {
         if (data.isArchived) {
             data.siArchived = "";
         }
         onFilter(data);
-    };
+    }; //Spusti handleFilter z Indexu -> cili co se ma stat po kliknuti na tlacitko submit
 
     const handleReset = () => {
         reset();
         onFilter({});
     };
-
-    function praceSDatumem(date, setDate) {
-
-        const handleChange = (date) => {
-            setDate(date);
-
-            const startDateFormatted = format(startOfYear(date), "yyyy-MM-dd");
-            const endDateFormatted = format(endOfYear(date), "yyyy-MM-dd");
-
-        }
-
-        return (
-            <DatePicker
-                selected={date}
-                onChange={handleChange}
-                showYearPicker
-                dateFormat="yyyy"
-                placeholderText="Vyber rok"
-            />
-        )
-    }
 
     return (
         <div>
@@ -56,9 +31,8 @@ const FilterForm = ({onFilter, fields}) => {
                                     label={field.label}
                                     nameFrom={field.nameFrom}
                                     nameTo={field.nameTo}
-                                    register={register}
+                                    setValue={setValue}
                                 />
-                                // praceSDatumem(date, setDate)
 
                             );
                         }

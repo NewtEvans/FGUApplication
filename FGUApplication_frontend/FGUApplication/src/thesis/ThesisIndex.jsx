@@ -28,7 +28,22 @@ const ThesisIndex = () => {
 
     const [sort, setSort] = useState();
 
-    const [filter, setFilter] = useState([]);
+    const [filter, setFilter] = useState({
+        nameCzFilter: "",
+        nameEnFilter: "",
+        startDateFilterFrom: null,
+        startDateFilterTo: null,
+        endDateFilterFrom: null,
+        endDateFilterTo: null,
+        thesisTypeFilter: null,
+        thesisStatusFilter: null,
+        studentIdFilter: null,
+        trainerIdFilter: null,
+        consultantIdFilter: null,
+        facultyIdFilter: null,
+        councilIdFilter: null,
+
+    });
 
     const sortFields = [
         {value: "nameCz", label: "CZ název"},
