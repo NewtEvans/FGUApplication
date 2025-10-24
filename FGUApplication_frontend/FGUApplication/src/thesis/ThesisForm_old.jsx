@@ -8,13 +8,8 @@ import InputCheck from "../components/InputCheck";
 import thesisType from "./ThesisType";
 import {toast} from "react-toastify";
 import thesisStatus from "./ThesisStatus.jsx";
-import {useForm} from "react-hook-form";
-import InputDateField from "../components/InputDateField.jsx";
-import {format} from "date-fns";
 
-const ThesisForm = () => {
-    const {register, handleSubmit, setValue, reset} = useForm();
-
+const ThesisForm_old = () => {
     const navigate = useNavigate();
     const {id} = useParams();
 
@@ -52,14 +47,12 @@ const ThesisForm = () => {
             .finally(() => setLoading(false));
     }, [id]);
 
-    function handleChangeDateField(name, change) {
+    const handleChange = (e) => {
 
-        const formatedDate = change ? format(change, "yyyy-MM-dd") : null;
-
-        setThesis((prev) => ({...prev, [name]: formatedDate}));
     }
 
-    const onSubmit = (e) => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
         (id ? apiPut("/thesis/" + id, thesis) : apiPost("/thesis", thesis))
             .then(() => {
                 toast.success(`Práce byla ${id ? "upravena" : "založena"} úspěšně.`);
@@ -84,13 +77,17 @@ const ThesisForm = () => {
             <h1>{id ? "Upravit" : "Vytvořit"} práci</h1>
 
             <hr/>
-            <form onSubmit={handleSubmit(onSubmit)}>
-
-                <InputDateField
-                    label="Datum"
+            <form onSubmit={handleSubmit}>
+                <InputField
+                    required={false}
+                    type="date"
                     name="startDate"
+                    label="Datum začátku"
+                    prompt="Zadej datum začátku práce"
                     value={thesis.startDate}
-                    onChange={handleChangeDateField}
+                    handleChange={(e) => {
+                        setThesis({...thesis, startDate: e.target.value});
+                    }}
                 />
 
                 <InputField
@@ -183,11 +180,16 @@ const ThesisForm = () => {
                     }}
                 />
 
-                <InputDateField
-                    label="Datum"
+                <InputField
+                    required={false}
+                    type="date"
                     name="endDate"
+                    label="Datum ukončení"
+                    prompt="Zadej datum ukončení práce"
                     value={thesis.endDate}
-                    onChange={handleChangeDateField}
+                    handleChange={(e) => {
+                        setThesis({...thesis, endDate: e.target.value});
+                    }}
                 />
 
                 <InputField
@@ -307,4 +309,4 @@ const ThesisForm = () => {
     );
 };
 
-export default ThesisForm;
+export default ThesisForm_old;

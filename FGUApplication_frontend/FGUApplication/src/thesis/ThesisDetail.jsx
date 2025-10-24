@@ -7,10 +7,13 @@ import {formatDate} from "../utils/dateUtil";
 import {toast} from "react-toastify";
 import {ThesisStatusTransfer} from "../utils/ThesisStatusTransfer.jsx";
 import thesisStatus from "./ThesisStatus.jsx";
+import LoadingSpinner from "../components/LoadingSpinner.jsx";
 
 function ThesisDetail() {
     const navigate = useNavigate();
     const {id} = useParams();
+
+    const [loading, setLoading] = useState(true);
 
     const [thesis, setThesis] = useState({});
 
@@ -36,9 +39,13 @@ function ThesisDetail() {
             .catch((error) => {
                 toast.error(`Chyba: ${error.message}`);
                 console.log(error.message);
+            })
+            .finally(() => {
+                setLoading(false);
             });
     }, [id]);
 
+//TODO smazat test a predelat na plnohodnotonou komponentu (nazev nesmi obsahovat test)
     const colorTest = () => {
         switch (thesis.thesisStatus) {
             case thesisStatus.PREDCASNE_UKONCENA || thesisStatus.UKONCENA:
@@ -51,6 +58,12 @@ function ThesisDetail() {
                 return "text-success"
         }
 
+    }
+
+    if (loading) {
+        return (
+            <LoadingSpinner/>
+        )
     }
 
     return (

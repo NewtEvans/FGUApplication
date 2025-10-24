@@ -1,10 +1,13 @@
 import {useEffect, useState} from "react";
 import {apiGet} from "../utils/api";
 import {toast} from "react-toastify";
+import LoadingSpinner from "../components/LoadingSpinner.jsx";
 
-const Summaryindex = () => {
+const SummaryIndex = () => {
     const [url, setUrl] = useState("/summary");
     const [data, setData] = useState([]);
+
+    const [loading, setLoading] = useState(true);
 
     const [years, setYears] = useState([]);
     const [year, setYear] = useState(new Date().getFullYear());
@@ -14,7 +17,11 @@ const Summaryindex = () => {
             year,
         };
 
-        apiGet("/thesis/years").then((data) => setYears(data));
+        apiGet("/thesis/years").then((data) => setYears(data))
+            .catch((error) => {
+                toast.error(`Chyba: ${error.message}`);
+                console.error(error.message);
+            });
 
         apiGet(url, params)
             .then((data) => {
@@ -23,8 +30,17 @@ const Summaryindex = () => {
             .catch((error) => {
                 toast.error(`Chyba: ${error.message}`);
                 console.error(error.message);
+            })
+            .finally(() => {
+                setLoading((false))
             });
     }, [url, year]);
+
+    if (loading) {
+        return (
+            <LoadingSpinner/>
+        )
+    }
 
     return (
         <div>
@@ -77,4 +93,4 @@ const Summaryindex = () => {
     );
 };
 
-export default Summaryindex;
+export default SummaryIndex;

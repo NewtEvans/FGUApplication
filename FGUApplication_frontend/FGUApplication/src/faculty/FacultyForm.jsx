@@ -4,10 +4,12 @@ import {apiGet, apiPost, apiPut} from "../utils/api";
 
 import InputField from "../components/InputField";
 import {toast} from "react-toastify";
+import LoadingSpinner from "../components/LoadingSpinner.jsx";
 
 const FacultyForm = () => {
     const navigate = useNavigate();
     const {id} = useParams();
+    const [loading, setLoading] = useState(true);
 
     const [faculty, setFaculty] = useState({
         facultyName: "",
@@ -24,6 +26,7 @@ const FacultyForm = () => {
                     console.error(error.message);
                 });
         }
+        setLoading(false)
     }, [id]);
 
     const handleSubmit = (e) => {
@@ -38,6 +41,12 @@ const FacultyForm = () => {
                 console.error(error.messagte);
             });
     };
+
+    if (loading) {
+        return (
+            <LoadingSpinner/>
+        );
+    }
 
     return (
         <div>

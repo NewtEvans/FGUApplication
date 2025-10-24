@@ -6,6 +6,7 @@ import {Pagination} from "../components/Pagination";
 import FilterForm from "../components/filter/FilterForm";
 import SortDropdown from "../components/SortDropdown";
 import {toast} from "react-toastify";
+import LoadingSpinner from "../components/LoadingSpinner.jsx";
 
 const PersonIndex = () => {
     const [url, setUrl] = useState("/person/all/pageable");
@@ -84,9 +85,7 @@ const PersonIndex = () => {
 
     if (loading) {
         return (
-            <div className="text-center mt-5">
-                <div className="spinner-border text-primary"/>
-            </div>
+            <LoadingSpinner/>
         );
     }
 

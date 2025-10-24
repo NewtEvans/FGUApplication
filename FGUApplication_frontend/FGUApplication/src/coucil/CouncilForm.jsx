@@ -3,10 +3,13 @@ import {useNavigate, useParams} from "react-router";
 import {apiGet, apiPost, apiPut} from "../utils/api";
 import InputField from "../components/InputField";
 import {toast} from "react-toastify";
+import LoadingSpinner from "../components/LoadingSpinner.jsx";
 
 const CouncilForm = () => {
     const navigate = useNavigate();
     const {id} = useParams();
+
+    const [loading, setLoading] = useState(true)
 
     const [council, setCouncil] = useState({
         councilName: "",
@@ -25,8 +28,9 @@ const CouncilForm = () => {
                 .catch((error) => {
                     toast.error(`Chyba: ${error.message}`);
                     console.error(error.message);
-                });
+                }).finally(() => setLoading(false));
         }
+        setLoading(false)
     }, [id]);
 
     const handleSubmit = (e) => {
@@ -43,6 +47,11 @@ const CouncilForm = () => {
             });
     };
 
+    if (loading) {
+        return (
+            <LoadingSpinner/>
+        )
+    }
     return (
         <div>
             <h1>{id ? "Upravit" : "Vytvořit"} oborovou radu</h1>

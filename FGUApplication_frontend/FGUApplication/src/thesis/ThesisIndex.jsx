@@ -9,6 +9,7 @@ import SortDropdown from "../components/SortDropdown";
 import thesisType from "./ThesisType";
 import ThesisTable from "./ThesisTable";
 import thesisStatus from "./ThesisStatus.jsx";
+import LoadingSpinner from "../components/LoadingSpinner.jsx";
 
 const ThesisIndex = () => {
     const [url, setUrl] = useState("/thesis/all/pageable");
@@ -195,9 +196,7 @@ const ThesisIndex = () => {
 
     if (loading) {
         return (
-            <div className="text-center mt-5">
-                <div className="spinner-border text-primary"/>
-            </div>
+            <LoadingSpinner/>
         );
     }
 

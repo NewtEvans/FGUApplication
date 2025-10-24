@@ -6,6 +6,7 @@ import {toast} from "react-toastify";
 
 import CouncilTable from "./CouncilTable";
 import FilterForm from "../components/filter/FilterForm";
+import LoadingSpinner from "../components/LoadingSpinner.jsx";
 
 const CouncilIndex = () => {
     const [url, setUrl] = useState("/council/all/pageable");
@@ -44,8 +45,6 @@ const CouncilIndex = () => {
             ...filter,
         };
 
-        setLoading(true);
-
         apiGet(url, params)
             .then((data) => {
                 setCounciles(data.content || []);
@@ -69,9 +68,7 @@ const CouncilIndex = () => {
 
     if (loading) {
         return (
-            <div className="text-center mt-5">
-                <div className="spinner-border text-primary"/>
-            </div>
+            <LoadingSpinner/>
         );
     }
 

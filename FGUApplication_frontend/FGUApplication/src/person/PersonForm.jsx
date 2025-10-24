@@ -5,10 +5,13 @@ import InputField from "../components/InputField";
 import InputSelect from "../components/InputSelect";
 import InputCheck from "../components/InputCheck";
 import {toast} from "react-toastify";
+import LoadingSpinner from "../components/LoadingSpinner.jsx";
 
 const PersonForm = () => {
     const navigate = useNavigate();
     const {id} = useParams();
+
+    const [loading, setLoading] = useState(true)
 
     const [person, setPerson] = useState({
         titleBeforeName: "",
@@ -23,9 +26,20 @@ const PersonForm = () => {
 
     useEffect(() => {
         if (id) {
-            apiGet("/person/" + id).then((data) => setPerson(data));
+            apiGet("/person/" + id).then((data) => setPerson(data))
+                .catch((error) => {
+                    toast.error(`Chyba ${error.message}`);
+                    console.error(error.message);
+                });
         }
-        apiGet("/department/all").then((data) => setDepartmentList(data));
+        apiGet("/department/all").then((data) => setDepartmentList(data))
+            .catch((error) => {
+                toast.error(`Chyba: ${error.message}`);
+                console.error(error.message)
+            })
+            .finally(() => {
+                setLoading(false)
+            })
     }, [id]);
 
     const handleSubmit = (e) => {
@@ -40,6 +54,12 @@ const PersonForm = () => {
                 console.error(error.message);
             });
     };
+
+    if (loading) {
+        return (
+            <LoadingSpinner/>
+        );
+    }
 
     return (
         <div>

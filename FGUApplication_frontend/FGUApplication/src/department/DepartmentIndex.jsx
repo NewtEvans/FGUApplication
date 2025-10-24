@@ -5,6 +5,7 @@ import {Pagination} from "../components/Pagination";
 
 import DepartmentTable from "./DepartmentTable";
 import FilterForm from "../components/filter/FilterForm";
+import LoadingSpinner from "../components/LoadingSpinner.jsx";
 
 const DepartmentIndex = () => {
     const [url, setUrl] = useState("/department/all/pageable");
@@ -71,9 +72,7 @@ const DepartmentIndex = () => {
 
     if (loading) {
         return (
-            <div className="text-center mt-5">
-                <div className="spinner-border text-primary"/>
-            </div>
+            <LoadingSpinner/>
         );
     }
 

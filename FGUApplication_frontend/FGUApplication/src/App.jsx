@@ -19,9 +19,9 @@ import CouncilForm from "./coucil/CouncilForm";
 import {ToastContainer} from "react-toastify";
 
 import {BrowserRouter as Router, Link, Navigate, Route, Routes,} from "react-router-dom";
-import Summaryindex from "./summary/SummaryIndex";
+import SummaryIndex from "./summary/SummaryIndex";
 import TestovaciIndex from "./testovaci/TestovaciIndex";
-import ThesisForm_useForm from "./thesis/ThesisForm_useForm.jsx";
+import ThesisForm from "./thesis/ThesisForm.jsx";
 
 window.bootstrap = bootstrap;
 
@@ -112,8 +112,8 @@ function App() {
                     <Route path="/theses">
                         <Route index element={<ThesisIndex/>}/>
                         <Route path="detail/:id" element={<ThesisDetail/>}/>
-                        <Route path="edit/:id" element={<ThesisForm_useForm/>}/>
-                        <Route path="create" element={<ThesisForm_useForm/>}/>
+                        <Route path="edit/:id" element={<ThesisForm/>}/>
+                        <Route path="create" element={<ThesisForm/>}/>
                     </Route>
                     <Route index element={<Navigate to={"/departments"}/>}/>
                     <Route path="/departments">
@@ -138,7 +138,7 @@ function App() {
                     </Route>
                     <Route index element={<Navigate to={"/summary"}/>}/>
                     <Route path="/summary">
-                        <Route index element={<Summaryindex/>}/>
+                        <Route index element={<SummaryIndex/>}/>
                     </Route>
                     <Route index element={<Navigate to={"/testovaci"}/>}/>
                     <Route path="/testovaci">

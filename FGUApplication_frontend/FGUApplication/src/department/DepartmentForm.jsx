@@ -4,10 +4,12 @@ import {apiGet, apiPost, apiPut} from "../utils/api";
 import {toast} from "react-toastify";
 
 import InputField from "../components/InputField";
+import LoadingSpinner from "../components/LoadingSpinner.jsx";
 
 const DepartmentForm = () => {
     const navigate = useNavigate();
     const {id} = useParams();
+    const [loading, setLoading] = useState(true)
     const [department, setDepartment] = useState({
         departmentName: "",
         departmentNumber: "",
@@ -16,8 +18,13 @@ const DepartmentForm = () => {
 
     useEffect(() => {
         if (id) {
-            apiGet("/department/" + id).then((data) => setDepartment(data));
+            apiGet("/department/" + id).then((data) => setDepartment(data))
+                .catch((error) => {
+                    toast.error(`Chyba: ${error.message}`);
+                    console.error(error.message);
+                })
         }
+        setLoading(false);
     }, [id]);
 
     const handleSubmit = (e) => {
@@ -38,6 +45,12 @@ const DepartmentForm = () => {
                 console.log(error.message);
             });
     };
+
+    if (loading) {
+        return (
+            <LoadingSpinner/>
+        );
+    }
 
     return (
         <div>
