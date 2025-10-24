@@ -23,8 +23,7 @@ const FilterDateField = ({label, nameFrom, nameTo, setValue}) => {
 
 
     };
-
-
+    
     return (
         <div>
             {label}
