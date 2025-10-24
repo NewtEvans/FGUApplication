@@ -9,12 +9,12 @@ import LoadingSpinner from "../components/LoadingSpinner.jsx";
 const DepartmentForm = () => {
     const navigate = useNavigate();
     const {id} = useParams();
-    const [loading, setLoading] = useState(true)
     const [department, setDepartment] = useState({
         departmentName: "",
         departmentNumber: "",
         people: [{}],
     });
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         if (id) {
@@ -22,22 +22,17 @@ const DepartmentForm = () => {
                 .catch((error) => {
                     toast.error(`Chyba: ${error.message}`);
                     console.error(error.message);
-                })
+                });
         }
         setLoading(false);
     }, [id]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        (id
-                ? apiPut("/department/" + id, department)
-                : apiPost("/department", department)
-        )
+        (id ? apiPut("/department/" + id, department) : apiPost("/department", department))
             .then(() => {
-                toast.success(
-                    `Oddělení bylo ${id ? "upraveno" : "vytvořeno"} úspěšně.`
-                );
+                toast.success(`Oddělení bylo ${id ? "upraveno" : "vytvořeno"} úspěšně.`);
+                console.log(`Oddělení ${department.departmentNumber} bylo ${id ? "upraveno" : "vytvořeno"} úspěšně.`);
                 id ? navigate("/departments/detail/" + id) : navigate("/departments");
             })
             .catch((error) => {
