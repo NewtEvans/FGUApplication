@@ -12,15 +12,11 @@ const PersonIndex = () => {
     const [url, setUrl] = useState("/person/all/pageable");
     const [people, setPeople] = useState([]);
     const [numberOfRecords, setNumberOfRecords] = useState();
-
     const [loading, setLoading] = useState(true);
-
     const [page, setPage] = useState(0);
     const [totalPages, setTotalPages] = useState();
     const [size, setSize] = useState(10);
-
     const [sort, setSort] = useState("id");
-
     const [filter, setFilter] = useState({
         firstNameFilter: "",
         surnameFilter: "",
@@ -37,7 +33,6 @@ const PersonIndex = () => {
             value: "",
         },
     ];
-
     const sortFields = [
         {value: "id", label: "ID"},
         {value: "surname", label: "Přijmení"},

@@ -3,23 +3,18 @@ import {apiGet} from "../utils/api";
 import {Link} from "react-router-dom";
 import {Pagination} from "../components/Pagination";
 import {toast} from "react-toastify";
-
 import CouncilTable from "./CouncilTable";
 import FilterForm from "../components/filter/FilterForm";
 import LoadingSpinner from "../components/LoadingSpinner.jsx";
 
 const CouncilIndex = () => {
     const [url, setUrl] = useState("/council/all/pageable");
-
     const [councils, setCounciles] = useState([]);
-    const [numberOfRecords, setNumberOfRecords] = useState();
-
     const [loading, setLoading] = useState(true);
-
+    const [numberOfRecords, setNumberOfRecords] = useState();
     const [page, setPage] = useState(0);
     const [totalPages, setTotalPages] = useState();
     const [size, setSize] = useState(10);
-
     const [filter, setFilter] = useState({
         councilNameFilter: "",
         councilAbbreviationFilter: "",
@@ -75,19 +70,15 @@ const CouncilIndex = () => {
     return (
         <div>
             <h1>Seznam všech oborových rad</h1>
-
             <div className="d-flex justify-content-between">
                 <p>Počet oddělení v databázi: {numberOfRecords}</p>
                 <Link to="create" className="btn btn-md btn-success">
                     Nové rada
                 </Link>
             </div>
-
             <FilterForm fields={filterFields} onFilter={handleFilter}/>
             <br/>
-
             <CouncilTable councils={councils}/>
-
             <Pagination
                 page={page}
                 setPage={setPage}

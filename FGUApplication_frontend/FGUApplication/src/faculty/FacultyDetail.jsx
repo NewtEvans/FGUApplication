@@ -5,24 +5,10 @@ import {toast} from "react-toastify";
 import LoadingSpinner from "../components/LoadingSpinner.jsx";
 
 const FacultyDetail = () => {
-    const {id} = useParams();
     const navigate = useNavigate();
-
+    const {id} = useParams();
     const [faculty, setFaculty] = useState();
-
     const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        apiGet("/faculty/" + id)
-            .then((data) => {
-                setFaculty(data);
-            })
-            .catch((error) => {
-                toast.error(`Chyba: ${error.message}`);
-                console.error(error.message);
-            })
-            .finally(() => setLoading(false));
-    }, []);
 
     const deleteFunction = async (id) => {
         const confirmed = window.confirm("Opravdu chcete smazat tuto fakultu?");
@@ -38,6 +24,18 @@ const FacultyDetail = () => {
         navigate("/faculties");
     };
 
+    useEffect(() => {
+        apiGet("/faculty/" + id)
+            .then((data) => {
+                setFaculty(data);
+            })
+            .catch((error) => {
+                toast.error(`Chyba: ${error.message}`);
+                console.error(error.message);
+            })
+            .finally(() => setLoading(false));
+    }, []);
+
     if (loading) {
         return (
             <LoadingSpinner/>
@@ -48,7 +46,6 @@ const FacultyDetail = () => {
         <div>
             <div className="d-flex align-items-center justify-content-between">
                 <h1>Detail fakulty</h1>
-
                 <div>
                     <Link
                         to={`/faculties/edit/${id}`}
@@ -64,17 +61,13 @@ const FacultyDetail = () => {
                     </button>
                 </div>
             </div>
-
             <hr/>
-
             <p>
                 <strong>Název fakulty:</strong> {faculty?.facultyName}
             </p>
-
             <p>
                 <strong>Zkratka fakulty: </strong> {faculty?.facultyAbbreviation}
             </p>
-
             <p>
                 <strong>Název školy: </strong> {faculty?.school}
             </p>

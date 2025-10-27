@@ -8,9 +8,7 @@ import LoadingSpinner from "../components/LoadingSpinner.jsx";
 const CouncilForm = () => {
     const navigate = useNavigate();
     const {id} = useParams();
-
     const [loading, setLoading] = useState(true)
-
     const [council, setCouncil] = useState({
         councilName: "",
         councilAbbreviation: "",
@@ -28,17 +26,18 @@ const CouncilForm = () => {
                 .catch((error) => {
                     toast.error(`Chyba: ${error.message}`);
                     console.error(error.message);
-                }).finally(() => setLoading(false));
+                })
+                .finally(() => setLoading(false));
         }
         setLoading(false)
     }, [id]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
         (id ? apiPut("/council/" + id, council) : apiPost("/council", council))
             .then(() => {
                 toast.success(`Rada byla ${id ? "upravena" : "založena"} úspěšně.`);
+                console.log(`Oborová rada ${council.councilName} byla ${id ? "upravena" : "vytvořena"} úspěšně.`);
                 id ? navigate("/counciles/detail/" + id) : navigate("/counciles");
             })
             .catch((error) => {
@@ -52,6 +51,7 @@ const CouncilForm = () => {
             <LoadingSpinner/>
         )
     }
+
     return (
         <div>
             <h1>{id ? "Upravit" : "Vytvořit"} oborovou radu</h1>
@@ -66,7 +66,6 @@ const CouncilForm = () => {
                     value={council.councilName}
                     handleChange={handleChange}
                 />
-
                 <InputField
                     required={true}
                     type="text"
@@ -76,7 +75,6 @@ const CouncilForm = () => {
                     value={council.councilAbbreviation}
                     handleChange={handleChange}
                 />
-
                 <InputField
                     required={true}
                     type="text"
@@ -86,7 +84,6 @@ const CouncilForm = () => {
                     value={council.councilNumber}
                     handleChange={handleChange}
                 />
-
                 <br/>
                 <div className="d-flex justify-content-between">
                     <input type="submit" className="btn btn-success" value="Uložit"/>

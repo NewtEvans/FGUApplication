@@ -1,7 +1,6 @@
 import {useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router";
 import {apiGet, apiPost, apiPut} from "../utils/api";
-
 import InputField from "../components/InputField";
 import {toast} from "react-toastify";
 import LoadingSpinner from "../components/LoadingSpinner.jsx";
@@ -10,7 +9,6 @@ const FacultyForm = () => {
     const navigate = useNavigate();
     const {id} = useParams();
     const [loading, setLoading] = useState(true);
-
     const [faculty, setFaculty] = useState({
         facultyName: "",
         facultyAbbreviation: "",
@@ -24,7 +22,8 @@ const FacultyForm = () => {
                 .catch((error) => {
                     toast.error(`Chyba: ${error.message}`);
                     console.error(error.message);
-                });
+                })
+                .finally(() => setLoading(false));
         }
         setLoading(false)
     }, [id]);
@@ -51,9 +50,7 @@ const FacultyForm = () => {
     return (
         <div>
             <h1>{id ? "Upravit" : "Vytvořit"} fakultu</h1>
-
             <hr/>
-
             <form onSubmit={handleSubmit}>
                 <InputField
                     required={true}
@@ -66,7 +63,6 @@ const FacultyForm = () => {
                         setFaculty({...faculty, facultyName: e.target.value});
                     }}
                 />
-
                 <InputField
                     required={true}
                     type="text"
@@ -78,7 +74,6 @@ const FacultyForm = () => {
                         setFaculty({...faculty, facultyAbbreviation: e.target.value});
                     }}
                 />
-
                 <InputField
                     required={true}
                     type="text"
@@ -90,7 +85,6 @@ const FacultyForm = () => {
                         setFaculty({...faculty, school: e.target.value});
                     }}
                 />
-
                 <br/>
                 <div className="d-flex justify-content-between">
                     <input type="submit" className="btn btn-success" value="Uložit"/>

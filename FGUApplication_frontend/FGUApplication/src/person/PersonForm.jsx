@@ -10,9 +10,7 @@ import LoadingSpinner from "../components/LoadingSpinner.jsx";
 const PersonForm = () => {
     const navigate = useNavigate();
     const {id} = useParams();
-
     const [loading, setLoading] = useState(true)
-
     const [person, setPerson] = useState({
         titleBeforeName: "",
         firstName: "",
@@ -30,7 +28,7 @@ const PersonForm = () => {
                 .catch((error) => {
                     toast.error(`Chyba ${error.message}`);
                     console.error(error.message);
-                });
+                }).finally(setLoading(false));
         }
         apiGet("/department/all").then((data) => setDepartmentList(data))
             .catch((error) => {
@@ -64,7 +62,6 @@ const PersonForm = () => {
     return (
         <div>
             <h1>{id ? "Upravit" : "Vytvořit"} osobu</h1>
-
             <hr/>
             <form onSubmit={handleSubmit}>
                 <InputField
@@ -78,7 +75,6 @@ const PersonForm = () => {
                         setPerson({...person, titleBeforeName: e.target.value});
                     }}
                 />
-
                 <InputField
                     required={true}
                     type="text"
@@ -90,7 +86,6 @@ const PersonForm = () => {
                         setPerson({...person, firstName: e.target.value});
                     }}
                 />
-
                 <InputField
                     required={true}
                     type="text"
@@ -102,7 +97,6 @@ const PersonForm = () => {
                         setPerson({...person, surname: e.target.value});
                     }}
                 />
-
                 <InputField
                     required={false}
                     type="text"
@@ -114,7 +108,6 @@ const PersonForm = () => {
                         setPerson({...person, titleAfterName: e.target.value});
                     }}
                 />
-
                 <InputSelect
                     name="departments"
                     items={departmentList}
@@ -133,7 +126,6 @@ const PersonForm = () => {
                         setPerson({...person, departments: ids.map((id) => ({id}))});
                     }}
                 />
-
                 <div className="d-flex gap-3">
                     <InputCheck
                         type="radio"
@@ -145,7 +137,6 @@ const PersonForm = () => {
                         }}
                         checked={person.isEmployee === "IPHYS"}
                     />
-
                     <InputCheck
                         type="radio"
                         name="isEmployee"

@@ -2,7 +2,6 @@ import {useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router";
 import {apiGet, apiPost, apiPut} from "../utils/api";
 import {toast} from "react-toastify";
-
 import InputField from "../components/InputField";
 import LoadingSpinner from "../components/LoadingSpinner.jsx";
 
@@ -18,11 +17,13 @@ const DepartmentForm = () => {
 
     useEffect(() => {
         if (id) {
-            apiGet("/department/" + id).then((data) => setDepartment(data))
+            apiGet("/department/" + id)
+                .then((data) => setDepartment(data))
                 .catch((error) => {
                     toast.error(`Chyba: ${error.message}`);
                     console.error(error.message);
-                });
+                })
+                .finally(() => setLoading(false));
         }
         setLoading(false);
     }, [id]);

@@ -1,10 +1,7 @@
 import {useEffect, useState} from "react";
 import {Link} from "react-router";
-
 import FacultyTable from "./FacultyTable";
-
 import {apiGet} from "../utils/api";
-
 import {Pagination} from "../components/Pagination";
 import FilterForm from "../components/filter/FilterForm";
 import SortDropdown from "../components/SortDropdown";
@@ -13,19 +10,13 @@ import LoadingSpinner from "../components/LoadingSpinner.jsx";
 
 const FacultyIndex = () => {
     const [url, setUrl] = useState("/faculty/all/pageable");
-
     const [faculties, setFaculties] = useState([]);
-
     const [numberOfRecords, setNumberOfRecords] = useState();
-
     const [loading, setLoading] = useState(true);
-
     const [page, setPage] = useState(0);
     const [totalPages, setTotalPages] = useState();
     const [size, setSize] = useState(10);
-
     const [sort, setSort] = useState();
-
     const [filter, setFilter] = useState({
         facultyNameFilter: "",
         schoolFilter: "",
@@ -37,7 +28,6 @@ const FacultyIndex = () => {
         {name: "facultyName", label: "Název fakulty", type: "text"},
         {name: "school", label: "Škola", type: "text"},
     ];
-
     const sortFields = [
         {value: "facultyName", label: "Název fakulty"},
         {value: "school", label: "Škola"},
@@ -92,20 +82,15 @@ const FacultyIndex = () => {
     return (
         <div>
             <h1>Seznam všech fakult</h1>
-
             <div className="d-flex justify-content-between">
                 <p>Počet fakult v databázi: {numberOfRecords}</p>
                 <Link to="create" className="btn btn-md btn-success">
                     Nová fakulta
                 </Link>
             </div>
-
             <FilterForm onFilter={handleFilter} fields={filterFields}/>
-
             <SortDropdown sort={sort} setSort={setSort} fields={sortFields}/>
-
             <FacultyTable faculties={faculties}/>
-
             <Pagination
                 page={page}
                 setPage={setPage}
