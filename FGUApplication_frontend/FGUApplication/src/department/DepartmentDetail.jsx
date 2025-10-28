@@ -12,6 +12,33 @@ const DepartmentDetail = () => {
     const [people, setPeople] = useState([]);
     const [loading, setLoading] = useState(true);
 
+    // const deleteFunction = (id) => {
+    //     confirmAlert({
+    //         title: "Potvrzeni akce",
+    //         message: "Opravdu chcete smazat toto oddělení?",
+    //         buttons: [
+    //             {
+    //                 label: "Ano",
+    //                 onClick: async () => {
+    //                     try {
+    //                         await apiDelete(`/department/${id}`);
+    //                         toast.success("Oddělení bylo úspěšně smazáno.");
+    //                     } catch (error) {
+    //                         toast.error(`Chyba ${error.message}`);
+    //                         console.log(error.message);
+    //                     }
+    //                     navigate("/departments");
+    //                     // alert("Zaznam byl uspesne smazan.")
+    //                 }
+    //             },
+    //             {
+    //                 label: "Ne",
+    //                 onClick: () => alert("Akce byla zrusena.")
+    //             }
+    //         ]
+    //     });
+    // }
+
     const deleteFunction = async (id) => {
         const confirmed = window.confirm("Opravdu chcete smazat toto oddělení?");
         if (!confirmed) return;

@@ -16,7 +16,7 @@ const PersonIndex = () => {
     const [page, setPage] = useState(0);
     const [totalPages, setTotalPages] = useState();
     const [size, setSize] = useState(10);
-    const [sort, setSort] = useState("id");
+    const [sort, setSort] = useState("surname");
     const [filter, setFilter] = useState({
         firstNameFilter: "",
         surnameFilter: "",
@@ -34,7 +34,6 @@ const PersonIndex = () => {
         },
     ];
     const sortFields = [
-        {value: "id", label: "ID"},
         {value: "surname", label: "Přijmení"},
         {value: "firstName", label: "Jméno"},
     ];
@@ -94,7 +93,7 @@ const PersonIndex = () => {
                 </Link>
             </div>
             <FilterForm onFilter={handleFilter} fields={filterFields}/>
-            <SortDropdown setSort={setSort} sort={sort} fields={sortFields}/>
+            <SortDropdown setSort={setSort} fields={sortFields}/>
             <PersonTable people={people}/>
             <Pagination
                 page={page}

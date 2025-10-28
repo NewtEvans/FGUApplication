@@ -16,7 +16,7 @@ const FacultyIndex = () => {
     const [page, setPage] = useState(0);
     const [totalPages, setTotalPages] = useState();
     const [size, setSize] = useState(10);
-    const [sort, setSort] = useState();
+    const [sort, setSort] = useState("facultyName");
     const [filter, setFilter] = useState({
         facultyNameFilter: "",
         schoolFilter: "",
@@ -31,7 +31,6 @@ const FacultyIndex = () => {
     const sortFields = [
         {value: "facultyName", label: "Název fakulty"},
         {value: "school", label: "Škola"},
-        {value: "id", label: "ID"},
     ];
 
     const handleFilter = (filterData) => {

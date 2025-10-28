@@ -17,11 +17,11 @@ import CouncilIndex from "./coucil/CouncilIndex";
 import CouncilDetail from "./coucil/CouncilDetail";
 import CouncilForm from "./coucil/CouncilForm";
 import {ToastContainer} from "react-toastify";
-
 import {BrowserRouter as Router, Link, Navigate, Route, Routes,} from "react-router-dom";
 import SummaryIndex from "./summary/SummaryIndex";
 import TestovaciIndex from "./testovaci/TestovaciIndex";
 import ThesisForm from "./thesis/ThesisForm.jsx";
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 window.bootstrap = bootstrap;
 
