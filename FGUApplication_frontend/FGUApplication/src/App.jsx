@@ -50,45 +50,33 @@ function App() {
                         >
                             <span className="navbar-toggler-icon"></span>
                         </button>
+
                         <div className="collapse navbar-collapse" id="navbarNav">
                             <ul className="navbar-nav">
-                                <li className="nav-item dropdown">
-                                    <Link
-                                        to={"/theses"}
-                                        className="nav-link dropdown-toggle"
-                                        role="button"
-                                        data-bs-toggle="dropdown"
-                                        aria-expanded="false"
-                                    >
-                                        Přehledy
+                                <li className="nav-item">
+                                    <Link to={"person"} className="nav-link">
+                                        Osoby
                                     </Link>
-                                    <ul className="dropdown-menu">
-                                        <li>
-                                            <Link to={"person"} className="dropdown-item">
-                                                Osoby
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link to={"departments"} className="dropdown-item">
-                                                Oddělení
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link to={"faculties"} className="dropdown-item">
-                                                Fakulty
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link to={"counciles"} className="dropdown-item">
-                                                Oborové rady
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link to={"theses"} className="dropdown-item">
-                                                Práce
-                                            </Link>
-                                        </li>
-                                    </ul>
+                                </li>
+                                <li className="nav-item">
+                                    <Link to={"departments"} className="nav-link">
+                                        Oddělení
+                                    </Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link to={"faculties"} className="nav-link">
+                                        Fakulty
+                                    </Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link to={"counciles"} className="nav-link">
+                                        Oborové rady
+                                    </Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link to={"theses"} className="nav-link">
+                                        Práce
+                                    </Link>
                                 </li>
                                 <li className="nav-item">
                                     <Link to={"summary"} className="nav-link">
