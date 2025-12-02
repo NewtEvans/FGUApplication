@@ -213,7 +213,7 @@ const ThesisIndex = () => {
       <ThesisTable theses={theses} />
 
       <Pagination
-        page={page}
+        currentPage={page}
         setPage={setPage}
         totalPages={totalPages}
         size={size}

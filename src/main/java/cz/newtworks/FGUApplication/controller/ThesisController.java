@@ -25,6 +25,13 @@ public class ThesisController {
         return ResponseEntity.status(HttpStatus.CREATED).body(thesisService.createThesis(thesisDTO));
     }
 
+    @PostMapping("/multiple")
+    public ResponseEntity<?> createMultipleThesis(@RequestBody List<ThesisDTO> theses) {
+        thesisService.createMulitpleTheses(theses);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body("OK");
+    }
+
     @GetMapping("/all/pageable")
     public ResponseEntity<Page<ThesisDTO>> getAllThesisPageable(
             Pageable pageable,

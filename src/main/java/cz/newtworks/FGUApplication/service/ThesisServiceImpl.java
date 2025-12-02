@@ -62,6 +62,15 @@ public class ThesisServiceImpl implements ThesisService {
     }
 
     @Override
+    public void createMulitpleTheses(List<ThesisDTO> theses) {
+        List<ThesisEntity> thesisEntities = theses.stream()
+                .map(thesisDTO -> thesisMapper.toEntity(thesisDTO))
+                .collect(Collectors.toList());
+
+        thesisRepository.saveAll(thesisEntities);
+    }
+
+    @Override
     public ThesisDTO getThesisById(long thesisId) {
         ThesisEntity thesis = fetchThesisById(thesisId);
 

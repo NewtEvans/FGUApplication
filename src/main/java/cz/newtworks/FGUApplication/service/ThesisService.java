@@ -18,6 +18,8 @@ public interface ThesisService {
      */
     ThesisDTO createThesis(ThesisDTO thesisDTO);
 
+    void createMulitpleTheses(List<ThesisDTO> thesisDTO);
+
     /**
      * Method returns details of thesis with requested id.
      *
