@@ -34,6 +34,13 @@ public class PersonSpecification {
                 ));
             }
 
+            if (personFilterDTO.getIsForeignFilter() != null) {
+                predicates.add(criteriaBuilder.equal(
+                        root.get("isForeign"),
+                        personFilterDTO.getIsForeignFilter()
+                ));
+            }
+
             return criteriaBuilder.and(predicates.toArray(predicates.toArray(new Predicate[0])));
         };
     }

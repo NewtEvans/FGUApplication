@@ -24,6 +24,8 @@ public class PersonFilterDTO {
 
     private Boolean isArchivedFilter = false;
 
+    private Boolean isForeignFilter;
+
     private Employee isEmployeeFilter;
 
 

@@ -31,5 +31,7 @@ public class PersonDTO {
 
     private boolean isArchived;
 
+    private Boolean isForeign;
+
     private Set<DepartmentDTO> departments;
 }

@@ -121,6 +121,10 @@ const PersonDetail = () => {
         <strong>Zaměstnanec FGÚ: </strong>{" "}
         {person.isEmployee === "IPHYS" ? "Ano" : "Není"}
       </p>
+      <p>
+        <strong>Zahraniční: </strong>
+        {person.isForeign === true ? "Ano" : "Není"}
+      </p>
       {person.isEmployee === "IPHYS" && (
         <DepartmentTable departments={person.departments || []} />
       )}

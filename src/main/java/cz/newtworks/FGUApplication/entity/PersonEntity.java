@@ -43,6 +43,8 @@ public class PersonEntity {
 
     private boolean isArchived;
 
+    private Boolean isForeign;
+
     @Enumerated(EnumType.STRING)
     private Employee isEmployee;
 

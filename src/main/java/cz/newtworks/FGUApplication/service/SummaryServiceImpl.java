@@ -71,7 +71,7 @@ public class SummaryServiceImpl implements SummaryService {
         summaryDTO.setPausedMagisterska(getNumberOfThesesByEndYear(year, ThesisType.magisterska, ThesisStatus.PRERUSENA));
         summaryDTO.setPausedDoktorandska(getNumberOfThesesByEndYear(year, ThesisType.doktorandska, ThesisStatus.PRERUSENA));
         summaryDTO.setPausedInzenyrska(getNumberOfThesesByEndYear(year, ThesisType.inzenyrska, ThesisStatus.PRERUSENA));
-        
+
         return summaryDTO;
     }
 
@@ -125,5 +125,9 @@ public class SummaryServiceImpl implements SummaryService {
         return thesisRepository.countByEndDateBetweenAndThesisStatusAndThesisType(start, end, thesisStatus, thesisType);
     }
 
-
+//    private long getNumberOfOngoingTheses(int year) {
+//        LocalDate start = LocalDate.of(year, 1, 1);
+//        LocalDate end = LocalDate.of(year, 12, 31);
+//        return thesisRepository.countOngoingTheses(start, end);
+//    }
 }
