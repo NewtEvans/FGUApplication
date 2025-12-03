@@ -44,6 +44,9 @@ public class ThesisDTO {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate pauseDate;
+
     private String note;
 
     @NotBlank(message = "Thesis status is required.")

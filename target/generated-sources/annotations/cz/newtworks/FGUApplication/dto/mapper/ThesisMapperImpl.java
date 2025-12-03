@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-12-03T12:34:18+0100",
+    date = "2025-12-03T15:13:06+0100",
     comments = "version: 1.6.3, compiler: javac, environment: Java 23.0.2 (Oracle Corporation)"
 )
 @Component
@@ -42,6 +42,7 @@ public class ThesisMapperImpl implements ThesisMapper {
         thesisDTO.setFaculty( facultyEntityToFacultyDTO( source.getFaculty() ) );
         thesisDTO.setCouncil( councilEntityToCouncilDTO( source.getCouncil() ) );
         thesisDTO.setEndDate( source.getEndDate() );
+        thesisDTO.setPauseDate( source.getPauseDate() );
         thesisDTO.setNote( source.getNote() );
         thesisDTO.setThesisStatus( source.getThesisStatus() );
 
@@ -69,6 +70,7 @@ public class ThesisMapperImpl implements ThesisMapper {
         thesisEntity.setFaculty( facultyDTOToFacultyEntity( source.getFaculty() ) );
         thesisEntity.setCouncil( councilDTOToCouncilEntity( source.getCouncil() ) );
         thesisEntity.setEndDate( source.getEndDate() );
+        thesisEntity.setPauseDate( source.getPauseDate() );
         thesisEntity.setNote( source.getNote() );
         thesisEntity.setThesisStatus( source.getThesisStatus() );
 

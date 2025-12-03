@@ -52,6 +52,9 @@ public class ThesisEntity {
     private LocalDate endDate;
 
     @Column
+    private LocalDate pauseDate;
+
+    @Column
     private String note;
 
     @Column(nullable = false)

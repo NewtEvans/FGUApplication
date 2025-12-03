@@ -66,11 +66,11 @@ public class SummaryServiceImpl implements SummaryService {
         summaryDTO.setAbandonedDoktorandska(getNumberOfThesesByEndYear(year, ThesisType.doktorandska, ThesisStatus.PREDCASNE_UKONCENA));
         summaryDTO.setAbandonedInzenyrska(getNumberOfThesesByEndYear(year, ThesisType.inzenyrska, ThesisStatus.PREDCASNE_UKONCENA));
 
-        summaryDTO.setNumberOfPausedTheses(getNumberOfThesesByEndYear(year, ThesisStatus.PRERUSENA));
-        summaryDTO.setPausedBakalarska(getNumberOfThesesByEndYear(year, ThesisType.bakalarska, ThesisStatus.PRERUSENA));
-        summaryDTO.setPausedMagisterska(getNumberOfThesesByEndYear(year, ThesisType.magisterska, ThesisStatus.PRERUSENA));
-        summaryDTO.setPausedDoktorandska(getNumberOfThesesByEndYear(year, ThesisType.doktorandska, ThesisStatus.PRERUSENA));
-        summaryDTO.setPausedInzenyrska(getNumberOfThesesByEndYear(year, ThesisType.inzenyrska, ThesisStatus.PRERUSENA));
+        summaryDTO.setNumberOfPausedTheses(getNumberOfThesesByPauseYear(year));
+        summaryDTO.setPausedBakalarska(getNumberOfThesesByPauseYear(year, ThesisType.bakalarska));
+        summaryDTO.setPausedMagisterska(getNumberOfThesesByPauseYear(year, ThesisType.magisterska));
+        summaryDTO.setPausedDoktorandska(getNumberOfThesesByPauseYear(year, ThesisType.doktorandska));
+        summaryDTO.setPausedInzenyrska(getNumberOfThesesByPauseYear(year, ThesisType.inzenyrska));
 
         return summaryDTO;
     }
@@ -129,6 +129,20 @@ public class SummaryServiceImpl implements SummaryService {
         LocalDate start = LocalDate.of(year, 1, 1);
         LocalDate end = LocalDate.of(year, 12, 31);
         return thesisRepository.countByEndDateBetweenAndThesisStatus(start, end, thesisStatus);
+    }
+
+    private long getNumberOfThesesByPauseYear(int year) {
+        LocalDate start = LocalDate.of(year, 1, 1);
+        LocalDate end = LocalDate.of(year, 12, 31);
+
+        return thesisRepository.countByPauseDateBetween(start, end);
+    }
+
+    private long getNumberOfThesesByPauseYear(int year, ThesisType thesisType) {
+        LocalDate start = LocalDate.of(year, 1, 1);
+        LocalDate end = LocalDate.of(year, 12, 31);
+
+        return thesisRepository.countByPauseDateBetweenAndThesisType(start, end, thesisType);
     }
 
 //    private long getNumberOfOngoingTheses(int year) {

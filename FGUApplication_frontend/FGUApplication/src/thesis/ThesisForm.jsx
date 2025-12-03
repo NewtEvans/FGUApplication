@@ -1,314 +1,322 @@
-import {useEffect, useState} from "react";
-import {useNavigate, useParams} from "react-router";
-import {apiGet, apiPost, apiPut} from "../utils/api";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router";
+import { apiGet, apiPost, apiPut } from "../utils/api";
 
 import InputField from "../components/InputField";
 import InputSelect from "../components/InputSelect";
 import InputCheck from "../components/InputCheck";
 import thesisType from "./ThesisType";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 import thesisStatus from "./ThesisStatus.jsx";
-import {useForm} from "react-hook-form";
+import { useForm } from "react-hook-form";
 import InputDateField from "../components/InputDateField.jsx";
-import {format} from "date-fns";
+import { format } from "date-fns";
 
 const ThesisForm = () => {
-    const {register, handleSubmit, setValue, reset} = useForm();
+  const { register, handleSubmit, setValue, reset } = useForm();
 
-    const navigate = useNavigate();
-    const {id} = useParams();
+  const navigate = useNavigate();
+  const { id } = useParams();
 
-    const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
-    const [thesis, setThesis] = useState({
-        startDate: null,
-        nameCz: "",
-        nameEn: "",
-        student: {},
-        trainer: {},
-        consultant: {},
-        faculty: {},
-        council: {},
-        endDate: null,
-        thesisType: "",
-        note: "",
-        thesisStatus: "",
-    });
-    const [people, setPeople] = useState([]);
-    const [faculty, setFaculty] = useState([]);
-    const [council, setCouncil] = useState([]);
+  const [thesis, setThesis] = useState({
+    startDate: null,
+    nameCz: "",
+    nameEn: "",
+    student: {},
+    trainer: {},
+    consultant: {},
+    faculty: {},
+    council: {},
+    endDate: null,
+    pauseDate: null,
+    thesisType: "",
+    note: "",
+    thesisStatus: "",
+  });
+  const [people, setPeople] = useState([]);
+  const [faculty, setFaculty] = useState([]);
+  const [council, setCouncil] = useState([]);
 
-    useEffect(() => {
-        if (id) {
-            apiGet("/thesis/" + id).then((data) => setThesis(data))
-                .catch((error) => {
-                    toast.error(`Chyba ${error.message}`);
-                    console.error(error.message);
-                });
-        }
-        apiGet("/person/all").then((data) => setPeople(data));
-        apiGet("/faculty/all").then((data) => setFaculty(data));
-        apiGet("/council/all").then((data) => setCouncil(data))
-            .catch((error) => {
-                toast.error(`Chyba: ${error.message}`);
-                console.error(error.message);
-            })
-            .finally(() => setLoading(false));
-    }, [id]);
-
-    function handleChangeDateField(name, change) {
-
-        const formatedDate = change ? format(change, "yyyy-MM-dd") : null;
-
-        setThesis((prev) => ({...prev, [name]: formatedDate}));
+  useEffect(() => {
+    if (id) {
+      apiGet("/thesis/" + id)
+        .then((data) => setThesis(data))
+        .catch((error) => {
+          toast.error(`Chyba ${error.message}`);
+          console.error(error.message);
+        });
     }
+    apiGet("/person/all").then((data) => setPeople(data));
+    apiGet("/faculty/all").then((data) => setFaculty(data));
+    apiGet("/council/all")
+      .then((data) => setCouncil(data))
+      .catch((error) => {
+        toast.error(`Chyba: ${error.message}`);
+        console.error(error.message);
+      })
+      .finally(() => setLoading(false));
+  }, [id]);
 
-    const onSubmit = (e) => {
-        (id ? apiPut("/thesis/" + id, thesis) : apiPost("/thesis", thesis))
-            .then(() => {
-                toast.success(`Práce byla ${id ? "upravena" : "založena"} úspěšně.`);
-                id ? navigate("/theses/detail/" + id) : navigate("/theses");
-            })
-            .catch((error) => {
-                toast.error(`Chyba: ${error.message}`);
-                console.error(error.message);
-            });
-    };
+  function handleChangeDateField(name, change) {
+    const formatedDate = change ? format(change, "yyyy-MM-dd") : null;
 
-    if (loading) {
-        return (
-            <div className="text-center mt-5">
-                <div className="spinner-border text-primary"/>
-            </div>
-        )
-    }
+    setThesis((prev) => ({ ...prev, [name]: formatedDate }));
+  }
 
+  const onSubmit = (e) => {
+    (id ? apiPut("/thesis/" + id, thesis) : apiPost("/thesis", thesis))
+      .then(() => {
+        toast.success(`Práce byla ${id ? "upravena" : "založena"} úspěšně.`);
+        id ? navigate("/theses/detail/" + id) : navigate("/theses");
+      })
+      .catch((error) => {
+        toast.error(`Chyba: ${error.message}`);
+        console.error(error.message);
+      });
+  };
+
+  if (loading) {
     return (
-        <div>
-            <h1>{id ? "Upravit" : "Vytvořit"} práci</h1>
-
-            <hr/>
-            <form onSubmit={handleSubmit(onSubmit)}>
-
-                <InputDateField
-                    label="Datum"
-                    name="startDate"
-                    value={thesis.startDate}
-                    onChange={handleChangeDateField}
-                />
-
-                <InputField
-                    required={true}
-                    type="text"
-                    name="nameCz"
-                    label="Český název"
-                    prompt="Zadej český název práce"
-                    value={thesis.nameCz}
-                    handleChange={(e) => {
-                        setThesis({...thesis, nameCz: e.target.value});
-                    }}
-                />
-
-                <InputField
-                    required={false}
-                    type="text"
-                    name="nameEn"
-                    label="Anglický název"
-                    prompt="Zadej anglický název práce"
-                    value={thesis.nameEn}
-                    handleChange={(e) => {
-                        setThesis({...thesis, nameEn: e.target.value});
-                    }}
-                />
-
-                <InputSelect
-                    name="student"
-                    items={people}
-                    label="Student"
-                    placeHolder="Vyber studenta"
-                    showLabel="surname"
-                    showLabel2="firstName"
-                    value={thesis.student?.id}
-                    onChange={(id) => {
-                        setThesis({...thesis, student: {id}});
-                    }}
-                />
-
-                <InputSelect
-                    name="trainer"
-                    items={people}
-                    label="Školitel"
-                    placeHolder="Vyber školitele"
-                    showLabel="surname"
-                    showLabel2="firstName"
-                    value={thesis.trainer?.id}
-                    onChange={(id) => {
-                        setThesis({...thesis, trainer: {id}});
-                    }}
-                />
-
-                <InputSelect
-                    name="consultant"
-                    items={people}
-                    label="Konzultant"
-                    placeHolder="Vyber konzultanta"
-                    showLabel="surname"
-                    showLabel2="firstName"
-                    value={thesis.consultant?.id}
-                    onChange={(id) => {
-                        setThesis({
-                            ...thesis,
-                            consultant: {id},
-                        });
-                    }}
-                />
-
-                <InputSelect
-                    name="faculty"
-                    items={faculty}
-                    label="Fakulta"
-                    placeHolder="Vyber fakultu"
-                    value={thesis.faculty?.id}
-                    showLabel="facultyName"
-                    onChange={(id) => {
-                        setThesis({...thesis, faculty: {id}});
-                    }}
-                />
-
-                <InputSelect
-                    name="council"
-                    items={council}
-                    label="Rada"
-                    placeHolder="Vyber radu"
-                    value={thesis.council?.id}
-                    showLabel="councilName"
-                    onChange={(id) => {
-                        setThesis({...thesis, council: {id}});
-                    }}
-                />
-
-                <InputDateField
-                    label="Datum"
-                    name="endDate"
-                    value={thesis.endDate}
-                    onChange={handleChangeDateField}
-                />
-
-                <InputField
-                    required={false}
-                    type="text"
-                    name="note"
-                    label="Poznámka"
-                    prompt="Zadej poznámku"
-                    value={thesis.note}
-                    handleChange={(e) => {
-                        setThesis({...thesis, note: e.target.value});
-                    }}
-                />
-                <p>Druh práce:</p>
-
-                <div className="d-flex align-items-center justify-content-between">
-                    <InputCheck
-                        type="radio"
-                        name="thesisType"
-                        label="Bakalářská"
-                        value={thesisType.BAKALARSKA}
-                        handleChange={(e) => {
-                            setThesis({...thesis, thesisType: e.target.value});
-                        }}
-                        checked={thesisType.BAKALARSKA === thesis.thesisType}
-                    />
-
-                    <InputCheck
-                        type="radio"
-                        name="thesisType"
-                        label="Magisterská"
-                        value={thesisType.MAGISTERSKA}
-                        handleChange={(e) => {
-                            setThesis({...thesis, thesisType: e.target.value});
-                        }}
-                        checked={thesisType.MAGISTERSKA === thesis.thesisType}
-                    />
-
-                    <InputCheck
-                        type="radio"
-                        name="thesisType"
-                        label="Doktorandská"
-                        value={thesisType.DOKTORANDSKA}
-                        handleChange={(e) => {
-                            setThesis({...thesis, thesisType: e.target.value});
-                        }}
-                        checked={thesisType.DOKTORANDSKA === thesis.thesisType}
-                    />
-
-                    <InputCheck
-                        type="radio"
-                        name="thesisType"
-                        label="Inženýrská"
-                        value={thesisType.INZENYRSKA}
-                        handleChange={(e) => {
-                            setThesis({...thesis, thesisType: e.target.value});
-                        }}
-                        checked={thesisType.INZENYRSKA === thesis.thesisType}
-                    />
-
-                </div>
-                <p>Status:</p>
-
-                <div className="d-flex align-items-center justify-content-between">
-                    <InputCheck
-                        type="radio"
-                        name="thesisStatus"
-                        label="Probíhající"
-                        value={thesisStatus.PROBIHAJICI}
-                        handleChange={(e) => {
-                            setThesis({...thesis, thesisStatus: e.target.value});
-                        }}
-                        checked={thesisStatus.PROBIHAJICI === thesis.thesisStatus}
-                    />
-
-                    <InputCheck
-                        type="radio"
-                        name="thesisStatus"
-                        label="Přerušená"
-                        value={thesisStatus.PRERUSENA}
-                        handleChange={(e) => {
-                            setThesis({...thesis, thesisStatus: e.target.value});
-                        }}
-                        checked={thesisStatus.PRERUSENA === thesis.thesisStatus}
-                    />
-
-                    <InputCheck
-                        type="radio"
-                        name="thesisStatus"
-                        label="Předčasně ukončená"
-                        value={thesisStatus.PREDCASNE_UKONCENA}
-                        handleChange={(e) => {
-                            setThesis({...thesis, thesisStatus: e.target.value});
-                        }}
-                        checked={thesisStatus.PREDCASNE_UKONCENA === thesis.thesisStatus}
-                    />
-
-                    <InputCheck
-                        type="radio"
-                        name="thesisStatus"
-                        label="Ukončená"
-                        value={thesisStatus.UKONCENA}
-                        handleChange={(e) => {
-                            setThesis({...thesis, thesisStatus: e.target.value});
-                        }}
-                        checked={thesisStatus.UKONCENA === thesis.thesisStatus}
-                    />
-
-                </div>
-                <br/>
-                <div className="d-flex justify-content-between">
-                    <input type="submit" className="btn btn-success" value="Uložit"/>
-                    <button className="btn btn-danger" onClick={() => navigate(-1)}>Storno</button>
-                </div>
-            </form>
-        </div>
+      <div className="text-center mt-5">
+        <div className="spinner-border text-primary" />
+      </div>
     );
+  }
+
+  return (
+    <div>
+      <h1>{id ? "Upravit" : "Vytvořit"} práci</h1>
+
+      <hr />
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <InputDateField
+          label="Datum založení"
+          name="startDate"
+          value={thesis.startDate}
+          onChange={handleChangeDateField}
+        />
+
+        <InputField
+          required={true}
+          type="text"
+          name="nameCz"
+          label="Český název"
+          prompt="Zadej český název práce"
+          value={thesis.nameCz}
+          handleChange={(e) => {
+            setThesis({ ...thesis, nameCz: e.target.value });
+          }}
+        />
+
+        <InputField
+          required={false}
+          type="text"
+          name="nameEn"
+          label="Anglický název"
+          prompt="Zadej anglický název práce"
+          value={thesis.nameEn}
+          handleChange={(e) => {
+            setThesis({ ...thesis, nameEn: e.target.value });
+          }}
+        />
+
+        <InputSelect
+          name="student"
+          items={people}
+          label="Student"
+          placeHolder="Vyber studenta"
+          showLabel="surname"
+          showLabel2="firstName"
+          value={thesis.student?.id}
+          onChange={(id) => {
+            setThesis({ ...thesis, student: { id } });
+          }}
+        />
+
+        <InputSelect
+          name="trainer"
+          items={people}
+          label="Školitel"
+          placeHolder="Vyber školitele"
+          showLabel="surname"
+          showLabel2="firstName"
+          value={thesis.trainer?.id}
+          onChange={(id) => {
+            setThesis({ ...thesis, trainer: { id } });
+          }}
+        />
+
+        <InputSelect
+          name="consultant"
+          items={people}
+          label="Konzultant"
+          placeHolder="Vyber konzultanta"
+          showLabel="surname"
+          showLabel2="firstName"
+          value={thesis.consultant?.id}
+          onChange={(id) => {
+            setThesis({
+              ...thesis,
+              consultant: { id },
+            });
+          }}
+        />
+
+        <InputSelect
+          name="faculty"
+          items={faculty}
+          label="Fakulta"
+          placeHolder="Vyber fakultu"
+          value={thesis.faculty?.id}
+          showLabel="facultyName"
+          onChange={(id) => {
+            setThesis({ ...thesis, faculty: { id } });
+          }}
+        />
+
+        <InputSelect
+          name="council"
+          items={council}
+          label="Rada"
+          placeHolder="Vyber radu"
+          value={thesis.council?.id}
+          showLabel="councilName"
+          onChange={(id) => {
+            setThesis({ ...thesis, council: { id } });
+          }}
+        />
+
+        <InputDateField
+          label="Datum přerušení"
+          name="pauseDate"
+          value={thesis.pauseDate}
+          onChange={handleChangeDateField}
+        />
+
+        <InputDateField
+          label="Datum ukončení"
+          name="endDate"
+          value={thesis.endDate}
+          onChange={handleChangeDateField}
+        />
+
+        <InputField
+          required={false}
+          type="text"
+          name="note"
+          label="Poznámka"
+          prompt="Zadej poznámku"
+          value={thesis.note}
+          handleChange={(e) => {
+            setThesis({ ...thesis, note: e.target.value });
+          }}
+        />
+        <p>Druh práce:</p>
+
+        <div className="d-flex align-items-center justify-content-between">
+          <InputCheck
+            type="radio"
+            name="thesisType"
+            label="Bakalářská"
+            value={thesisType.BAKALARSKA}
+            handleChange={(e) => {
+              setThesis({ ...thesis, thesisType: e.target.value });
+            }}
+            checked={thesisType.BAKALARSKA === thesis.thesisType}
+          />
+
+          <InputCheck
+            type="radio"
+            name="thesisType"
+            label="Magisterská"
+            value={thesisType.MAGISTERSKA}
+            handleChange={(e) => {
+              setThesis({ ...thesis, thesisType: e.target.value });
+            }}
+            checked={thesisType.MAGISTERSKA === thesis.thesisType}
+          />
+
+          <InputCheck
+            type="radio"
+            name="thesisType"
+            label="Doktorandská"
+            value={thesisType.DOKTORANDSKA}
+            handleChange={(e) => {
+              setThesis({ ...thesis, thesisType: e.target.value });
+            }}
+            checked={thesisType.DOKTORANDSKA === thesis.thesisType}
+          />
+
+          <InputCheck
+            type="radio"
+            name="thesisType"
+            label="Inženýrská"
+            value={thesisType.INZENYRSKA}
+            handleChange={(e) => {
+              setThesis({ ...thesis, thesisType: e.target.value });
+            }}
+            checked={thesisType.INZENYRSKA === thesis.thesisType}
+          />
+        </div>
+        <p>Status:</p>
+
+        <div className="d-flex align-items-center justify-content-between">
+          <InputCheck
+            type="radio"
+            name="thesisStatus"
+            label="Probíhající"
+            value={thesisStatus.PROBIHAJICI}
+            handleChange={(e) => {
+              setThesis({ ...thesis, thesisStatus: e.target.value });
+            }}
+            checked={thesisStatus.PROBIHAJICI === thesis.thesisStatus}
+          />
+
+          <InputCheck
+            type="radio"
+            name="thesisStatus"
+            label="Přerušená"
+            value={thesisStatus.PRERUSENA}
+            handleChange={(e) => {
+              setThesis({ ...thesis, thesisStatus: e.target.value });
+            }}
+            checked={thesisStatus.PRERUSENA === thesis.thesisStatus}
+          />
+
+          <InputCheck
+            type="radio"
+            name="thesisStatus"
+            label="Předčasně ukončená"
+            value={thesisStatus.PREDCASNE_UKONCENA}
+            handleChange={(e) => {
+              setThesis({ ...thesis, thesisStatus: e.target.value });
+            }}
+            checked={thesisStatus.PREDCASNE_UKONCENA === thesis.thesisStatus}
+          />
+
+          <InputCheck
+            type="radio"
+            name="thesisStatus"
+            label="Ukončená"
+            value={thesisStatus.UKONCENA}
+            handleChange={(e) => {
+              setThesis({ ...thesis, thesisStatus: e.target.value });
+            }}
+            checked={thesisStatus.UKONCENA === thesis.thesisStatus}
+          />
+        </div>
+        <br />
+        <div className="d-flex justify-content-between">
+          <input type="submit" className="btn btn-success" value="Uložit" />
+          <button className="btn btn-danger" onClick={() => navigate(-1)}>
+            Storno
+          </button>
+        </div>
+      </form>
+    </div>
+  );
 };
 
 export default ThesisForm;

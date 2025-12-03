@@ -157,6 +157,11 @@ function ThesisDetail() {
       </p>
 
       <p>
+        <strong>Celé datum prerušení: </strong>
+        {thesis.pauseDate !== null ? formatDate(thesis.pauseDate) : ""}
+      </p>
+
+      <p>
         <strong>Celé datum ukončení:</strong> {formatDate(thesis.endDate)}
       </p>
 

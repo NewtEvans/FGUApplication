@@ -72,15 +72,27 @@ const SummaryIndex = () => {
       </div>
 
       <div>
-        <p>Počet rozpracovaných prací v roce {year}: </p>
         <p>
           Počet přerušených prací v roce {year}: {data.numberOfPausedTheses}
         </p>
+        <p>- bakalářská: {data.pausedBakalarska}</p>
+        <p>- magisterské: {data.pausedMagisterska}</p>
+        <p>- doktorandská: {data.pausedDoktorandska}</p>
+        <p>- inženýrská: {data.pausedInzenyrska}</p>
+      </div>
+
+      <div>
         <p>
           Počet předčasně ukončených prací v roce {year}:{" "}
           {data.numberOfAbandonedTheses}
         </p>
+        <p>- bakalářská: {data.abandonedBakalarska}</p>
+        <p>- magisterské: {data.abandonedMagisterska}</p>
+        <p>- doktorandská: {data.abandonedDoktorandska}</p>
+        <p>- inženýrská: {data.abandonedInzenyrska}</p>
       </div>
+
+      <p>Počet rozpracovaných prací v roce {year}: </p>
     </div>
   );
 };
