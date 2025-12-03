@@ -54,11 +54,11 @@ public class SummaryServiceImpl implements SummaryService {
         summaryDTO.setNewDoktorandska(getNumberOfThesesByStartYear(year, ThesisType.doktorandska));
         summaryDTO.setNewInzenyrska(getNumberOfThesesByStartYear(year, ThesisType.inzenyrska));
 
-        summaryDTO.setNumberOfEndedTheses(getNumberOfThesesByEndYear(year));
-        summaryDTO.setEndedBakalarska(getNumberOfThesesByEndYear(year, ThesisType.bakalarska));
-        summaryDTO.setEndedMagisterska(getNumberOfThesesByEndYear(year, ThesisType.magisterska));
-        summaryDTO.setEndedDoktorandska(getNumberOfThesesByEndYear(year, ThesisType.doktorandska));
-        summaryDTO.setEndedInzenyrska(getNumberOfThesesByEndYear(year, ThesisType.inzenyrska));
+        summaryDTO.setNumberOfEndedTheses(getNumberOfThesesByEndYearAndThesisStatus(year, ThesisStatus.UKONCENA));
+        summaryDTO.setEndedBakalarska(getNumberOfThesesByEndYear(year, ThesisType.bakalarska, ThesisStatus.UKONCENA));
+        summaryDTO.setEndedMagisterska(getNumberOfThesesByEndYear(year, ThesisType.magisterska, ThesisStatus.UKONCENA));
+        summaryDTO.setEndedDoktorandska(getNumberOfThesesByEndYear(year, ThesisType.doktorandska, ThesisStatus.UKONCENA));
+        summaryDTO.setEndedInzenyrska(getNumberOfThesesByEndYear(year, ThesisType.inzenyrska, ThesisStatus.UKONCENA));
 
         summaryDTO.setNumberOfAbandonedTheses(getNumberOfThesesByEndYearAndThesisStatus(year, ThesisStatus.PREDCASNE_UKONCENA));
         summaryDTO.setAbandonedBakalarska(getNumberOfThesesByEndYear(year, ThesisType.bakalarska, ThesisStatus.PREDCASNE_UKONCENA));
