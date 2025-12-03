@@ -60,7 +60,7 @@ public class SummaryServiceImpl implements SummaryService {
         summaryDTO.setEndedDoktorandska(getNumberOfThesesByEndYear(year, ThesisType.doktorandska));
         summaryDTO.setEndedInzenyrska(getNumberOfThesesByEndYear(year, ThesisType.inzenyrska));
 
-        summaryDTO.setNumberOfAbandonedTheses(getNumberOfThesesByEndYear(year, ThesisStatus.PREDCASNE_UKONCENA));
+        summaryDTO.setNumberOfAbandonedTheses(getNumberOfThesesByEndYearAndThesisStatus(year, ThesisStatus.PREDCASNE_UKONCENA));
         summaryDTO.setAbandonedBakalarska(getNumberOfThesesByEndYear(year, ThesisType.bakalarska, ThesisStatus.PREDCASNE_UKONCENA));
         summaryDTO.setAbandonedMagisterska(getNumberOfThesesByEndYear(year, ThesisType.magisterska, ThesisStatus.PREDCASNE_UKONCENA));
         summaryDTO.setAbandonedDoktorandska(getNumberOfThesesByEndYear(year, ThesisType.doktorandska, ThesisStatus.PREDCASNE_UKONCENA));
@@ -123,6 +123,12 @@ public class SummaryServiceImpl implements SummaryService {
         LocalDate start = LocalDate.of(year, 1, 1);
         LocalDate end = LocalDate.of(year, 12, 31);
         return thesisRepository.countByEndDateBetweenAndThesisStatusAndThesisType(start, end, thesisStatus, thesisType);
+    }
+
+    private long getNumberOfThesesByEndYearAndThesisStatus(int year, ThesisStatus thesisStatus) {
+        LocalDate start = LocalDate.of(year, 1, 1);
+        LocalDate end = LocalDate.of(year, 12, 31);
+        return thesisRepository.countByEndDateBetweenAndThesisStatus(start, end, thesisStatus);
     }
 
 //    private long getNumberOfOngoingTheses(int year) {
