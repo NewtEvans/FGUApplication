@@ -1,0 +1,52 @@
+.my-custom-table {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.my-custom-table th {
+    background-color: aqua; /* barva hlavičky */
+    border: 1px solid black;
+    padding: 0.5rem 1rem;
+}
+
+.my-custom-table td {
+    border: 1px solid black;
+    padding: 0.5rem 1rem;
+    background-color: aquamarine; /* barva těla tabulky */
+}
+.my-custom-table td:hover {
+    background-color: bisque;
+    font-size: large;
+
+}
+
+.my-rank-custom-table {
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.288);
+}
+
+.my-rank-custom-table thead tr {
+
+}
+
+.my-rank-custom-table thead th {
+    background-color: #009879;
+    color: white;
+    text-align: center;
+}
+
+.my-rank-custom-table tbody tr:nth-of-type(even){
+    background-color: #f3f3f3;
+}
+
+.my-rank-custom-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879
+}
+
+.my-rank-custom-table tbody tr.active-row{
+    font-weight: bold;
+    color: #009879
+}
