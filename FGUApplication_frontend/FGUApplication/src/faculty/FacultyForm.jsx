@@ -88,7 +88,7 @@ const FacultyForm = () => {
                 <br/>
                 <div className="d-flex justify-content-between">
                     <input type="submit" className="btn btn-success" value="Uložit"/>
-                    <button className="btn btn-danger" onClick={() => navigate(-1)}>Storno</button>
+                    <button type="button" className="btn btn-danger" onClick={() => navigate(-1)}>Storno</button>
                 </div>
             </form>
         </div>
