@@ -30,14 +30,9 @@ oborových rad.
 
 1) Naklonování repozitáře
     - git clone https://github.com/NewtEvans/FGUApplication
-2) Spustit přes Docker (docker-compose up --build)
-    - Spustí se:
-        - Spring Boot backend: https://localhost:8080
-        - React frontend: http://localhost:3000
-        - MySQL: localhost: 3306
-3) Webové rozhraní
-    - Do slozky **FGUApplication_frontend** nainstalovat vsechny potrebne zavislosti a balicky (npm install)
-    - Otevři prohlížeč na: http://localhost:3000
+2) Nainstalovat Docker
+3) Otevřít terminál v naklonované složce
+    - docker compose up --build
 
 # Struktura projektu
 
@@ -102,6 +97,13 @@ oborových rad.
 
 4) Dokumentace
     - http://localhost:8081/swagger-ui/index.html#/
+
+
+## Porty
+    - 3000 - frontend
+    - 8081 - backend
+    - 8082 - mysql
+    - 8082 - phpmyadmin
 
 # Autor
 
